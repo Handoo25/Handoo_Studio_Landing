@@ -1318,3 +1318,68 @@ textarea{
   color:#475569 !important;
   font-weight:500;
 }
+/* =========================
+   FIX BLOQUE BENEFICIOS HOME
+   ========================= */
+
+.home-benefits{
+  background:#f8fafc;
+}
+
+.home-benefits .section-kicker{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:fit-content;
+  margin:0 auto 14px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#fff7ed;
+  color:#ea580c !important;
+  border:1px solid #fed7aa;
+  font-size:13px;
+  font-weight:900;
+}
+
+.home-benefits .section-heading,
+.home-benefits .section-heading.center{
+  text-align:center;
+}
+
+.home-benefits .section-heading h2,
+.home-benefits .section-heading.center h2{
+  color:#0f172a !important;
+}
+
+.home-benefits .section-heading p,
+.home-benefits .section-heading.center p{
+  color:#475569 !important;
+}
+
+.home-benefits .feature-card,
+.home-benefits .benefit-card,
+.home-benefits .service-card,
+.home-benefits .mini-card{
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.home-benefits .feature-card h3,
+.home-benefits .benefit-card h3,
+.home-benefits .service-card h3,
+.home-benefits .mini-card h3,
+.home-benefits .feature-card strong,
+.home-benefits .benefit-card strong,
+.home-benefits .service-card strong,
+.home-benefits .mini-card strong{
+  color:#0f172a !important;
+}
+
+.home-benefits .feature-card p,
+.home-benefits .benefit-card p,
+.home-benefits .service-card p,
+.home-benefits .mini-card p{
+  color:#475569 !important;
+}
