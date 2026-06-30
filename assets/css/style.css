@@ -567,3 +567,50 @@ textarea{
     padding:32px;
   }
 }
+/* Mobile navigation fix */
+
+@media(max-width:900px){
+  .navbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+  }
+
+  .navlinks{
+    display:flex;
+    width:100%;
+    gap:10px;
+    overflow-x:auto;
+    padding-bottom:6px;
+  }
+
+  .navlinks a{
+    white-space:nowrap;
+    padding:9px 13px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    color:#f8fafc;
+    font-size:13px;
+  }
+
+  .navlinks a:hover{
+    background:white;
+    color:var(--hs-dark);
+  }
+
+  .hero-actions{
+    width:100%;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+  }
+
+  .whatsapp{
+    right:14px;
+    bottom:14px;
+    padding:12px 15px;
+    font-size:14px;
+  }
+}
