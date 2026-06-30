@@ -3,213 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Handoo Studio | Landing pages profesionales</title>
   <meta name="description" content="Landing pages profesionales, rápidas y modernas para negocios que quieren captar más clientes." />
 
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:Inter,Arial,Helvetica,sans-serif;
-      background:#f8fafc;
-      color:#111827;
-      line-height:1.6;
-    }
+    body{font-family:Inter,Arial,Helvetica,sans-serif;background:#f8fafc;color:#111827;line-height:1.6}
     a{text-decoration:none;color:inherit}
     .container{width:min(1120px,92%);margin:auto}
-    header{
-      background:linear-gradient(135deg,#0f172a,#111827);
-      color:white;
-      padding:28px 0 90px;
-    }
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:80px;
-    }
-    .logo{font-weight:900;font-size:24px}
-    .logo span{color:#f97316}
+    header{background:linear-gradient(135deg,#0f172a,#111827);color:white;padding:28px 0 90px}
+    nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:80px}
+    .logo{font-weight:900;font-size:24px}.logo span{color:#f97316}
     .navlinks{display:flex;gap:24px;font-size:14px;opacity:.9}
-    .hero{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:50px;
-      align-items:center;
-    }
-    .badge{
-      display:inline-block;
-      background:rgba(249,115,22,.15);
-      color:#fdba74;
-      padding:8px 14px;
-      border-radius:999px;
-      font-size:14px;
-      margin-bottom:22px;
-      font-weight:700;
-    }
-    h1{
-      font-size:clamp(42px,6vw,72px);
-      line-height:1.05;
-      margin-bottom:24px;
-      letter-spacing:-2px;
-    }
-    .hero p{
-      font-size:20px;
-      color:#d1d5db;
-      max-width:620px;
-      margin-bottom:34px;
-    }
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+    .badge{display:inline-block;background:rgba(249,115,22,.15);color:#fdba74;padding:8px 14px;border-radius:999px;font-size:14px;margin-bottom:22px;font-weight:700}
+    h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin-bottom:24px;letter-spacing:-2px}
+    .hero p{font-size:20px;color:#d1d5db;max-width:620px;margin-bottom:34px}
     .buttons{display:flex;gap:16px;flex-wrap:wrap}
-    .btn{
-      display:inline-block;
-      padding:16px 28px;
-      border-radius:12px;
-      font-weight:800;
-      transition:.2s;
-    }
-    .btn-primary{background:#f97316;color:white}
-    .btn-primary:hover{background:#ea580c;transform:translateY(-2px)}
-    .btn-secondary{border:1px solid rgba(255,255,255,.25);color:white}
-    .hero-card{
-      background:white;
-      color:#111827;
-      border-radius:28px;
-      padding:30px;
-      box-shadow:0 30px 80px rgba(0,0,0,.35);
-    }
-    .mini-top{
-      height:14px;
-      display:flex;
-      gap:7px;
-      margin-bottom:24px;
-    }
-    .dot{width:12px;height:12px;border-radius:50%;background:#e5e7eb}
-    .preview{
-      background:#f1f5f9;
-      border-radius:18px;
-      padding:24px;
-    }
-    .preview h3{font-size:24px;margin-bottom:12px}
-    .preview-line{height:10px;background:#cbd5e1;border-radius:20px;margin:12px 0}
-    .preview-line.short{width:65%}
-    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-    .preview-box{background:white;border-radius:14px;height:80px}
+    .btn{display:inline-block;padding:16px 28px;border-radius:12px;font-weight:800;transition:.2s;border:0;cursor:pointer;font-size:16px}
+    .btn-primary{background:#f97316;color:white}.btn-primary:hover{background:#ea580c;transform:translateY(-2px)}
+    .btn-secondary{border:1px solid rgba(255,255,255,.35);color:white;background:transparent}
+    .hero-card{background:white;color:#111827;border-radius:28px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .mini-top{height:14px;display:flex;gap:7px;margin-bottom:24px}.dot{width:12px;height:12px;border-radius:50%;background:#e5e7eb}
+    .preview{background:#f1f5f9;border-radius:18px;padding:24px}.preview h3{font-size:24px;margin-bottom:12px}
+    .preview-line{height:10px;background:#cbd5e1;border-radius:20px;margin:12px 0}.preview-line.short{width:65%}
+    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.preview-box{background:white;border-radius:14px;height:80px}
 
     section{padding:86px 0}
     .section-title{text-align:center;max-width:760px;margin:0 auto 50px}
     .section-title h2{font-size:42px;line-height:1.15;margin-bottom:14px}
     .section-title p{font-size:18px;color:#64748b}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    .card{
-      background:white;
-      border:1px solid #e5e7eb;
-      border-radius:22px;
-      padding:30px;
-      box-shadow:0 14px 40px rgba(15,23,42,.06);
-    }
-    .icon{
-      width:48px;height:48px;border-radius:14px;
-      background:#fff7ed;
-      color:#f97316;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:24px;
-      margin-bottom:20px;
-    }
-    .card h3{font-size:22px;margin-bottom:10px}
-    .card p{color:#64748b}
-    .dark{
-      background:#0f172a;
-      color:white;
-    }
-    .dark .section-title p{color:#cbd5e1}
+    .card{background:white;border:1px solid #e5e7eb;border-radius:22px;padding:30px;box-shadow:0 14px 40px rgba(15,23,42,.06)}
+    .icon{width:48px;height:48px;border-radius:14px;background:#fff7ed;color:#f97316;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+    .card h3{font-size:22px;margin-bottom:10px}.card p{color:#64748b}
+    .dark{background:#0f172a;color:white}.dark .section-title p{color:#cbd5e1}
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .step{
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:20px;
-      padding:24px;
-    }
-    .num{
-      color:#f97316;
-      font-size:32px;
-      font-weight:900;
-      margin-bottom:12px;
-    }
-    .portfolio{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:24px;
-    }
-    .work{
-      background:white;
-      border-radius:24px;
-      overflow:hidden;
-      border:1px solid #e5e7eb;
-      box-shadow:0 14px 40px rgba(15,23,42,.06);
-    }
-    .work-img{
-      height:180px;
-      background:linear-gradient(135deg,#fed7aa,#fdba74);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:48px;
-    }
-    .work-content{padding:24px}
-    .work-content h3{margin-bottom:8px}
-    .work-content p{color:#64748b}
-    .pricing{
-      background:white;
-      border-radius:28px;
-      padding:40px;
-      max-width:760px;
-      margin:auto;
-      box-shadow:0 18px 50px rgba(15,23,42,.08);
-      border:1px solid #e5e7eb;
-      text-align:center;
-    }
+    .step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:24px}
+    .num{color:#f97316;font-size:32px;font-weight:900;margin-bottom:12px}
+
+    .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .work{background:white;border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 14px 40px rgba(15,23,42,.06)}
+    .work-img{height:180px;background:linear-gradient(135deg,#fed7aa,#fdba74);display:flex;align-items:center;justify-content:center;font-size:48px}
+    .work-content{padding:24px}.work-content h3{margin-bottom:8px}.work-content p{color:#64748b}
+
+    .pricing{background:white;border-radius:28px;padding:40px;max-width:760px;margin:auto;box-shadow:0 18px 50px rgba(15,23,42,.08);border:1px solid #e5e7eb;text-align:center}
     .price{font-size:58px;font-weight:900;color:#f97316;margin:10px 0}
-    .pricing ul{
-      text-align:left;
-      max-width:520px;
-      margin:26px auto;
-      list-style:none;
-    }
+    .pricing ul{text-align:left;max-width:520px;margin:26px auto;list-style:none}
     .pricing li{padding:10px 0;border-bottom:1px solid #e5e7eb}
     .pricing li:before{content:"✓";color:#16a34a;font-weight:900;margin-right:10px}
+
+    .testimonials{background:#fff}
+    .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .testimonial{background:#f8fafc;padding:30px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.06);border:1px solid #e5e7eb}
+    .testimonial p{margin:18px 0;color:#475569}
+
     .faq{max-width:860px;margin:auto}
-    .faq-item{
-      background:white;
-      border:1px solid #e5e7eb;
-      border-radius:16px;
-      padding:22px;
-      margin-bottom:14px;
-    }
-    .faq-item h3{margin-bottom:8px}
-    .faq-item p{color:#64748b}
-    .cta{
-      background:linear-gradient(135deg,#f97316,#ea580c);
-      color:white;
-      border-radius:32px;
-      padding:60px;
-      text-align:center;
-    }
-    .cta h2{font-size:42px;margin-bottom:14px}
-    .cta p{font-size:19px;margin-bottom:28px;opacity:.95}
-    footer{
-      background:#020617;
-      color:#94a3b8;
-      padding:40px 0;
-      text-align:center;
+    .faq-item{background:white;border:1px solid #e5e7eb;border-radius:16px;padding:22px;margin-bottom:14px}
+    .faq-item h3{margin-bottom:8px}.faq-item p{color:#64748b}
+
+    .contact-box{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    .contact-info{background:linear-gradient(135deg,#f97316,#ea580c);color:white;border-radius:28px;padding:42px}
+    .contact-info h2{font-size:38px;margin-bottom:14px}
+    .contact-info p{font-size:18px;margin-bottom:24px}
+    .contact-info a{display:block;margin:12px 0;font-weight:800}
+    form{background:white;border:1px solid #e5e7eb;border-radius:28px;padding:32px;box-shadow:0 18px 50px rgba(15,23,42,.08)}
+    input,textarea{width:100%;padding:14px 16px;border:1px solid #d1d5db;border-radius:12px;margin-bottom:14px;font-size:15px;font-family:inherit}
+    textarea{min-height:130px;resize:vertical}
+
+    footer{background:#020617;color:#94a3b8;padding:40px 0;text-align:center}
+
+    .whatsapp{
+      position:fixed;right:20px;bottom:20px;background:#22c55e;color:white;
+      padding:14px 18px;border-radius:999px;font-weight:900;box-shadow:0 12px 35px rgba(0,0,0,.25);z-index:99
     }
 
     @media(max-width:900px){
-      .hero,.grid-3,.steps,.portfolio{grid-template-columns:1fr}
-      nav{align-items:flex-start;gap:20px}
+      .hero,.grid-3,.steps,.portfolio,.testimonial-grid,.contact-box{grid-template-columns:1fr}
       .navlinks{display:none}
       header{padding-bottom:60px}
-      .cta{padding:40px 24px}
     }
   </style>
 </head>
@@ -232,10 +105,7 @@
       <div>
         <div class="badge">Landing pages rápidas para negocios reales</div>
         <h1>Convierte visitas en clientes con una web clara, moderna y lista en 48h.</h1>
-        <p>
-          Diseño landing pages profesionales para restaurantes, clínicas, asesorías,
-          inmobiliarias, autónomos y negocios locales que necesitan captar clientes sin complicarse.
-        </p>
+        <p>Diseño landing pages profesionales para restaurantes, clínicas, asesorías, inmobiliarias, autónomos y negocios locales que necesitan captar clientes sin complicarse.</p>
         <div class="buttons">
           <a class="btn btn-primary" href="#contacto">Solicitar presupuesto</a>
           <a class="btn btn-secondary" href="#portfolio">Ver ejemplos</a>
@@ -243,18 +113,13 @@
       </div>
 
       <div class="hero-card">
-        <div class="mini-top">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        </div>
+        <div class="mini-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
         <div class="preview">
           <h3>Landing premium</h3>
           <div class="preview-line"></div>
           <div class="preview-line short"></div>
           <div class="preview-grid">
-            <div class="preview-box"></div>
-            <div class="preview-box"></div>
-            <div class="preview-box"></div>
-            <div class="preview-box"></div>
+            <div class="preview-box"></div><div class="preview-box"></div><div class="preview-box"></div><div class="preview-box"></div>
           </div>
         </div>
       </div>
@@ -266,27 +131,13 @@
   <div class="container">
     <div class="section-title">
       <h2>Una landing pensada para vender, no solo para verse bonita</h2>
-      <p>
-        Estructura clara, diseño responsive, mensaje comercial y llamada a la acción directa.
-      </p>
+      <p>Estructura clara, diseño responsive, mensaje comercial y llamada a la acción directa.</p>
     </div>
 
     <div class="grid-3">
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Entrega rápida</h3>
-        <p>Landing lista en 24-48h según contenido, con diseño adaptable a móvil y ordenador.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🎯</div>
-        <h3>Enfoque comercial</h3>
-        <p>Textos, secciones y botones pensados para captar contactos, reservas o solicitudes.</p>
-      </div>
-      <div class="card">
-        <div class="icon">📱</div>
-        <h3>Responsive</h3>
-        <p>Diseño optimizado para que se vea bien en móvil, tablet y escritorio.</p>
-      </div>
+      <div class="card"><div class="icon">⚡</div><h3>Entrega rápida</h3><p>Landing lista en 24-48h según contenido, con diseño adaptable a móvil y ordenador.</p></div>
+      <div class="card"><div class="icon">🎯</div><h3>Enfoque comercial</h3><p>Textos, secciones y botones pensados para captar contactos, reservas o solicitudes.</p></div>
+      <div class="card"><div class="icon">📱</div><h3>Responsive</h3><p>Diseño optimizado para que se vea bien en móvil, tablet y escritorio.</p></div>
     </div>
   </div>
 </section>
@@ -299,26 +150,10 @@
     </div>
 
     <div class="steps">
-      <div class="step">
-        <div class="num">01</div>
-        <h3>Brief</h3>
-        <p>Me cuentas tu negocio, servicios, objetivo y estilo visual.</p>
-      </div>
-      <div class="step">
-        <div class="num">02</div>
-        <h3>Diseño</h3>
-        <p>Creo una estructura clara con textos y secciones de conversión.</p>
-      </div>
-      <div class="step">
-        <div class="num">03</div>
-        <h3>Desarrollo</h3>
-        <p>Construyo la landing responsive y optimizada para publicar.</p>
-      </div>
-      <div class="step">
-        <div class="num">04</div>
-        <h3>Entrega</h3>
-        <p>Recibes la web lista para subir o publicada en tu dominio.</p>
-      </div>
+      <div class="step"><div class="num">01</div><h3>Brief</h3><p>Me cuentas tu negocio, servicios, objetivo y estilo visual.</p></div>
+      <div class="step"><div class="num">02</div><h3>Diseño</h3><p>Creo una estructura clara con textos y secciones de conversión.</p></div>
+      <div class="step"><div class="num">03</div><h3>Desarrollo</h3><p>Construyo la landing responsive y optimizada para publicar.</p></div>
+      <div class="step"><div class="num">04</div><h3>Entrega</h3><p>Recibes la web lista para subir o publicada en tu dominio.</p></div>
     </div>
   </div>
 </section>
@@ -331,29 +166,9 @@
     </div>
 
     <div class="portfolio">
-      <div class="work">
-        <div class="work-img">🍔</div>
-        <div class="work-content">
-          <h3>Restaurante</h3>
-          <p>Reservas, carta, ubicación, pedidos y WhatsApp.</p>
-        </div>
-      </div>
-
-      <div class="work">
-        <div class="work-img">🦷</div>
-        <div class="work-content">
-          <h3>Clínica</h3>
-          <p>Servicios, confianza, testimonios y solicitud de cita.</p>
-        </div>
-      </div>
-
-      <div class="work">
-        <div class="work-img">🏠</div>
-        <div class="work-content">
-          <h3>Inmobiliaria</h3>
-          <p>Captación de leads, propiedades destacadas y contacto rápido.</p>
-        </div>
-      </div>
+      <div class="work"><div class="work-img">🍔</div><div class="work-content"><h3>Restaurante</h3><p>Reservas, carta, ubicación, pedidos y WhatsApp.</p></div></div>
+      <div class="work"><div class="work-img">🦷</div><div class="work-content"><h3>Clínica</h3><p>Servicios, confianza, testimonios y solicitud de cita.</p></div></div>
+      <div class="work"><div class="work-img">🏠</div><div class="work-content"><h3>Inmobiliaria</h3><p>Captación de leads, propiedades destacadas y contacto rápido.</p></div></div>
     </div>
   </div>
 </section>
@@ -362,7 +177,7 @@
   <div class="container">
     <div class="pricing">
       <h2>Landing Page Express</h2>
-      <div class="price">desde 150€</div>
+      <div class="price">desde 250€</div>
       <p>Ideal para negocios que necesitan presencia profesional y captación rápida.</p>
 
       <ul>
@@ -379,44 +194,61 @@
   </div>
 </section>
 
-<section>
+<section class="testimonials">
   <div class="container">
     <div class="section-title">
-      <h2>Preguntas frecuentes</h2>
+      <h2>Lo que buscan nuestros clientes</h2>
+      <p>Diseño limpio, rapidez y resultados.</p>
     </div>
 
+    <div class="testimonial-grid">
+      <div class="testimonial">⭐⭐⭐⭐⭐<p>"Necesitábamos una web sencilla pero profesional. En dos días estaba publicada y empezamos a recibir contactos."</p><strong>Negocio local</strong></div>
+      <div class="testimonial">⭐⭐⭐⭐⭐<p>"Muy fácil trabajar así. No tuve que preocuparme por textos, imágenes ni publicación."</p><strong>Autónomo</strong></div>
+      <div class="testimonial">⭐⭐⭐⭐⭐<p>"Una landing moderna, rápida y preparada para captar clientes desde el primer día."</p><strong>Empresa de servicios</strong></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-title"><h2>Preguntas frecuentes</h2></div>
     <div class="faq">
-      <div class="faq-item">
-        <h3>¿Cuánto tarda?</h3>
-        <p>Normalmente entre 24 y 48 horas si el contenido principal está claro.</p>
-      </div>
-      <div class="faq-item">
-        <h3>¿Necesito tener textos?</h3>
-        <p>No. Puedo ayudarte a estructurar los textos básicos según tu negocio.</p>
-      </div>
-      <div class="faq-item">
-        <h3>¿Puedo usar mi dominio?</h3>
-        <p>Sí. La landing puede publicarse en tu dominio o entregarse como archivos.</p>
-      </div>
+      <div class="faq-item"><h3>¿Cuánto tarda?</h3><p>Normalmente entre 24 y 48 horas si el contenido principal está claro.</p></div>
+      <div class="faq-item"><h3>¿Necesito tener textos?</h3><p>No. Puedo ayudarte a estructurar los textos básicos según tu negocio.</p></div>
+      <div class="faq-item"><h3>¿Puedo usar mi dominio?</h3><p>Sí. La landing puede publicarse en tu dominio o entregarse como archivos.</p></div>
     </div>
   </div>
 </section>
 
 <section id="contacto">
   <div class="container">
-    <div class="cta">
-      <h2>¿Creamos tu landing?</h2>
-      <p>Cuéntame tu negocio y preparo una propuesta rápida.</p>
-      <a class="btn btn-secondary" href="mailto:contacto@handoo.me">contacto@handoo.me</a>
+    <div class="contact-box">
+      <div class="contact-info">
+        <h2>Hablemos de tu proyecto</h2>
+        <p>Cuéntanos qué necesitas y en menos de 24 horas recibirás una propuesta sin compromiso.</p>
+        <a href="mailto:contacto@handoo.me">📧 contacto@handoo.me</a>
+        <a href="#">💬 WhatsApp próximamente</a>
+      </div>
+
+      <form action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+        <input type="text" name="Nombre" placeholder="Tu nombre" required>
+        <input type="text" name="Empresa" placeholder="Empresa o negocio">
+        <input type="email" name="Email" placeholder="Tu email" required>
+        <input type="text" name="WhatsApp" placeholder="WhatsApp">
+        <textarea name="Mensaje" placeholder="Cuéntanos qué tipo de landing necesitas"></textarea>
+        <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+      </form>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    © 2026 Handoo Studio · Landing pages rápidas para negocios
+    © 2026 Handoo Studio · Landing pages rápidas para negocios · contacto@handoo.me
   </div>
 </footer>
+
+<a class="whatsapp" href="#contacto">¿Hablamos?</a>
 
 </body>
 </html>
