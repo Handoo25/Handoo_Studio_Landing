@@ -56,6 +56,8 @@
       overflow:hidden;
       box-shadow:0 24px 70px rgba(15,23,42,.08);
       transition:.22s ease;
+      display:flex;
+      flex-direction:column;
     }
 
     .demo-preview-card:hover{
@@ -117,6 +119,9 @@
 
     .demo-content{
       padding:30px;
+      flex:1;
+      display:flex;
+      flex-direction:column;
     }
 
     .demo-content h3{
@@ -127,9 +132,10 @@
     }
 
     .demo-content p{
-      color:#64748b;
+      color:#475569;
       line-height:1.7;
       margin-bottom:22px;
+      font-weight:500;
     }
 
     .demo-features{
@@ -152,6 +158,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:12px;
+      margin-top:auto;
     }
 
     .demo-main-link{
@@ -216,9 +223,10 @@
     }
 
     .coming-item span{
-      color:#64748b;
+      color:#475569;
       font-size:14px;
       line-height:1.5;
+      font-weight:500;
     }
 
     .portfolio-note{
@@ -393,6 +401,43 @@
           </div>
         </article>
 
+        <article class="demo-preview-card">
+          <div class="demo-browser">
+            <div class="demo-browser-top">
+              <div class="demo-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="demo-browser-label">Vista previa real</div>
+            </div>
+
+            <div class="demo-preview">
+              <iframe src="demos/inmobiliaria/index.html" title="Nortea Homes demo"></iframe>
+            </div>
+          </div>
+
+          <div class="demo-content">
+            <h3>Nortea Homes</h3>
+            <p>
+              Demo premium para inmobiliaria con propiedades destacadas, buscador, valoración gratuita, captación de propietarios, zonas y formularios.
+            </p>
+
+            <div class="demo-features">
+              <span class="demo-feature">Propiedades</span>
+              <span class="demo-feature">Buscador</span>
+              <span class="demo-feature">Valoración</span>
+              <span class="demo-feature">Captación</span>
+              <span class="demo-feature">Leads</span>
+            </div>
+
+            <div class="demo-actions">
+              <a href="demos/inmobiliaria/index.html" class="demo-main-link">Ver demo</a>
+              <a href="contacto.html" class="demo-secondary-link">Quiero algo así</a>
+            </div>
+          </div>
+        </article>
+
       </div>
 
     </div>
@@ -411,11 +456,6 @@
       <div class="coming-grid">
 
         <div class="coming-item">
-          <strong>🏠 Inmobiliaria Norte</strong>
-          <span>Captación de propietarios, viviendas destacadas y solicitudes de valoración.</span>
-        </div>
-
-        <div class="coming-item">
           <strong>⚖️ Despacho legal</strong>
           <span>Especialidades, autoridad profesional, consulta inicial y confianza.</span>
         </div>
@@ -428,6 +468,11 @@
         <div class="coming-item">
           <strong>🎓 Academia Aula Norte</strong>
           <span>Cursos, matrículas, niveles, horarios y solicitud de información.</span>
+        </div>
+
+        <div class="coming-item">
+          <strong>🛍️ Comercio local</strong>
+          <span>Catálogo, promociones, productos destacados, WhatsApp y contacto rápido.</span>
         </div>
 
       </div>
