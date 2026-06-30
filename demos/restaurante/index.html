@@ -945,6 +945,83 @@
         position:static;
       }
     }
+        .order-add{
+      border:0;
+      cursor:pointer;
+      font-family:inherit;
+    }
+
+    .cart-items{
+      list-style:none;
+      padding:0;
+      margin:18px 0;
+    }
+
+    .cart-items li{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 0;
+      border-bottom:1px solid rgba(255,255,255,.1);
+      color:#f4f4f5;
+      font-weight:800;
+    }
+
+    .cart-items small{
+      display:block;
+      color:#a1a1aa;
+      font-weight:700;
+      margin-top:4px;
+    }
+
+    .cart-empty{
+      color:#a1a1aa;
+      background:rgba(255,255,255,.06);
+      border:1px dashed rgba(255,255,255,.18);
+      border-radius:18px;
+      padding:16px;
+      margin:18px 0;
+      line-height:1.5;
+    }
+
+    .cart-total{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
+      margin-top:8px;
+      border-top:2px solid rgba(255,255,255,.18);
+      font-size:22px;
+      font-weight:1000;
+    }
+
+    .cart-total span:last-child{
+      color:var(--burger-yellow);
+    }
+
+    .cart-actions{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .cart-clear{
+      background:transparent;
+      color:#d4d4d8;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      padding:13px 16px;
+      cursor:pointer;
+      font-weight:900;
+      text-transform:uppercase;
+      font-family:inherit;
+    }
+
+    .cart-clear:hover{
+      background:rgba(255,255,255,.08);
+      color:white;
+    }
   </style>
 </head>
 
@@ -1122,7 +1199,7 @@
 
     </div>
   </section>
-  <section id="pedido" class="burger-section order-zone">
+    <section id="pedido" class="burger-section order-zone">
     <div class="container">
 
       <div class="order-title">
@@ -1146,7 +1223,7 @@
               <p>Doble smash, cheddar fundido, bacon crujiente, cebolla caramelizada y salsa secreta.</p>
               <div class="order-card-bottom">
                 <span class="order-price">13,90€</span>
-                <a href="#reservas" class="order-add">Añadir</a>
+                <button type="button" class="order-add" data-name="Double Trouble" data-price="13.90">Añadir</button>
               </div>
             </div>
           </article>
@@ -1160,7 +1237,7 @@
               <p>Patatas crujientes con cheddar, bacon, salsa ranchera y cebolla crispy.</p>
               <div class="order-card-bottom">
                 <span class="order-price">7,90€</span>
-                <a href="#reservas" class="order-add">Añadir</a>
+                <button type="button" class="order-add" data-name="Loaded Fries" data-price="7.90">Añadir</button>
               </div>
             </div>
           </article>
@@ -1174,7 +1251,7 @@
               <p>Pollo crujiente, cheddar, jalapeños, lechuga fresca y mayo picante de la casa.</p>
               <div class="order-card-bottom">
                 <span class="order-price">11,90€</span>
-                <a href="#reservas" class="order-add">Añadir</a>
+                <button type="button" class="order-add" data-name="Spicy Queen" data-price="11.90">Añadir</button>
               </div>
             </div>
           </article>
@@ -1188,7 +1265,7 @@
               <p>Batido cremoso de vainilla con Oreo, nata montada y topping de chocolate.</p>
               <div class="order-card-bottom">
                 <span class="order-price">5,90€</span>
-                <a href="#reservas" class="order-add">Añadir</a>
+                <button type="button" class="order-add" data-name="Oreo Shake" data-price="5.90">Añadir</button>
               </div>
             </div>
           </article>
@@ -1198,8 +1275,19 @@
         <aside class="order-summary">
           <h3>Tu pedido</h3>
           <p>
-            En esta demo los botones simulan el pedido. En una web real se puede conectar a WhatsApp, carrito, pago online o sistema de pedidos.
+            Selecciona productos y revisa aquí el resumen antes de finalizar. En una web real se puede conectar a WhatsApp, pago online o sistema de pedidos.
           </p>
+
+          <div id="cartEmpty" class="cart-empty">
+            Todavía no has añadido productos. Pulsa “Añadir” en una burger, entrante o bebida.
+          </div>
+
+          <ul id="cartItems" class="cart-items"></ul>
+
+          <div class="cart-total">
+            <span>Total</span>
+            <span id="cartTotal">0,00€</span>
+          </div>
 
           <ul class="order-summary-list">
             <li>
@@ -1217,10 +1305,13 @@
           </ul>
 
           <div class="order-note">
-            Ideal para vender como extra: carta online + pedido por WhatsApp desde la web, sin necesidad de desarrollar una tienda compleja al principio.
+            Esta demo simula el carrito. Para un cliente real se puede hacer pedido por WhatsApp, carrito con pago online o integración con sistema de pedidos.
           </div>
 
-          <a href="#reservas" class="burger-btn burger-btn-primary">Finalizar por WhatsApp</a>
+          <div class="cart-actions">
+            <a id="finishOrder" href="#reservas" class="burger-btn burger-btn-primary">Finalizar por WhatsApp</a>
+            <button id="clearCart" type="button" class="cart-clear">Vaciar pedido</button>
+          </div>
         </aside>
 
       </div>
@@ -1441,6 +1532,98 @@
 
 <a class="floating-order" href="#reservas">🍔 Pedir / reservar</a>
 
+<script>
+  const cart = [];
+
+  const cartItems = document.getElementById("cartItems");
+  const cartTotal = document.getElementById("cartTotal");
+  const cartEmpty = document.getElementById("cartEmpty");
+  const finishOrder = document.getElementById("finishOrder");
+  const clearCart = document.getElementById("clearCart");
+
+  function formatPrice(value){
+    return value.toFixed(2).replace(".", ",") + "€";
+  }
+
+  function renderCart(){
+    cartItems.innerHTML = "";
+
+    if(cart.length === 0){
+      cartEmpty.style.display = "block";
+    }else{
+      cartEmpty.style.display = "none";
+    }
+
+    let total = 0;
+
+    cart.forEach((item) => {
+      total += item.price * item.qty;
+
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>
+          ${item.name}
+          <small>Cantidad: ${item.qty}</small>
+        </span>
+        <span>${formatPrice(item.price * item.qty)}</span>
+      `;
+
+      cartItems.appendChild(li);
+    });
+
+    cartTotal.textContent = formatPrice(total);
+
+    if(cart.length > 0){
+      const orderText = cart
+        .map(item => `${item.qty} x ${item.name} (${formatPrice(item.price * item.qty)})`)
+        .join(" - ");
+
+      const message = encodeURIComponent(
+        `Hola, quiero hacer este pedido demo: ${orderText}. Total aproximado: ${formatPrice(total)}.`
+      );
+
+      finishOrder.href = `mailto:contacto@handoo.me?subject=Pedido%20demo%20Smash%20House&body=${message}`;
+    }else{
+      finishOrder.href = "#pedido";
+    }
+  }
+
+  document.querySelectorAll(".order-add").forEach((button) => {
+    button.addEventListener("click", () => {
+      const name = button.dataset.name;
+      const price = Number(button.dataset.price);
+
+      const existingItem = cart.find(item => item.name === name);
+
+      if(existingItem){
+        existingItem.qty += 1;
+      }else{
+        cart.push({
+          name,
+          price,
+          qty: 1
+        });
+      }
+
+      button.textContent = "Añadido";
+      setTimeout(() => {
+        button.textContent = "Añadir";
+      }, 900);
+
+      renderCart();
+    });
+  });
+
+  clearCart.addEventListener("click", () => {
+    cart.length = 0;
+    renderCart();
+  });
+
+  renderCart();
+</script>
+
 <script src="../../assets/js/main.js"></script>
+</body>
+</html>
 </body>
 </html>
