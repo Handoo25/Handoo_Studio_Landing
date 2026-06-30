@@ -1285,3 +1285,36 @@ textarea{
     font-size:28px;
   }
 }
+/* Fix home demos section heading contrast */
+
+.home-demos-preview .section-heading.center,
+.home-demos-preview .section-heading.center h2,
+.home-demos-preview .section-heading.center p{
+  color:#0f172a !important;
+}
+
+.home-demos-preview .section-kicker{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:fit-content;
+  margin:0 auto 14px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#fff7ed;
+  color:#ea580c !important;
+  border:1px solid #fed7aa;
+  font-size:13px;
+  font-weight:900;
+}
+
+.home-demos-preview .section-heading.center h2{
+  color:#0f172a !important;
+  font-size:clamp(34px,4vw,52px);
+  line-height:1.1;
+}
+
+.home-demos-preview .section-heading.center p{
+  color:#475569 !important;
+  font-weight:500;
+}
