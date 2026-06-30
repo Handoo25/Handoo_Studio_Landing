@@ -628,3 +628,48 @@ textarea{
   background:var(--hs-primary);
   color:white;
 }
+/* Refined active navigation state */
+
+@media(min-width:901px){
+  .navlinks a{
+    position:relative;
+  }
+
+  .navlinks a.active{
+    background:transparent;
+    border:0;
+    border-radius:0;
+    padding:0;
+    color:#fdba74;
+  }
+
+  .navlinks a.active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-8px;
+    height:2px;
+    border-radius:999px;
+    background:var(--hs-primary);
+  }
+
+  .navlinks a.active:hover{
+    background:transparent;
+    color:white;
+  }
+}
+
+@media(max-width:900px){
+  .navlinks a.active{
+    background:rgba(249,115,22,.16);
+    border:1px solid rgba(249,115,22,.4);
+    color:white;
+    padding:9px 13px;
+    border-radius:999px;
+  }
+
+  .navlinks a.active::after{
+    display:none;
+  }
+}
