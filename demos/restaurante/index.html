@@ -1022,6 +1022,90 @@
       background:rgba(255,255,255,.08);
       color:white;
     }
+        .combo-visual{
+      padding:0;
+      overflow:hidden;
+      background:#111114;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 24px 70px rgba(0,0,0,.28);
+    }
+
+    .combo-img{
+      height:230px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    .combo-img:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.45));
+    }
+
+    .combo-badge{
+      position:absolute;
+      left:18px;
+      top:18px;
+      z-index:2;
+      background:var(--burger-yellow);
+      color:var(--burger-dark);
+      padding:8px 13px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .combo-body{
+      padding:28px;
+    }
+
+    .combo-body h3{
+      font-size:30px;
+      margin-bottom:12px;
+    }
+
+    .combo-body p{
+      color:#fff7ed;
+      margin-bottom:22px;
+      line-height:1.6;
+    }
+
+    .combo-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .combo-price{
+      display:inline-flex;
+      background:var(--burger-yellow);
+      color:var(--burger-dark);
+      padding:10px 16px;
+      border-radius:999px;
+      font-size:22px;
+      font-weight:1000;
+    }
+
+    .combo-add{
+      background:white;
+      color:var(--burger-dark);
+      border:0;
+      padding:12px 16px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      text-transform:uppercase;
+      cursor:pointer;
+      font-family:inherit;
+    }
+
+    .combo-add:hover{
+      background:var(--burger-yellow);
+    }
   </style>
 </head>
 
@@ -1318,40 +1402,83 @@
 
     </div>
   </section>
-  <section id="combos" class="burger-section burger-section-red">
+    <section id="combos" class="burger-section burger-section-red">
     <div class="container">
 
       <div class="burger-title">
         <span>Combos y promos</span>
         <h2>Ofertas que suben el ticket medio</h2>
         <p>
-          Las promociones bien colocadas ayudan a vender más en días concretos, destacar productos rentables y aumentar el consumo medio.
+          Los combos no solo ayudan a vender más: también hacen que el cliente decida más rápido y aumentan el importe medio del pedido.
         </p>
       </div>
 
       <div class="burger-grid-3">
 
-        <div class="combo-card">
-          <h3>Combo Smash</h3>
-          <p>Classic Smash + patatas + bebida. Perfecto para mediodía o pedidos rápidos.</p>
-          <strong>12,90€</strong>
+        <div class="combo-card combo-visual">
+          <div class="combo-img" style="background-image:url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=900&q=80');">
+            <span class="combo-badge">Mediodía</span>
+          </div>
+
+          <div class="combo-body">
+            <h3>Combo Smash</h3>
+            <p>
+              Classic Smash con cheddar fundido, patatas crujientes y bebida fría. Perfecto para comer rápido sin renunciar al sabor.
+            </p>
+
+            <div class="combo-footer">
+              <span class="combo-price">12,90€</span>
+              <button type="button" class="combo-add order-add" data-name="Combo Smash" data-price="12.90">
+                Añadir combo
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="combo-card">
-          <h3>Duo Burger</h3>
-          <p>Dos burgers, dos bebidas y un entrante para compartir. Ideal para parejas.</p>
-          <strong>24,90€</strong>
+        <div class="combo-card combo-visual">
+          <div class="combo-img" style="background-image:url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=900&q=80');">
+            <span class="combo-badge">Para dos</span>
+          </div>
+
+          <div class="combo-body">
+            <h3>Duo Burger</h3>
+            <p>
+              Dos burgers, dos bebidas y unas loaded fries para compartir. El combo ideal para pareja, cena informal o plan de fin de semana.
+            </p>
+
+            <div class="combo-footer">
+              <span class="combo-price">24,90€</span>
+              <button type="button" class="combo-add order-add" data-name="Duo Burger" data-price="24.90">
+                Añadir combo
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="combo-card">
-          <h3>Family Pack</h3>
-          <p>Cuatro burgers, dos raciones de patatas y bebidas. Pensado para grupos.</p>
-          <strong>42,90€</strong>
+        <div class="combo-card combo-visual">
+          <div class="combo-img" style="background-image:url('https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=80');">
+            <span class="combo-badge">Grupo</span>
+          </div>
+
+          <div class="combo-body">
+            <h3>Family Pack</h3>
+            <p>
+              Cuatro burgers, dos raciones de patatas y bebidas. Pensado para familias, grupos pequeños o pedidos para compartir.
+            </p>
+
+            <div class="combo-footer">
+              <span class="combo-price">42,90€</span>
+              <button type="button" class="combo-add order-add" data-name="Family Pack" data-price="42.90">
+                Añadir combo
+              </button>
+            </div>
+          </div>
         </div>
 
       </div>
 
     </div>
+  </section>
   </section>
 
   <section id="galeria" class="burger-section burger-section-light">
