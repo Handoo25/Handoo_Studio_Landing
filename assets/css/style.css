@@ -614,3 +614,17 @@ textarea{
     font-size:14px;
   }
 }
+/* Active navigation state */
+
+.navlinks a.active{
+  color:white;
+  background:rgba(249,115,22,.18);
+  border:1px solid rgba(249,115,22,.35);
+  padding:8px 13px;
+  border-radius:999px;
+}
+
+.navlinks a.active:hover{
+  background:var(--hs-primary);
+  color:white;
+}
