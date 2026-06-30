@@ -673,3 +673,141 @@ textarea{
     display:none;
   }
 }
+/* Homepage premium showcase */
+
+.studio-showcase{
+  background:white;
+  color:var(--hs-text);
+  border-radius:30px;
+  padding:22px;
+  box-shadow:var(--hs-shadow-lg);
+}
+
+.studio-showcase-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.studio-showcase-top strong{
+  font-size:18px;
+  color:var(--hs-dark);
+}
+
+.studio-showcase-top span{
+  font-size:12px;
+  font-weight:900;
+  color:var(--hs-primary);
+  background:var(--hs-soft);
+  padding:7px 10px;
+  border-radius:999px;
+}
+
+.studio-preview-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:16px;
+}
+
+.studio-preview{
+  min-height:170px;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+}
+
+.studio-preview::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.55));
+}
+
+.studio-preview-content{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:16px;
+  z-index:2;
+  color:white;
+}
+
+.studio-preview-content h3{
+  font-size:18px;
+  line-height:1.1;
+  margin-bottom:5px;
+}
+
+.studio-preview-content p{
+  font-size:12px;
+  line-height:1.35;
+  color:#e5e7eb;
+}
+
+.studio-preview.burger{
+  background-image:url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80");
+}
+
+.studio-preview.clinic{
+  background-image:url("https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=900&q=80");
+}
+
+.studio-showcase-bottom{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.studio-mini-stat{
+  background:#f8fafc;
+  border:1px solid var(--hs-border);
+  border-radius:16px;
+  padding:14px;
+}
+
+.studio-mini-stat strong{
+  display:block;
+  font-size:18px;
+  color:var(--hs-primary);
+  margin-bottom:3px;
+}
+
+.studio-mini-stat span{
+  display:block;
+  font-size:12px;
+  color:var(--hs-muted);
+  font-weight:700;
+}
+
+/* Portfolio button alignment */
+
+.demo-preview-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.demo-content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.demo-actions{
+  margin-top:auto;
+}
+
+@media(max-width:900px){
+  .studio-preview-grid,
+  .studio-showcase-bottom{
+    grid-template-columns:1fr;
+  }
+
+  .studio-preview{
+    min-height:210px;
+  }
+}
