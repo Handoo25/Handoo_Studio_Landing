@@ -5,568 +5,755 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Nortea Homes | Demo Inmobiliaria Premium</title>
-  <meta name="description" content="Demo premium de web inmobiliaria creada por Handoo Studio. Propiedades destacadas, valoración gratuita, captación de vendedores, compradores y formulario de contacto." />
+  <meta name="description" content="Demo inmobiliaria premium creada por Handoo Studio. Web para captar propietarios, compradores, valoraciones de vivienda y solicitudes de visita." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../../assets/css/style.css">
 
   <style>
     :root{
-      --re-bg:#f6f1ea;
-      --re-white:#ffffff;
-      --re-dark:#0b1f33;
-      --re-blue:#102a43;
-      --re-muted:#667085;
-      --re-gold:#c6a15b;
-      --re-gold-dark:#a47f35;
-      --re-line:#e6ded2;
-      --re-soft:#fbf8f3;
-      --re-shadow:0 28px 80px rgba(11,31,51,.14);
-      --re-radius:30px;
+      --nh-ink:#172033;
+      --nh-ink-2:#263247;
+      --nh-muted:#697386;
+      --nh-line:#e5ded3;
+      --nh-bg:#f5efe6;
+      --nh-soft:#fbf7f0;
+      --nh-card:#ffffff;
+      --nh-gold:#c7a76c;
+      --nh-gold-2:#a88445;
+      --nh-green:#213f35;
+      --nh-blue:#1d3557;
+      --nh-shadow:0 26px 80px rgba(23,32,51,.14);
+      --nh-radius:30px;
     }
 
-    body.realestate-demo{
-      background:var(--re-bg);
-      color:var(--re-dark);
-      font-family:Inter, Arial, Helvetica, sans-serif;
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body.nortea-v2{
+      margin:0;
+      background:var(--nh-bg);
+      color:var(--nh-ink);
+      font-family:"Manrope", Arial, sans-serif;
       overflow-x:hidden;
     }
 
-    .realestate-demo a{
-      text-decoration:none;
+    .nortea-v2 a{
       color:inherit;
+      text-decoration:none;
     }
 
-    .re-container{
+    .nh-container{
       width:min(1180px,92%);
-      margin:auto;
+      margin:0 auto;
     }
 
-    .re-hero{
-      min-height:100vh;
-      color:white;
+    .nh-page{
       background:
-        linear-gradient(90deg, rgba(11,31,51,.92) 0%, rgba(11,31,51,.74) 46%, rgba(11,31,51,.22) 100%),
-        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80");
-      background-size:cover;
-      background-position:center;
-      position:relative;
-      overflow:hidden;
+        radial-gradient(circle at 12% 10%, rgba(199,167,108,.18), transparent 34%),
+        radial-gradient(circle at 88% 22%, rgba(29,53,87,.14), transparent 32%),
+        var(--nh-bg);
     }
 
-    .re-hero::after{
-      content:"";
-      position:absolute;
-      inset:auto -120px -140px auto;
-      width:420px;
-      height:420px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(198,161,91,.42), transparent 68%);
-      filter:blur(10px);
-    }
-
-    .re-nav{
+    .nh-topbar{
+      position:fixed;
+      left:50%;
+      top:18px;
+      transform:translateX(-50%);
+      z-index:80;
+      width:min(1180px,92%);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:30px 0;
+      gap:18px;
+      padding:12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 16px 50px rgba(23,32,51,.12);
+      backdrop-filter:blur(18px);
+    }
+
+    .nh-brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding-left:8px;
+      font-weight:900;
+      letter-spacing:-.5px;
+      color:var(--nh-ink);
+      white-space:nowrap;
+    }
+
+    .nh-brand-mark{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:var(--nh-green);
+      color:#f7dfaa;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      box-shadow:0 12px 30px rgba(33,63,53,.25);
+    }
+
+    .nh-brand span{
+      color:var(--nh-gold-2);
+    }
+
+    .nh-navlinks{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      background:#f3eee6;
+      padding:6px;
+      border-radius:999px;
+      border:1px solid #ece2d3;
+    }
+
+    .nh-navlinks a{
+      padding:9px 13px;
+      border-radius:999px;
+      color:#455164;
+      font-size:13px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .nh-navlinks a:hover{
+      background:white;
+      color:var(--nh-ink);
+    }
+
+    .nh-top-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:999px;
+      background:var(--nh-ink);
+      color:white;
+      font-weight:900;
+      font-size:13px;
+      white-space:nowrap;
+      box-shadow:0 16px 38px rgba(23,32,51,.22);
+    }
+
+    .nh-hero{
+      min-height:100vh;
+      padding:132px 0 86px;
+      position:relative;
+    }
+
+    .nh-hero-grid{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:54px;
+      align-items:center;
+    }
+
+    .nh-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.64);
+      color:var(--nh-gold-2);
+      border:1px solid rgba(199,167,108,.34);
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      margin-bottom:22px;
+    }
+
+    .nh-kicker::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--nh-gold);
+      box-shadow:0 0 0 6px rgba(199,167,108,.14);
+    }
+
+    .nh-hero h1{
+      font-family:"DM Serif Display", Georgia, serif;
+      font-size:clamp(54px,7vw,96px);
+      line-height:.9;
+      letter-spacing:-3px;
+      margin:0 0 22px;
+      max-width:720px;
+    }
+
+    .nh-hero-text{
+      color:#536074;
+      font-size:19px;
+      line-height:1.8;
+      max-width:650px;
+      margin:0 0 30px;
+    }
+
+    .nh-hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:13px;
+      margin-bottom:34px;
+    }
+
+    .nh-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      border:0;
+      font-family:"Manrope", Arial, sans-serif;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .nh-btn-primary{
+      background:var(--nh-green);
+      color:white;
+      box-shadow:0 18px 42px rgba(33,63,53,.24);
+    }
+
+    .nh-btn-primary:hover{
+      transform:translateY(-3px);
+      background:#162f27;
+    }
+
+    .nh-btn-light{
+      background:white;
+      color:var(--nh-ink);
+      border:1px solid var(--nh-line);
+    }
+
+    .nh-btn-light:hover{
+      transform:translateY(-3px);
+      background:#fffaf2;
+    }
+
+    .nh-proof-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .nh-proof{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:10px 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.8);
+      color:#435064;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .nh-proof strong{
+      color:var(--nh-green);
+    }
+
+    .nh-visual{
+      position:relative;
+      min-height:620px;
+    }
+
+    .nh-main-photo{
+      position:absolute;
+      inset:0 0 42px 78px;
+      border-radius:44px;
+      background:
+        linear-gradient(180deg, transparent 48%, rgba(0,0,0,.42)),
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80");
+      background-size:cover;
+      background-position:center;
+      box-shadow:var(--nh-shadow);
+      overflow:hidden;
+    }
+
+    .nh-main-photo::after{
+      content:"Exclusiva Nortea";
+      position:absolute;
+      left:28px;
+      bottom:28px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.86);
+      color:var(--nh-ink);
+      font-size:13px;
+      font-weight:900;
+      backdrop-filter:blur(12px);
+    }
+
+    .nh-floating-card{
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:min(390px,80%);
+      background:white;
+      border-radius:34px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 28px 80px rgba(23,32,51,.18);
+    }
+
+    .nh-floating-card-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:16px;
+    }
+
+    .nh-floating-card h3{
+      margin:0;
+      font-size:23px;
+      letter-spacing:-.7px;
+      color:var(--nh-ink);
+    }
+
+    .nh-price{
+      color:var(--nh-gold-2);
+      font-weight:1000;
+      font-size:22px;
+      white-space:nowrap;
+    }
+
+    .nh-floating-card p{
+      margin:0 0 18px;
+      color:var(--nh-muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .nh-mini-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .nh-mini-meta span{
+      background:#f5f0e8;
+      border:1px solid #ece2d3;
+      color:var(--nh-ink);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .nh-vertical-note{
+      position:absolute;
+      right:-14px;
+      top:82px;
+      writing-mode:vertical-rl;
+      transform:rotate(180deg);
+      color:#8a7350;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    .nh-search-strip{
+      margin-top:-34px;
       position:relative;
       z-index:3;
     }
 
-    .re-logo{
-      display:flex;
-      align-items:center;
-      gap:13px;
-      font-size:24px;
-      font-weight:900;
-      letter-spacing:-.6px;
-    }
-
-    .re-logo-mark{
-      width:44px;
-      height:44px;
-      border-radius:16px;
-      background:linear-gradient(135deg,var(--re-gold),#ead4a1);
-      color:var(--re-dark);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:1000;
-      box-shadow:0 18px 45px rgba(198,161,91,.3);
-    }
-
-    .re-logo span{
-      color:#ead4a1;
-    }
-
-    .re-menu{
-      display:flex;
-      align-items:center;
-      gap:24px;
-      font-size:14px;
-      font-weight:800;
-    }
-
-    .re-menu a{
-      color:rgba(255,255,255,.86);
-    }
-
-    .re-menu a:hover{
-      color:#ead4a1;
-    }
-
-    .re-hero-grid{
-      position:relative;
-      z-index:2;
+    .nh-search-box{
+      background:var(--nh-green);
+      color:white;
+      border-radius:34px;
+      padding:20px;
+      box-shadow:0 30px 80px rgba(33,63,53,.22);
       display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:58px;
+      grid-template-columns:1.1fr 1fr 1fr auto;
+      gap:12px;
       align-items:center;
-      min-height:calc(100vh - 108px);
-      padding:54px 0 96px;
     }
 
-    .re-eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:rgba(198,161,91,.15);
-      color:#ead4a1;
-      border:1px solid rgba(198,161,91,.34);
-      padding:10px 15px;
-      border-radius:999px;
-      font-size:13px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.5px;
-      margin-bottom:24px;
-    }
-
-    .re-hero h1{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(50px,7vw,88px);
-      line-height:.96;
-      letter-spacing:-2.2px;
-      margin-bottom:24px;
-      max-width:760px;
-    }
-
-    .re-hero p{
-      font-size:20px;
-      line-height:1.75;
-      color:#e5e7eb;
-      max-width:690px;
-      margin-bottom:34px;
-    }
-
-    .re-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-bottom:42px;
-    }
-
-    .re-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:15px 24px;
-      border-radius:999px;
-      font-weight:900;
-      border:0;
-      cursor:pointer;
-      transition:.2s ease;
-      font-family:Inter, Arial, sans-serif;
-    }
-
-    .re-btn-primary{
-      background:var(--re-gold);
-      color:var(--re-dark);
-      box-shadow:0 20px 50px rgba(198,161,91,.28);
-    }
-
-    .re-btn-primary:hover{
-      background:#d8b873;
-      transform:translateY(-3px);
-    }
-
-    .re-btn-secondary{
-      background:white;
-      color:var(--re-dark);
-    }
-
-    .re-btn-secondary:hover{
-      background:#f3eadb;
-      transform:translateY(-3px);
-    }
-
-    .re-stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      max-width:700px;
-    }
-
-    .re-stat{
-      background:rgba(255,255,255,.09);
-      border:1px solid rgba(255,255,255,.13);
-      border-radius:20px;
-      padding:18px;
-      backdrop-filter:blur(14px);
-    }
-
-    .re-stat strong{
+    .nh-search-box label{
       display:block;
-      color:#ead4a1;
-      font-size:28px;
-      line-height:1;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      color:#cbd8d1;
+      font-weight:900;
       margin-bottom:7px;
     }
 
-    .re-stat span{
-      color:#e5e7eb;
-      font-size:13px;
-      font-weight:800;
-    }
-
-    .re-search-card{
-      background:rgba(255,255,255,.94);
-      color:var(--re-dark);
-      border-radius:36px;
-      padding:26px;
-      box-shadow:0 35px 100px rgba(0,0,0,.32);
-      border:1px solid rgba(255,255,255,.7);
-      backdrop-filter:blur(18px);
-    }
-
-    .re-search-card h3{
-      font-family:"Playfair Display", serif;
-      font-size:36px;
-      line-height:1.05;
-      margin-bottom:10px;
-    }
-
-    .re-search-card p{
-      color:var(--re-muted);
-      font-size:15px;
-      line-height:1.55;
-      margin-bottom:22px;
-    }
-
-    .re-search-grid{
-      display:grid;
-      gap:12px;
-    }
-
-    .re-search-grid select,
-    .re-search-grid input{
+    .nh-search-box select,
+    .nh-search-box input{
       width:100%;
-      border:1px solid var(--re-line);
+      height:48px;
+      border:0;
       border-radius:16px;
-      padding:15px;
-      background:var(--re-soft);
-      color:var(--re-dark);
-      font-family:Inter, Arial, sans-serif;
-      font-size:15px;
-      margin:0;
-    }
-
-    .re-search-grid select:focus,
-    .re-search-grid input:focus{
-      outline:none;
-      border-color:var(--re-gold);
-      background:white;
-    }
-
-    .re-mini-properties{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:20px;
-    }
-
-    .re-mini-property{
-      border-radius:20px;
-      overflow:hidden;
-      min-height:150px;
-      background-size:cover;
-      background-position:center;
-      position:relative;
-    }
-
-    .re-mini-property::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, transparent, rgba(0,0,0,.58));
-    }
-
-    .re-mini-property span{
-      position:absolute;
-      left:14px;
-      right:14px;
-      bottom:14px;
-      z-index:2;
+      padding:0 14px;
+      background:rgba(255,255,255,.1);
       color:white;
-      font-weight:900;
-      font-size:14px;
+      font-family:"Manrope", Arial, sans-serif;
+      font-weight:800;
+      margin:0;
+      outline:1px solid rgba(255,255,255,.12);
     }
 
-    .re-section{
+    .nh-search-box select option{
+      color:#111827;
+    }
+
+    .nh-search-box input::placeholder{
+      color:#e5eee9;
+    }
+
+    .nh-search-button{
+      height:48px;
+      padding:0 22px;
+      border:0;
+      border-radius:16px;
+      background:var(--nh-gold);
+      color:#18221f;
+      font-weight:1000;
+      font-family:"Manrope", Arial, sans-serif;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .nh-section{
       padding:96px 0;
     }
 
-    .re-section.white{
+    .nh-section.white{
       background:white;
     }
 
-    .re-section.dark{
-      background:var(--re-dark);
+    .nh-section.dark{
+      background:var(--nh-ink);
       color:white;
     }
 
-    .re-section.gold{
-      background:linear-gradient(135deg,#f7efe2,#ffffff);
+    .nh-section.soft{
+      background:#fbf7f0;
     }
 
-    .re-title{
+    .nh-title{
       max-width:820px;
       margin:0 auto 56px;
       text-align:center;
     }
 
-    .re-title span{
+    .nh-title .nh-kicker{
+      margin-bottom:16px;
+    }
+
+    .nh-title h2{
+      font-family:"DM Serif Display", Georgia, serif;
+      font-size:clamp(42px,5vw,70px);
+      line-height:.96;
+      letter-spacing:-2px;
+      margin:0 0 18px;
+    }
+
+    .nh-title p{
+      color:var(--nh-muted);
+      font-size:18px;
+      line-height:1.75;
+      margin:0 auto;
+      max-width:760px;
+    }
+
+    .nh-section.dark .nh-title p{
+      color:#cbd5e1;
+    }
+
+    .nh-property-layout{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .nh-feature-property{
+      min-height:620px;
+      border-radius:42px;
+      overflow:hidden;
+      position:relative;
+      background:
+        linear-gradient(180deg, transparent 48%, rgba(0,0,0,.72)),
+        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1500&q=80");
+      background-size:cover;
+      background-position:center;
+      box-shadow:var(--nh-shadow);
+    }
+
+    .nh-feature-property-content{
+      position:absolute;
+      left:32px;
+      right:32px;
+      bottom:32px;
+      color:white;
+    }
+
+    .nh-property-tag{
       display:inline-flex;
-      background:rgba(198,161,91,.13);
-      color:var(--re-gold-dark);
-      border:1px solid rgba(198,161,91,.28);
-      padding:8px 14px;
+      padding:9px 12px;
       border-radius:999px;
-      font-size:13px;
-      font-weight:900;
+      background:rgba(255,255,255,.88);
+      color:var(--nh-ink);
+      font-size:12px;
+      font-weight:1000;
       text-transform:uppercase;
       margin-bottom:16px;
     }
 
-    .re-title h2{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(38px,5vw,62px);
-      line-height:1.05;
+    .nh-feature-property h3{
+      font-family:"DM Serif Display", Georgia, serif;
+      font-size:50px;
+      line-height:1;
       letter-spacing:-1.4px;
-      margin-bottom:18px;
+      margin:0 0 10px;
     }
 
-    .re-title p{
-      color:var(--re-muted);
-      font-size:18px;
-      line-height:1.7;
+    .nh-feature-property p{
+      color:#e5e7eb;
+      font-size:17px;
+      line-height:1.65;
+      max-width:620px;
+      margin:0 0 22px;
     }
 
-    .re-section.dark .re-title p{
-      color:#cbd5e1;
-    }
-
-    .property-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:26px;
-    }
-
-    .property-card{
-      background:white;
-      color:var(--re-dark);
-      border:1px solid var(--re-line);
-      border-radius:30px;
-      overflow:hidden;
-      box-shadow:var(--re-shadow);
-      transition:.22s ease;
-    }
-
-    .property-card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 36px 95px rgba(11,31,51,.2);
-    }
-
-    .property-img{
-      height:260px;
-      background-size:cover;
-      background-position:center;
-      position:relative;
-    }
-
-    .property-badge{
-      position:absolute;
-      left:18px;
-      top:18px;
-      background:white;
-      color:var(--re-dark);
-      border-radius:999px;
-      padding:8px 12px;
-      font-size:12px;
-      font-weight:900;
-      text-transform:uppercase;
-    }
-
-    .property-body{
-      padding:26px;
-    }
-
-    .property-body h3{
-      font-size:25px;
-      letter-spacing:-.5px;
-      margin-bottom:8px;
-    }
-
-    .property-location{
-      color:var(--re-muted);
-      font-size:14px;
-      font-weight:700;
-      margin-bottom:14px;
-    }
-
-    .property-body p{
-      color:var(--re-muted);
-      line-height:1.6;
-      margin-bottom:18px;
-    }
-
-    .property-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:20px;
-    }
-
-    .property-meta span{
-      background:var(--re-soft);
-      border:1px solid var(--re-line);
-      border-radius:999px;
-      padding:7px 10px;
-      color:var(--re-dark);
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .property-footer{
+    .nh-feature-bottom{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:18px;
+      flex-wrap:wrap;
     }
 
-    .property-price{
-      color:var(--re-gold-dark);
-      font-size:26px;
+    .nh-feature-price{
+      color:#f7dfaa;
+      font-size:34px;
       font-weight:1000;
     }
 
-    .property-link{
-      color:var(--re-dark);
-      font-weight:900;
-      border-bottom:2px solid var(--re-gold);
+    .nh-property-side{
+      display:grid;
+      gap:24px;
     }
 
-    .seller-split{
+    .nh-property-card{
       display:grid;
-      grid-template-columns:.95fr 1.05fr;
+      grid-template-columns:160px 1fr;
+      gap:18px;
+      background:white;
+      border:1px solid var(--nh-line);
+      border-radius:30px;
+      padding:16px;
+      box-shadow:0 16px 45px rgba(23,32,51,.07);
+    }
+
+    .nh-property-thumb{
+      min-height:155px;
+      border-radius:22px;
+      background-size:cover;
+      background-position:center;
+    }
+
+    .nh-property-card h3{
+      margin:4px 0 7px;
+      color:var(--nh-ink);
+      font-size:21px;
+      letter-spacing:-.5px;
+    }
+
+    .nh-property-card p{
+      margin:0 0 12px;
+      color:var(--nh-muted);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .nh-property-card strong{
+      color:var(--nh-gold-2);
+      font-size:20px;
+    }
+
+    .nh-card-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin-top:12px;
+    }
+
+    .nh-card-meta span{
+      background:#f6f1ea;
+      color:#415066;
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:11px;
+      font-weight:900;
+    }
+
+    .nh-sell-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
       gap:54px;
       align-items:center;
     }
 
-    .seller-photo{
-      min-height:570px;
-      border-radius:42px;
-      background:
-        linear-gradient(180deg, transparent 52%, rgba(11,31,51,.42)),
-        url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80");
-      background-size:cover;
-      background-position:center;
-      box-shadow:0 35px 100px rgba(11,31,51,.18);
+    .nh-sell-card{
+      background:var(--nh-ink);
+      color:white;
+      border-radius:44px;
+      padding:42px;
+      min-height:540px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 32px 90px rgba(23,32,51,.22);
+      position:relative;
+      overflow:hidden;
     }
 
-    .seller-content h2{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(38px,5vw,62px);
-      line-height:1.05;
-      letter-spacing:-1.4px;
-      margin-bottom:18px;
+    .nh-sell-card::after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      right:-90px;
+      bottom:-120px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(199,167,108,.42), transparent 68%);
     }
 
-    .seller-content p{
-      color:var(--re-muted);
-      font-size:18px;
+    .nh-sell-card h2{
+      font-family:"DM Serif Display", Georgia, serif;
+      font-size:58px;
+      line-height:.98;
+      letter-spacing:-1.8px;
+      margin:0;
+      position:relative;
+      z-index:2;
+    }
+
+    .nh-sell-card p{
+      color:#d8dee7;
+      font-size:17px;
       line-height:1.75;
-      margin-bottom:28px;
+      margin:24px 0;
+      position:relative;
+      z-index:2;
     }
 
-    .seller-list{
+    .nh-sell-stats{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      position:relative;
+      z-index:2;
+    }
+
+    .nh-sell-stat{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      padding:20px;
+    }
+
+    .nh-sell-stat strong{
+      display:block;
+      color:#f7dfaa;
+      font-size:30px;
+      line-height:1;
+      margin-bottom:7px;
+    }
+
+    .nh-sell-stat span{
+      color:#e5e7eb;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .nh-process{
       display:grid;
       gap:16px;
-      margin-bottom:30px;
     }
 
-    .seller-item{
+    .nh-process-item{
+      background:white;
+      border:1px solid var(--nh-line);
+      border-radius:28px;
+      padding:24px;
       display:grid;
       grid-template-columns:auto 1fr;
-      gap:16px;
-      background:white;
-      border:1px solid var(--re-line);
-      border-radius:24px;
-      padding:22px;
-      box-shadow:0 16px 45px rgba(11,31,51,.06);
+      gap:18px;
+      box-shadow:0 14px 40px rgba(23,32,51,.06);
     }
 
-    .seller-number{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      background:var(--re-dark);
-      color:var(--re-gold);
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .nh-process-number{
+      width:52px;
+      height:52px;
+      border-radius:18px;
+      background:#efe4d2;
+      color:var(--nh-gold-2);
+      display:grid;
+      place-items:center;
       font-weight:1000;
+      font-size:18px;
     }
 
-    .seller-item h3{
-      margin-bottom:4px;
+    .nh-process-item h3{
+      margin:0 0 6px;
+      font-size:22px;
+      color:var(--nh-ink);
     }
 
-    .seller-item p{
+    .nh-process-item p{
       margin:0;
-      font-size:15px;
-      color:var(--re-muted);
-      line-height:1.55;
+      color:var(--nh-muted);
+      line-height:1.65;
     }
 
-    .zones-grid{
+    .nh-neighborhoods{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:18px;
     }
 
-    .zone-card{
-      min-height:270px;
-      border-radius:30px;
+    .nh-zone{
+      min-height:310px;
+      border-radius:34px;
+      position:relative;
       overflow:hidden;
       background-size:cover;
       background-position:center;
-      position:relative;
-      box-shadow:0 24px 70px rgba(0,0,0,.22);
+      box-shadow:0 22px 70px rgba(0,0,0,.18);
     }
 
-    .zone-card::after{
+    .nh-zone::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, transparent, rgba(0,0,0,.7));
+      background:linear-gradient(180deg, transparent 38%, rgba(0,0,0,.72));
     }
 
-    .zone-card-content{
+    .nh-zone-content{
       position:absolute;
       left:22px;
       right:22px;
@@ -575,232 +762,453 @@
       color:white;
     }
 
-    .zone-card-content h3{
+    .nh-zone-content h3{
       font-size:24px;
-      margin-bottom:6px;
+      margin:0 0 6px;
     }
 
-    .zone-card-content p{
+    .nh-zone-content p{
       color:#e5e7eb;
       line-height:1.45;
       font-size:14px;
+      margin:0;
     }
 
-    .valuation-box{
+    .nh-valuation-shell{
       display:grid;
-      grid-template-columns:.92fr 1.08fr;
+      grid-template-columns:.85fr 1.15fr;
       gap:30px;
       align-items:stretch;
     }
 
-    .valuation-info{
-      background:var(--re-dark);
+    .nh-valuation-intro{
+      background:#223f35;
       color:white;
-      border-radius:38px;
-      padding:44px;
-      box-shadow:var(--re-shadow);
+      border-radius:44px;
+      padding:42px;
+      box-shadow:0 32px 90px rgba(33,63,53,.2);
+      position:relative;
+      overflow:hidden;
     }
 
-    .valuation-info h2{
-      font-family:"Playfair Display", serif;
-      font-size:52px;
-      line-height:1.05;
-      margin-bottom:16px;
+    .nh-valuation-intro::after{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(247,223,170,.34), transparent 66%);
+      right:-80px;
+      top:-90px;
     }
 
-    .valuation-info p{
-      color:#dbe4ea;
-      font-size:18px;
+    .nh-valuation-intro h2{
+      font-family:"DM Serif Display", Georgia, serif;
+      font-size:58px;
+      line-height:.98;
+      letter-spacing:-1.7px;
+      margin:0 0 18px;
+      position:relative;
+      z-index:2;
+    }
+
+    .nh-valuation-intro p{
+      color:#dce8e2;
       line-height:1.75;
-      margin-bottom:26px;
+      font-size:17px;
+      margin:0 0 28px;
+      position:relative;
+      z-index:2;
     }
 
-    .valuation-info ul{
-      list-style:none;
+    .nh-valuation-points{
       display:grid;
+      gap:13px;
+      position:relative;
+      z-index:2;
+    }
+
+    .nh-valuation-points span{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      color:white;
+    }
+
+    .nh-valuation-points span::before{
+      content:"✓";
+      width:25px;
+      height:25px;
+      border-radius:50%;
+      background:#f7dfaa;
+      color:#223f35;
+      display:grid;
+      place-items:center;
+      font-weight:1000;
+      flex:0 0 auto;
+    }
+
+    .nh-assistant-form{
+      background:white;
+      border:1px solid var(--nh-line);
+      border-radius:44px;
+      padding:28px;
+      box-shadow:var(--nh-shadow);
+    }
+
+    .nh-assistant-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:24px;
+    }
+
+    .nh-assistant-header h3{
+      margin:0;
+      color:var(--nh-ink);
+      font-size:28px;
+      letter-spacing:-.8px;
+    }
+
+    .nh-step-pill{
+      background:#f5efe6;
+      color:var(--nh-gold-2);
+      border:1px solid #eadcc6;
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:12px;
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+    .nh-form-step{
+      border:1px solid #eee4d7;
+      border-radius:28px;
+      padding:22px;
+      margin-bottom:16px;
+      background:#fffdf9;
+    }
+
+    .nh-form-step-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:15px;
+    }
+
+    .nh-form-step-title span{
+      width:34px;
+      height:34px;
+      border-radius:13px;
+      background:var(--nh-ink);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:1000;
+      font-size:13px;
+    }
+
+    .nh-form-step-title strong{
+      font-size:17px;
+      color:var(--nh-ink);
+    }
+
+    .nh-choice-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .nh-choice{
+      position:relative;
+    }
+
+    .nh-choice input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .nh-choice label{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      border-radius:16px;
+      border:1px solid #e6ded3;
+      background:white;
+      color:#425066;
+      font-weight:900;
+      cursor:pointer;
+      transition:.16s ease;
+      text-align:center;
+      padding:8px;
+      font-size:14px;
+    }
+
+    .nh-choice input:checked + label{
+      background:var(--nh-green);
+      color:white;
+      border-color:var(--nh-green);
+      box-shadow:0 12px 28px rgba(33,63,53,.18);
+    }
+
+    .nh-form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
       gap:12px;
     }
 
-    .valuation-info li{
-      color:white;
-      font-weight:800;
-    }
-
-    .valuation-info li::before{
-      content:"✓";
-      color:var(--re-gold);
-      margin-right:10px;
-      font-weight:1000;
-    }
-
-    .valuation-form{
-      background:white;
-      border:1px solid var(--re-line);
-      border-radius:38px;
-      padding:34px;
-      box-shadow:var(--re-shadow);
-    }
-
-    .valuation-form input,
-    .valuation-form select,
-    .valuation-form textarea{
+    .nh-assistant-form input,
+    .nh-assistant-form select,
+    .nh-assistant-form textarea{
       width:100%;
-      border:1px solid var(--re-line);
-      background:var(--re-soft);
+      border:1px solid #e6ded3;
       border-radius:16px;
-      padding:16px;
-      margin-bottom:14px;
-      font-family:Inter, Arial, sans-serif;
-      font-size:15px;
-      color:var(--re-dark);
-    }
-
-    .valuation-form textarea{
-      min-height:130px;
-      resize:vertical;
-    }
-
-    .valuation-form input:focus,
-    .valuation-form select:focus,
-    .valuation-form textarea:focus{
-      outline:none;
-      border-color:var(--re-gold);
       background:white;
+      color:var(--nh-ink);
+      font-family:"Manrope", Arial, sans-serif;
+      font-size:14px;
+      font-weight:700;
+      padding:15px;
+      margin:0;
     }
 
-    .reviews-grid{
+    .nh-assistant-form textarea{
+      min-height:118px;
+      resize:vertical;
+      grid-column:1 / -1;
+    }
+
+    .nh-assistant-form input:focus,
+    .nh-assistant-form select:focus,
+    .nh-assistant-form textarea:focus{
+      outline:none;
+      border-color:var(--nh-gold);
+      box-shadow:0 0 0 4px rgba(199,167,108,.14);
+    }
+
+    .nh-form-submit{
+      width:100%;
+      border:0;
+      min-height:56px;
+      border-radius:18px;
+      background:var(--nh-gold);
+      color:#18221f;
+      font-family:"Manrope", Arial, sans-serif;
+      font-weight:1000;
+      cursor:pointer;
+      transition:.2s ease;
+      font-size:15px;
+    }
+
+    .nh-form-submit:hover{
+      background:#d8b976;
+      transform:translateY(-2px);
+    }
+
+    .nh-reviews{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:24px;
     }
 
-    .review-card{
+    .nh-review{
       background:rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.12);
-      border-radius:30px;
+      border-radius:32px;
       padding:30px;
     }
 
-    .review-stars{
-      color:var(--re-gold);
+    .nh-stars{
+      color:#f7dfaa;
       letter-spacing:2px;
-      margin-bottom:14px;
-      font-size:20px;
+      margin-bottom:16px;
+      font-size:19px;
     }
 
-    .review-card p{
+    .nh-review p{
       color:#e5e7eb;
-      line-height:1.7;
-      margin-bottom:18px;
+      line-height:1.75;
+      margin:0 0 18px;
     }
 
-    .review-card strong{
+    .nh-review strong{
       color:white;
     }
 
-    .re-final{
+    .nh-final{
       background:
-        linear-gradient(90deg, rgba(11,31,51,.92), rgba(11,31,51,.78)),
-        url("https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=1600&q=80");
+        linear-gradient(90deg, rgba(23,32,51,.9), rgba(23,32,51,.72)),
+        url("https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=1700&q=80");
       background-size:cover;
       background-position:center;
       color:white;
-      padding:100px 0;
       text-align:center;
+      padding:110px 0;
     }
 
-    .re-final h2{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(40px,5vw,68px);
-      line-height:1.05;
-      max-width:850px;
-      margin:0 auto 18px;
+    .nh-final h2{
+      font-family:"DM Serif Display", Georgia, serif;
+      font-size:clamp(44px,5vw,78px);
+      line-height:.96;
+      letter-spacing:-2px;
+      max-width:900px;
+      margin:0 auto 20px;
     }
 
-    .re-final p{
+    .nh-final p{
       color:#e5e7eb;
-      font-size:18px;
-      line-height:1.7;
       max-width:760px;
       margin:0 auto 30px;
+      line-height:1.75;
+      font-size:18px;
     }
 
-    .re-credit{
-      background:#071421;
-      color:#94a3b8;
+    .nh-footer{
+      background:#111827;
+      color:#9ca3af;
       text-align:center;
       padding:30px 0;
       font-size:14px;
     }
 
-    .re-credit a{
-      color:#ead4a1;
+    .nh-footer a{
+      color:#f7dfaa;
       font-weight:900;
     }
 
-    .re-floating{
+    .nh-floating{
       position:fixed;
       right:20px;
       bottom:20px;
-      z-index:99;
-      background:var(--re-gold);
-      color:var(--re-dark);
-      padding:14px 19px;
+      z-index:90;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 18px;
       border-radius:999px;
+      background:var(--nh-green);
+      color:white;
       font-weight:1000;
-      box-shadow:0 18px 45px rgba(11,31,51,.25);
+      box-shadow:0 18px 45px rgba(23,32,51,.25);
     }
 
-    @media(max-width:980px){
-      .re-nav{
+    @media(max-width:1100px){
+      .nh-topbar{
+        position:static;
+        transform:none;
+        margin:16px auto 0;
+        border-radius:28px;
         flex-direction:column;
         align-items:flex-start;
-        gap:18px;
       }
 
-      .re-menu{
+      .nh-navlinks{
         width:100%;
         overflow-x:auto;
-        gap:10px;
-        padding-bottom:6px;
+        justify-content:flex-start;
       }
 
-      .re-menu a{
-        white-space:nowrap;
-        background:rgba(255,255,255,.12);
-        border:1px solid rgba(255,255,255,.16);
-        padding:9px 13px;
-        border-radius:999px;
+      .nh-top-cta{
+        width:100%;
       }
 
-      .re-hero-grid,
-      .property-grid,
-      .seller-split,
-      .zones-grid,
-      .valuation-box,
-      .reviews-grid{
+      .nh-hero{
+        padding-top:40px;
+      }
+
+      .nh-hero-grid,
+      .nh-property-layout,
+      .nh-sell-grid,
+      .nh-valuation-shell,
+      .nh-reviews{
         grid-template-columns:1fr;
       }
 
-      .re-stats,
-      .re-mini-properties{
+      .nh-visual{
+        min-height:560px;
+      }
+
+      .nh-main-photo{
+        inset:0;
+      }
+
+      .nh-floating-card{
+        left:18px;
+        right:18px;
+        width:auto;
+      }
+
+      .nh-search-box{
         grid-template-columns:1fr;
       }
 
-      .seller-photo{
-        min-height:380px;
+      .nh-neighborhoods{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media(max-width:720px){
+      .nh-hero h1{
+        font-size:54px;
       }
 
-      .re-search-card{
-        padding:22px;
+      .nh-hero-text{
+        font-size:17px;
       }
 
-      .valuation-info,
-      .valuation-form{
-        padding:28px;
+      .nh-visual{
+        min-height:520px;
       }
 
-      .re-floating{
+      .nh-floating-card-top{
+        flex-direction:column;
+      }
+
+      .nh-property-card{
+        grid-template-columns:1fr;
+      }
+
+      .nh-property-thumb{
+        min-height:220px;
+      }
+
+      .nh-feature-property{
+        min-height:560px;
+      }
+
+      .nh-feature-property h3{
+        font-size:40px;
+      }
+
+      .nh-sell-card,
+      .nh-valuation-intro,
+      .nh-assistant-form{
+        border-radius:30px;
+        padding:26px;
+      }
+
+      .nh-sell-card h2,
+      .nh-valuation-intro h2{
+        font-size:44px;
+      }
+
+      .nh-sell-stats,
+      .nh-neighborhoods,
+      .nh-choice-grid,
+      .nh-form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .nh-assistant-header{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .nh-floating{
         right:14px;
         bottom:14px;
         padding:12px 15px;
@@ -810,404 +1218,489 @@
   </style>
 </head>
 
-<body class="realestate-demo">
+<body class="nortea-v2">
 
-<header class="re-hero">
-  <div class="re-container">
+<div class="nh-page">
 
-    <nav class="re-nav">
-      <a href="#" class="re-logo">
-        <span class="re-logo-mark">N</span>
-        Nortea <span>Homes</span>
-      </a>
+  <header class="nh-topbar">
+    <a href="#" class="nh-brand">
+      <span class="nh-brand-mark">N</span>
+      Nortea <span>Homes</span>
+    </a>
 
-      <div class="re-menu">
-        <a href="#propiedades">Propiedades</a>
-        <a href="#vender">Vender</a>
-        <a href="#zonas">Zonas</a>
-        <a href="#valoracion">Valoración</a>
-        <a href="../../portfolio.html">Portfolio</a>
-      </div>
+    <nav class="nh-navlinks">
+      <a href="#propiedades">Propiedades</a>
+      <a href="#vender">Vender</a>
+      <a href="#zonas">Zonas</a>
+      <a href="#valoracion">Valoración</a>
+      <a href="../../portfolio.html">Portfolio</a>
     </nav>
 
-    <div class="re-hero-grid">
+    <a href="#valoracion" class="nh-top-cta">Valorar vivienda</a>
+  </header>
 
-      <div>
-        <span class="re-eyebrow">Inmobiliaria premium · Compra · Venta · Valoración</span>
+  <section class="nh-hero">
+    <div class="nh-container">
 
-        <h1>Encuentra una casa que encaje con tu forma de vivir.</h1>
+      <div class="nh-hero-grid">
 
-        <p>
-          Demo inmobiliaria diseñada para captar compradores, propietarios y solicitudes de valoración. Una web elegante, visual y orientada a generar contactos reales.
-        </p>
+        <div>
+          <span class="nh-kicker">Inmobiliaria boutique · Compra y venta</span>
 
-        <div class="re-actions">
-          <a href="#propiedades" class="re-btn re-btn-primary">Ver propiedades</a>
-          <a href="#valoracion" class="re-btn re-btn-secondary">Valorar mi vivienda</a>
-        </div>
+          <h1>Viviendas con historia. Compradores con intención.</h1>
 
-        <div class="re-stats">
-          <div class="re-stat">
-            <strong>+180</strong>
-            <span>Viviendas gestionadas</span>
+          <p class="nh-hero-text">
+            Demo inmobiliaria pensada para captar propietarios, enseñar propiedades de forma aspiracional y convertir visitas en solicitudes reales.
+          </p>
+
+          <div class="nh-hero-actions">
+            <a href="#propiedades" class="nh-btn nh-btn-primary">Explorar propiedades</a>
+            <a href="#valoracion" class="nh-btn nh-btn-light">Quiero vender mi vivienda</a>
           </div>
 
-          <div class="re-stat">
-            <strong>24h</strong>
-            <span>Respuesta a propietarios</span>
-          </div>
-
-          <div class="re-stat">
-            <strong>4.9★</strong>
-            <span>Valoración de clientes</span>
+          <div class="nh-proof-row">
+            <div class="nh-proof"><strong>24h</strong> primera respuesta</div>
+            <div class="nh-proof"><strong>4.9★</strong> satisfacción cliente</div>
+            <div class="nh-proof"><strong>+180</strong> operaciones gestionadas</div>
           </div>
         </div>
-      </div>
 
-      <div class="re-search-card">
-        <h3>Busca tu próxima vivienda</h3>
-        <p>
-          En una web real, este bloque podría conectarse a un catálogo de propiedades, filtros, CRM o formularios de captación.
-        </p>
+        <div class="nh-visual">
+          <div class="nh-main-photo"></div>
 
-        <div class="re-search-grid">
-          <select>
-            <option>Tipo de operación</option>
-            <option>Comprar</option>
-            <option>Alquilar</option>
-            <option>Vender mi vivienda</option>
-          </select>
-
-          <select>
-            <option>Tipo de inmueble</option>
-            <option>Piso</option>
-            <option>Casa</option>
-            <option>Chalet</option>
-            <option>Ático</option>
-          </select>
-
-          <input type="text" placeholder="Zona o ciudad" />
-
-          <a href="#propiedades" class="re-btn re-btn-primary">Buscar propiedades</a>
-        </div>
-
-        <div class="re-mini-properties">
-          <div class="re-mini-property" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80');">
-            <span>Áticos con terraza</span>
-          </div>
-
-          <div class="re-mini-property" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80');">
-            <span>Casas familiares</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</header>
-
-<main>
-
-  <section id="propiedades" class="re-section white">
-    <div class="re-container">
-
-      <div class="re-title">
-        <span>Propiedades destacadas</span>
-        <h2>Viviendas que entran por los ojos</h2>
-        <p>
-          Las propiedades necesitan fotografía, precio claro, ubicación visible y llamadas a la acción rápidas para solicitar visita.
-        </p>
-      </div>
-
-      <div class="property-grid">
-
-        <article class="property-card">
-          <div class="property-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80');">
-            <span class="property-badge">Destacada</span>
-          </div>
-
-          <div class="property-body">
-            <h3>Ático con terraza panorámica</h3>
-            <div class="property-location">Santander · Zona centro</div>
-            <p>
-              Vivienda luminosa con terraza privada, vistas abiertas, salón amplio y acabados de alta calidad.
-            </p>
-
-            <div class="property-meta">
-              <span>3 hab.</span>
-              <span>2 baños</span>
-              <span>128 m²</span>
-              <span>Terraza</span>
+          <div class="nh-floating-card">
+            <div class="nh-floating-card-top">
+              <h3>Villa Mirador Norte</h3>
+              <div class="nh-price">680.000€</div>
             </div>
 
-            <div class="property-footer">
-              <span class="property-price">495.000€</span>
-              <a href="#valoracion" class="property-link">Solicitar visita</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="property-card">
-          <div class="property-img" style="background-image:url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80');">
-            <span class="property-badge">Nueva entrada</span>
-          </div>
-
-          <div class="property-body">
-            <h3>Chalet familiar con jardín</h3>
-            <div class="property-location">Costa norte · Zona residencial</div>
             <p>
-              Casa independiente con jardín, cocina abierta, garaje y espacios pensados para familia.
+              Chalet familiar con jardín, luz natural, espacios abiertos y zona residencial tranquila.
             </p>
 
-            <div class="property-meta">
-              <span>4 hab.</span>
+            <div class="nh-mini-meta">
+              <span>4 habitaciones</span>
               <span>3 baños</span>
               <span>230 m²</span>
               <span>Jardín</span>
             </div>
+          </div>
 
-            <div class="property-footer">
-              <span class="property-price">680.000€</span>
-              <a href="#valoracion" class="property-link">Solicitar visita</a>
+          <div class="nh-vertical-note">Real Estate Demo</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <div class="nh-search-strip">
+    <div class="nh-container">
+      <form class="nh-search-box" action="#propiedades">
+        <div>
+          <label>Operación</label>
+          <select>
+            <option>Comprar vivienda</option>
+            <option>Alquilar vivienda</option>
+            <option>Vender vivienda</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Tipo de inmueble</label>
+          <select>
+            <option>Cualquier tipo</option>
+            <option>Piso</option>
+            <option>Ático</option>
+            <option>Casa</option>
+            <option>Chalet</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Zona</label>
+          <input type="text" placeholder="Santander, costa, centro..." />
+        </div>
+
+        <button class="nh-search-button" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+
+  <main>
+
+    <section id="propiedades" class="nh-section white">
+      <div class="nh-container">
+
+        <div class="nh-title">
+          <span class="nh-kicker">Propiedades seleccionadas</span>
+          <h2>Una galería que vende antes de la visita</h2>
+          <p>
+            La inmobiliaria necesita mostrar inmuebles con una imagen potente, información clara y una llamada directa a solicitar visita.
+          </p>
+        </div>
+
+        <div class="nh-property-layout">
+
+          <article class="nh-feature-property">
+            <div class="nh-feature-property-content">
+              <span class="nh-property-tag">Propiedad destacada</span>
+              <h3>Ático Serena Bay</h3>
+              <p>
+                Terraza panorámica, interior cálido, salón abierto y vistas amplias en una de las zonas más buscadas.
+              </p>
+
+              <div class="nh-feature-bottom">
+                <div class="nh-feature-price">495.000€</div>
+                <a href="#valoracion" class="nh-btn nh-btn-light">Solicitar visita</a>
+              </div>
+            </div>
+          </article>
+
+          <div class="nh-property-side">
+
+            <article class="nh-property-card">
+              <div class="nh-property-thumb" style="background-image:url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80');"></div>
+
+              <div>
+                <h3>Chalet Arce</h3>
+                <p>Casa independiente con jardín, garaje, cocina abierta y espacios familiares.</p>
+                <strong>680.000€</strong>
+
+                <div class="nh-card-meta">
+                  <span>4 hab.</span>
+                  <span>3 baños</span>
+                  <span>230 m²</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="nh-property-card">
+              <div class="nh-property-thumb" style="background-image:url('https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=800&q=80');"></div>
+
+              <div>
+                <h3>Piso Bruma</h3>
+                <p>Vivienda reformada junto al mar, luminosa, cómoda y lista para entrar.</p>
+                <strong>315.000€</strong>
+
+                <div class="nh-card-meta">
+                  <span>2 hab.</span>
+                  <span>1 baño</span>
+                  <span>82 m²</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="nh-property-card">
+              <div class="nh-property-thumb" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80');"></div>
+
+              <div>
+                <h3>Casa Lienzo</h3>
+                <p>Vivienda moderna con espacios abiertos, terraza y acabados neutros.</p>
+                <strong>545.000€</strong>
+
+                <div class="nh-card-meta">
+                  <span>3 hab.</span>
+                  <span>2 baños</span>
+                  <span>145 m²</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="vender" class="nh-section soft">
+      <div class="nh-container">
+
+        <div class="nh-sell-grid">
+
+          <div class="nh-sell-card">
+            <div>
+              <span class="nh-kicker">Para propietarios</span>
+              <h2>Captar viviendas empieza por inspirar confianza.</h2>
+              <p>
+                Esta estructura está pensada para que el propietario entienda rápido cómo trabaja la inmobiliaria y solicite valoración sin fricción.
+              </p>
+            </div>
+
+            <div class="nh-sell-stats">
+              <div class="nh-sell-stat">
+                <strong>3 pasos</strong>
+                <span>Proceso claro</span>
+              </div>
+
+              <div class="nh-sell-stat">
+                <strong>24h</strong>
+                <span>Contacto inicial</span>
+              </div>
             </div>
           </div>
-        </article>
 
-        <article class="property-card">
-          <div class="property-img" style="background-image:url('https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=80');">
-            <span class="property-badge">Oportunidad</span>
+          <div class="nh-process">
+
+            <article class="nh-process-item">
+              <div class="nh-process-number">01</div>
+              <div>
+                <h3>Valoramos tu vivienda</h3>
+                <p>
+                  Recogemos zona, tipo de inmueble, estado y objetivo para hacer una primera orientación.
+                </p>
+              </div>
+            </article>
+
+            <article class="nh-process-item">
+              <div class="nh-process-number">02</div>
+              <div>
+                <h3>Preparamos la presentación</h3>
+                <p>
+                  Fotografía, descripción, puntos fuertes y estructura visual para aumentar solicitudes.
+                </p>
+              </div>
+            </article>
+
+            <article class="nh-process-item">
+              <div class="nh-process-number">03</div>
+              <div>
+                <h3>Filtramos compradores</h3>
+                <p>
+                  Formularios, llamadas a la acción y captación de leads para recibir contactos cualificados.
+                </p>
+              </div>
+            </article>
+
+            <article class="nh-process-item">
+              <div class="nh-process-number">04</div>
+              <div>
+                <h3>Acompañamos la operación</h3>
+                <p>
+                  Una web inmobiliaria debe transmitir orden, seguridad y seguimiento profesional.
+                </p>
+              </div>
+            </article>
+
           </div>
 
-          <div class="property-body">
-            <h3>Piso reformado junto al mar</h3>
-            <div class="property-location">Primera línea · Playa</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="zonas" class="nh-section white">
+      <div class="nh-container">
+
+        <div class="nh-title">
+          <span class="nh-kicker">Especialistas por zona</span>
+          <h2>La ubicación también se vende</h2>
+          <p>
+            Las páginas de zonas ayudan a posicionar la inmobiliaria y a generar confianza en propietarios y compradores.
+          </p>
+        </div>
+
+        <div class="nh-neighborhoods">
+
+          <article class="nh-zone" style="background-image:url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80');">
+            <div class="nh-zone-content">
+              <h3>Centro</h3>
+              <p>Viviendas urbanas, servicios cercanos y alta demanda.</p>
+            </div>
+          </article>
+
+          <article class="nh-zone" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80');">
+            <div class="nh-zone-content">
+              <h3>Costa</h3>
+              <p>Segunda residencia, vistas, playa y viviendas luminosas.</p>
+            </div>
+          </article>
+
+          <article class="nh-zone" style="background-image:url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80');">
+            <div class="nh-zone-content">
+              <h3>Residencial</h3>
+              <p>Chalets, jardines, tranquilidad y compradores familiares.</p>
+            </div>
+          </article>
+
+          <article class="nh-zone" style="background-image:url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80');">
+            <div class="nh-zone-content">
+              <h3>Obra nueva</h3>
+              <p>Promociones modernas y oportunidades de inversión.</p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="valoracion" class="nh-section soft">
+      <div class="nh-container">
+
+        <div class="nh-valuation-shell">
+
+          <div class="nh-valuation-intro">
+            <h2>Valoración guiada, no formulario aburrido.</h2>
             <p>
-              Apartamento reformado, muy luminoso, con distribución cómoda y excelente ubicación.
+              Este bloque está pensado para captar propietarios. Parece un pequeño asistente, pero funciona como formulario web sencillo.
             </p>
 
-            <div class="property-meta">
-              <span>2 hab.</span>
-              <span>1 baño</span>
-              <span>82 m²</span>
-              <span>Vistas</span>
-            </div>
-
-            <div class="property-footer">
-              <span class="property-price">315.000€</span>
-              <a href="#valoracion" class="property-link">Solicitar visita</a>
+            <div class="nh-valuation-points">
+              <span>Más moderno que un formulario tradicional</span>
+              <span>Reduce fricción al usuario</span>
+              <span>Sirve para campañas de captación</span>
+              <span>Puede conectarse a email, CRM o WhatsApp</span>
             </div>
           </div>
-        </article>
+
+          <form class="nh-assistant-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+
+            <div class="nh-assistant-header">
+              <h3>Cuéntanos sobre la vivienda</h3>
+              <span class="nh-step-pill">Valoración inicial</span>
+            </div>
+
+            <div class="nh-form-step">
+              <div class="nh-form-step-title">
+                <span>1</span>
+                <strong>¿Qué quieres hacer?</strong>
+              </div>
+
+              <div class="nh-choice-grid">
+                <div class="nh-choice">
+                  <input type="radio" id="op-vender" name="Operacion" value="Vender" checked>
+                  <label for="op-vender">Vender</label>
+                </div>
+
+                <div class="nh-choice">
+                  <input type="radio" id="op-comprar" name="Operacion" value="Comprar">
+                  <label for="op-comprar">Comprar</label>
+                </div>
+
+                <div class="nh-choice">
+                  <input type="radio" id="op-valorar" name="Operacion" value="Valorar">
+                  <label for="op-valorar">Solo valorar</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="nh-form-step">
+              <div class="nh-form-step-title">
+                <span>2</span>
+                <strong>Tipo de vivienda</strong>
+              </div>
+
+              <div class="nh-choice-grid">
+                <div class="nh-choice">
+                  <input type="radio" id="tipo-piso" name="Tipo vivienda" value="Piso" checked>
+                  <label for="tipo-piso">Piso</label>
+                </div>
+
+                <div class="nh-choice">
+                  <input type="radio" id="tipo-casa" name="Tipo vivienda" value="Casa">
+                  <label for="tipo-casa">Casa</label>
+                </div>
+
+                <div class="nh-choice">
+                  <input type="radio" id="tipo-atico" name="Tipo vivienda" value="Ático">
+                  <label for="tipo-atico">Ático</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="nh-form-step">
+              <div class="nh-form-step-title">
+                <span>3</span>
+                <strong>Datos básicos</strong>
+              </div>
+
+              <div class="nh-form-grid">
+                <input type="text" name="Zona" placeholder="Zona o ciudad">
+                <input type="text" name="Metros" placeholder="Metros aproximados">
+                <input type="text" name="Nombre" placeholder="Tu nombre" required>
+                <input type="text" name="Telefono" placeholder="Teléfono o WhatsApp" required>
+                <textarea name="Mensaje" placeholder="Cuéntanos brevemente el estado de la vivienda, urgencia o dudas."></textarea>
+              </div>
+            </div>
+
+            <button class="nh-form-submit" type="submit">Enviar solicitud de valoración</button>
+
+          </form>
+
+        </div>
 
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section class="nh-section dark">
+      <div class="nh-container">
 
-  <section id="vender" class="re-section gold">
-    <div class="re-container">
-
-      <div class="seller-split">
-
-        <div class="seller-photo"></div>
-
-        <div class="seller-content">
-          <span class="re-eyebrow" style="color:var(--re-gold-dark);border-color:rgba(198,161,91,.3);background:rgba(198,161,91,.13);">Para propietarios</span>
-
-          <h2>Vender tu vivienda empieza por una buena presentación.</h2>
-
+        <div class="nh-title">
+          <span class="nh-kicker">Confianza</span>
+          <h2>Una decisión importante necesita seguridad</h2>
           <p>
-            Una inmobiliaria necesita captar propietarios. Esta demo incluye valoración gratuita, argumentos de confianza, estrategia de venta y formularios pensados para generar leads cualificados.
+            Las reseñas y casos de éxito ayudan a que propietarios y compradores contacten con menos dudas.
           </p>
+        </div>
 
-          <div class="seller-list">
+        <div class="nh-reviews">
 
-            <div class="seller-item">
-              <div class="seller-number">1</div>
-              <div>
-                <h3>Valoración inicial</h3>
-                <p>Recogemos datos de la vivienda y orientamos al propietario con una propuesta clara.</p>
-              </div>
-            </div>
+          <article class="nh-review">
+            <div class="nh-stars">★★★★★</div>
+            <p>
+              “Nos explicaron el proceso de venta con claridad y recibimos una valoración rápida.”
+            </p>
+            <strong>— Elena M.</strong>
+          </article>
 
-            <div class="seller-item">
-              <div class="seller-number">2</div>
-              <div>
-                <h3>Fotografía y presentación</h3>
-                <p>Mostramos el inmueble con una imagen cuidada para aumentar visitas y contactos.</p>
-              </div>
-            </div>
+          <article class="nh-review">
+            <div class="nh-stars">★★★★★</div>
+            <p>
+              “La vivienda se presentó de forma impecable. Las visitas fueron mucho más cualificadas.”
+            </p>
+            <strong>— Javier R.</strong>
+          </article>
 
-            <div class="seller-item">
-              <div class="seller-number">3</div>
-              <div>
-                <h3>Captación de compradores</h3>
-                <p>La web trabaja como escaparate para recibir solicitudes y filtrar interesados.</p>
-              </div>
-            </div>
+          <article class="nh-review">
+            <div class="nh-stars">★★★★★</div>
+            <p>
+              “Encontramos una casa que encajaba con nosotros. Todo fue claro desde el primer contacto.”
+            </p>
+            <strong>— Marta y Luis</strong>
+          </article>
 
-          </div>
-
-          <a href="#valoracion" class="re-btn re-btn-primary">Solicitar valoración gratuita</a>
         </div>
 
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <section id="zonas" class="re-section white">
-    <div class="re-container">
-
-      <div class="re-title">
-        <span>Zonas destacadas</span>
-        <h2>Una web inmobiliaria también vende ubicación</h2>
+    <section class="nh-final">
+      <div class="nh-container">
+        <h2>¿Quieres una web así para tu inmobiliaria?</h2>
         <p>
-          Las zonas ayudan a captar búsquedas concretas y posicionar la inmobiliaria como especialista local.
+          Handoo Studio puede adaptar esta estructura con tus propiedades, tus zonas, tus textos, tu marca, WhatsApp, formularios y captación de propietarios.
         </p>
-      </div>
 
-      <div class="zones-grid">
-
-        <article class="zone-card" style="background-image:url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80');">
-          <div class="zone-card-content">
-            <h3>Centro</h3>
-            <p>Viviendas urbanas, servicios cercanos y alta demanda.</p>
-          </div>
-        </article>
-
-        <article class="zone-card" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80');">
-          <div class="zone-card-content">
-            <h3>Costa</h3>
-            <p>Pisos luminosos, vistas y segunda residencia.</p>
-          </div>
-        </article>
-
-        <article class="zone-card" style="background-image:url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80');">
-          <div class="zone-card-content">
-            <h3>Residencial</h3>
-            <p>Chalets, jardines y viviendas familiares.</p>
-          </div>
-        </article>
-
-        <article class="zone-card" style="background-image:url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80');">
-          <div class="zone-card-content">
-            <h3>Obra nueva</h3>
-            <p>Promociones modernas y oportunidades de inversión.</p>
-          </div>
-        </article>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section id="valoracion" class="re-section">
-    <div class="re-container">
-
-      <div class="valuation-box">
-
-        <div class="valuation-info">
-          <h2>Solicita una valoración gratuita</h2>
-          <p>
-            En una web real, este formulario puede conectarse a email, CRM, WhatsApp o una automatización para gestionar leads de propietarios.
-          </p>
-
-          <ul>
-            <li>Respuesta en menos de 24 horas</li>
-            <li>Orientación inicial sin compromiso</li>
-            <li>Captación de propietarios cualificados</li>
-            <li>Formulario preparado para campañas</li>
-          </ul>
+        <div class="nh-hero-actions" style="justify-content:center;margin-bottom:0;">
+          <a href="../../contacto.html" class="nh-btn nh-btn-primary">Quiero una web como esta</a>
+          <a href="../../portfolio.html" class="nh-btn nh-btn-light">Volver al portfolio</a>
         </div>
-
-        <form class="valuation-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
-          <input type="text" name="Nombre" placeholder="Tu nombre" required>
-          <input type="text" name="Telefono" placeholder="Teléfono" required>
-          <input type="email" name="Email" placeholder="Email">
-
-          <select name="Tipo de operación">
-            <option value="">¿Qué necesitas?</option>
-            <option>Vender mi vivienda</option>
-            <option>Comprar una vivienda</option>
-            <option>Solicitar valoración</option>
-            <option>Invertir en una propiedad</option>
-            <option>No lo tengo claro</option>
-          </select>
-
-          <input type="text" name="Zona" placeholder="Zona o ciudad">
-          <input type="text" name="Tipo de inmueble" placeholder="Tipo de inmueble: piso, casa, ático...">
-
-          <textarea name="Mensaje" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
-
-          <button class="re-btn re-btn-primary" type="submit">Enviar solicitud</button>
-        </form>
-
       </div>
+    </section>
 
+  </main>
+
+  <footer class="nh-footer">
+    <div class="nh-container">
+      Demo ficticia para inmobiliaria · Diseño creado por <a href="../../index.html">Handoo Studio</a> · contacto@handoo.me
     </div>
-  </section>
+  </footer>
 
-  <section class="re-section dark">
-    <div class="re-container">
+  <a class="nh-floating" href="#valoracion">Valorar vivienda</a>
 
-      <div class="re-title">
-        <span>Opiniones</span>
-        <h2>Confianza para propietarios y compradores</h2>
-        <p>
-          Las reseñas aportan seguridad en una decisión importante como vender o comprar una vivienda.
-        </p>
-      </div>
-
-      <div class="reviews-grid">
-
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>“Nos orientaron con claridad desde el primer momento. La valoración fue rápida y muy profesional.”</p>
-          <strong>— Elena M.</strong>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>“La presentación de la vivienda fue excelente. Recibimos visitas cualificadas desde la primera semana.”</p>
-          <strong>— Javier R.</strong>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>“Encontramos una vivienda que encajaba con lo que buscábamos. Proceso claro y trato cercano.”</p>
-          <strong>— Marta y Luis</strong>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="re-final">
-    <div class="re-container">
-      <h2>¿Quieres una web así para tu inmobiliaria?</h2>
-      <p>
-        Podemos adaptar esta estructura con tus propiedades, tus zonas, tu equipo, tus formularios, WhatsApp, captación de propietarios y llamadas a la acción.
-      </p>
-
-      <div class="re-actions" style="justify-content:center;margin-bottom:0;">
-        <a href="../../contacto.html" class="re-btn re-btn-primary">Quiero una web como esta</a>
-        <a href="../../portfolio.html" class="re-btn re-btn-secondary">Volver al portfolio</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="re-credit">
-  <div class="re-container">
-    Demo ficticia para inmobiliaria · Diseño web creado por <a href="../../index.html">Handoo Studio</a> · contacto@handoo.me
-  </div>
-</footer>
-
-<a class="re-floating" href="#valoracion">Valorar vivienda</a>
+</div>
 
 <script src="../../assets/js/main.js"></script>
 </body>
