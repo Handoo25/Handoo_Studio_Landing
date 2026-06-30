@@ -3,297 +3,418 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Handoo Studio | Landing pages profesionales</title>
-  <meta name="description" content="Landing pages profesionales, rápidas y modernas para negocios que quieren captar más clientes." />
+
+  <title>Handoo Studio | Webs, landing pages y automatización IA</title>
+  <meta name="description" content="Handoo Studio crea landing pages, webs corporativas, tiendas online, restyling web y automatizaciones con IA para negocios que quieren captar más clientes." />
+
   <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,Arial,Helvetica,sans-serif;background:#f8fafc;color:#111827;line-height:1.6}
-    a{text-decoration:none;color:inherit}
-    .container{width:min(1120px,92%);margin:auto}
-    header{background:linear-gradient(135deg,#0f172a,#111827);color:white;padding:28px 0 90px}
-    nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:80px}
-    .logo{font-weight:900;font-size:24px}.logo span{color:#f97316}
-    .navlinks{display:flex;gap:24px;font-size:14px;opacity:.9}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
-    .badge{display:inline-block;background:rgba(249,115,22,.15);color:#fdba74;padding:8px 14px;border-radius:999px;font-size:14px;margin-bottom:22px;font-weight:700}
-    h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin-bottom:24px;letter-spacing:-2px}
-    .hero p{font-size:20px;color:#d1d5db;max-width:620px;margin-bottom:20px}
-    .hero .subline{font-size:18px;color:#f8fafc;font-weight:700;margin-bottom:34px}
-    .buttons{display:flex;gap:16px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:16px 28px;border-radius:12px;font-weight:800;transition:.2s;border:0;cursor:pointer;font-size:16px}
-    .btn-primary{background:#f97316;color:white}.btn-primary:hover{background:#ea580c;transform:translateY(-2px)}
-    .btn-secondary{border:1px solid rgba(255,255,255,.35);color:white;background:transparent}
-    .hero-card{background:white;color:#111827;border-radius:28px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
-    .mini-top{height:14px;display:flex;gap:7px;margin-bottom:24px}.dot{width:12px;height:12px;border-radius:50%;background:#e5e7eb}
-    .preview{background:#f1f5f9;border-radius:18px;padding:24px}.preview h3{font-size:24px;margin-bottom:12px}
-    .preview-line{height:10px;background:#cbd5e1;border-radius:20px;margin:12px 0}.preview-line.short{width:65%}
-    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.preview-box{background:white;border-radius:14px;height:80px}
-
-    section{padding:86px 0}
-    .section-title{text-align:center;max-width:760px;margin:0 auto 50px}
-    .section-title h2{font-size:42px;line-height:1.15;margin-bottom:14px}
-    .section-title p{font-size:18px;color:#64748b}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    .card{background:white;border:1px solid #e5e7eb;border-radius:22px;padding:30px;box-shadow:0 14px 40px rgba(15,23,42,.06)}
-    .icon{width:48px;height:48px;border-radius:14px;background:#fff7ed;color:#f97316;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
-    .card h3{font-size:22px;margin-bottom:10px}.card p{color:#64748b}
-
-    .why{background:white}
-    .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .why-item{background:#f8fafc;border:1px solid #e5e7eb;border-radius:18px;padding:22px;font-weight:800}
-    .why-item span{display:block;color:#64748b;font-weight:500;margin-top:8px}
-
-    .dark{background:#0f172a;color:white}.dark .section-title p{color:#cbd5e1}
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:24px}
-    .num{color:#f97316;font-size:32px;font-weight:900;margin-bottom:12px}
-
-    .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    .work{background:white;border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 14px 40px rgba(15,23,42,.06);transition:.2s}
-    .work:hover{transform:translateY(-4px)}
-    .work-img{height:180px;background:linear-gradient(135deg,#fed7aa,#fdba74);display:flex;align-items:center;justify-content:center;font-size:48px}
-    .work-content{padding:24px}.work-content h3{margin-bottom:8px}.work-content p{color:#64748b}.work-content small{display:block;margin-top:12px;color:#f97316;font-weight:900}
-
-    .pricing{background:white;border-radius:28px;padding:40px;max-width:760px;margin:auto;box-shadow:0 18px 50px rgba(15,23,42,.08);border:1px solid #e5e7eb;text-align:center}
-    .price{font-size:58px;font-weight:900;color:#f97316;margin:10px 0}
-    .pricing ul{text-align:left;max-width:520px;margin:26px auto;list-style:none}
-    .pricing li{padding:10px 0;border-bottom:1px solid #e5e7eb}
-    .pricing li:before{content:"✓";color:#16a34a;font-weight:900;margin-right:10px}
-
-    .cases{background:#fff}
-    .case-box{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:22px;padding:34px;text-align:center;max-width:760px;margin:auto}
-    .case-box h3{font-size:28px;margin-bottom:10px}.case-box p{color:#64748b}
-
-    .faq{max-width:860px;margin:auto}
-    .faq-item{background:white;border:1px solid #e5e7eb;border-radius:16px;padding:22px;margin-bottom:14px}
-    .faq-item h3{margin-bottom:8px}.faq-item p{color:#64748b}
-
-    .contact-box{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-    .contact-info{background:linear-gradient(135deg,#f97316,#ea580c);color:white;border-radius:28px;padding:42px}
-    .contact-info h2{font-size:38px;margin-bottom:14px}
-    .contact-info p{font-size:18px;margin-bottom:24px}
-    .contact-info a{display:block;margin:12px 0;font-weight:800}
-    form{background:white;border:1px solid #e5e7eb;border-radius:28px;padding:32px;box-shadow:0 18px 50px rgba(15,23,42,.08)}
-    input,select,textarea{width:100%;padding:14px 16px;border:1px solid #d1d5db;border-radius:12px;margin-bottom:14px;font-size:15px;font-family:inherit;background:white}
-    textarea{min-height:130px;resize:vertical}
-
-    footer{background:#020617;color:#94a3b8;padding:40px 0;text-align:center}
-    .whatsapp{position:fixed;right:20px;bottom:20px;background:#22c55e;color:white;padding:14px 18px;border-radius:999px;font-weight:900;box-shadow:0 12px 35px rgba(0,0,0,.25);z-index:99}
-
-    @media(max-width:900px){
-      .hero,.grid-3,.steps,.portfolio,.why-grid,.contact-box{grid-template-columns:1fr}
-      .navlinks{display:none}
-      header{padding-bottom:60px}
-    }
-  </style>
 </head>
-<script src="assets/js/main.js"></script>
+
 <body>
 
-<header>
+<header class="hero">
   <div class="container">
-    <nav>
-      <div class="logo">handoo<span>/studio</span></div>
+
+    <nav class="navbar">
+      <a href="index.html" class="logo">handoo<span>/studio</span></a>
+
       <div class="navlinks">
-        <a href="#servicios">Servicios</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#precio">Precio</a>
-        <a href="#contacto">Contacto</a>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="precios.html">Precios</a>
+        <a href="contacto.html">Contacto</a>
       </div>
     </nav>
 
-    <div class="hero">
+    <div class="hero-grid">
+
       <div>
-        <div class="badge">Landing pages rápidas para negocios reales</div>
-        <h1>Convierte visitas en clientes con una web clara, moderna y lista en 48h.</h1>
-        <p>Diseño landing pages profesionales para restaurantes, clínicas, asesorías, inmobiliarias, autónomos y negocios locales que necesitan captar clientes sin complicarse.</p>
-        <div class="subline">Más visitas no sirven de nada si no terminan convirtiéndose en clientes.</div>
-        <div class="buttons">
-          <a class="btn btn-primary" href="#contacto">Solicitar presupuesto</a>
-          <a class="btn btn-secondary" href="#portfolio">Ver ejemplos</a>
+        <div class="badge">Webs rápidas, modernas y pensadas para vender</div>
+
+        <h1>Creamos la web que tu negocio necesita para captar más clientes.</h1>
+
+        <p class="hero-text">
+          Landing pages, webs corporativas, tiendas online, restyling web y automatizaciones con IA para autónomos, restaurantes, clínicas, inmobiliarias y empresas.
+        </p>
+
+        <p class="hero-subline">
+          Entrega desde 48 horas. Sin complicaciones. Sin cuotas innecesarias.
+        </p>
+
+        <div class="hero-actions">
+          <a href="contacto.html" class="btn btn-primary">Solicitar presupuesto</a>
+          <a href="portfolio.html" class="btn btn-outline">Ver ejemplos</a>
         </div>
       </div>
 
       <div class="hero-card">
-        <div class="mini-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-        <div class="preview">
-          <h3>Landing premium</h3>
-          <div class="preview-line"></div>
-          <div class="preview-line short"></div>
-          <div class="preview-grid">
-            <div class="preview-box"></div><div class="preview-box"></div><div class="preview-box"></div><div class="preview-box"></div>
+        <div class="browser-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="mockup">
+          <h3>Tu web profesional</h3>
+          <div class="mock-line"></div>
+          <div class="mock-line short"></div>
+
+          <div class="mock-grid">
+            <div class="mock-box"></div>
+            <div class="mock-box"></div>
+            <div class="mock-box"></div>
+            <div class="mock-box"></div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </header>
 
-<section id="servicios">
-  <div class="container">
-    <div class="section-title">
-      <h2>Una landing pensada para vender, no solo para verse bonita</h2>
-      <p>Estructura clara, diseño responsive, mensaje comercial y llamada a la acción directa.</p>
-    </div>
+<main>
 
-    <div class="grid-3">
-      <div class="card"><div class="icon">⚡</div><h3>Entrega rápida</h3><p>Landing lista en 24-48h según contenido, con diseño adaptable a móvil y ordenador.</p></div>
-      <div class="card"><div class="icon">🎯</div><h3>Enfoque comercial</h3><p>Textos, secciones y botones pensados para captar contactos, reservas o solicitudes.</p></div>
-      <div class="card"><div class="icon">📱</div><h3>Responsive</h3><p>Diseño optimizado para que se vea bien en móvil, tablet y escritorio.</p></div>
-    </div>
-  </div>
-</section>
+  <section class="section section-soft">
+    <div class="container">
 
-<section class="why">
-  <div class="container">
-    <div class="section-title">
-      <h2>¿Por qué Handoo Studio?</h2>
-      <p>Una solución rápida, clara y sin complicaciones para negocios que necesitan vender mejor online.</p>
-    </div>
+      <div class="section-title">
+        <h2>Soluciones web para negocios que necesitan resultados</h2>
+        <p>
+          No hacemos solo páginas bonitas. Creamos estructuras claras, rápidas y orientadas a que el visitante contacte, reserve o compre.
+        </p>
+      </div>
 
-    <div class="why-grid">
-      <div class="why-item">Diseño moderno<span>Imagen profesional desde el primer día.</span></div>
-      <div class="why-item">Entrega en 48h<span>Ideal para campañas o negocios que no pueden esperar.</span></div>
-      <div class="why-item">Sin cuotas mensuales<span>Pagas por tu landing, sin dependencia continua.</span></div>
-      <div class="why-item">Publicación incluida<span>Te ayudamos a dejarla online en tu dominio.</span></div>
-    </div>
-  </div>
-</section>
+      <div class="grid-3">
 
-<section class="dark">
-  <div class="container">
-    <div class="section-title">
-      <h2>Proceso simple</h2>
-      <p>Sin reuniones eternas. Sin complicaciones técnicas. Tú me das la idea, yo la convierto en web.</p>
-    </div>
-
-    <div class="steps">
-      <div class="step"><div class="num">01</div><h3>Brief</h3><p>Me cuentas tu negocio, servicios, objetivo y estilo visual.</p></div>
-      <div class="step"><div class="num">02</div><h3>Diseño</h3><p>Creo una estructura clara con textos y secciones de conversión.</p></div>
-      <div class="step"><div class="num">03</div><h3>Desarrollo</h3><p>Construyo la landing responsive y optimizada para publicar.</p></div>
-      <div class="step"><div class="num">04</div><h3>Entrega</h3><p>Recibes la web lista para subir o publicada en tu dominio.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="portfolio">
-  <div class="container">
-    <div class="section-title">
-      <h2>Ejemplos de landings</h2>
-      <p>Demos creadas para enseñar el tipo de resultado que puede tener tu negocio.</p>
-    </div>
-
-    <div class="portfolio">
-      <div class="work">
-        <div class="work-img">🍔</div>
-        <div class="work-content">
-          <h3>Demo Restaurante La Brasa</h3>
-          <p>Reservas, carta, ubicación, pedidos y WhatsApp.</p>
-          <small>Demo próximamente</small>
+        <div class="card service-card">
+          <div class="card-icon">🚀</div>
+          <h3>Landing Page Express</h3>
+          <p>
+            Una página profesional para captar clientes, lanzar una campaña o presentar un servicio concreto.
+          </p>
+          <strong>Desde 250€</strong>
         </div>
-      </div>
 
-      <div class="work">
-        <div class="work-img">🦷</div>
-        <div class="work-content">
-          <h3>Demo Clínica Dental Nova</h3>
-          <p>Servicios, confianza, testimonios y solicitud de cita.</p>
-          <small>Demo próximamente</small>
+        <div class="card service-card">
+          <div class="card-icon">🌐</div>
+          <h3>Web Corporativa</h3>
+          <p>
+            Web completa para presentar tu empresa, servicios, equipo, ubicación, contacto y propuesta de valor.
+          </p>
+          <strong>Desde 690€</strong>
         </div>
-      </div>
 
-      <div class="work">
-        <div class="work-img">🏠</div>
-        <div class="work-content">
-          <h3>Demo Inmobiliaria Norte</h3>
-          <p>Captación de leads, propiedades destacadas y contacto rápido.</p>
-          <small>Demo próximamente</small>
+        <div class="card service-card">
+          <div class="card-icon">🛒</div>
+          <h3>Tienda Online</h3>
+          <p>
+            Catálogo, productos, carrito, pagos y una estructura preparada para vender por Internet.
+          </p>
+          <strong>Desde 1.290€</strong>
         </div>
+
+        <div class="card service-card">
+          <div class="card-icon">♻️</div>
+          <h3>Restyling Web</h3>
+          <p>
+            Modernizamos webs antiguas para que transmitan confianza, funcionen bien en móvil y generen contactos.
+          </p>
+          <strong>Desde 350€</strong>
+        </div>
+
+        <div class="card service-card">
+          <div class="card-icon">🤖</div>
+          <h3>Automatización IA</h3>
+          <p>
+            Formularios inteligentes, respuestas automáticas, asistentes, flujos internos e integración con herramientas.
+          </p>
+          <strong>A medida</strong>
+        </div>
+
+        <div class="card service-card">
+          <div class="card-icon">🔧</div>
+          <h3>Mantenimiento Web</h3>
+          <p>
+            Cambios, soporte, actualizaciones, seguridad y pequeñas mejoras mensuales para que tu web siga funcionando.
+          </p>
+          <strong>Desde 29€/mes</strong>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="precio">
-  <div class="container">
-    <div class="pricing">
-      <h2>Landing Profesional</h2>
-      <div class="price">desde 250€</div>
-      <p>Ideal para negocios que necesitan presencia profesional y captación rápida.</p>
+  <section class="section">
+    <div class="container">
 
-      <ul>
-        <li>Diseño personalizado de una página completa</li>
-        <li>Adaptada a móvil y ordenador</li>
-        <li>Textos comerciales básicos</li>
-        <li>Botón WhatsApp o formulario</li>
-        <li>SEO básico inicial</li>
-        <li>Publicación incluida</li>
-      </ul>
-
-      <a class="btn btn-primary" href="#contacto">Quiero mi landing</a>
-    </div>
-  </div>
-</section>
-
-<section class="cases">
-  <div class="container">
-    <div class="case-box">
-      <h3>Próximamente casos reales</h3>
-      <p>Estamos preparando los primeros ejemplos completos de clientes y demos sectoriales. Mientras tanto, puedes solicitar una propuesta personalizada para tu negocio.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-title"><h2>Preguntas frecuentes</h2></div>
-    <div class="faq">
-      <div class="faq-item"><h3>¿Cuánto tarda?</h3><p>Normalmente entre 24 y 48 horas si el contenido principal está claro.</p></div>
-      <div class="faq-item"><h3>¿Necesito tener textos?</h3><p>No. Puedo ayudarte a estructurar los textos básicos según tu negocio.</p></div>
-      <div class="faq-item"><h3>¿Puedo usar mi dominio?</h3><p>Sí. La landing puede publicarse en tu dominio o entregarse como archivos.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="contacto">
-  <div class="container">
-    <div class="contact-box">
-      <div class="contact-info">
-        <h2>Hablemos de tu proyecto</h2>
-        <p>Cuéntanos qué necesitas y en menos de 24 horas recibirás una propuesta sin compromiso.</p>
-        <a href="mailto:contacto@handoo.me">📧 contacto@handoo.me</a>
-        <a href="#contacto">💬 WhatsApp próximamente</a>
+      <div class="section-title">
+        <h2>¿Para qué tipo de negocios trabajamos?</h2>
+        <p>
+          Creamos webs para negocios reales que necesitan presencia profesional, contacto rápido y una imagen que genere confianza.
+        </p>
       </div>
 
-      <form action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
-        <input type="text" name="Nombre" placeholder="Tu nombre" required>
-        <input type="text" name="Empresa" placeholder="Empresa o negocio">
-        <input type="email" name="Email" placeholder="Tu email" required>
-        <input type="text" name="WhatsApp" placeholder="WhatsApp">
+      <div class="grid-4">
+        <div class="why-item">🍔 Restaurantes<span>Cartas, reservas, pedidos y WhatsApp.</span></div>
+        <div class="why-item">🦷 Clínicas<span>Citas, servicios, confianza y ubicación.</span></div>
+        <div class="why-item">🏠 Inmobiliarias<span>Captación de propietarios y clientes.</span></div>
+        <div class="why-item">⚖️ Despachos<span>Servicios, especialidades y contacto.</span></div>
+        <div class="why-item">🏋️ Gimnasios<span>Planes, horarios y captación de socios.</span></div>
+        <div class="why-item">🎓 Academias<span>Cursos, matrículas y solicitudes.</span></div>
+        <div class="why-item">🛍️ Comercios<span>Catálogo, promociones y contacto.</span></div>
+        <div class="why-item">💼 Autónomos<span>Servicios claros y presencia profesional.</span></div>
+      </div>
 
-        <select name="Tipo de proyecto">
-          <option value="">¿Qué necesitas?</option>
-          <option>Landing Page</option>
-          <option>Web corporativa</option>
-          <option>Tienda online</option>
-          <option>No lo tengo claro</option>
-        </select>
-
-        <textarea name="Mensaje" placeholder="Cuéntanos qué tipo de landing necesitas"></textarea>
-        <button class="btn btn-primary" type="submit">Enviar solicitud</button>
-      </form>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
+  <section class="section section-dark">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Proceso simple y rápido</h2>
+        <p>
+          Tú nos cuentas qué necesitas. Nosotros lo convertimos en una web clara, moderna y lista para publicar.
+        </p>
+      </div>
+
+      <div class="grid-4">
+
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Brief</h3>
+          <p>Recogemos información sobre tu negocio, servicios, objetivo y estilo visual.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Diseño</h3>
+          <p>Preparamos estructura, textos, secciones y llamada a la acción.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Desarrollo</h3>
+          <p>Construimos la web responsive, optimizada y lista para publicar.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">04</div>
+          <h3>Entrega</h3>
+          <p>Te entregamos la web publicada o los archivos preparados para tu dominio.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Ejemplos de trabajos y demos</h2>
+        <p>
+          Estamos preparando demos sectoriales para que puedas ver cómo podría quedar una web adaptada a tu negocio.
+        </p>
+      </div>
+
+      <div class="grid-3">
+
+        <a href="portfolio.html" class="work">
+          <div class="work-img">🍔</div>
+          <div class="work-body">
+            <h3>Demo Restaurante La Brasa</h3>
+            <p>Reservas, carta, ubicación, pedidos y WhatsApp.</p>
+            <small>Ver portfolio</small>
+          </div>
+        </a>
+
+        <a href="portfolio.html" class="work">
+          <div class="work-img">🦷</div>
+          <div class="work-body">
+            <h3>Demo Clínica Dental Nova</h3>
+            <p>Servicios, confianza, testimonios y solicitud de cita.</p>
+            <small>Ver portfolio</small>
+          </div>
+        </a>
+
+        <a href="portfolio.html" class="work">
+          <div class="work-img">🏠</div>
+          <div class="work-body">
+            <h3>Demo Inmobiliaria Norte</h3>
+            <p>Captación de leads, propiedades destacadas y contacto rápido.</p>
+            <small>Ver portfolio</small>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Precios orientativos</h2>
+        <p>
+          Transparencia desde el principio. El precio final depende del contenido, funcionalidades y nivel de personalización.
+        </p>
+      </div>
+
+      <div class="grid-3">
+
+        <div class="price-card">
+          <h3>Landing Page</h3>
+          <div class="price">250€</div>
+          <p>Ideal para campañas, servicios concretos o negocios que necesitan captar contactos rápido.</p>
+          <ul>
+            <li>Una página completa</li>
+            <li>Diseño responsive</li>
+            <li>Formulario o WhatsApp</li>
+            <li>SEO básico</li>
+          </ul>
+          <a href="contacto.html" class="btn btn-primary">Solicitar</a>
+        </div>
+
+        <div class="price-card featured">
+          <h3>Web Corporativa</h3>
+          <div class="price">690€</div>
+          <p>Para empresas que necesitan una web profesional, clara y completa.</p>
+          <ul>
+            <li>Hasta 5 secciones o páginas</li>
+            <li>Textos básicos incluidos</li>
+            <li>Contacto y ubicación</li>
+            <li>Publicación incluida</li>
+          </ul>
+          <a href="contacto.html" class="btn btn-primary">Solicitar</a>
+        </div>
+
+        <div class="price-card">
+          <h3>Restyling Web</h3>
+          <div class="price">350€</div>
+          <p>Modernizamos tu web actual sin empezar desde cero.</p>
+          <ul>
+            <li>Nuevo aspecto visual</li>
+            <li>Mejora móvil</li>
+            <li>Mejora de textos y CTA</li>
+            <li>Optimización básica</li>
+          </ul>
+          <a href="contacto.html" class="btn btn-primary">Solicitar</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>¿Por qué Handoo Studio?</h2>
+        <p>
+          Combinamos diseño web, automatización e inteligencia artificial para crear soluciones rápidas, prácticas y adaptadas a cada negocio.
+        </p>
+      </div>
+
+      <div class="grid-4">
+        <div class="why-item">Diseño moderno<span>Imagen profesional desde el primer día.</span></div>
+        <div class="why-item">Entrega rápida<span>Ideal para negocios que no pueden esperar semanas.</span></div>
+        <div class="why-item">IA aplicada<span>Reducimos tiempos y costes sin perder calidad.</span></div>
+        <div class="why-item">Sin complicaciones<span>Te guiamos desde la idea hasta la publicación.</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Preguntas frecuentes</h2>
+      </div>
+
+      <div class="faq">
+
+        <div class="faq-item">
+          <h3>¿Cuánto tarda una landing page?</h3>
+          <p>Normalmente entre 24 y 48 horas si el contenido principal está claro.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Necesito tener textos preparados?</h3>
+          <p>No. Podemos ayudarte a estructurar los textos básicos según tu negocio y objetivo.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Puedo usar mi propio dominio?</h3>
+          <p>Sí. Podemos ayudarte a publicar la web en tu dominio o entregarte los archivos preparados.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿También hacéis tiendas online?</h3>
+          <p>Sí. Las tiendas online se presupuestan según número de productos, pasarela de pago, diseño y funcionalidades.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <h2>Hablemos de tu proyecto</h2>
+          <p>
+            Cuéntanos qué necesitas y en menos de 24 horas recibirás una propuesta sin compromiso.
+          </p>
+
+          <a href="mailto:contacto@handoo.me">📧 contacto@handoo.me</a>
+          <a href="contacto.html">💬 Solicitar presupuesto</a>
+        </div>
+
+        <form class="form-card" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+          <input type="text" name="Nombre" placeholder="Tu nombre" required>
+          <input type="text" name="Empresa" placeholder="Empresa o negocio">
+          <input type="email" name="Email" placeholder="Tu email" required>
+          <input type="text" name="WhatsApp" placeholder="WhatsApp">
+
+          <select name="Tipo de proyecto">
+            <option value="">¿Qué necesitas?</option>
+            <option>Landing Page</option>
+            <option>Web corporativa</option>
+            <option>Tienda online</option>
+            <option>Restyling web</option>
+            <option>Automatización IA</option>
+            <option>No lo tengo claro</option>
+          </select>
+
+          <textarea name="Mensaje" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
+
+          <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
   <div class="container">
-    © 2026 Handoo Studio · Landing pages rápidas para negocios · contacto@handoo.me
+    © 2026 Handoo Studio · Webs, landing pages y automatización IA · contacto@handoo.me
   </div>
 </footer>
 
-<a class="whatsapp" href="#contacto">💬 WhatsApp</a>
+<a class="whatsapp" href="contacto.html">💬 WhatsApp</a>
 
+<script src="assets/js/main.js"></script>
 </body>
 </html>
