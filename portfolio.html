@@ -5,9 +5,264 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Portfolio | Handoo Studio</title>
-  <meta name="description" content="Portfolio y demos de Handoo Studio: ejemplos de landing pages y webs para restaurantes, clínicas, inmobiliarias, abogados, gimnasios, academias y negocios locales." />
+  <meta name="description" content="Portfolio y demos de Handoo Studio: ejemplos de webs para hamburgueserías, clínicas dentales, inmobiliarias, despachos, gimnasios, academias y negocios locales." />
 
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .portfolio-demos{
+      background:#ffffff;
+      padding:90px 0;
+    }
+
+    .demo-tabs{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+      max-width:960px;
+      margin:0 auto 56px;
+    }
+
+    .demo-tab{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 16px;
+      border-radius:999px;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      color:#334155;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .demo-tab.available{
+      background:#fff7ed;
+      border-color:#fed7aa;
+      color:#ea580c;
+    }
+
+    .demo-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+    }
+
+    .demo-preview-card{
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:0 24px 70px rgba(15,23,42,.08);
+      transition:.22s ease;
+    }
+
+    .demo-preview-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 34px 90px rgba(15,23,42,.14);
+    }
+
+    .demo-browser{
+      background:#0f172a;
+      padding:14px;
+      border-bottom:1px solid #e5e7eb;
+    }
+
+    .demo-browser-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+    }
+
+    .demo-dots{
+      display:flex;
+      gap:7px;
+    }
+
+    .demo-dots span{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#475569;
+    }
+
+    .demo-browser-label{
+      color:#cbd5e1;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .demo-preview{
+      height:310px;
+      background:#111827;
+      border-radius:22px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .demo-preview iframe{
+      position:absolute;
+      left:50%;
+      top:0;
+      width:1200px;
+      height:820px;
+      border:0;
+      transform:translateX(-50%) scale(.43);
+      transform-origin:top center;
+      pointer-events:none;
+      background:white;
+    }
+
+    .demo-content{
+      padding:30px;
+    }
+
+    .demo-content h3{
+      font-size:30px;
+      color:#0f172a;
+      letter-spacing:-.8px;
+      margin-bottom:12px;
+    }
+
+    .demo-content p{
+      color:#64748b;
+      line-height:1.7;
+      margin-bottom:22px;
+    }
+
+    .demo-features{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:24px;
+    }
+
+    .demo-feature{
+      background:#f1f5f9;
+      color:#334155;
+      border-radius:999px;
+      padding:7px 11px;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .demo-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .demo-main-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:13px 20px;
+      border-radius:999px;
+      background:#f97316;
+      color:white;
+      font-weight:900;
+      transition:.2s ease;
+    }
+
+    .demo-main-link:hover{
+      background:#ea580c;
+      transform:translateY(-2px);
+    }
+
+    .demo-secondary-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:13px 20px;
+      border-radius:999px;
+      background:#f8fafc;
+      color:#0f172a;
+      border:1px solid #e5e7eb;
+      font-weight:900;
+      transition:.2s ease;
+    }
+
+    .demo-secondary-link:hover{
+      background:#0f172a;
+      color:white;
+    }
+
+    .coming-section{
+      background:#f8fafc;
+      padding:90px 0;
+    }
+
+    .coming-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .coming-item{
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      padding:24px;
+      box-shadow:0 16px 45px rgba(15,23,42,.05);
+    }
+
+    .coming-item strong{
+      display:block;
+      font-size:20px;
+      margin-bottom:8px;
+      color:#0f172a;
+    }
+
+    .coming-item span{
+      color:#64748b;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .portfolio-note{
+      background:#0f172a;
+      color:white;
+      padding:90px 0;
+      text-align:center;
+    }
+
+    .portfolio-note h2{
+      font-size:clamp(34px,5vw,54px);
+      line-height:1.08;
+      letter-spacing:-1.5px;
+      max-width:850px;
+      margin:0 auto 18px;
+    }
+
+    .portfolio-note p{
+      color:#cbd5e1;
+      max-width:760px;
+      margin:0 auto 28px;
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    @media(max-width:980px){
+      .demo-grid,
+      .coming-grid{
+        grid-template-columns:1fr;
+      }
+
+      .demo-preview{
+        height:260px;
+      }
+
+      .demo-preview iframe{
+        transform:translateX(-50%) scale(.34);
+      }
+
+      .demo-content{
+        padding:26px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -28,12 +283,12 @@
     </nav>
 
     <div class="page-hero-content">
-      <div class="badge">Demos y ejemplos sectoriales</div>
+      <div class="badge">Demos sectoriales premium</div>
 
-      <h1>Ejemplos de webs pensadas para captar clientes.</h1>
+      <h1>Ejemplos de webs con estilos realmente diferentes.</h1>
 
       <p>
-        Estamos creando una biblioteca de demos para distintos sectores. Cada ejemplo sirve como base para adaptar rápidamente una web real a un negocio concreto.
+        Cada demo tiene una identidad propia: colores, tipografía, fotografías, estructura y tono adaptados al tipo de negocio.
       </p>
     </div>
 
@@ -42,83 +297,137 @@
 
 <main>
 
-  <section class="section section-soft">
+  <section class="portfolio-demos">
     <div class="container">
 
       <div class="section-title">
-        <h2>Demos destacadas</h2>
+        <h2>Demos publicadas</h2>
         <p>
-          Estas demos muestran diferentes enfoques de diseño, estructura comercial y llamadas a la acción según el tipo de negocio.
+          Previsualizaciones reales de las webs demo. Así el cliente puede ver directamente el resultado antes de entrar.
         </p>
       </div>
 
-      <div class="grid-3">
+      <div class="demo-tabs">
+        <a href="demos/restaurante/index.html" class="demo-tab available">🍔 Smash House</a>
+        <a href="demos/clinica/index.html" class="demo-tab available">🦷 Aura Dental Clinic</a>
+        <span class="demo-tab">🏠 Inmobiliaria</span>
+        <span class="demo-tab">⚖️ Despacho legal</span>
+        <span class="demo-tab">🏋️ Gimnasio</span>
+        <span class="demo-tab">🎓 Academia</span>
+        <span class="demo-tab">🛍️ Comercio</span>
+      </div>
 
-        <a href="demos/restaurante/index.html" class="work">
-  <div class="work-img">🍔</div>
-  <div class="work-body">
-    <h3>Smash House</h3>
-    <p>
-      Demo premium para hamburguesería moderna con carta visual, reservas, pedidos, combos, galería y diseño urbano.
-    </p>
-    <small>Ver demo</small>
-  </div>
-</a>
+      <div class="demo-grid">
+
+        <article class="demo-preview-card">
+          <div class="demo-browser">
+            <div class="demo-browser-top">
+              <div class="demo-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="demo-browser-label">Vista previa real</div>
+            </div>
+
+            <div class="demo-preview">
+              <iframe src="demos/restaurante/index.html" title="Smash House demo"></iframe>
+            </div>
+          </div>
+
+          <div class="demo-content">
+            <h3>Smash House</h3>
+            <p>
+              Demo premium para hamburguesería moderna con carta visual, pedido online, mini carrito, combos, galería foodie y reservas.
+            </p>
+
+            <div class="demo-features">
+              <span class="demo-feature">Carta visual</span>
+              <span class="demo-feature">Pedido online</span>
+              <span class="demo-feature">Mini carrito</span>
+              <span class="demo-feature">Combos</span>
+              <span class="demo-feature">Reservas</span>
+            </div>
+
+            <div class="demo-actions">
+              <a href="demos/restaurante/index.html" class="demo-main-link">Ver demo</a>
+              <a href="contacto.html" class="demo-secondary-link">Quiero algo así</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="demo-preview-card">
+          <div class="demo-browser">
+            <div class="demo-browser-top">
+              <div class="demo-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="demo-browser-label">Vista previa real</div>
+            </div>
+
+            <div class="demo-preview">
+              <iframe src="demos/clinica/index.html" title="Aura Dental Clinic demo"></iframe>
+            </div>
+          </div>
+
+          <div class="demo-content">
+            <h3>Aura Dental Clinic</h3>
+            <p>
+              Demo elegante para clínica dental con estética limpia, tonos suaves, tratamientos, equipo, opiniones, galería y solicitud de cita.
+            </p>
+
+            <div class="demo-features">
+              <span class="demo-feature">Tratamientos</span>
+              <span class="demo-feature">Equipo</span>
+              <span class="demo-feature">Opiniones</span>
+              <span class="demo-feature">Galería</span>
+              <span class="demo-feature">Citas</span>
+            </div>
+
+            <div class="demo-actions">
+              <a href="demos/clinica/index.html" class="demo-main-link">Ver demo</a>
+              <a href="contacto.html" class="demo-secondary-link">Quiero algo así</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="coming-section">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Próximas demos sectoriales</h2>
+        <p>
+          La biblioteca irá creciendo con plantillas para diferentes negocios locales y profesionales.
+        </p>
+      </div>
+
+      <div class="coming-grid">
+
+        <div class="coming-item">
+          <strong>🏠 Inmobiliaria Norte</strong>
+          <span>Captación de propietarios, viviendas destacadas y solicitudes de valoración.</span>
         </div>
 
-        <a href="demos/clinica/index.html" class="work">
-  <div class="work-img">🦷</div>
-  <div class="work-body">
-    <h3>Aura Dental Clinic</h3>
-    <p>
-      Demo premium para clínica dental con estética elegante, tratamientos, equipo, opiniones, fotos y solicitud de cita.
-    </p>
-    <small>Ver demo</small>
-  </div>
-</a>
-
-        <div class="work">
-          <div class="work-img">🏠</div>
-          <div class="work-body">
-            <h3>Inmobiliaria Norte</h3>
-            <p>
-              Web orientada a captar propietarios, mostrar inmuebles destacados y generar solicitudes de contacto.
-            </p>
-            <small>Demo en preparación</small>
-          </div>
+        <div class="coming-item">
+          <strong>⚖️ Despacho legal</strong>
+          <span>Especialidades, autoridad profesional, consulta inicial y confianza.</span>
         </div>
 
-        <div class="work">
-          <div class="work-img">⚖️</div>
-          <div class="work-body">
-            <h3>Despacho Legal Prado</h3>
-            <p>
-              Web seria y profesional para abogados, con áreas de especialidad, consulta inicial y autoridad.
-            </p>
-            <small>Demo en preparación</small>
-          </div>
+        <div class="coming-item">
+          <strong>🏋️ Gimnasio Urban Fit</strong>
+          <span>Planes, clases, horarios, entrenadores y captación de nuevos socios.</span>
         </div>
 
-        <div class="work">
-          <div class="work-img">🏋️</div>
-          <div class="work-body">
-            <h3>Gimnasio Urban Fit</h3>
-            <p>
-              Web para captar socios, mostrar planes, horarios, clases, entrenadores y promociones.
-            </p>
-            <small>Demo en preparación</small>
-          </div>
-        </div>
-
-        <div class="work">
-          <div class="work-img">🎓</div>
-          <div class="work-body">
-            <h3>Academia Aula Norte</h3>
-            <p>
-              Web para cursos, matrículas, solicitud de información, niveles, horarios y contacto directo.
-            </p>
-            <small>Demo en preparación</small>
-          </div>
+        <div class="coming-item">
+          <strong>🎓 Academia Aula Norte</strong>
+          <span>Cursos, matrículas, niveles, horarios y solicitud de información.</span>
         </div>
 
       </div>
@@ -126,13 +435,13 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-soft">
     <div class="container">
 
       <div class="section-title">
-        <h2>Qué buscamos en cada proyecto</h2>
+        <h2>Qué buscamos en cada demo</h2>
         <p>
-          Una web no debe limitarse a existir. Debe explicar bien el negocio, transmitir confianza y facilitar que el cliente dé el siguiente paso.
+          Una demo no debe parecer una plantilla genérica. Tiene que parecer una web real, con una marca distinta y una intención comercial clara.
         </p>
       </div>
 
@@ -142,23 +451,23 @@
           <div class="card-icon">🎯</div>
           <h3>Objetivo claro</h3>
           <p>
-            Cada página se diseña pensando en una acción: llamar, reservar, pedir presupuesto o comprar.
+            Cada web se diseña para una acción: reservar, pedir presupuesto, comprar, llamar o solicitar cita.
           </p>
         </div>
 
         <div class="card">
-          <div class="card-icon">📱</div>
-          <h3>Móvil primero</h3>
+          <div class="card-icon">📸</div>
+          <h3>Fotos reales</h3>
           <p>
-            La mayoría de visitas llegan desde el teléfono. Por eso priorizamos una experiencia móvil limpia.
+            Las imágenes cambian completamente la percepción de calidad y confianza.
           </p>
         </div>
 
         <div class="card">
-          <div class="card-icon">⚡</div>
-          <h3>Carga rápida</h3>
+          <div class="card-icon">🎨</div>
+          <h3>Estilo propio</h3>
           <p>
-            Estructuras ligeras, páginas claras y recursos optimizados para no perder visitantes.
+            Cada sector necesita colores, tipografía y tono visual diferentes.
           </p>
         </div>
 
@@ -166,7 +475,7 @@
           <div class="card-icon">💬</div>
           <h3>Contacto fácil</h3>
           <p>
-            Formularios, WhatsApp, llamadas a la acción y datos visibles para reducir fricción.
+            Formularios, WhatsApp, botones visibles y llamadas a la acción sin fricción.
           </p>
         </div>
 
@@ -175,111 +484,14 @@
     </div>
   </section>
 
-  <section class="section section-dark">
+  <section class="portfolio-note">
     <div class="container">
+      <h2>¿Quieres una demo adaptada a tu negocio?</h2>
+      <p>
+        Podemos crear una web con tu sector, tus colores, tus textos, tus fotos y las llamadas a la acción que realmente necesita tu cliente.
+      </p>
 
-      <div class="section-title">
-        <h2>Cómo convertimos una demo en una web real</h2>
-        <p>
-          Partimos de una estructura profesional y la adaptamos al negocio: textos, colores, servicios, imágenes, botones y objetivos.
-        </p>
-      </div>
-
-      <div class="grid-4">
-
-        <div class="step">
-          <div class="step-number">01</div>
-          <h3>Elegimos base</h3>
-          <p>Seleccionamos la demo o estructura que mejor encaja con el negocio.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">02</div>
-          <h3>Adaptamos marca</h3>
-          <p>Cambiamos colores, estilo, secciones y tono visual.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">03</div>
-          <h3>Personalizamos textos</h3>
-          <p>Convertimos la información del negocio en mensajes claros y comerciales.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">04</div>
-          <h3>Publicamos</h3>
-          <p>Dejamos la web lista para compartir con clientes o usar con campañas.</p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section section-soft">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Sectores para los que estamos preparando plantillas</h2>
-        <p>
-          La idea es crear una base de producción rápida para poder entregar webs profesionales en menos tiempo.
-        </p>
-      </div>
-
-      <div class="grid-4">
-        <div class="why-item">🍔 Restaurantes<span>Carta, reservas y pedidos.</span></div>
-        <div class="why-item">🦷 Clínicas<span>Citas, servicios y confianza.</span></div>
-        <div class="why-item">🏠 Inmobiliarias<span>Captación y propiedades.</span></div>
-        <div class="why-item">⚖️ Abogados<span>Consulta y especialidades.</span></div>
-        <div class="why-item">🏋️ Gimnasios<span>Planes, clases y socios.</span></div>
-        <div class="why-item">🎓 Academias<span>Cursos y matrículas.</span></div>
-        <div class="why-item">🛍️ Comercios<span>Catálogo y promociones.</span></div>
-        <div class="why-item">💼 Autónomos<span>Servicios y contacto.</span></div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-
-      <div class="contact-grid">
-
-        <div class="contact-info">
-          <h2>¿Quieres una web parecida para tu negocio?</h2>
-          <p>
-            Cuéntanos tu sector, tus servicios y el objetivo de la web. Te diremos qué estructura encaja mejor.
-          </p>
-
-          <a href="mailto:contacto@handoo.me">📧 contacto@handoo.me</a>
-          <a href="contacto.html">💬 Solicitar propuesta</a>
-        </div>
-
-        <form class="form-card" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
-          <input type="text" name="Nombre" placeholder="Tu nombre" required>
-          <input type="text" name="Empresa" placeholder="Empresa o negocio">
-          <input type="email" name="Email" placeholder="Tu email" required>
-          <input type="text" name="WhatsApp" placeholder="WhatsApp">
-
-          <select name="Tipo de negocio">
-            <option value="">Tipo de negocio</option>
-            <option>Restaurante / Hostelería</option>
-            <option>Clínica / Salud</option>
-            <option>Inmobiliaria</option>
-            <option>Despacho profesional</option>
-            <option>Gimnasio / Deporte</option>
-            <option>Academia / Formación</option>
-            <option>Comercio</option>
-            <option>Otro</option>
-          </select>
-
-          <textarea name="Mensaje" placeholder="Cuéntanos qué tipo de web te gustaría"></textarea>
-
-          <button class="btn btn-primary" type="submit">Enviar solicitud</button>
-        </form>
-
-      </div>
-
+      <a href="contacto.html" class="btn btn-primary">Solicitar propuesta</a>
     </div>
   </section>
 
