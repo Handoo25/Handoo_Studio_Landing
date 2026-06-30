@@ -811,3 +811,248 @@ textarea{
     min-height:210px;
   }
 }
+/* ===== HOME DEMOS PREVIEW ===== */
+.home-demos-preview{
+  padding: 96px 0;
+  background: #f5f7fb;
+}
+
+.section-heading.center{
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 42px;
+}
+
+.section-heading.center h2{
+  margin-bottom: 14px;
+}
+
+.section-heading.center p{
+  color: #5f6f8d;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.demo-preview-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.demo-preview-card{
+  background: #ffffff;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(10, 18, 40, 0.08);
+  box-shadow: 0 18px 45px rgba(10, 18, 40, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.demo-preview-frame{
+  display: block;
+  background: #0b1328;
+  padding: 14px 14px 0;
+  text-decoration: none;
+}
+
+.mini-browser{
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 8px;
+  background: #e9edf5;
+  border-radius: 14px 14px 0 0;
+}
+
+.mini-browser span{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c5cfdd;
+  display: inline-block;
+}
+
+.live-preview{
+  position: relative;
+  height: 235px;
+  overflow: hidden;
+  border-radius: 0 0 18px 18px;
+  background: #0b1328;
+}
+
+.live-preview iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 900px;
+  border: 0;
+  transform: scale(0.27);
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.demo-preview-content{
+  padding: 24px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.demo-preview-top{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.demo-sector{
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef2f8;
+  color: #5a6b88;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.demo-preview-top h3{
+  margin: 0;
+  color: #0b1736;
+  font-size: 1.85rem;
+  line-height: 1.05;
+}
+
+.demo-preview-content p{
+  margin: 0;
+  color: #5f6f8d;
+  line-height: 1.7;
+}
+
+.demo-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.demo-tags span{
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: #f2f5fb;
+  color: #344563;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.demo-actions{
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.demo-actions .btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.placeholder-frame{
+  background: linear-gradient(135deg, #0b1736 0%, #11204a 100%);
+  min-height: 277px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.placeholder-inner{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 28px 24px;
+  text-align: left;
+  width: 100%;
+}
+
+.coming-badge{
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(249,115,22,0.16);
+  color: #ff9a4d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.placeholder-inner h3{
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+
+.placeholder-inner p{
+  margin: 0;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+}
+
+.demo-preview-card--coming .demo-preview-content{
+  background: #ffffff;
+}
+
+@media (max-width: 1180px){
+  .demo-preview-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .live-preview{
+    height: 260px;
+  }
+}
+
+@media (max-width: 767px){
+  .home-demos-preview{
+    padding: 72px 0;
+  }
+
+  .demo-preview-content{
+    padding: 20px;
+  }
+
+  .demo-preview-top h3{
+    font-size: 1.55rem;
+  }
+
+  .demo-actions{
+    flex-direction: column;
+  }
+
+  .demo-actions .btn{
+    width: 100%;
+  }
+
+  .live-preview{
+    height: 220px;
+  }
+
+  .live-preview iframe{
+    transform: scale(0.21);
+  }
+}
