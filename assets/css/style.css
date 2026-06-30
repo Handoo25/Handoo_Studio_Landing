@@ -1056,3 +1056,48 @@ textarea{
     transform: scale(0.21);
   }
 }
+/* Improve demo cards text contrast */
+
+.demo-preview-card,
+.demo-preview-card *{
+  color:inherit;
+}
+
+.demo-preview-content{
+  color:#0f172a;
+}
+
+.demo-preview-top h3,
+.demo-preview-content h3{
+  color:#07142f;
+}
+
+.demo-preview-content p{
+  color:#334155;
+  font-weight:500;
+}
+
+.demo-sector{
+  background:#e8eef7;
+  color:#1e3a5f;
+  font-weight:900;
+}
+
+.demo-tags span{
+  background:#edf2f8;
+  color:#1f2f46;
+  font-weight:800;
+}
+
+.placeholder-inner h3{
+  color:#ffffff;
+}
+
+.placeholder-inner p{
+  color:#f1f5f9;
+}
+
+.coming-badge{
+  color:#ffb36b;
+  background:rgba(249,115,22,.2);
+}
