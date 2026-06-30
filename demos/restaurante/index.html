@@ -4,280 +4,800 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>La Brasa Burger & Grill | Demo Restaurante</title>
-  <meta name="description" content="Demo de web para restaurante con carta online, reservas, pedidos, ubicación y contacto rápido." />
+  <title>Smash House | Demo Hamburguesería</title>
+  <meta name="description" content="Demo premium de web para hamburguesería moderna creada por Handoo Studio. Carta visual, reservas, pedidos, combos, reseñas y contacto rápido." />
 
   <link rel="stylesheet" href="../../assets/css/style.css">
 
   <style>
-    body.restaurant-demo{
-      background:#fff8f0;
-      color:#2a1608;
-      font-family:Arial, Helvetica, sans-serif;
+    :root{
+      --burger-red:#ef233c;
+      --burger-yellow:#ffbe0b;
+      --burger-orange:#fb5607;
+      --burger-dark:#09090b;
+      --burger-cream:#fff3d6;
+      --burger-white:#ffffff;
+      --burger-muted:#d4d4d8;
     }
 
-    .restaurant-demo .restaurant-hero{
-      min-height:92vh;
-      background:
-        linear-gradient(90deg, rgba(20,10,4,.92), rgba(20,10,4,.72)),
-        radial-gradient(circle at 80% 20%, rgba(245,158,11,.28), transparent 38%),
-        #160b04;
+    body.burger-demo{
+      background:var(--burger-dark);
       color:white;
-      padding-bottom:80px;
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
     }
 
-    .restaurant-demo .navbar{
+    .burger-demo a{
+      text-decoration:none;
+    }
+
+    .burger-hero{
+      min-height:100vh;
+      background:
+        linear-gradient(90deg, rgba(9,9,11,.96) 0%, rgba(9,9,11,.82) 44%, rgba(9,9,11,.35) 100%),
+        url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1800&q=80");
+      background-size:cover;
+      background-position:center;
+      color:white;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .burger-hero:after{
+      content:"";
+      position:absolute;
+      inset:auto -80px -160px auto;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(251,86,7,.55), transparent 68%);
+      filter:blur(10px);
+      z-index:0;
+    }
+
+    .burger-hero .container{
+      position:relative;
+      z-index:2;
+    }
+
+    .burger-nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       padding:30px 0;
     }
 
-    .restaurant-demo .logo{
-      font-size:27px;
-      letter-spacing:-1px;
-      color:white;
-    }
-
-    .restaurant-demo .logo span{
-      color:#f59e0b;
-    }
-
-    .restaurant-demo .navlinks a{
-      color:#fef3c7;
-      font-weight:800;
-    }
-
-    .restaurant-demo .navlinks a:hover{
-      color:white;
-    }
-
-    .restaurant-demo .restaurant-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:60px;
+    .burger-logo{
+      display:flex;
       align-items:center;
-      padding-top:60px;
-    }
-
-    .restaurant-demo .restaurant-badge{
-      display:inline-flex;
-      background:rgba(245,158,11,.16);
-      color:#fbbf24;
-      border:1px solid rgba(245,158,11,.35);
-      padding:10px 16px;
-      border-radius:999px;
-      font-size:14px;
-      font-weight:900;
-      margin-bottom:24px;
-    }
-
-    .restaurant-demo h1{
-      font-size:clamp(48px,7vw,86px);
-      line-height:.96;
-      letter-spacing:-3px;
-      margin-bottom:24px;
-    }
-
-    .restaurant-demo .hero-text{
-      color:#fde68a;
-      font-size:21px;
-      max-width:640px;
-      margin-bottom:20px;
-    }
-
-    .restaurant-demo .hero-subline{
+      gap:12px;
+      font-size:29px;
+      font-weight:1000;
+      letter-spacing:-1.2px;
       color:white;
-      font-size:18px;
-      font-weight:900;
-      margin-bottom:34px;
+      text-transform:uppercase;
     }
 
-    .restaurant-demo .btn-primary{
-      background:#f59e0b;
-      color:#1f1307;
-    }
-
-    .restaurant-demo .btn-primary:hover{
-      background:#d97706;
-      color:white;
-    }
-
-    .restaurant-demo .btn-outline{
-      border:1px solid rgba(253,230,138,.45);
-      color:#fde68a;
-    }
-
-    .restaurant-demo .btn-outline:hover{
-      background:#fde68a;
-      color:#1f1307;
-    }
-
-    .restaurant-demo .food-card{
-      background:#fff7ed;
-      color:#2a1608;
-      border-radius:34px;
-      overflow:hidden;
-      box-shadow:0 35px 90px rgba(0,0,0,.38);
-      border:8px solid rgba(255,255,255,.12);
-    }
-
-    .restaurant-demo .food-photo{
-      height:280px;
-      background:
-        radial-gradient(circle at 35% 35%, #facc15 0 9%, transparent 10%),
-        radial-gradient(circle at 56% 48%, #92400e 0 20%, transparent 21%),
-        radial-gradient(circle at 50% 43%, #451a03 0 32%, transparent 33%),
-        linear-gradient(135deg,#fed7aa,#fb923c);
+    .burger-logo-mark{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--burger-red),var(--burger-orange));
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:84px;
+      box-shadow:0 15px 40px rgba(239,35,60,.35);
     }
 
-    .restaurant-demo .food-content{
-      padding:30px;
+    .burger-logo span{
+      color:var(--burger-yellow);
     }
 
-    .restaurant-demo .food-content h3{
-      font-size:30px;
-      margin-bottom:10px;
+    .burger-menu{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      font-size:14px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.4px;
     }
 
-    .restaurant-demo .food-content p{
-      color:#78350f;
-      margin-bottom:18px;
+    .burger-menu a{
+      color:white;
+      opacity:.9;
     }
 
-    .restaurant-demo .food-price{
+    .burger-menu a:hover{
+      color:var(--burger-yellow);
+      opacity:1;
+    }
+
+    .burger-hero-grid{
+      min-height:calc(100vh - 110px);
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:54px;
+      align-items:center;
+      padding:50px 0 90px;
+    }
+
+    .burger-kicker{
       display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,190,11,.12);
+      border:1px solid rgba(255,190,11,.35);
+      color:var(--burger-yellow);
       padding:10px 16px;
       border-radius:999px;
-      background:#451a03;
-      color:#fef3c7;
-      font-weight:900;
+      font-size:14px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      margin-bottom:24px;
     }
 
-    .restaurant-demo .section-title h2{
-      color:#2a1608;
+    .burger-hero h1{
+      font-size:clamp(54px,8vw,112px);
+      line-height:.88;
+      letter-spacing:-5px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+      max-width:820px;
     }
 
-    .restaurant-demo .section-title p{
-      color:#7c2d12;
+    .burger-hero h1 strong{
+      color:var(--burger-yellow);
+      display:block;
+      text-shadow:0 12px 50px rgba(255,190,11,.25);
     }
 
-    .restaurant-demo .section-dark{
-      background:#2a1608;
+    .burger-hero p{
+      color:#f4f4f5;
+      font-size:21px;
+      max-width:680px;
+      line-height:1.65;
+      margin-bottom:26px;
     }
 
-    .restaurant-demo .section-dark .section-title h2{
+    .burger-hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-top:34px;
+    }
+
+    .burger-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:17px 28px;
+      border-radius:999px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.35px;
+      border:0;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .burger-btn-primary{
+      background:linear-gradient(135deg,var(--burger-red),var(--burger-orange));
+      color:white;
+      box-shadow:0 18px 45px rgba(239,35,60,.35);
+    }
+
+    .burger-btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 24px 60px rgba(239,35,60,.5);
+    }
+
+    .burger-btn-secondary{
+      background:white;
+      color:var(--burger-dark);
+    }
+
+    .burger-btn-secondary:hover{
+      background:var(--burger-yellow);
+      transform:translateY(-3px);
+    }
+
+    .burger-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:44px;
+      max-width:670px;
+    }
+
+    .burger-stat{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:18px;
+      backdrop-filter:blur(12px);
+    }
+
+    .burger-stat strong{
+      display:block;
+      color:var(--burger-yellow);
+      font-size:28px;
+      line-height:1;
+      margin-bottom:8px;
+    }
+
+    .burger-stat span{
+      color:#e4e4e7;
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+
+    .burger-feature-card{
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:34px;
+      padding:18px;
+      backdrop-filter:blur(18px);
+      box-shadow:0 35px 100px rgba(0,0,0,.45);
+      transform:rotate(2deg);
+    }
+
+    .burger-feature-img{
+      height:390px;
+      border-radius:26px;
+      background:url("https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=80");
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .burger-feature-img:after{
+      content:"Top ventas";
+      position:absolute;
+      left:20px;
+      top:20px;
+      background:var(--burger-yellow);
+      color:var(--burger-dark);
+      padding:9px 14px;
+      border-radius:999px;
+      font-weight:1000;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+
+    .burger-feature-content{
+      padding:22px 10px 6px;
+    }
+
+    .burger-feature-content h3{
+      font-size:30px;
+      margin-bottom:8px;
+    }
+
+    .burger-feature-content p{
+      color:#e4e4e7;
+      margin:0 0 16px;
+      font-size:16px;
+      line-height:1.5;
+    }
+
+    .burger-feature-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .burger-price{
+      color:var(--burger-yellow);
+      font-size:34px;
+      font-weight:1000;
+    }
+
+    .burger-section{
+      padding:96px 0;
+    }
+
+    .burger-section-light{
+      background:var(--burger-cream);
+      color:var(--burger-dark);
+    }
+
+    .burger-section-red{
+      background:linear-gradient(135deg,#ef233c,#fb5607);
       color:white;
     }
 
-    .restaurant-demo .section-dark .section-title p{
-      color:#fed7aa;
+    .burger-title{
+      max-width:820px;
+      margin:0 auto 54px;
+      text-align:center;
     }
 
-    .restaurant-demo .card,
-    .restaurant-demo .price-card,
-    .restaurant-demo .work,
-    .restaurant-demo .faq-item{
-      border-color:#fed7aa;
-      box-shadow:0 20px 50px rgba(69,26,3,.08);
+    .burger-title span{
+      display:inline-flex;
+      background:rgba(239,35,60,.1);
+      color:var(--burger-red);
+      border:1px solid rgba(239,35,60,.18);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:1000;
+      text-transform:uppercase;
+      margin-bottom:16px;
     }
 
-    .restaurant-demo .card-icon{
-      background:#ffedd5;
-      color:#c2410c;
+    .burger-section-red .burger-title span{
+      background:rgba(255,255,255,.16);
+      color:var(--burger-yellow);
+      border-color:rgba(255,255,255,.22);
     }
 
-    .restaurant-demo .price{
-      color:#c2410c;
+    .burger-title h2{
+      font-size:clamp(36px,5vw,62px);
+      line-height:1;
+      letter-spacing:-2.5px;
+      text-transform:uppercase;
+      margin-bottom:18px;
     }
 
-    .restaurant-demo .price-card.featured{
-      border:2px solid #f59e0b;
+    .burger-title p{
+      color:#52525b;
+      font-size:19px;
+      line-height:1.7;
     }
 
-    .restaurant-demo .why-item{
-      background:#fff7ed;
-      border-color:#fed7aa;
-      color:#431407;
+    .burger-section-red .burger-title p{
+      color:#fff7ed;
     }
 
-    .restaurant-demo .why-item span{
-      color:#9a3412;
+    .burger-grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:26px;
     }
 
-    .restaurant-demo .contact-info{
-      background:linear-gradient(135deg,#431407,#9a3412);
+    .burger-grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
     }
 
-    .restaurant-demo .footer{
-      background:#140802;
-      color:#fed7aa;
+    .burger-product{
+      background:white;
+      color:var(--burger-dark);
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:0 24px 70px rgba(9,9,11,.14);
+      border:1px solid rgba(9,9,11,.06);
+      transition:.22s ease;
     }
 
-    .restaurant-demo .whatsapp{
-      background:#16a34a;
+    .burger-product:hover{
+      transform:translateY(-8px) rotate(-1deg);
+      box-shadow:0 34px 90px rgba(9,9,11,.22);
     }
 
-    @media(max-width:900px){
-      .restaurant-demo .restaurant-grid{
-        grid-template-columns:1fr;
-        gap:36px;
-        padding-top:30px;
+    .burger-product-img{
+      height:245px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    .burger-tag{
+      position:absolute;
+      left:18px;
+      top:18px;
+      background:var(--burger-red);
+      color:white;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .burger-product-body{
+      padding:26px;
+    }
+
+    .burger-product h3{
+      font-size:27px;
+      letter-spacing:-.8px;
+      margin-bottom:10px;
+    }
+
+    .burger-product p{
+      color:#52525b;
+      margin-bottom:20px;
+      line-height:1.55;
+    }
+
+    .burger-product-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .burger-product-price{
+      color:var(--burger-red);
+      font-size:28px;
+      font-weight:1000;
+    }
+
+    .burger-mini-btn{
+      background:var(--burger-dark);
+      color:white;
+      padding:10px 13px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .combo-card{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:28px;
+      padding:30px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 20px 60px rgba(9,9,11,.18);
+    }
+
+    .combo-card h3{
+      font-size:30px;
+      margin-bottom:14px;
+    }
+
+    .combo-card p{
+      color:#fff7ed;
+      margin-bottom:20px;
+      line-height:1.6;
+    }
+
+    .combo-card strong{
+      display:inline-flex;
+      background:var(--burger-yellow);
+      color:var(--burger-dark);
+      padding:10px 16px;
+      border-radius:999px;
+      font-size:20px;
+      font-weight:1000;
+    }
+
+    .burger-reason{
+      background:#111114;
+      color:white;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:28px;
+      padding:30px;
+      min-height:230px;
+    }
+
+    .burger-reason-icon{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--burger-red),var(--burger-orange));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      margin-bottom:20px;
+      box-shadow:0 18px 40px rgba(239,35,60,.28);
+    }
+
+    .burger-reason h3{
+      font-size:25px;
+      margin-bottom:10px;
+    }
+
+    .burger-reason p{
+      color:#d4d4d8;
+      line-height:1.65;
+    }
+
+    .review-card{
+      background:white;
+      color:var(--burger-dark);
+      border-radius:26px;
+      padding:28px;
+      box-shadow:0 20px 60px rgba(9,9,11,.12);
+    }
+
+    .review-stars{
+      color:var(--burger-yellow);
+      font-size:22px;
+      margin-bottom:12px;
+      letter-spacing:2px;
+    }
+
+    .review-card p{
+      color:#3f3f46;
+      line-height:1.65;
+      margin-bottom:18px;
+    }
+
+    .review-card strong{
+      font-weight:1000;
+    }
+
+    .burger-gallery{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      gap:18px;
+    }
+
+    .gallery-photo{
+      min-height:260px;
+      border-radius:28px;
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 22px 70px rgba(0,0,0,.22);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .gallery-photo.big{
+      min-height:540px;
+      grid-row:span 2;
+    }
+
+    .gallery-photo:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.35));
+    }
+
+    .reservation-box{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .reservation-info{
+      background:
+        linear-gradient(135deg, rgba(9,9,11,.92), rgba(9,9,11,.72)),
+        url("https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1000&q=80");
+      background-size:cover;
+      background-position:center;
+      border-radius:34px;
+      padding:42px;
+      color:white;
+      box-shadow:0 30px 80px rgba(9,9,11,.18);
+    }
+
+    .reservation-info h2{
+      font-size:44px;
+      line-height:1;
+      letter-spacing:-1.6px;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    .reservation-info p{
+      color:#f4f4f5;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:28px;
+    }
+
+    .reservation-info a{
+      display:block;
+      color:white;
+      font-weight:1000;
+      margin:14px 0;
+    }
+
+    .burger-form{
+      background:white;
+      color:var(--burger-dark);
+      border-radius:34px;
+      padding:34px;
+      box-shadow:0 30px 80px rgba(9,9,11,.14);
+    }
+
+    .burger-form input,
+    .burger-form select,
+    .burger-form textarea{
+      border:2px solid #f1f1f3;
+      background:#fafafa;
+      border-radius:16px;
+      padding:16px;
+      font-size:15px;
+      margin-bottom:14px;
+    }
+
+    .burger-form input:focus,
+    .burger-form select:focus,
+    .burger-form textarea:focus{
+      outline:none;
+      border-color:var(--burger-orange);
+      background:white;
+    }
+
+    .burger-location{
+      background:#111114;
+      color:white;
+      border-radius:30px;
+      padding:30px;
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    .burger-location h3{
+      font-size:25px;
+      margin-bottom:10px;
+    }
+
+    .burger-location p{
+      color:#d4d4d8;
+      line-height:1.65;
+    }
+
+    .studio-credit{
+      background:#050506;
+      color:#a1a1aa;
+      padding:30px 0;
+      text-align:center;
+      font-size:14px;
+    }
+
+    .studio-credit a{
+      color:var(--burger-yellow);
+      font-weight:1000;
+    }
+
+    .floating-order{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:99;
+      background:linear-gradient(135deg,var(--burger-red),var(--burger-orange));
+      color:white;
+      padding:15px 20px;
+      border-radius:999px;
+      font-weight:1000;
+      box-shadow:0 20px 50px rgba(239,35,60,.42);
+      text-transform:uppercase;
+      font-size:14px;
+    }
+
+    @media(max-width:960px){
+      .burger-nav{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
       }
 
-      .restaurant-demo h1{
-        font-size:52px;
+      .burger-menu{
+        width:100%;
+        overflow-x:auto;
+        gap:10px;
+        padding-bottom:6px;
+      }
+
+      .burger-menu a{
+        white-space:nowrap;
+        background:rgba(255,255,255,.1);
+        border:1px solid rgba(255,255,255,.14);
+        padding:9px 13px;
+        border-radius:999px;
+      }
+
+      .burger-hero-grid,
+      .burger-grid-3,
+      .burger-grid-4,
+      .reservation-box,
+      .burger-gallery{
+        grid-template-columns:1fr;
+      }
+
+      .burger-hero h1{
+        font-size:58px;
+        letter-spacing:-3px;
+      }
+
+      .burger-feature-card{
+        transform:none;
+      }
+
+      .burger-feature-img{
+        height:300px;
+      }
+
+      .burger-stats{
+        grid-template-columns:1fr;
+      }
+
+      .gallery-photo.big{
+        min-height:300px;
+      }
+
+      .gallery-photo{
+        min-height:240px;
+      }
+
+      .floating-order{
+        right:14px;
+        bottom:14px;
+        padding:13px 16px;
       }
     }
   </style>
 </head>
 
-<body class="restaurant-demo">
+<body class="burger-demo">
 
-<header class="restaurant-hero">
+<header class="burger-hero">
   <div class="container">
 
-    <nav class="navbar">
-      <a href="#" class="logo">La Brasa<span>.</span></a>
+    <nav class="burger-nav">
+      <a href="#" class="burger-logo">
+        <span class="burger-logo-mark">🍔</span>
+        Smash<span>House</span>
+      </a>
 
-      <div class="navlinks">
+      <div class="burger-menu">
         <a href="#carta">Carta</a>
+        <a href="#combos">Combos</a>
+        <a href="#galeria">Galería</a>
         <a href="#reservas">Reservas</a>
-        <a href="#ubicacion">Ubicación</a>
         <a href="../../portfolio.html">Portfolio</a>
       </div>
     </nav>
 
-    <div class="restaurant-grid">
+    <div class="burger-hero-grid">
 
       <div>
-        <div class="restaurant-badge">Hamburguesería artesanal en Santander</div>
+        <div class="burger-kicker">Smash burgers · Fries · Shakes</div>
 
-        <h1>Burgers a la brasa, sabor de verdad.</h1>
+        <h1>
+          Burgers que
+          <strong>se recuerdan.</strong>
+        </h1>
 
-        <p class="hero-text">
-          Hamburguesas artesanas, carnes a la parrilla, entrantes para compartir y postres caseros. Cocina al momento para comer aquí, reservar mesa o pedir para recoger.
+        <p>
+          Carne smash crujiente, cheddar fundido, bacon ahumado, patatas doradas y salsas propias. Una demo moderna para hamburgueserías que quieren entrar por los ojos y convertir visitas en reservas.
         </p>
 
-        <p class="hero-subline">
-          Carta online · Reservas · Pedidos para recoger · Terraza · Grupos
-        </p>
+        <div class="burger-hero-actions">
+          <a href="#reservas" class="burger-btn burger-btn-primary">Reservar mesa</a>
+          <a href="#carta" class="burger-btn burger-btn-secondary">Ver carta</a>
+        </div>
 
-        <div class="hero-actions">
-          <a href="#reservas" class="btn btn-primary">Reservar mesa</a>
-          <a href="#carta" class="btn btn-outline">Ver carta</a>
+        <div class="burger-stats">
+          <div class="burger-stat">
+            <strong>4.8★</strong>
+            <span>Valoración media</span>
+          </div>
+          <div class="burger-stat">
+            <strong>+20</strong>
+            <span>Burgers y combos</span>
+          </div>
+          <div class="burger-stat">
+            <strong>15 min</strong>
+            <span>Pedido para recoger</span>
+          </div>
         </div>
       </div>
 
-      <div class="food-card">
-        <div class="food-photo">🍔</div>
-        <div class="food-content">
-          <h3>Brasa Special</h3>
-          <p>
-            Doble carne smash, cheddar fundido, bacon crujiente, cebolla caramelizada y salsa ahumada.
-          </p>
-          <span class="food-price">12,90€</span>
+      <div class="burger-feature-card">
+        <div class="burger-feature-img"></div>
+        <div class="burger-feature-content">
+          <h3>Double Trouble</h3>
+          <p>Doble smash, cheddar, bacon crujiente, cebolla caramelizada y salsa secreta.</p>
+          <div class="burger-feature-bottom">
+            <span class="burger-price">13,90€</span>
+            <a href="#reservas" class="burger-mini-btn">Pedir ahora</a>
+          </div>
         </div>
       </div>
 
@@ -288,151 +808,135 @@
 
 <main>
 
-  <section class="section section-soft">
+  <section class="burger-section burger-section-light">
     <div class="container">
 
-      <div class="section-title">
-        <h2>Una web preparada para llenar mesas</h2>
+      <div class="burger-title">
+        <span>Diseño pensado para vender</span>
+        <h2>Una web de hamburguesería tiene que abrir el apetito.</h2>
         <p>
-          Esta demo muestra una estructura realista para restaurantes: platos destacados, reservas visibles, contacto rápido, ubicación y argumentos de confianza.
+          Fotos grandes, colores potentes, carta visual, botones claros y contacto rápido. La web debe hacer que el cliente quiera reservar, pedir o ir al local.
         </p>
       </div>
 
-      <div class="grid-4">
-        <div class="why-item">🍔 Carta clara<span>Platos destacados, precios y categorías.</span></div>
-        <div class="why-item">📱 WhatsApp visible<span>Reservas y pedidos desde móvil.</span></div>
-        <div class="why-item">📍 Ubicación fácil<span>Dirección, horario y acceso rápido.</span></div>
-        <div class="why-item">🔥 Imagen potente<span>Diseño cálido, cercano y apetecible.</span></div>
+      <div class="burger-grid-4">
+        <div class="burger-reason">
+          <div class="burger-reason-icon">📸</div>
+          <h3>Imagen potente</h3>
+          <p>El producto se vende con fotos grandes, apetecibles y bien colocadas.</p>
+        </div>
+
+        <div class="burger-reason">
+          <div class="burger-reason-icon">🍟</div>
+          <h3>Carta visual</h3>
+          <p>Platos destacados, precios, etiquetas y combos fáciles de entender.</p>
+        </div>
+
+        <div class="burger-reason">
+          <div class="burger-reason-icon">📱</div>
+          <h3>Móvil primero</h3>
+          <p>Reservar o pedir debe ser fácil desde el teléfono en pocos segundos.</p>
+        </div>
+
+        <div class="burger-reason">
+          <div class="burger-reason-icon">🔥</div>
+          <h3>Marca moderna</h3>
+          <p>Colores, tono y diseño con personalidad para diferenciar el local.</p>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <section id="carta" class="section">
+  <section id="carta" class="burger-section burger-section-light">
     <div class="container">
 
-      <div class="section-title">
-        <h2>Carta destacada</h2>
+      <div class="burger-title">
+        <span>Top burgers</span>
+        <h2>Las favoritas de la casa</h2>
         <p>
-          Una carta online sencilla ayuda a que el cliente decida antes de llamar, reservar o hacer un pedido.
+          Una carta visual ayuda a vender antes de que el cliente llegue al local. Cada burger tiene imagen, descripción y precio destacado.
         </p>
       </div>
 
-      <div class="grid-3">
+      <div class="burger-grid-3">
 
-        <div class="price-card">
-          <h3>Classic Smash</h3>
-          <div class="price">9,90€</div>
-          <p>
-            Carne smash, cheddar, lechuga, tomate, pepinillo y salsa de la casa.
-          </p>
-          <ul>
-            <li>Pan brioche</li>
-            <li>Carne 100% vacuno</li>
-            <li>Patatas incluidas</li>
-          </ul>
-        </div>
+        <article class="burger-product">
+          <div class="burger-product-img" style="background-image:url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=900&q=80');">
+            <span class="burger-tag">Smash</span>
+          </div>
+          <div class="burger-product-body">
+            <h3>Classic Smash</h3>
+            <p>Carne smash, cheddar, pepinillo, cebolla, ketchup ahumado y mostaza suave.</p>
+            <div class="burger-product-footer">
+              <span class="burger-product-price">9,90€</span>
+              <a href="#reservas" class="burger-mini-btn">Pedir</a>
+            </div>
+          </div>
+        </article>
 
-        <div class="price-card featured">
-          <h3>Brasa Special</h3>
-          <div class="price">12,90€</div>
-          <p>
-            Doble carne, bacon, cheddar, cebolla caramelizada y salsa barbacoa ahumada.
-          </p>
-          <ul>
-            <li>La más vendida</li>
-            <li>Doble queso</li>
-            <li>Opción picante</li>
-          </ul>
-        </div>
+        <article class="burger-product">
+          <div class="burger-product-img" style="background-image:url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80');">
+            <span class="burger-tag">Top ventas</span>
+          </div>
+          <div class="burger-product-body">
+            <h3>Double Trouble</h3>
+            <p>Doble carne, doble cheddar, bacon crujiente, cebolla caramelizada y salsa secreta.</p>
+            <div class="burger-product-footer">
+              <span class="burger-product-price">13,90€</span>
+              <a href="#reservas" class="burger-mini-btn">Pedir</a>
+            </div>
+          </div>
+        </article>
 
-        <div class="price-card">
-          <h3>Chicken Crunch</h3>
-          <div class="price">10,90€</div>
-          <p>
-            Pollo crujiente, lechuga, tomate, queso y mayonesa suave.
-          </p>
-          <ul>
-            <li>Pollo marinado</li>
-            <li>Crujiente exterior</li>
-            <li>Ideal para familias</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section section-dark">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Promociones para mover reservas</h2>
-        <p>
-          Una web de restaurante también puede ayudar a empujar días flojos, menús y productos rentables.
-        </p>
-      </div>
-
-      <div class="grid-3">
-
-        <div class="step">
-          <div class="step-number">01</div>
-          <h3>Menú mediodía</h3>
-          <p>Burger, patatas y bebida desde 12,90€ de miércoles a viernes.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">02</div>
-          <h3>Combo pareja</h3>
-          <p>Dos burgers, dos bebidas y entrante para compartir.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">03</div>
-          <h3>Noche burger</h3>
-          <p>Promoción especial para reservas de jueves por la noche.</p>
-        </div>
+        <article class="burger-product">
+          <div class="burger-product-img" style="background-image:url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=900&q=80');">
+            <span class="burger-tag">Picante</span>
+          </div>
+          <div class="burger-product-body">
+            <h3>Spicy Queen</h3>
+            <p>Pollo crujiente, cheddar, jalapeños, lechuga fresca y mayo picante de la casa.</p>
+            <div class="burger-product-footer">
+              <span class="burger-product-price">11,90€</span>
+              <a href="#reservas" class="burger-mini-btn">Pedir</a>
+            </div>
+          </div>
+        </article>
 
       </div>
 
     </div>
   </section>
 
-  <section class="section section-soft">
+  <section id="combos" class="burger-section burger-section-red">
     <div class="container">
 
-      <div class="section-title">
-        <h2>Por qué venir a La Brasa</h2>
+      <div class="burger-title">
+        <span>Combos y promos</span>
+        <h2>Ofertas que suben el ticket medio</h2>
         <p>
-          Esta sección ayuda a transmitir confianza y diferenciar el restaurante frente a otras opciones.
+          Las promociones bien colocadas ayudan a vender más en días concretos, destacar productos rentables y aumentar el consumo medio.
         </p>
       </div>
 
-      <div class="grid-3">
+      <div class="burger-grid-3">
 
-        <div class="card">
-          <div class="card-icon">🔥</div>
-          <h3>Cocina al momento</h3>
-          <p>
-            Platos preparados al momento, recetas propias e ingredientes seleccionados.
-          </p>
+        <div class="combo-card">
+          <h3>Combo Smash</h3>
+          <p>Classic Smash + patatas + bebida. Perfecto para mediodía o pedidos rápidos.</p>
+          <strong>12,90€</strong>
         </div>
 
-        <div class="card">
-          <div class="card-icon">🍟</div>
-          <h3>Producto cuidado</h3>
-          <p>
-            Hamburguesas, entrantes y acompañamientos pensados para disfrutar en local o para llevar.
-          </p>
+        <div class="combo-card">
+          <h3>Duo Burger</h3>
+          <p>Dos burgers, dos bebidas y un entrante para compartir. Ideal para parejas.</p>
+          <strong>24,90€</strong>
         </div>
 
-        <div class="card">
-          <div class="card-icon">👨‍👩‍👧</div>
-          <h3>Ambiente cercano</h3>
-          <p>
-            Un espacio cómodo para comidas, cenas, grupos pequeños y planes informales.
-          </p>
+        <div class="combo-card">
+          <h3>Family Pack</h3>
+          <p>Cuatro burgers, dos raciones de patatas y bebidas. Pensado para grupos.</p>
+          <strong>42,90€</strong>
         </div>
 
       </div>
@@ -440,27 +944,94 @@
     </div>
   </section>
 
-  <section id="reservas" class="section">
+  <section id="galeria" class="burger-section burger-section-light">
     <div class="container">
 
-      <div class="contact-grid">
+      <div class="burger-title">
+        <span>Galería foodie</span>
+        <h2>Que el cliente vea lo que va a pedir</h2>
+        <p>
+          En restaurantes, las imágenes no son decoración: son parte de la venta. Una galería atractiva puede marcar la diferencia.
+        </p>
+      </div>
 
-        <div class="contact-info">
-          <h2>Reserva tu mesa</h2>
+      <div class="burger-gallery">
+        <div class="gallery-photo big" style="background-image:url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1200&q=80');"></div>
+        <div class="gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=80');"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="burger-section burger-section-light">
+    <div class="container">
+
+      <div class="burger-title">
+        <span>Reseñas</span>
+        <h2>Confianza antes de reservar</h2>
+        <p>
+          Las reseñas ayudan a reforzar la decisión. En una web real podrían integrarse testimonios reales o reseñas destacadas de Google.
+        </p>
+      </div>
+
+      <div class="burger-grid-3">
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>“La Double Trouble es una barbaridad. Pan perfecto, carne jugosa y salsa brutal. Repetimos seguro.”</p>
+          <strong>Laura G.</strong>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>“Pedimos para recoger y estaba todo listo a tiempo. Las patatas y el bacon, de diez.”</p>
+          <strong>Mario R.</strong>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>“Muy buen ambiente, carta clara y hamburguesas con muchísimo sabor. Ideal para cena informal.”</p>
+          <strong>Claudia M.</strong>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="reservas" class="burger-section burger-section-light">
+    <div class="container">
+
+      <div class="reservation-box">
+
+        <div class="reservation-info">
+          <h2>Reserva o pide para recoger</h2>
           <p>
             En una web real, este bloque puede conectarse a WhatsApp, teléfono, email, formulario o sistema de reservas.
           </p>
 
-          <a href="mailto:contacto@handoo.me">📧 reservas@labrasa-demo.com</a>
+          <a href="mailto:contacto@handoo.me">📧 reservas@smashhouse-demo.com</a>
           <a href="tel:+34000000000">📞 000 000 000</a>
           <a href="#ubicacion">📍 Ver ubicación</a>
         </div>
 
-        <form class="form-card" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+        <form class="burger-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
           <input type="text" name="Nombre" placeholder="Tu nombre" required>
           <input type="text" name="Telefono" placeholder="Teléfono" required>
-          <input type="date" name="Fecha" required>
-          <input type="time" name="Hora" required>
+
+          <select name="Tipo de solicitud" required>
+            <option value="">¿Qué quieres hacer?</option>
+            <option>Reservar mesa</option>
+            <option>Pedir para recoger</option>
+            <option>Consultar alérgenos</option>
+            <option>Grupo o cumpleaños</option>
+          </select>
+
+          <input type="date" name="Fecha">
+          <input type="time" name="Hora">
 
           <select name="Personas">
             <option value="">Número de personas</option>
@@ -471,9 +1042,9 @@
             <option>5 o más personas</option>
           </select>
 
-          <textarea name="Mensaje" placeholder="Observaciones: trona, alérgenos, celebración, terraza, etc."></textarea>
+          <textarea name="Mensaje" placeholder="Cuéntanos si quieres reservar, pedir para recoger, preguntar por alérgenos o preparar algo especial."></textarea>
 
-          <button class="btn btn-primary" type="submit">Solicitar reserva</button>
+          <button class="burger-btn burger-btn-primary" type="submit">Enviar solicitud</button>
         </form>
 
       </div>
@@ -481,41 +1052,39 @@
     </div>
   </section>
 
-  <section id="ubicacion" class="section section-soft">
+  <section id="ubicacion" class="burger-section">
     <div class="container">
 
-      <div class="section-title">
-        <h2>Dónde estamos</h2>
+      <div class="burger-title">
+        <span>Ubicación y horarios</span>
+        <h2>Fácil de encontrar, fácil de contactar</h2>
         <p>
-          La ubicación debe estar muy visible en negocios locales. Aquí se podría integrar Google Maps.
+          Para un negocio local, dirección, horario y contacto deben estar siempre visibles.
         </p>
       </div>
 
-      <div class="grid-3">
+      <div class="burger-grid-3">
 
-        <div class="card">
-          <div class="card-icon">📍</div>
-          <h3>Dirección</h3>
+        <div class="burger-location">
+          <h3>📍 Dirección</h3>
           <p>
             Calle Principal, 12<br>
             Santander, Cantabria
           </p>
         </div>
 
-        <div class="card">
-          <div class="card-icon">🕒</div>
-          <h3>Horario</h3>
+        <div class="burger-location">
+          <h3>🕒 Horario</h3>
           <p>
             Miércoles a domingo<br>
             13:00 - 16:00 / 20:00 - 23:30
           </p>
         </div>
 
-        <div class="card">
-          <div class="card-icon">💬</div>
-          <h3>Contacto rápido</h3>
+        <div class="burger-location">
+          <h3>💬 Contacto rápido</h3>
           <p>
-            Reservas, pedidos para recoger, dudas sobre carta o grupos.
+            Reservas, pedidos para recoger, grupos, cumpleaños y dudas sobre carta.
           </p>
         </div>
 
@@ -524,18 +1093,19 @@
     </div>
   </section>
 
-  <section class="section section-dark">
+  <section class="burger-section burger-section-red">
     <div class="container">
 
-      <div class="section-title">
+      <div class="burger-title">
+        <span>Demo creada por Handoo Studio</span>
         <h2>¿Quieres una web así para tu restaurante?</h2>
         <p>
-          Podemos adaptar esta estructura con tu nombre, fotos, carta, colores, horarios, ubicación y llamadas a la acción.
+          Podemos adaptar esta estructura con tu nombre, fotos reales, carta, colores, horarios, ubicación, WhatsApp y llamadas a la acción.
         </p>
 
-        <div style="margin-top:28px;">
-          <a href="../../contacto.html" class="btn btn-primary">Quiero una web como esta</a>
-          <a href="../../portfolio.html" class="btn btn-outline">Volver al portfolio</a>
+        <div style="margin-top:30px;">
+          <a href="../../contacto.html" class="burger-btn burger-btn-secondary">Quiero una web como esta</a>
+          <a href="../../portfolio.html" class="burger-btn burger-btn-primary">Volver al portfolio</a>
         </div>
       </div>
 
@@ -544,13 +1114,13 @@
 
 </main>
 
-<footer class="footer">
+<footer class="studio-credit">
   <div class="container">
-    Demo ficticia para restaurante · Diseño web creado por Handoo Studio · contacto@handoo.me
+    Demo ficticia para hamburguesería · Diseño web creado por <a href="../../index.html">Handoo Studio</a> · contacto@handoo.me
   </div>
 </footer>
 
-<a class="whatsapp" href="../../contacto.html">💬 Reservar</a>
+<a class="floating-order" href="#reservas">🍔 Pedir / reservar</a>
 
 <script src="../../assets/js/main.js"></script>
 </body>
