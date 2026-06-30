@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Aura Dental Clinic | Demo Clínica Dental</title>
+  <meta name="description" content="Demo premium de web para clínica dental creada por Handoo Studio. Tratamientos, estética dental, ortodoncia, implantes, equipo, opiniones y solicitud de cita." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    :root{
+      --clinic-bg:#f7f5f1;
+      --clinic-white:#ffffff;
+      --clinic-text:#2f3a3d;
+      --clinic-muted:#6f7b7d;
+      --clinic-line:#e8e4de;
+      --clinic-green:#92a99a;
+      --clinic-green-dark:#6f8d7b;
+      --clinic-soft-green:#dbe8df;
+      --clinic-beige:#efe8de;
+      --clinic-rose:#eadbd6;
+      --clinic-shadow:0 24px 70px rgba(47,58,61,.08);
+      --clinic-radius:30px;
+    }
+
+    body.clinic-demo{
+      background:var(--clinic-bg);
+      color:var(--clinic-text);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    .clinic-demo a{
+      text-decoration:none;
+    }
+
+    .clinic-container{
+      width:min(1160px,92%);
+      margin:auto;
+    }
+
+    .clinic-nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:30px 0;
+      position:relative;
+      z-index:5;
+    }
+
+    .clinic-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      color:var(--clinic-text);
+      font-size:22px;
+      letter-spacing:-.4px;
+    }
+
+    .clinic-logo-mark{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--clinic-soft-green),var(--clinic-green));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:900;
+      box-shadow:0 15px 40px rgba(111,141,123,.22);
+    }
+
+    .clinic-logo span{
+      color:var(--clinic-green-dark);
+    }
+
+    .clinic-menu{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .clinic-menu a{
+      color:var(--clinic-muted);
+    }
+
+    .clinic-menu a:hover{
+      color:var(--clinic-green-dark);
+    }
+
+    .clinic-hero{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(219,232,223,.8), transparent 32%),
+        radial-gradient(circle at 90% 20%, rgba(234,219,214,.8), transparent 28%),
+        var(--clinic-bg);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .clinic-hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:58px;
+      align-items:center;
+      padding:56px 0 96px;
+      min-height:calc(100vh - 106px);
+    }
+
+    .clinic-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(146,169,154,.14);
+      color:var(--clinic-green-dark);
+      border:1px solid rgba(146,169,154,.24);
+      padding:9px 15px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:24px;
+    }
+
+    .clinic-hero h1{
+      font-family:"Playfair Display", serif;
+      font-size:clamp(46px,6vw,82px);
+      line-height:.98;
+      letter-spacing:-2.5px;
+      margin-bottom:26px;
+      color:var(--clinic-text);
+    }
+
+    .clinic-hero p{
+      font-size:20px;
+      line-height:1.75;
+      color:var(--clinic-muted);
+      max-width:680px;
+      margin-bottom:34px;
+    }
+
+    .clinic-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:42px;
+    }
+
+    .clinic-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:15px 24px;
+      border-radius:999px;
+      font-weight:800;
+      border:0;
+      cursor:pointer;
+      transition:.2s ease;
+      font-family:Inter, Arial, sans-serif;
+    }
+
+    .clinic-btn-primary{
+      background:var(--clinic-green-dark);
+      color:white;
+      box-shadow:0 18px 45px rgba(111,141,123,.24);
+    }
+
+    .clinic-btn-primary:hover{
+      background:#5f7d6b;
+      transform:translateY(-2px);
+    }
+
+    .clinic-btn-secondary{
+      background:white;
+      color:var(--clinic-text);
+      border:1px solid var(--clinic-line);
+    }
+
+    .clinic-btn-secondary:hover{
+      background:var(--clinic-soft-green);
+      transform:translateY(-2px);
+    }
+
+    .clinic-trust{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      max-width:680px;
+    }
+
+    .clinic-trust-item{
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(232,228,222,.85);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:0 16px 45px rgba(47,58,61,.05);
+      backdrop-filter:blur(12px);
+    }
+
+    .clinic-trust-item strong{
+      display:block;
+      font-size:24px;
+      color:var(--clinic-green-dark);
+      margin-bottom:4px;
+    }
+
+    .clinic-trust-item span{
+      display:block;
+      color:var(--clinic-muted);
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .clinic-visual{
+      position:relative;
+    }
+
+    .clinic-photo-card{
+      background:white;
+      border-radius:42px;
+      padding:18px;
+      box-shadow:0 35px 100px rgba(47,58,61,.16);
+      transform:rotate(1.5deg);
+    }
+
+    .clinic-main-photo{
+      height:560px;
+      border-radius:32px;
+      background:
+        linear-gradient(180deg, transparent 52%, rgba(47,58,61,.38)),
+        url("https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1200&q=80");
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .clinic-photo-label{
+      position:absolute;
+      left:22px;
+      bottom:22px;
+      right:22px;
+      background:rgba(255,255,255,.86);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.65);
+      border-radius:24px;
+      padding:20px;
+      color:var(--clinic-text);
+    }
+
+    .clinic-photo-label h3{
+      font-family:"Playfair Display", serif;
+      font-size:28px;
+      margin-bottom:6px;
+    }
+
+    .clinic-photo-label p{
+      margin:0;
+      font-size:14px;
+      color:var(--clinic-muted);
+      line-height:1.5;
+    }
+
+    .clinic-floating-card{
+      position:absolute;
+      left:-42px;
+      top:58px;
+      background:white;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 24px 70px rgba(47,58,61,.14);
+      border:1px solid var(--clinic-line);
+      max-width:230px;
+      z-index:3;
+    }
+
+    .clinic-floating-card strong{
+      display:block;
+      color:var(--clinic-green-dark);
+      font-size:28px;
+      margin-bottom:6px;
+    }
+
+    .clinic-floating-card span{
+      display:block;
+      color:var(--clinic-muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .clinic-section{
+      padding:96px 0;
+    }
+
+    .clinic-section.alt{
+      background:white;
+    }
+
+    .clinic-section.green{
+      background:linear-gradient(135deg,#dbe8df,#f3eee7);
+    }
+
+    .clinic-title{
+      max-width:820px;
+      margin:0 auto 56px;
+      text-align:center;
+    }
+
+    .clinic-title span{
+      display:inline-flex;
+      background:rgba(146,169,154,.14);
+      color:var(--clinic-green-dark);
+      border:1px solid rgba(146,169,154,.24);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .clinic-title h2{
+      font-family:"Playfair Display", serif;
+      font-size:clamp(36px,5vw,60px);
+      line-height:1.05;
+      letter-spacing:-1.5px;
+      margin-bottom:18px;
+      color:var(--clinic-text);
+    }
+
+    .clinic-title p{
+      color:var(--clinic-muted);
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .clinic-grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .treatment-card{
+      background:white;
+      border:1px solid var(--clinic-line);
+      border-radius:var(--clinic-radius);
+      padding:30px;
+      box-shadow:var(--clinic-shadow);
+      transition:.2s ease;
+    }
+
+    .treatment-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 34px 90px rgba(47,58,61,.12);
+    }
+
+    .treatment-icon{
+      width:56px;
+      height:56px;
+      border-radius:20px;
+      background:var(--clinic-soft-green);
+      color:var(--clinic-green-dark);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:26px;
+      margin-bottom:20px;
+    }
+
+    .treatment-card h3{
+      font-size:22px;
+      margin-bottom:10px;
+      color:var(--clinic-text);
+    }
+
+    .treatment-card p{
+      color:var(--clinic-muted);
+      line-height:1.65;
+    }
+
+    .clinic-split{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:54px;
+      align-items:center;
+    }
+
+    .clinic-split-photo{
+      min-height:560px;
+      border-radius:42px;
+      background:
+        linear-gradient(180deg, transparent 54%, rgba(47,58,61,.32)),
+        url("https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1100&q=80");
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 35px 100px rgba(47,58,61,.13);
+    }
+
+    .benefit-list{
+      display:grid;
+      gap:18px;
+    }
+
+    .benefit-item{
+      background:rgba(255,255,255,.82);
+      border:1px solid var(--clinic-line);
+      border-radius:26px;
+      padding:24px;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:18px;
+      align-items:start;
+      box-shadow:0 18px 55px rgba(47,58,61,.06);
+    }
+
+    .benefit-number{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:var(--clinic-green-dark);
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+    }
+
+    .benefit-item h3{
+      margin-bottom:6px;
+      font-size:22px;
+    }
+
+    .benefit-item p{
+      color:var(--clinic-muted);
+      line-height:1.65;
+    }
+
+    .clinic-gallery{
+      display:grid;
+      grid-template-columns:1.1fr .9fr .9fr;
+      gap:18px;
+    }
+
+    .clinic-gallery-photo{
+      min-height:260px;
+      border-radius:32px;
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 24px 70px rgba(47,58,61,.12);
+      overflow:hidden;
+    }
+
+    .clinic-gallery-photo.big{
+      min-height:540px;
+      grid-row:span 2;
+    }
+
+    .review-card-clinic{
+      background:white;
+      border:1px solid var(--clinic-line);
+      border-radius:30px;
+      padding:30px;
+      box-shadow:var(--clinic-shadow);
+    }
+
+    .review-card-clinic .stars{
+      color:#d6a96e;
+      font-size:20px;
+      letter-spacing:2px;
+      margin-bottom:14px;
+    }
+
+    .review-card-clinic p{
+      color:var(--clinic-muted);
+      line-height:1.7;
+      margin-bottom:18px;
+      font-size:16px;
+    }
+
+    .review-card-clinic strong{
+      color:var(--clinic-text);
+    }
+
+    .team-card-clinic{
+      background:white;
+      border:1px solid var(--clinic-line);
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:var(--clinic-shadow);
+    }
+
+    .team-photo{
+      height:320px;
+      background-size:cover;
+      background-position:center;
+    }
+
+    .team-body{
+      padding:24px;
+    }
+
+    .team-body h3{
+      font-family:"Playfair Display", serif;
+      font-size:28px;
+      margin-bottom:6px;
+    }
+
+    .team-body p{
+      color:var(--clinic-muted);
+      line-height:1.55;
+    }
+
+    .clinic-contact{
+      background:
+        radial-gradient(circle at 10% 20%, rgba(219,232,223,.9), transparent 35%),
+        radial-gradient(circle at 90% 80%, rgba(234,219,214,.85), transparent 32%),
+        var(--clinic-bg);
+      padding:100px 0;
+    }
+
+    .clinic-contact-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:32px;
+      align-items:stretch;
+    }
+
+    .clinic-contact-info{
+      background:var(--clinic-green-dark);
+      color:white;
+      border-radius:38px;
+      padding:44px;
+      box-shadow:0 35px 100px rgba(111,141,123,.24);
+    }
+
+    .clinic-contact-info h2{
+      font-family:"Playfair Display", serif;
+      font-size:48px;
+      line-height:1.05;
+      margin-bottom:16px;
+    }
+
+    .clinic-contact-info p{
+      color:#eef6f0;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:26px;
+    }
+
+    .clinic-contact-info a,
+    .clinic-contact-info span{
+      display:block;
+      color:white;
+      font-weight:800;
+      margin:14px 0;
+    }
+
+    .clinic-form{
+      background:white;
+      border:1px solid var(--clinic-line);
+      border-radius:38px;
+      padding:34px;
+      box-shadow:0 35px 100px rgba(47,58,61,.1);
+    }
+
+    .clinic-form input,
+    .clinic-form select,
+    .clinic-form textarea{
+      width:100%;
+      border:1px solid var(--clinic-line);
+      background:#fbfaf8;
+      border-radius:16px;
+      padding:16px;
+      margin-bottom:14px;
+      font-family:Inter, Arial, sans-serif;
+      font-size:15px;
+      color:var(--clinic-text);
+    }
+
+    .clinic-form textarea{
+      min-height:135px;
+      resize:vertical;
+    }
+
+    .clinic-form input:focus,
+    .clinic-form select:focus,
+    .clinic-form textarea:focus{
+      outline:none;
+      border-color:var(--clinic-green);
+      background:white;
+    }
+
+    .faq-clinic{
+      max-width:860px;
+      margin:auto;
+    }
+
+    .faq-clinic-item{
+      background:white;
+      border:1px solid var(--clinic-line);
+      border-radius:24px;
+      padding:24px;
+      margin-bottom:14px;
+      box-shadow:0 18px 55px rgba(47,58,61,.05);
+    }
+
+    .faq-clinic-item h3{
+      font-size:20px;
+      margin-bottom:8px;
+    }
+
+    .faq-clinic-item p{
+      color:var(--clinic-muted);
+      line-height:1.65;
+    }
+
+    .clinic-final{
+      background:var(--clinic-text);
+      color:white;
+      padding:96px 0;
+      text-align:center;
+    }
+
+    .clinic-final h2{
+      font-family:"Playfair Display", serif;
+      font-size:clamp(38px,5vw,62px);
+      line-height:1.05;
+      max-width:850px;
+      margin:0 auto 18px;
+    }
+
+    .clinic-final p{
+      color:#d7dddd;
+      font-size:18px;
+      line-height:1.7;
+      max-width:720px;
+      margin:0 auto 30px;
+    }
+
+    .clinic-credit{
+      background:#20282a;
+      color:#c8d0d1;
+      text-align:center;
+      padding:30px 0;
+      font-size:14px;
+    }
+
+    .clinic-credit a{
+      color:#dbe8df;
+      font-weight:800;
+    }
+
+    .clinic-floating{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:99;
+      background:var(--clinic-green-dark);
+      color:white;
+      padding:14px 19px;
+      border-radius:999px;
+      font-weight:800;
+      box-shadow:0 18px 45px rgba(47,58,61,.22);
+    }
+
+    @media(max-width:960px){
+      .clinic-nav{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
+      }
+
+      .clinic-menu{
+        width:100%;
+        overflow-x:auto;
+        gap:10px;
+        padding-bottom:6px;
+      }
+
+      .clinic-menu a{
+        white-space:nowrap;
+        background:rgba(255,255,255,.68);
+        border:1px solid var(--clinic-line);
+        padding:9px 13px;
+        border-radius:999px;
+      }
+
+      .clinic-hero-grid,
+      .clinic-trust,
+      .clinic-grid-3,
+      .clinic-split,
+      .clinic-gallery,
+      .clinic-contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .clinic-main-photo,
+      .clinic-split-photo{
+        min-height:390px;
+      }
+
+      .clinic-floating-card{
+        position:static;
+        margin-bottom:18px;
+      }
+
+      .clinic-photo-card{
+        transform:none;
+      }
+
+      .clinic-gallery-photo.big{
+        min-height:300px;
+      }
+
+      .clinic-gallery-photo{
+        min-height:240px;
+      }
+
+      .clinic-contact-info,
+      .clinic-form{
+        padding:28px;
+      }
+
+      .clinic-floating{
+        right:14px;
+        bottom:14px;
+        padding:12px 15px;
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+
+<body class="clinic-demo">
+
+<header class="clinic-hero">
+  <div class="clinic-container">
+
+    <nav class="clinic-nav">
+      <a href="#" class="clinic-logo">
+        <span class="clinic-logo-mark">A</span>
+        Aura <span>Dental Clinic</span>
+      </a>
+
+      <div class="clinic-menu">
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#clinica">Clínica</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#contacto">Pedir cita</a>
+        <a href="../../portfolio.html">Portfolio</a>
+      </div>
+    </nav>
+
+    <div class="clinic-hero-grid">
+
+      <div>
+        <span class="clinic-eyebrow">Odontología estética · General · Ortodoncia · Implantes</span>
+
+        <h1>Tu sonrisa, en manos de una clínica moderna y cercana.</h1>
+
+        <p>
+          Revisiones, estética dental, ortodoncia, implantes y urgencias con atención profesional, tecnología actual y un trato humano desde la primera visita.
+        </p>
+
+        <div class="clinic-actions">
+          <a href="#contacto" class="clinic-btn clinic-btn-primary">Pedir cita</a>
+          <a href="#tratamientos" class="clinic-btn clinic-btn-secondary">Ver tratamientos</a>
+        </div>
+
+        <div class="clinic-trust">
+          <div class="clinic-trust-item">
+            <strong>4.9★</strong>
+            <span>Valoración media de pacientes</span>
+          </div>
+
+          <div class="clinic-trust-item">
+            <strong>+12</strong>
+            <span>Años de experiencia clínica</span>
+          </div>
+
+          <div class="clinic-trust-item">
+            <strong>24h</strong>
+            <span>Respuesta para primera cita</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinic-visual">
+        <div class="clinic-floating-card">
+          <strong>Primera visita</strong>
+          <span>Diagnóstico, valoración personalizada y explicación clara del tratamiento.</span>
+        </div>
+
+        <div class="clinic-photo-card">
+          <div class="clinic-main-photo">
+            <div class="clinic-photo-label">
+              <h3>Atención calmada y profesional</h3>
+              <p>Una demo diseñada para transmitir limpieza, confianza y cercanía desde el primer clic.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <section id="tratamientos" class="clinic-section alt">
+    <div class="clinic-container">
+
+      <div class="clinic-title">
+        <span>Tratamientos</span>
+        <h2>Soluciones pensadas para cada sonrisa</h2>
+        <p>
+          Tratamientos claros, explicados sin tecnicismos y adaptados a las necesidades de cada paciente.
+        </p>
+      </div>
+
+      <div class="clinic-grid-3">
+
+        <article class="treatment-card">
+          <div class="treatment-icon">🦷</div>
+          <h3>Revisiones y limpieza</h3>
+          <p>Prevención, revisiones periódicas y limpiezas para mantener una boca sana y detectar problemas a tiempo.</p>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-icon">✨</div>
+          <h3>Estética dental</h3>
+          <p>Blanqueamiento, carillas y tratamientos estéticos para mejorar tu sonrisa de forma natural y armónica.</p>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-icon">😁</div>
+          <h3>Ortodoncia</h3>
+          <p>Alineadores y opciones tradicionales para corregir la posición dental con planificación personalizada.</p>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-icon">🔩</div>
+          <h3>Implantes</h3>
+          <p>Recupera función, comodidad y estética con tratamientos implantológicos pensados a largo plazo.</p>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-icon">🪥</div>
+          <h3>Odontología general</h3>
+          <p>Empastes, reconstrucciones y tratamientos habituales con enfoque conservador, cómodo y cercano.</p>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-icon">⚕️</div>
+          <h3>Urgencias dentales</h3>
+          <p>Atención prioritaria para dolor, fracturas, molestias o situaciones que no pueden esperar.</p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="clinica" class="clinic-section green">
+    <div class="clinic-container">
+
+      <div class="clinic-split">
+
+        <div class="clinic-split-photo"></div>
+
+        <div>
+          <div class="clinic-title" style="text-align:left;margin:0 0 34px;">
+            <span>Por qué elegirnos</span>
+            <h2>Una clínica que combina precisión, calma y confianza</h2>
+            <p>
+              La web de una clínica dental debe transmitir seguridad antes de que el paciente pida cita. Por eso esta demo utiliza colores suaves, fotografía limpia, textos claros y diseño elegante.
+            </p>
+          </div>
+
+          <div class="benefit-list">
+
+            <div class="benefit-item">
+              <div class="benefit-number">1</div>
+              <div>
+                <h3>Atención cercana</h3>
+                <p>Explicamos cada paso con claridad para que el paciente tome decisiones con tranquilidad.</p>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-number">2</div>
+              <div>
+                <h3>Tecnología moderna</h3>
+                <p>Herramientas actuales para mejorar diagnóstico, planificación y experiencia en consulta.</p>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-number">3</div>
+              <div>
+                <h3>Presupuestos claros</h3>
+                <p>Opciones explicadas con transparencia, sin presión y con enfoque honesto desde el principio.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="clinic-section alt">
+    <div class="clinic-container">
+
+      <div class="clinic-title">
+        <span>Espacio y experiencia</span>
+        <h2>Una imagen limpia que transmite tranquilidad</h2>
+        <p>
+          En una clínica, las fotografías deben reforzar confianza: equipo, gabinete, tecnología, sonrisas naturales y sensación de cuidado.
+        </p>
+      </div>
+
+      <div class="clinic-gallery">
+        <div class="clinic-gallery-photo big" style="background-image:url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=1200&q=80');"></div>
+        <div class="clinic-gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="clinic-gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="clinic-gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1606811842243-4de4d2f5f663?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="clinic-gallery-photo" style="background-image:url('https://images.unsplash.com/photo-1588776813677-77aaf5595b83?auto=format&fit=crop&w=900&q=80');"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="clinic-section">
+    <div class="clinic-container">
+
+      <div class="clinic-title">
+        <span>Opiniones</span>
+        <h2>Pacientes que vuelven con tranquilidad</h2>
+        <p>
+          Las opiniones refuerzan la confianza antes de pedir cita. En una web real podrían conectarse reseñas destacadas de Google.
+        </p>
+      </div>
+
+      <div class="clinic-grid-3">
+
+        <article class="review-card-clinic">
+          <div class="stars">★★★★★</div>
+          <p>“Me explicaron todo con mucha calma y sin presión. La experiencia fue muy diferente a otras clínicas.”</p>
+          <strong>— Laura M.</strong>
+        </article>
+
+        <article class="review-card-clinic">
+          <div class="stars">★★★★★</div>
+          <p>“Pedí cita para una urgencia y me atendieron rápido. Trato muy profesional y muy humano.”</p>
+          <strong>— Carlos R.</strong>
+        </article>
+
+        <article class="review-card-clinic">
+          <div class="stars">★★★★★</div>
+          <p>“La clínica transmite mucha confianza y el resultado del tratamiento estético quedó natural.”</p>
+          <strong>— Marta P.</strong>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="equipo" class="clinic-section alt">
+    <div class="clinic-container">
+
+      <div class="clinic-title">
+        <span>Equipo</span>
+        <h2>Profesionales que cuidan tanto el resultado como el trato</h2>
+        <p>
+          Presentar al equipo humaniza la clínica, reduce la fricción y ayuda a que el paciente pida cita con más confianza.
+        </p>
+      </div>
+
+      <div class="clinic-grid-3">
+
+        <article class="team-card-clinic">
+          <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="team-body">
+            <h3>Dra. Ana Romero</h3>
+            <p>Dirección clínica · Odontología general y estética dental.</p>
+          </div>
+        </article>
+
+        <article class="team-card-clinic">
+          <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="team-body">
+            <h3>Dr. Pablo Serra</h3>
+            <p>Implantología, rehabilitación oral y planificación de casos complejos.</p>
+          </div>
+        </article>
+
+        <article class="team-card-clinic">
+          <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="team-body">
+            <h3>Marta Gil</h3>
+            <p>Atención al paciente, coordinación de citas y seguimiento personalizado.</p>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contacto" class="clinic-contact">
+    <div class="clinic-container">
+
+      <div class="clinic-contact-grid">
+
+        <div class="clinic-contact-info">
+          <h2>Pide tu primera cita</h2>
+          <p>
+            Cuéntanos qué necesitas y te responderemos con una propuesta de cita lo antes posible.
+          </p>
+
+          <a href="mailto:contacto@handoo.me">📧 contacto@handoo.me</a>
+          <span>📞 WhatsApp: próximamente</span>
+          <span>🕒 Lunes a viernes · 09:30 a 20:00</span>
+          <span>📍 Centro de la ciudad</span>
+        </div>
+
+        <form class="clinic-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+          <input type="text" name="Nombre" placeholder="Tu nombre" required>
+          <input type="text" name="Telefono" placeholder="Teléfono" required>
+          <input type="email" name="Email" placeholder="Email">
+
+          <select name="Tratamiento">
+            <option value="">Tratamiento de interés</option>
+            <option>Primera revisión</option>
+            <option>Limpieza dental</option>
+            <option>Estética dental</option>
+            <option>Ortodoncia</option>
+            <option>Implantes</option>
+            <option>Urgencia dental</option>
+            <option>No lo tengo claro</option>
+          </select>
+
+          <textarea name="Mensaje" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
+
+          <button class="clinic-btn clinic-btn-primary" type="submit">Solicitar cita</button>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="clinic-section alt">
+    <div class="clinic-container">
+
+      <div class="clinic-title">
+        <span>Preguntas frecuentes</span>
+        <h2>Información clara antes de venir</h2>
+      </div>
+
+      <div class="faq-clinic">
+
+        <div class="faq-clinic-item">
+          <h3>¿Puedo pedir una primera valoración?</h3>
+          <p>Sí. En una primera visita se puede valorar el caso, explicar opciones y orientar sobre el tratamiento adecuado.</p>
+        </div>
+
+        <div class="faq-clinic-item">
+          <h3>¿Atendéis urgencias?</h3>
+          <p>Sí. En esta demo se contempla atención prioritaria para molestias, dolor, fracturas o situaciones que no pueden esperar.</p>
+        </div>
+
+        <div class="faq-clinic-item">
+          <h3>¿Ofrecéis tratamientos estéticos?</h3>
+          <p>Sí. La estética dental puede incluir blanqueamiento, carillas u otras soluciones personalizadas según cada caso.</p>
+        </div>
+
+        <div class="faq-clinic-item">
+          <h3>¿Esta demo se puede adaptar a una clínica real?</h3>
+          <p>Sí. Se puede cambiar nombre, colores, fotos, tratamientos, equipo, ubicación, WhatsApp y textos para convertirla en una web real.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="clinic-final">
+    <div class="clinic-container">
+      <h2>¿Quieres una web así para tu clínica?</h2>
+      <p>
+        Podemos adaptar esta estructura con tu marca, tus fotos, tus tratamientos, tu equipo, tu ubicación y un formulario de cita preparado para captar pacientes.
+      </p>
+
+      <div class="clinic-actions" style="justify-content:center;margin-bottom:0;">
+        <a href="../../contacto.html" class="clinic-btn clinic-btn-primary">Quiero una web como esta</a>
+        <a href="../../portfolio.html" class="clinic-btn clinic-btn-secondary">Volver al portfolio</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="clinic-credit">
+  <div class="clinic-container">
+    Demo ficticia para clínica dental · Diseño web creado por <a href="../../index.html">Handoo Studio</a> · contacto@handoo.me
+  </div>
+</footer>
+
+<a class="clinic-floating" href="#contacto">Pedir cita</a>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>
