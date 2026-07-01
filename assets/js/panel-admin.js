@@ -1,6 +1,10 @@
 /*
   Handoo Studio · Panel Admin
-  Pestañas por página + subida local de imágenes JPG/PNG/WebP.
+  FIX:
+  - Al cambiar de pestaña cambia también la página de la vista previa.
+  - Al editar campos NO se recarga el iframe.
+  - Se conserva el scroll de la vista previa para ver los cambios in situ.
+  - Soporta subida local de imágenes JPG/PNG/WebP.
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,7 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageInputs = Array.from(form.querySelectorAll("[data-image-field]"));
   const maxImageSize = 2 * 1024 * 1024;
 
-  let refreshTimer;
+  const previewPages = {
+    inicio: "../index.html",
+    servicios: "../servicios.html",
+    precios: "../precios.html",
+    promos: "../precios.html",
+    imagenes: "../index.html",
+    contacto: "../contacto.html"
+  };
+
+  let applyTimer;
 
   function showToast(message) {
     if (!toast) return;
@@ -28,19 +41,99 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2800);
   }
 
-  function schedulePreviewRefresh() {
-    window.clearTimeout(refreshTimer);
-    refreshTimer = window.setTimeout(refreshPreview, 220);
-  }
-
-  function refreshPreview() {
-    if (!previewFrame) return;
+  function getPreviewWindow() {
+    if (!previewFrame) return null;
 
     try {
-      previewFrame.contentWindow.location.reload();
+      return previewFrame.contentWindow;
     } catch (error) {
-      previewFrame.setAttribute("src", previewFrame.getAttribute("src"));
+      return null;
     }
+  }
+
+  function getPreviewScroll() {
+    const win = getPreviewWindow();
+
+    if (!win) {
+      return { x: 0, y: 0 };
+    }
+
+    return {
+      x: win.scrollX || 0,
+      y: win.scrollY || 0
+    };
+  }
+
+  function restorePreviewScroll(position) {
+    const win = getPreviewWindow();
+
+    if (!win || !position) return;
+
+    try {
+      win.scrollTo(position.x, position.y);
+
+      win.requestAnimationFrame(() => {
+        win.scrollTo(position.x, position.y);
+      });
+
+      window.setTimeout(() => {
+        win.scrollTo(position.x, position.y);
+      }, 80);
+    } catch (error) {
+      // No hacemos nada. Es solo preservación visual.
+    }
+  }
+
+  function applyPreviewWithoutReload() {
+    if (!previewFrame) return;
+
+    const win = getPreviewWindow();
+    if (!win) return;
+
+    const position = getPreviewScroll();
+
+    try {
+      if (win.HandooContent && typeof win.HandooContent.apply === "function") {
+        win.HandooContent.apply();
+      }
+    } catch (error) {
+      // Si todavía no cargó el loader del iframe, no forzamos reload.
+    }
+
+    restorePreviewScroll(position);
+  }
+
+  function schedulePreviewApply() {
+    window.clearTimeout(applyTimer);
+
+    applyTimer = window.setTimeout(() => {
+      applyPreviewWithoutReload();
+    }, 120);
+  }
+
+  function setPreviewPageForTab(tab) {
+    if (!previewFrame) return;
+
+    const nextSrc = previewPages[tab] || "../index.html";
+    const currentAttr = previewFrame.getAttribute("src") || "";
+
+    const currentUrl = new URL(currentAttr, window.location.href).href;
+    const nextUrl = new URL(nextSrc, window.location.href).href;
+
+    if (currentUrl === nextUrl) {
+      applyPreviewWithoutReload();
+      return;
+    }
+
+    previewFrame.setAttribute("src", nextSrc);
+  }
+
+  if (previewFrame) {
+    previewFrame.addEventListener("load", () => {
+      window.setTimeout(() => {
+        applyPreviewWithoutReload();
+      }, 80);
+    });
   }
 
   function loadFields() {
@@ -62,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function collectFields() {
     const current = window.HandooContent.get();
-    const nextContent = {...current};
+    const nextContent = { ...current };
 
     fields.forEach((field) => {
       const key = field.getAttribute("data-field");
@@ -92,22 +185,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function saveAndRefresh(message) {
+  function saveAndApply(message) {
     window.HandooContent.save(collectFields());
     updateImagePreviews();
-    schedulePreviewRefresh();
+    schedulePreviewApply();
     showToast(message);
   }
 
   fields.forEach((field) => {
     field.addEventListener("input", () => {
       window.HandooContent.save(collectFields());
-      schedulePreviewRefresh();
+      schedulePreviewApply();
     });
 
     field.addEventListener("change", () => {
       window.HandooContent.save(collectFields());
-      schedulePreviewRefresh();
+      schedulePreviewApply();
     });
   });
 
@@ -140,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.HandooContent.save(content);
         updateImagePreviews(content);
-        schedulePreviewRefresh();
+        schedulePreviewApply();
         showToast("Imagen cargada en la vista previa.");
       };
 
@@ -160,20 +253,20 @@ document.addEventListener("DOMContentLoaded", () => {
       content[key] = "";
       window.HandooContent.save(content);
       updateImagePreviews(content);
-      schedulePreviewRefresh();
+      schedulePreviewApply();
       showToast("Imagen eliminada de la vista previa.");
     });
   });
 
   document.querySelectorAll("[data-panel-save]").forEach((button) => {
     button.addEventListener("click", () => {
-      saveAndRefresh("Borrador guardado correctamente.");
+      saveAndApply("Borrador guardado correctamente.");
     });
   });
 
   document.querySelectorAll("[data-panel-publish]").forEach((button) => {
     button.addEventListener("click", () => {
-      saveAndRefresh("Cambios publicados en esta vista. Siguiente fase: Supabase.");
+      saveAndApply("Cambios publicados en esta vista. Siguiente fase: Supabase.");
     });
   });
 
@@ -181,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
       window.HandooContent.reset();
       loadFields();
-      schedulePreviewRefresh();
+      schedulePreviewApply();
       showToast("Contenido restaurado a los valores iniciales.");
     });
   });
@@ -195,11 +288,22 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       document.querySelectorAll("[data-panel-section]").forEach((section) => {
-        section.classList.toggle("is-active", section.getAttribute("data-panel-section") === tab);
+        section.classList.toggle(
+          "is-active",
+          section.getAttribute("data-panel-section") === tab
+        );
       });
+
+      setPreviewPageForTab(tab);
     });
   });
 
   loadFields();
-  schedulePreviewRefresh();
+
+  const activeTab = document.querySelector("[data-panel-tab].is-active");
+  if (activeTab) {
+    setPreviewPageForTab(activeTab.getAttribute("data-panel-tab"));
+  } else {
+    setPreviewPageForTab("inicio");
+  }
 });
