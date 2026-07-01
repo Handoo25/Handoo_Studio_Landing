@@ -429,12 +429,12 @@
         <div class="panel-brand-mark">h</div>
         <div>
           <strong>Handoo Studio</strong>
-          <span>Panel editable · imágenes integradas</span>
+          <span>Panel editable por páginas</span>
         </div>
       </div>
 
       <div class="panel-note">
-        VERSIÓN CORRECTA: las imágenes están dentro de Inicio, Servicios, Precios y Contacto. Ya no existe pestaña Imágenes.
+        Las imágenes están dentro de la página a la que pertenecen. Esta fase guarda textos e imágenes en tu navegador para demo.
       </div>
 
       <div class="panel-actions">
@@ -447,6 +447,7 @@
         <button class="panel-tab is-active" type="button" data-panel-tab="inicio">Inicio</button>
         <button class="panel-tab" type="button" data-panel-tab="servicios">Servicios</button>
         <button class="panel-tab" type="button" data-panel-tab="precios">Precios</button>
+        <button class="panel-tab" type="button" data-panel-tab="portfolio">Portfolio</button>
         <button class="panel-tab" type="button" data-panel-tab="promos">Promos</button>
         <button class="panel-tab" type="button" data-panel-tab="contacto">Contacto</button>
       </div>
@@ -577,6 +578,20 @@
             <div class="image-actions">
               <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.pricing.cover">
               <button type="button" class="image-remove" data-image-remove="image.pricing.cover">Quitar</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section" data-panel-section="portfolio">
+          <h2>Portfolio</h2>
+          <p class="panel-section-intro">Imagen asociada a la página de portfolio visual.</p>
+
+          <div class="image-field">
+            <label>Imagen / fondo portfolio</label>
+            <div class="image-preview" data-image-preview="image.portfolio.cover"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.portfolio.cover">
+              <button type="button" class="image-remove" data-image-remove="image.portfolio.cover">Quitar</button>
             </div>
           </div>
         </section>

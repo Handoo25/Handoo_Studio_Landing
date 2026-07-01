@@ -12,7 +12,7 @@
 
 <body>
 
-<header class="page-hero">
+<header class="page-hero" data-edit-bg="image.contact.cover">
   <div class="container">
 
     <nav class="navbar">
@@ -50,12 +50,12 @@
         <div class="contact-info">
           <h2>Hablemos de tu negocio</h2>
 
-          <p>
-            Puedes escribirnos para una landing page, web corporativa, tienda online, restyling web, automatización con IA o mantenimiento.
+          <p data-edit="contact.cta">
+            Cuéntanos qué necesitas y te orientamos con el formato más adecuado para tu negocio.
           </p>
 
-          <a href="mailto:contacto@handoo.me">📧 contacto@handoo.me</a>
-          <a href="mailto:contacto@handoo.me?subject=Solicitud%20de%20presupuesto%20Handoo%20Studio">💬 Solicitar presupuesto por email</a>
+          <a href="mailto:contacto@handoo.me" data-edit-mailto="contact.email">📧 contacto@handoo.me</a>
+          <a href="mailto:contacto@handoo.me?subject=Solicitud%20de%20presupuesto%20Handoo%20Studio" data-edit-mailto="contact.email" data-mail-subject="Solicitud de presupuesto Handoo Studio">📧 contacto@handoo.me</a>
 
           <p style="margin-top:28px;">
             Para preparar una propuesta más rápida, incluye el tipo de negocio, qué necesitas, si ya tienes web y el plazo aproximado.
@@ -219,12 +219,13 @@
 
 <footer class="footer">
   <div class="container">
-    © 2026 Handoo Studio · Contacto · contacto@handoo.me
+    © 2026 Handoo Studio · Contacto · <span data-edit="contact.email">contacto@handoo.me</span>
   </div>
 </footer>
 
-<a class="whatsapp" href="mailto:contacto@handoo.me?subject=Solicitud%20de%20presupuesto%20Handoo%20Studio">💬 WhatsApp</a>
+<a class="whatsapp" href="mailto:contacto@handoo.me?subject=Solicitud%20de%20presupuesto%20Handoo%20Studio" data-edit-mailto="contact.email" data-mail-subject="Solicitud de presupuesto Handoo Studio">📧 contacto@handoo.me</a>
 
+<script src="assets/js/content-loader.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

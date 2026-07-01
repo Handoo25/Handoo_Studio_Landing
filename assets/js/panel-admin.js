@@ -1,9 +1,10 @@
 /*
   Handoo Studio · Panel Admin
-  FIX:
-  - Al cambiar de pestaña cambia también la página de la vista previa.
-  - Al editar campos NO se recarga el iframe.
-  - Se conserva el scroll de la vista previa para ver los cambios in situ.
+  - Pestañas por página.
+  - Cada imagen vive dentro de su página.
+  - Al cambiar de pestaña cambia también la vista previa.
+  - Al editar campos no recarga el iframe completo.
+  - Conserva el scroll de la vista previa.
   - Soporta subida local de imágenes JPG/PNG/WebP.
 */
 
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inicio: "../index.html",
     servicios: "../servicios.html",
     precios: "../precios.html",
+    portfolio: "../portfolio.html",
     promos: "../precios.html",
     contacto: "../contacto.html"
   };
@@ -79,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         win.scrollTo(position.x, position.y);
       }, 80);
     } catch (error) {
-      // No hacemos nada. Es solo preservación visual.
+      // Solo preservación visual.
     }
   }
 

@@ -1,8 +1,8 @@
 /*
   Handoo Studio · Content Loader
-  Fase: campos editables + imágenes locales.
-  Guarda/lee desde localStorage para demo y validación.
-  Siguiente fase: sustituir localStorage por Supabase + Storage.
+  Campos editables + imágenes locales.
+  Demo: guarda/lee desde localStorage.
+  Siguiente fase real: Supabase + Supabase Storage.
 */
 
 (function () {
@@ -36,6 +36,7 @@
     "image.home.hero": "",
     "image.services.main": "",
     "image.pricing.cover": "",
+    "image.portfolio.cover": "",
     "image.contact.cover": ""
   };
 
@@ -93,8 +94,19 @@
     document.querySelectorAll("[data-edit-mailto]").forEach((element) => {
       const key = element.getAttribute("data-edit-mailto");
       if (!key || content[key] === undefined) return;
-      element.setAttribute("href", "mailto:" + content[key]);
-      element.textContent = "📧 " + content[key];
+
+      const subject = element.getAttribute("data-mail-subject");
+      const href = subject
+        ? "mailto:" + content[key] + "?subject=" + encodeURIComponent(subject)
+        : "mailto:" + content[key];
+
+      element.setAttribute("href", href);
+
+      if (element.hasAttribute("data-mail-text-only")) {
+        element.textContent = content[key];
+      } else {
+        element.textContent = "📧 " + content[key];
+      }
     });
   }
 
@@ -117,15 +129,18 @@
 
       if (!key || !value) return;
 
-      element.style.backgroundImage = "linear-gradient(135deg, rgba(7,17,31,.68), rgba(15,23,42,.62)), url('" + value + "')";
+      element.style.backgroundImage =
+        "linear-gradient(135deg, rgba(7,17,31,.72), rgba(15,23,42,.64)), url('" + value + "')";
       element.style.backgroundSize = "cover";
       element.style.backgroundPosition = "center";
+      element.style.backgroundRepeat = "no-repeat";
       element.setAttribute("data-edit-image-loaded", "true");
     });
   }
 
   function applyContent() {
     const content = getContent();
+
     applyText(content);
     applyVisibility(content);
     applyMailto(content);
