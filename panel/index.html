@@ -221,6 +221,17 @@
       accent-color:#f97316;
     }
 
+    .panel-subtitle{
+      margin:20px 0 12px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:#fdba74;
+      font-size:13px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
     .image-field{
       padding:14px;
       border-radius:18px;
@@ -418,12 +429,12 @@
         <div class="panel-brand-mark">h</div>
         <div>
           <strong>Handoo Studio</strong>
-          <span>Panel editable por páginas</span>
+          <span>Panel editable · imágenes integradas</span>
         </div>
       </div>
 
       <div class="panel-note">
-        Esta fase guarda textos e imágenes en tu navegador. Es ideal para probar y grabar demo. La subida real para todos los visitantes irá con Supabase Storage.
+        VERSIÓN CORRECTA: las imágenes están dentro de Inicio, Servicios, Precios y Contacto. Ya no existe pestaña Imágenes.
       </div>
 
       <div class="panel-actions">
@@ -437,7 +448,6 @@
         <button class="panel-tab" type="button" data-panel-tab="servicios">Servicios</button>
         <button class="panel-tab" type="button" data-panel-tab="precios">Precios</button>
         <button class="panel-tab" type="button" data-panel-tab="promos">Promos</button>
-        <button class="panel-tab" type="button" data-panel-tab="imagenes">Imágenes</button>
         <button class="panel-tab" type="button" data-panel-tab="contacto">Contacto</button>
       </div>
 
@@ -445,7 +455,7 @@
 
         <section class="panel-section is-active" data-panel-section="inicio">
           <h2>Inicio</h2>
-          <p class="panel-section-intro">Edita el hero principal de la home.</p>
+          <p class="panel-section-intro">Edita el hero principal de la home y su imagen asociada.</p>
 
           <div class="panel-field">
             <label>Etiqueta superior</label>
@@ -476,11 +486,22 @@
             <label>Botón secundario</label>
             <input type="text" data-field="home.hero.secondary">
           </div>
+
+          <h3 class="panel-subtitle">Imagen de inicio</h3>
+
+          <div class="image-field">
+            <label>Imagen hero / bloque visual home</label>
+            <div class="image-preview" data-image-preview="image.home.hero"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.home.hero">
+              <button type="button" class="image-remove" data-image-remove="image.home.hero">Quitar</button>
+            </div>
+          </div>
         </section>
 
         <section class="panel-section" data-panel-section="servicios">
           <h2>Servicios</h2>
-          <p class="panel-section-intro">Precios rápidos que aparecen en tarjetas y servicios destacados.</p>
+          <p class="panel-section-intro">Edita precios rápidos y la imagen asociada a la página de servicios.</p>
 
           <div class="panel-field">
             <label>Landing</label>
@@ -501,11 +522,22 @@
             <label>Restyling</label>
             <input type="text" data-field="price.restyling">
           </div>
+
+          <h3 class="panel-subtitle">Imagen de servicios</h3>
+
+          <div class="image-field">
+            <label>Imagen / fondo servicios</label>
+            <div class="image-preview" data-image-preview="image.services.main"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.services.main">
+              <button type="button" class="image-remove" data-image-remove="image.services.main">Quitar</button>
+            </div>
+          </div>
         </section>
 
         <section class="panel-section" data-panel-section="precios">
           <h2>Precios</h2>
-          <p class="panel-section-intro">Gestiona precios principales, extras e IA.</p>
+          <p class="panel-section-intro">Gestiona precios principales, extras, IA y la imagen de precios.</p>
 
           <div class="panel-field">
             <label>Panel editable promo</label>
@@ -536,11 +568,22 @@
             <label>Mantenimiento</label>
             <input type="text" data-field="price.maintenance">
           </div>
+
+          <h3 class="panel-subtitle">Imagen de precios</h3>
+
+          <div class="image-field">
+            <label>Imagen / fondo precios</label>
+            <div class="image-preview" data-image-preview="image.pricing.cover"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.pricing.cover">
+              <button type="button" class="image-remove" data-image-remove="image.pricing.cover">Quitar</button>
+            </div>
+          </div>
         </section>
 
         <section class="panel-section" data-panel-section="promos">
           <h2>Promos</h2>
-          <p class="panel-section-intro">Activa o desactiva campañas temporales.</p>
+          <p class="panel-section-intro">Activa o desactiva campañas temporales. Se previsualiza en precios.</p>
 
           <label class="panel-check">
             <input type="checkbox" data-field="promo.panel.active">
@@ -553,50 +596,9 @@
           </div>
         </section>
 
-        <section class="panel-section" data-panel-section="imagenes">
-          <h2>Imágenes</h2>
-          <p class="panel-section-intro">Sube JPG, PNG o WebP. Máximo recomendado: 2 MB por imagen.</p>
-
-          <div class="image-field">
-            <label>Imagen hero inicio</label>
-            <div class="image-preview" data-image-preview="image.home.hero"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.home.hero">
-              <button type="button" class="image-remove" data-image-remove="image.home.hero">Quitar</button>
-            </div>
-          </div>
-
-          <div class="image-field">
-            <label>Imagen servicios</label>
-            <div class="image-preview" data-image-preview="image.services.main"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.services.main">
-              <button type="button" class="image-remove" data-image-remove="image.services.main">Quitar</button>
-            </div>
-          </div>
-
-          <div class="image-field">
-            <label>Imagen precios</label>
-            <div class="image-preview" data-image-preview="image.pricing.cover"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.pricing.cover">
-              <button type="button" class="image-remove" data-image-remove="image.pricing.cover">Quitar</button>
-            </div>
-          </div>
-
-          <div class="image-field">
-            <label>Imagen contacto</label>
-            <div class="image-preview" data-image-preview="image.contact.cover"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.contact.cover">
-              <button type="button" class="image-remove" data-image-remove="image.contact.cover">Quitar</button>
-            </div>
-          </div>
-        </section>
-
         <section class="panel-section" data-panel-section="contacto">
           <h2>Contacto</h2>
-          <p class="panel-section-intro">Datos comunes de contacto.</p>
+          <p class="panel-section-intro">Edita datos comunes de contacto y su imagen asociada.</p>
 
           <div class="panel-field">
             <label>Email</label>
@@ -607,6 +609,17 @@
             <label>CTA final</label>
             <textarea data-field="contact.cta"></textarea>
           </div>
+
+          <h3 class="panel-subtitle">Imagen de contacto</h3>
+
+          <div class="image-field">
+            <label>Imagen / fondo contacto</label>
+            <div class="image-preview" data-image-preview="image.contact.cover"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.contact.cover">
+              <button type="button" class="image-remove" data-image-remove="image.contact.cover">Quitar</button>
+            </div>
+          </div>
         </section>
 
       </form>
@@ -616,7 +629,7 @@
       <div class="panel-topbar">
         <div>
           <h1>Vista previa de Handoo Studio</h1>
-          <p>Edita campos seguros, sube imágenes y comprueba cómo queda la web.</p>
+          <p>Edita campos seguros, sube imágenes en su página correspondiente y comprueba cómo queda.</p>
         </div>
 
         <span class="panel-status">Vista previa activa</span>

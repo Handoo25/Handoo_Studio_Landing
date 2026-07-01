@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     servicios: "../servicios.html",
     precios: "../precios.html",
     promos: "../precios.html",
-    imagenes: "../index.html",
     contacto: "../contacto.html"
   };
 
