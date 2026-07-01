@@ -21,7 +21,7 @@
       min-height:100vh;
       padding:24px;
       display:grid;
-      grid-template-columns:360px 1fr;
+      grid-template-columns:390px 1fr;
       gap:20px;
     }
 
@@ -41,7 +41,7 @@
       display:flex;
       align-items:center;
       gap:12px;
-      margin-bottom:24px;
+      margin-bottom:20px;
     }
 
     .panel-brand-mark{
@@ -70,8 +70,8 @@
     }
 
     .panel-note{
-      margin-bottom:18px;
-      padding:15px;
+      margin-bottom:16px;
+      padding:14px;
       border-radius:18px;
       background:rgba(56,189,248,.10);
       border:1px solid rgba(56,189,248,.18);
@@ -83,8 +83,9 @@
 
     .panel-actions{
       display:grid;
+      grid-template-columns:1fr;
       gap:10px;
-      margin-bottom:24px;
+      margin-bottom:18px;
     }
 
     .panel-btn{
@@ -115,21 +116,57 @@
       color:#c2410c;
     }
 
-    .panel-form{
+    .panel-tabs{
       display:grid;
-      gap:22px;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-bottom:18px;
     }
 
-    .panel-group{
-      padding-top:18px;
+    .panel-tab{
+      min-height:42px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:13px;
+      background:rgba(255,255,255,.05);
+      color:#cbd5e1;
+      font-family:inherit;
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      text-align:left;
+      padding:0 11px;
+    }
+
+    .panel-tab.is-active,
+    .panel-tab:hover{
+      background:#f97316;
+      border-color:#f97316;
+      color:white;
+    }
+
+    .panel-section{
+      display:none;
+      padding-top:16px;
       border-top:1px solid rgba(255,255,255,.10);
     }
 
-    .panel-group h2{
+    .panel-section.is-active{
+      display:block;
+    }
+
+    .panel-section h2{
       margin:0 0 14px;
       color:white;
-      font-size:16px;
-      letter-spacing:-.4px;
+      font-size:17px;
+      letter-spacing:-.5px;
+    }
+
+    .panel-section-intro{
+      margin:0 0 14px;
+      color:#94a3b8;
+      font-size:12px;
+      line-height:1.5;
+      font-weight:700;
     }
 
     .panel-field{
@@ -177,10 +214,81 @@
       color:#e2e8f0;
       font-size:13px;
       font-weight:850;
+      margin-bottom:13px;
     }
 
     .panel-check input{
       accent-color:#f97316;
+    }
+
+    .image-field{
+      padding:14px;
+      border-radius:18px;
+      background:#111d31;
+      border:1px solid rgba(255,255,255,.12);
+      margin-bottom:14px;
+    }
+
+    .image-field label{
+      display:block;
+      color:#cbd5e1;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+      margin-bottom:10px;
+    }
+
+    .image-preview{
+      height:135px;
+      border-radius:15px;
+      border:1px dashed rgba(255,255,255,.22);
+      background:
+        linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+      background-size:cover;
+      background-position:center;
+      margin-bottom:10px;
+      display:grid;
+      place-items:center;
+      color:#94a3b8;
+      font-size:12px;
+      font-weight:850;
+      text-align:center;
+      padding:12px;
+    }
+
+    .image-preview::before{
+      content:"Sin imagen";
+    }
+
+    .image-preview.has-image::before{
+      content:"";
+    }
+
+    .image-actions{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+    }
+
+    .image-actions input{
+      color:#cbd5e1;
+      font-size:12px;
+      max-width:100%;
+    }
+
+    .image-remove{
+      border:0;
+      min-height:36px;
+      border-radius:11px;
+      padding:0 10px;
+      background:#fff7ed;
+      color:#c2410c;
+      font-family:inherit;
+      font-size:12px;
+      font-weight:950;
+      cursor:pointer;
     }
 
     .panel-main{
@@ -254,7 +362,7 @@
       bottom:24px;
       z-index:50;
       display:none;
-      max-width:360px;
+      max-width:380px;
       padding:15px 16px;
       border-radius:18px;
       background:#0f172a;
@@ -283,6 +391,21 @@
         height:760px;
       }
     }
+
+    @media(max-width:640px){
+      .panel-shell{
+        padding:12px;
+      }
+
+      .panel-tabs{
+        grid-template-columns:1fr;
+      }
+
+      .panel-topbar{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
   </style>
 </head>
 
@@ -295,12 +418,12 @@
         <div class="panel-brand-mark">h</div>
         <div>
           <strong>Handoo Studio</strong>
-          <span>Panel editable base</span>
+          <span>Panel editable por páginas</span>
         </div>
       </div>
 
       <div class="panel-note">
-        Esta fase guarda los cambios en tu navegador. Sirve para probar el panel antes de conectarlo a base de datos real.
+        Esta fase guarda textos e imágenes en tu navegador. Es ideal para probar y grabar demo. La subida real para todos los visitantes irá con Supabase Storage.
       </div>
 
       <div class="panel-actions">
@@ -309,10 +432,20 @@
         <button class="panel-btn danger" type="button" data-panel-reset>Restaurar demo</button>
       </div>
 
-      <form class="panel-form" data-panel-form>
+      <div class="panel-tabs">
+        <button class="panel-tab is-active" type="button" data-panel-tab="inicio">Inicio</button>
+        <button class="panel-tab" type="button" data-panel-tab="servicios">Servicios</button>
+        <button class="panel-tab" type="button" data-panel-tab="precios">Precios</button>
+        <button class="panel-tab" type="button" data-panel-tab="promos">Promos</button>
+        <button class="panel-tab" type="button" data-panel-tab="imagenes">Imágenes</button>
+        <button class="panel-tab" type="button" data-panel-tab="contacto">Contacto</button>
+      </div>
 
-        <section class="panel-group">
+      <form data-panel-form>
+
+        <section class="panel-section is-active" data-panel-section="inicio">
           <h2>Inicio</h2>
+          <p class="panel-section-intro">Edita el hero principal de la home.</p>
 
           <div class="panel-field">
             <label>Etiqueta superior</label>
@@ -345,8 +478,9 @@
           </div>
         </section>
 
-        <section class="panel-group">
-          <h2>Precios principales</h2>
+        <section class="panel-section" data-panel-section="servicios">
+          <h2>Servicios</h2>
+          <p class="panel-section-intro">Precios rápidos que aparecen en tarjetas y servicios destacados.</p>
 
           <div class="panel-field">
             <label>Landing</label>
@@ -369,8 +503,9 @@
           </div>
         </section>
 
-        <section class="panel-group">
-          <h2>Extras</h2>
+        <section class="panel-section" data-panel-section="precios">
+          <h2>Precios</h2>
+          <p class="panel-section-intro">Gestiona precios principales, extras e IA.</p>
 
           <div class="panel-field">
             <label>Panel editable promo</label>
@@ -403,22 +538,65 @@
           </div>
         </section>
 
-        <section class="panel-group">
-          <h2>Promoción</h2>
+        <section class="panel-section" data-panel-section="promos">
+          <h2>Promos</h2>
+          <p class="panel-section-intro">Activa o desactiva campañas temporales.</p>
 
           <label class="panel-check">
             <input type="checkbox" data-field="promo.panel.active">
             Mostrar banner de promo
           </label>
 
-          <div class="panel-field" style="margin-top:13px;">
+          <div class="panel-field">
             <label>Texto promo panel</label>
             <textarea data-field="promo.panel.text"></textarea>
           </div>
         </section>
 
-        <section class="panel-group">
+        <section class="panel-section" data-panel-section="imagenes">
+          <h2>Imágenes</h2>
+          <p class="panel-section-intro">Sube JPG, PNG o WebP. Máximo recomendado: 2 MB por imagen.</p>
+
+          <div class="image-field">
+            <label>Imagen hero inicio</label>
+            <div class="image-preview" data-image-preview="image.home.hero"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.home.hero">
+              <button type="button" class="image-remove" data-image-remove="image.home.hero">Quitar</button>
+            </div>
+          </div>
+
+          <div class="image-field">
+            <label>Imagen servicios</label>
+            <div class="image-preview" data-image-preview="image.services.main"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.services.main">
+              <button type="button" class="image-remove" data-image-remove="image.services.main">Quitar</button>
+            </div>
+          </div>
+
+          <div class="image-field">
+            <label>Imagen precios</label>
+            <div class="image-preview" data-image-preview="image.pricing.cover"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.pricing.cover">
+              <button type="button" class="image-remove" data-image-remove="image.pricing.cover">Quitar</button>
+            </div>
+          </div>
+
+          <div class="image-field">
+            <label>Imagen contacto</label>
+            <div class="image-preview" data-image-preview="image.contact.cover"></div>
+            <div class="image-actions">
+              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.contact.cover">
+              <button type="button" class="image-remove" data-image-remove="image.contact.cover">Quitar</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section" data-panel-section="contacto">
           <h2>Contacto</h2>
+          <p class="panel-section-intro">Datos comunes de contacto.</p>
 
           <div class="panel-field">
             <label>Email</label>
@@ -438,7 +616,7 @@
       <div class="panel-topbar">
         <div>
           <h1>Vista previa de Handoo Studio</h1>
-          <p>Edita campos seguros y comprueba cómo queda la web.</p>
+          <p>Edita campos seguros, sube imágenes y comprueba cómo queda la web.</p>
         </div>
 
         <span class="panel-status">Vista previa activa</span>

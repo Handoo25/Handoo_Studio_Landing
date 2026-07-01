@@ -1,6 +1,6 @@
 /*
   Handoo Studio · Panel Admin
-  Fase base: editor local de campos seguros.
+  Pestañas por página + subida local de imágenes JPG/PNG/WebP.
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!form || !window.HandooContent) return;
 
   const fields = Array.from(form.querySelectorAll("[data-field]"));
+  const imageInputs = Array.from(form.querySelectorAll("[data-image-field]"));
+  const maxImageSize = 2 * 1024 * 1024;
+
+  let refreshTimer;
 
   function showToast(message) {
     if (!toast) return;
@@ -21,7 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
     window.clearTimeout(showToast.timer);
     showToast.timer = window.setTimeout(() => {
       toast.classList.remove("is-visible");
-    }, 2600);
+    }, 2800);
+  }
+
+  function schedulePreviewRefresh() {
+    window.clearTimeout(refreshTimer);
+    refreshTimer = window.setTimeout(refreshPreview, 220);
+  }
+
+  function refreshPreview() {
+    if (!previewFrame) return;
+
+    try {
+      previewFrame.contentWindow.location.reload();
+    } catch (error) {
+      previewFrame.setAttribute("src", previewFrame.getAttribute("src"));
+    }
   }
 
   function loadFields() {
@@ -37,10 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
         field.value = value ?? "";
       }
     });
+
+    updateImagePreviews(content);
   }
 
   function collectFields() {
-    const nextContent = {};
+    const current = window.HandooContent.get();
+    const nextContent = {...current};
 
     fields.forEach((field) => {
       const key = field.getAttribute("data-field");
@@ -55,31 +77,91 @@ document.addEventListener("DOMContentLoaded", () => {
     return nextContent;
   }
 
-  function refreshPreview() {
-    if (!previewFrame) return;
+  function updateImagePreviews(content = window.HandooContent.get()) {
+    document.querySelectorAll("[data-image-preview]").forEach((preview) => {
+      const key = preview.getAttribute("data-image-preview");
+      const value = content[key];
 
-    try {
-      previewFrame.contentWindow.location.reload();
-    } catch (error) {
-      previewFrame.setAttribute("src", previewFrame.getAttribute("src"));
-    }
+      if (value) {
+        preview.style.backgroundImage = "url('" + value + "')";
+        preview.classList.add("has-image");
+      } else {
+        preview.style.backgroundImage = "";
+        preview.classList.remove("has-image");
+      }
+    });
   }
 
   function saveAndRefresh(message) {
     window.HandooContent.save(collectFields());
-    refreshPreview();
+    updateImagePreviews();
+    schedulePreviewRefresh();
     showToast(message);
   }
 
   fields.forEach((field) => {
     field.addEventListener("input", () => {
       window.HandooContent.save(collectFields());
-      refreshPreview();
+      schedulePreviewRefresh();
     });
 
     field.addEventListener("change", () => {
       window.HandooContent.save(collectFields());
-      refreshPreview();
+      schedulePreviewRefresh();
+    });
+  });
+
+  imageInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      const file = input.files && input.files[0];
+      const key = input.getAttribute("data-image-field");
+
+      if (!file || !key) return;
+
+      const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+
+      if (!validTypes.includes(file.type)) {
+        input.value = "";
+        showToast("Formato no permitido. Usa JPG, PNG o WebP.");
+        return;
+      }
+
+      if (file.size > maxImageSize) {
+        input.value = "";
+        showToast("Imagen demasiado grande. Máximo recomendado: 2 MB.");
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const content = window.HandooContent.get();
+        content[key] = reader.result;
+
+        window.HandooContent.save(content);
+        updateImagePreviews(content);
+        schedulePreviewRefresh();
+        showToast("Imagen cargada en la vista previa.");
+      };
+
+      reader.onerror = () => {
+        showToast("No se pudo leer la imagen.");
+      };
+
+      reader.readAsDataURL(file);
+    });
+  });
+
+  document.querySelectorAll("[data-image-remove]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.getAttribute("data-image-remove");
+      const content = window.HandooContent.get();
+
+      content[key] = "";
+      window.HandooContent.save(content);
+      updateImagePreviews(content);
+      schedulePreviewRefresh();
+      showToast("Imagen eliminada de la vista previa.");
     });
   });
 
@@ -91,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll("[data-panel-publish]").forEach((button) => {
     button.addEventListener("click", () => {
-      saveAndRefresh("Cambios publicados en esta vista. Siguiente fase: guardado real en Supabase.");
+      saveAndRefresh("Cambios publicados en esta vista. Siguiente fase: Supabase.");
     });
   });
 
@@ -99,11 +181,25 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
       window.HandooContent.reset();
       loadFields();
-      refreshPreview();
+      schedulePreviewRefresh();
       showToast("Contenido restaurado a los valores iniciales.");
     });
   });
 
+  document.querySelectorAll("[data-panel-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const tab = button.getAttribute("data-panel-tab");
+
+      document.querySelectorAll("[data-panel-tab]").forEach((item) => {
+        item.classList.toggle("is-active", item === button);
+      });
+
+      document.querySelectorAll("[data-panel-section]").forEach((section) => {
+        section.classList.toggle("is-active", section.getAttribute("data-panel-section") === tab);
+      });
+    });
+  });
+
   loadFields();
-  refreshPreview();
+  schedulePreviewRefresh();
 });

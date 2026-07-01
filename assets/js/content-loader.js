@@ -1,7 +1,8 @@
 /*
   Handoo Studio · Content Loader
-  Fase base: carga campos editables desde localStorage.
-  Después se puede conectar a Supabase sin cambiar las etiquetas data-edit.
+  Fase: campos editables + imágenes locales.
+  Guarda/lee desde localStorage para demo y validación.
+  Siguiente fase: sustituir localStorage por Supabase + Storage.
 */
 
 (function () {
@@ -30,7 +31,12 @@
     "promo.panel.text": "el panel básico autoeditable está disponible por +99€ para las primeras webs contratadas.",
 
     "contact.email": "contacto@handoo.me",
-    "contact.cta": "Cuéntanos qué necesitas y te orientamos con el formato más adecuado para tu negocio."
+    "contact.cta": "Cuéntanos qué necesitas y te orientamos con el formato más adecuado para tu negocio.",
+
+    "image.home.hero": "",
+    "image.services.main": "",
+    "image.pricing.cover": "",
+    "image.contact.cover": ""
   };
 
   function readSavedContent() {
@@ -92,11 +98,39 @@
     });
   }
 
+  function applyImageSources(content) {
+    document.querySelectorAll("[data-edit-src]").forEach((element) => {
+      const key = element.getAttribute("data-edit-src");
+      const value = content[key];
+
+      if (!key || !value) return;
+
+      element.setAttribute("src", value);
+      element.setAttribute("data-edit-image-loaded", "true");
+    });
+  }
+
+  function applyBackgroundImages(content) {
+    document.querySelectorAll("[data-edit-bg]").forEach((element) => {
+      const key = element.getAttribute("data-edit-bg");
+      const value = content[key];
+
+      if (!key || !value) return;
+
+      element.style.backgroundImage = "linear-gradient(135deg, rgba(7,17,31,.68), rgba(15,23,42,.62)), url('" + value + "')";
+      element.style.backgroundSize = "cover";
+      element.style.backgroundPosition = "center";
+      element.setAttribute("data-edit-image-loaded", "true");
+    });
+  }
+
   function applyContent() {
     const content = getContent();
     applyText(content);
     applyVisibility(content);
     applyMailto(content);
+    applyImageSources(content);
+    applyBackgroundImages(content);
   }
 
   window.HANDOO_DEFAULT_CONTENT = DEFAULT_CONTENT;
