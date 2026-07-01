@@ -279,6 +279,23 @@
 .demo-preview-card.service-demo .demo-browser{
   background:linear-gradient(135deg,#17324d,#0f2438);
 }
+    /* Panel autoeditable demo */
+
+.demo-tab.tool{
+  background:#ecfeff;
+  border-color:#bae6fd;
+  color:#0369a1;
+}
+
+.demo-preview-card.tool-demo .demo-browser{
+  background:linear-gradient(135deg,#07111f,#0f2742);
+}
+
+.demo-preview-card.tool-demo .demo-feature{
+  background:#ecfeff;
+  color:#0369a1;
+  border-color:#bae6fd;
+}
   </style>
 </head>
 
@@ -320,7 +337,9 @@
       <div class="section-title">
         <h2>Ejemplos publicados</h2>
         <p>
-          Ejemplos visuales de webs completas, sectores concretos y servicios como reestyling web con comparativa antes/después.
+          <p>
+  Ejemplos visuales de webs completas, sectores concretos y funcionalidades especiales como reestyling web o panel autoeditable para clientes.
+</p>
         </p>
       </div>
 
@@ -330,6 +349,7 @@
 <a href="demos/inmobiliaria/index.html" class="demo-tab available">🏠 Nortea Homes</a>
 <a href="demos/tienda/index.html" class="demo-tab available">🛍️ Luma Shop</a>
 <a href="demos/legal/index.html" class="demo-tab available">⚖️ Lexora Legal</a>
+<a href="demos/editor/index.html" class="demo-tab available tool">🧩 Panel autoeditable</a>
 <a href="demos/restyling/index.html" class="demo-tab available service">♻️ Caso Reestyling</a>
       </div>
 
@@ -519,7 +539,44 @@
             </div>
           </div>
         </article>
-        
+
+        <article class="demo-preview-card tool-demo">
+  <div class="demo-browser">
+    <div class="demo-browser-top">
+      <div class="demo-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="demo-browser-label">Vista previa real</div>
+    </div>
+
+    <div class="demo-preview">
+      <iframe src="demos/editor/index.html" title="Panel autoeditable demo"></iframe>
+    </div>
+  </div>
+
+  <div class="demo-content">
+    <h3>Handoo Edit Panel</h3>
+
+    <p>
+      Demo de panel autoeditable seguro para que el cliente pueda cambiar textos, fotos, productos, precios, ofertas y datos básicos sin tocar código ni romper el diseño.
+    </p>
+
+    <div class="demo-features">
+      <span class="demo-feature">Panel cliente</span>
+      <span class="demo-feature">Productos editables</span>
+      <span class="demo-feature">Vista previa</span>
+      <span class="demo-feature">Diseño protegido</span>
+      <span class="demo-feature">Sin código</span>
+    </div>
+
+    <div class="demo-actions">
+      <a href="demos/editor/index.html" class="demo-main-link">Ver demo</a>
+      <a href="contacto.html" class="demo-secondary-link">Quiero una web editable</a>
+    </div>
+  </div>
+</article>
                 <article class="demo-preview-card service-demo">
           <div class="demo-browser">
             <div class="demo-browser-top">
