@@ -1463,6 +1463,86 @@
     min-height:auto;
   }
 }
+    /* =========================
+   FIX LEXORA PRACTICE OS ALIGNMENT
+   Corrige centrado, anclas y última tarjeta
+   ========================= */
+
+#areas,
+#casos,
+#equipo,
+#proceso,
+#consulta{
+  scroll-margin-top:120px;
+}
+
+.lx2-practice-os{
+  padding-top:120px;
+}
+
+.lx2-os-board{
+  align-items:stretch;
+}
+
+.lx2-os-card.main{
+  grid-row:span 2;
+}
+
+.lx2-os-card.accent{
+  grid-column:1 / -1;
+  min-height:230px;
+  display:grid;
+  grid-template-columns:.75fr 1fr;
+  gap:26px;
+  align-items:center;
+}
+
+.lx2-os-card.accent .lx2-os-top{
+  margin-bottom:0;
+}
+
+.lx2-os-card.accent h3{
+  font-size:34px;
+}
+
+.lx2-os-card.accent p{
+  margin-bottom:0;
+  max-width:620px;
+}
+
+.lx2-os-card.accent .lx2-os-meta{
+  align-self:end;
+}
+
+@media(max-width:1080px){
+  .lx2-practice-os{
+    padding-top:72px;
+  }
+
+  .lx2-os-card.accent{
+    grid-column:auto;
+    display:flex;
+    min-height:260px;
+  }
+}
+
+@media(max-width:720px){
+  #areas,
+  #casos,
+  #equipo,
+  #proceso,
+  #consulta{
+    scroll-margin-top:40px;
+  }
+
+  .lx2-practice-os{
+    padding-top:72px;
+  }
+
+  .lx2-os-card.accent h3{
+    font-size:26px;
+  }
+}
   </style>
 </head>
 
