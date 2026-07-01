@@ -32,22 +32,29 @@
       <div>
         <div class="badge">Webs rápidas, modernas y pensadas para vender</div>
 
-        <h1 class="studio-hero-title">
-          Creamos webs que se ven bien, cargan rápido y <em>venden mejor</em>.
-        </h1>
+        <div class="badge" data-edit="home.hero.badge">
+  Webs rápidas, modernas y pensadas para vender
+</div>
 
-        <p class="hero-text">
-          Landing pages, webs corporativas, tiendas online, restyling web, paneles autoeditables
-          y automatizaciones con IA para negocios que quieren captar más clientes sin complicarse.
-        </p>
+<h1 class="studio-hero-title" data-edit="home.hero.title">
+  Creamos webs que se ven bien, cargan rápido y venden mejor.
+</h1>
 
-        <p class="hero-subline">
-          Sin cuotas obligatorias. Con opción de panel editable para cambiar lo importante del día a día.
-        </p>
+<p class="hero-text" data-edit="home.hero.text">
+  Landing pages, webs corporativas, tiendas online, paneles autoeditables y automatizaciones IA para negocios que quieren captar más clientes sin complicarse.
+</p>
 
-        <div class="hero-actions">
-          <a href="contacto.html" class="btn btn-primary">Solicitar presupuesto</a>
-          <a href="portfolio.html" class="btn btn-outline">Ver ejemplos</a>
+<p class="hero-subline" data-edit="home.hero.subline">
+  Sin cuotas obligatorias. Con opción de panel editable para cambiar lo importante del día a día.
+</p>
+
+<a href="contacto.html" class="btn btn-primary" data-edit="home.hero.primary">
+  Solicitar presupuesto
+</a>
+
+<a href="portfolio.html" class="btn btn-outline" data-edit="home.hero.secondary">
+  Ver ejemplos
+</a>
         </div>
       </div>
 
@@ -424,7 +431,7 @@
 
         <div class="price-card">
           <h3>Landing Page</h3>
-          <div class="price">250€</div>
+          <div class="price" data-edit="price.landing">250€</div>
           <p>Ideal para campañas, servicios concretos o negocios que necesitan captar contactos rápido.</p>
           <ul>
             <li>Una página completa</li>
@@ -437,7 +444,7 @@
 
         <div class="price-card featured">
           <h3>Web Corporativa</h3>
-          <div class="price">690€</div>
+          <div class="price" data-edit="price.corporate">690€</div>
           <p>Para empresas que necesitan una web profesional, clara y completa.</p>
           <ul>
             <li>Hasta 5 secciones o páginas</li>
@@ -450,7 +457,7 @@
 
         <div class="price-card">
           <h3>Restyling Web</h3>
-          <div class="price">350€</div>
+          <div class="price" data-edit="price.restyling">350€</div>
           <p>Modernizamos tu web actual sin empezar desde cero.</p>
           <ul>
             <li>Nuevo aspecto visual</li>
@@ -525,11 +532,12 @@
 
         </div>
 
-        <div class="pricing-addons-note">
-          <strong>Promo de lanzamiento:</strong>
-          el panel básico autoeditable está disponible por +99€ para las primeras webs contratadas.
-          No incluye catálogo avanzado, stock, carrito, pasarela de pago ni funcionalidades a medida.
-        </div>
+        <div class="pricing-addons-note" data-edit-visible="promo.panel.active">
+  <strong>Promo de lanzamiento:</strong>
+  <span data-edit="promo.panel.text">
+    el panel básico autoeditable está disponible por +99€ para las primeras webs contratadas.
+  </span>
+</div>
       </div>
 
     </div>
@@ -565,8 +573,9 @@
             web corporativa, tienda, reestyling, panel autoeditable o automatización IA.
           </p>
 
-          <a href="mailto:contacto@handoo.me">📧 contacto@handoo.me</a>
-          <a href="contacto.html">💬 Solicitar presupuesto</a>
+          <a href="mailto:contacto@handoo.me" data-edit-mailto="contact.email">
+  📧 contacto@handoo.me
+</a>
         </div>
 
         <form class="form-card" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
@@ -605,7 +614,8 @@
 </footer>
 
 <a class="whatsapp" href="contacto.html">💬 WhatsApp</a>
-
+  
+<script src="assets/js/content-loader.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
