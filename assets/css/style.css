@@ -1615,3 +1615,260 @@ textarea{
     grid-template-columns:1fr;
   }
 }
+/* ===== HOME EDITOR SHOWCASE ===== */
+
+.home-editor-showcase{
+  padding:100px 0;
+  background:
+    radial-gradient(circle at 12% 18%,rgba(249,115,22,.13),transparent 34%),
+    radial-gradient(circle at 88% 12%,rgba(56,189,248,.13),transparent 34%),
+    linear-gradient(135deg,#07111f,#0f172a);
+  color:white;
+  overflow:hidden;
+}
+
+.home-editor-grid{
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:46px;
+  align-items:center;
+}
+
+.home-editor-content .section-kicker{
+  display:inline-flex;
+  width:fit-content;
+  margin-bottom:18px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(249,115,22,.16);
+  color:#fdba74 !important;
+  border:1px solid rgba(249,115,22,.28);
+  font-size:13px;
+  font-weight:900;
+}
+
+.home-editor-content h2{
+  max-width:720px;
+  margin:0 0 18px;
+  color:white;
+  font-size:clamp(42px,5.4vw,74px);
+  line-height:.92;
+  letter-spacing:-3px;
+}
+
+.home-editor-content > p{
+  max-width:680px;
+  margin:0 0 30px;
+  color:#cbd5e1;
+  font-size:18px;
+  line-height:1.75;
+}
+
+.home-editor-benefits{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-bottom:30px;
+}
+
+.home-editor-benefits article{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:16px;
+  padding:17px;
+  border-radius:22px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.home-editor-benefits strong{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:#f97316;
+  color:white;
+  font-size:13px;
+  font-weight:950;
+}
+
+.home-editor-benefits h3{
+  margin:0 0 6px;
+  color:white;
+  font-size:18px;
+  letter-spacing:-.5px;
+}
+
+.home-editor-benefits p{
+  margin:0;
+  color:#cbd5e1;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.home-editor-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:13px;
+}
+
+.home-editor-preview{
+  display:block;
+  padding:16px;
+  border-radius:34px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 34px 100px rgba(0,0,0,.34);
+  overflow:hidden;
+}
+
+.home-editor-preview .mini-browser{
+  height:36px;
+  border-radius:20px 20px 0 0;
+  background:#e5e7eb;
+}
+
+.home-editor-iframe{
+  position:relative;
+  height:470px;
+  overflow:hidden;
+  border-radius:0 0 24px 24px;
+  background:white;
+}
+
+.home-editor-iframe iframe{
+  position:absolute;
+  left:50%;
+  top:0;
+  width:1280px;
+  height:1050px;
+  border:0;
+  transform:translateX(-50%) scale(.50);
+  transform-origin:top center;
+  pointer-events:none;
+}
+
+.home-editor-comparison{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:44px;
+}
+
+.comparison-card{
+  padding:28px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+}
+
+.comparison-card span{
+  display:inline-flex;
+  width:fit-content;
+  margin-bottom:13px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+.comparison-card.danger span{
+  background:rgba(239,68,68,.14);
+  color:#fecaca;
+  border:1px solid rgba(239,68,68,.24);
+}
+
+.comparison-card.safe span{
+  background:rgba(34,197,94,.14);
+  color:#bbf7d0;
+  border:1px solid rgba(34,197,94,.24);
+}
+
+.comparison-card h3{
+  margin:0 0 16px;
+  color:white;
+  font-size:26px;
+  letter-spacing:-1px;
+}
+
+.comparison-card ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:11px;
+}
+
+.comparison-card li{
+  position:relative;
+  padding-left:26px;
+  color:#cbd5e1;
+  line-height:1.55;
+  font-size:15px;
+}
+
+.comparison-card.danger li::before{
+  content:"✕";
+  position:absolute;
+  left:0;
+  top:0;
+  color:#fca5a5;
+  font-weight:950;
+}
+
+.comparison-card.safe li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:0;
+  color:#86efac;
+  font-weight:950;
+}
+
+@media(max-width:1050px){
+  .home-editor-grid,
+  .home-editor-comparison{
+    grid-template-columns:1fr;
+  }
+
+  .home-editor-iframe{
+    height:380px;
+  }
+
+  .home-editor-iframe iframe{
+    transform:translateX(-50%) scale(.40);
+  }
+}
+
+@media(max-width:700px){
+  .home-editor-showcase{
+    padding:76px 0;
+  }
+
+  .home-editor-content h2{
+    letter-spacing:-2px;
+  }
+
+  .home-editor-actions .btn{
+    width:100%;
+  }
+
+  .home-editor-benefits article{
+    grid-template-columns:1fr;
+  }
+
+  .home-editor-iframe{
+    height:290px;
+  }
+
+  .home-editor-iframe iframe{
+    transform:translateX(-50%) scale(.31);
+  }
+
+  .comparison-card{
+    padding:22px;
+  }
+}
