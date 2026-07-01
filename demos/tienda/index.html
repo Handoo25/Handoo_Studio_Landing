@@ -1585,6 +1585,155 @@ body.shop-demo{
     padding:24px;
   }
 }
+
+/* =========================
+   LUMA SHOP MOVING OFFERS BANNER
+   Banner animado ecommerce
+   ========================= */
+
+.shop-promo-marquee{
+  position:relative;
+  overflow:hidden;
+  background:#111111;
+  color:white;
+  border-top:1px solid #222222;
+  border-bottom:1px solid #222222;
+}
+
+.shop-promo-marquee::before,
+.shop-promo-marquee::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:90px;
+  z-index:3;
+  pointer-events:none;
+}
+
+.shop-promo-marquee::before{
+  left:0;
+  background:linear-gradient(90deg,#111111,transparent);
+}
+
+.shop-promo-marquee::after{
+  right:0;
+  background:linear-gradient(270deg,#111111,transparent);
+}
+
+.shop-promo-track{
+  display:flex;
+  width:max-content;
+  animation:lumaPromoMove 32s linear infinite;
+  will-change:transform;
+}
+
+.shop-promo-marquee:hover .shop-promo-track{
+  animation-play-state:paused;
+}
+
+.shop-promo-group{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:18px 12px;
+  flex-shrink:0;
+}
+
+.shop-promo-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:42px;
+  padding:0 16px;
+  border-radius:12px;
+  background:#1f1f1f;
+  border:1px solid #303030;
+  color:#f8fafc;
+  font-size:13px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.shop-promo-chip strong{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:0 8px;
+  border-radius:8px;
+  background:#ffffff;
+  color:#111111;
+  font-size:11px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.45px;
+}
+
+.shop-promo-chip.hot{
+  background:#6f2c1f;
+  border-color:#9a422d;
+}
+
+.shop-promo-chip.hot strong{
+  background:#f4d35e;
+  color:#111111;
+}
+
+.shop-promo-chip.green{
+  background:#203425;
+  border-color:#355d3c;
+}
+
+.shop-promo-chip.green strong{
+  background:#6f8f72;
+  color:#ffffff;
+}
+
+.shop-promo-chip.cream{
+  background:#f7f1e8;
+  border-color:#e7e2d8;
+  color:#111111;
+}
+
+.shop-promo-chip.cream strong{
+  background:#111111;
+  color:#ffffff;
+}
+
+@keyframes lumaPromoMove{
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+@media(max-width:720px){
+  .shop-promo-group{
+    padding:14px 8px;
+    gap:8px;
+  }
+
+  .shop-promo-chip{
+    min-height:38px;
+    padding:0 12px;
+    font-size:12px;
+  }
+
+  .shop-promo-marquee::before,
+  .shop-promo-marquee::after{
+    width:42px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .shop-promo-track{
+    animation:none;
+  }
+}
+
   </style>
 </head>
 
@@ -1598,8 +1747,9 @@ body.shop-demo{
 
   <div class="shop-menu">
     <a href="#categorias">Categorías</a>
+    <a href="#ofertas">Ofertas</a>
     <a href="#productos">Productos</a>
-    <a href="#oferta">Oferta</a>
+    <a href="#oferta">Pack destacado</a>
     <a href="#reseñas">Reseñas</a>
     <a href="#contacto">Contacto</a>
     <a href="../../portfolio.html">Portfolio</a>
@@ -1656,64 +1806,32 @@ body.shop-demo{
 
   </div>
 </header>
-  <section id="contacto" class="shop-section shop-contact-section">
-    <div class="shop-container">
 
-      <div class="shop-contact-grid">
+<main>
 
-        <div class="shop-contact-content">
-          <span class="shop-kicker">Atención al cliente</span>
+  <section id="ofertas" class="shop-promo-marquee" aria-label="Promociones activas">
+    <div class="shop-promo-track">
 
-          <h2>¿Dudas antes de comprar?</h2>
+      <div class="shop-promo-group">
+        <span class="shop-promo-chip hot"><strong>2x1</strong> en velas Amber</span>
+        <span class="shop-promo-chip"><strong>LUMA15</strong> 15% dto. primera compra</span>
+        <span class="shop-promo-chip green"><strong>Envío gratis</strong> desde 49€</span>
+        <span class="shop-promo-chip cream"><strong>Regalo</strong> mini talla en pedidos +59€</span>
+        <span class="shop-promo-chip"><strong>-20%</strong> en Pack Glow Ritual</span>
+        <span class="shop-promo-chip green"><strong>Últimas unidades</strong> Daily Care Set</span>
+      </div>
 
-          <p>
-            Una tienda online también necesita resolver dudas rápido: tallas, envíos,
-            cambios, disponibilidad, pedidos personalizados o compra por WhatsApp.
-          </p>
-
-          <div class="shop-contact-options">
-            <a href="mailto:contacto@handoo.me" class="shop-contact-option">
-              <strong>Email</strong>
-              <span>Responder consultas y pedidos especiales.</span>
-            </a>
-
-            <a href="https://wa.me/34000000000" class="shop-contact-option">
-              <strong>WhatsApp</strong>
-              <span>Compra rápida o dudas antes de pagar.</span>
-            </a>
-
-            <a href="#productos" class="shop-contact-option">
-              <strong>Catálogo</strong>
-              <span>Volver a productos destacados.</span>
-            </a>
-          </div>
-        </div>
-
-        <form class="shop-contact-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
-          <h3>Consulta rápida</h3>
-
-          <input type="text" name="Nombre" placeholder="Tu nombre" required>
-          <input type="email" name="Email" placeholder="Tu email" required>
-
-          <select name="Consulta">
-            <option value="">Tipo de consulta</option>
-            <option>Estado de pedido</option>
-            <option>Cambio o devolución</option>
-            <option>Producto agotado</option>
-            <option>Pedido para regalo</option>
-            <option>Otra consulta</option>
-          </select>
-
-          <textarea name="Mensaje" placeholder="Cuéntanos qué necesitas"></textarea>
-
-          <button type="submit">Enviar consulta</button>
-        </form>
-
+      <div class="shop-promo-group" aria-hidden="true">
+        <span class="shop-promo-chip hot"><strong>2x1</strong> en velas Amber</span>
+        <span class="shop-promo-chip"><strong>LUMA15</strong> 15% dto. primera compra</span>
+        <span class="shop-promo-chip green"><strong>Envío gratis</strong> desde 49€</span>
+        <span class="shop-promo-chip cream"><strong>Regalo</strong> mini talla en pedidos +59€</span>
+        <span class="shop-promo-chip"><strong>-20%</strong> en Pack Glow Ritual</span>
+        <span class="shop-promo-chip green"><strong>Últimas unidades</strong> Daily Care Set</span>
       </div>
 
     </div>
   </section>
-<main>
 
   <section id="categorias" class="shop-section white">
     <div class="shop-container">
@@ -1941,6 +2059,64 @@ body.shop-demo{
           <p>“Me gustó ver gastos, confianza y productos destacados sin tener que buscar demasiado.”</p>
           <strong>— Paula S.</strong>
         </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contacto" class="shop-section shop-contact-section">
+    <div class="shop-container">
+
+      <div class="shop-contact-grid">
+
+        <div class="shop-contact-content">
+          <span class="shop-kicker">Atención al cliente</span>
+
+          <h2>¿Dudas antes de comprar?</h2>
+
+          <p>
+            Una tienda online también necesita resolver dudas rápido: tallas, envíos,
+            cambios, disponibilidad, pedidos personalizados o compra por WhatsApp.
+          </p>
+
+          <div class="shop-contact-options">
+            <a href="mailto:contacto@handoo.me" class="shop-contact-option">
+              <strong>Email</strong>
+              <span>Responder consultas y pedidos especiales.</span>
+            </a>
+
+            <a href="https://wa.me/34000000000" class="shop-contact-option">
+              <strong>WhatsApp</strong>
+              <span>Compra rápida o dudas antes de pagar.</span>
+            </a>
+
+            <a href="#productos" class="shop-contact-option">
+              <strong>Catálogo</strong>
+              <span>Volver a productos destacados.</span>
+            </a>
+          </div>
+        </div>
+
+        <form class="shop-contact-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+          <h3>Consulta rápida</h3>
+
+          <input type="text" name="Nombre" placeholder="Tu nombre" required>
+          <input type="email" name="Email" placeholder="Tu email" required>
+
+          <select name="Consulta">
+            <option value="">Tipo de consulta</option>
+            <option>Estado de pedido</option>
+            <option>Cambio o devolución</option>
+            <option>Producto agotado</option>
+            <option>Pedido para regalo</option>
+            <option>Otra consulta</option>
+          </select>
+
+          <textarea name="Mensaje" placeholder="Cuéntanos qué necesitas"></textarea>
+
+          <button type="submit">Enviar consulta</button>
+        </form>
 
       </div>
 
