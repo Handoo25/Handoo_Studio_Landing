@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nova ReStyle | Demo Reestyling Web</title>
+  <meta name="description" content="Demo de reestyling web creada por Handoo Studio. Comparativa antes y después de una web antigua transformada en una web moderna, clara y orientada a captar clientes." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    :root{
+      --rs-ink:#111827;
+      --rs-muted:#64748b;
+      --rs-bg:#f4f1ec;
+      --rs-card:#ffffff;
+      --rs-line:#e5e1d8;
+      --rs-orange:#f97316;
+      --rs-blue:#17324d;
+      --rs-blue-2:#0f2438;
+      --rs-cream:#fff9f0;
+      --rs-green:#1f5c4d;
+      --rs-shadow:0 28px 80px rgba(17,24,39,.12);
+      --rs-radius:28px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body.restyle-demo{
+      margin:0;
+      background:var(--rs-bg);
+      color:var(--rs-ink);
+      font-family:"Archivo", Arial, sans-serif;
+      overflow-x:hidden;
+    }
+
+    .restyle-demo a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .rs-container{
+      width:min(1180px,92%);
+      margin:0 auto;
+    }
+
+    .rs-nav{
+      position:fixed;
+      left:50%;
+      top:20px;
+      transform:translateX(-50%);
+      z-index:90;
+      width:min(1180px,92%);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:14px 16px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:24px;
+      box-shadow:0 18px 60px rgba(17,24,39,.12);
+      backdrop-filter:blur(18px);
+    }
+
+    .rs-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:-.5px;
+      color:var(--rs-ink);
+      white-space:nowrap;
+    }
+
+    .rs-logo-mark{
+      width:42px;
+      height:42px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      background:var(--rs-blue);
+      color:white;
+      font-weight:900;
+    }
+
+    .rs-logo span{
+      color:var(--rs-orange);
+    }
+
+    .rs-menu{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:#f4f1ec;
+      border:1px solid var(--rs-line);
+      border-radius:999px;
+      padding:6px;
+    }
+
+    .rs-menu a{
+      padding:9px 13px;
+      border-radius:999px;
+      color:#475569;
+      font-size:13px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .rs-menu a:hover{
+      background:white;
+      color:var(--rs-ink);
+    }
+
+    .rs-nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 18px;
+      border-radius:999px;
+      background:var(--rs-orange);
+      color:white !important;
+      font-size:13px;
+      font-weight:900;
+      white-space:nowrap;
+      box-shadow:0 14px 34px rgba(249,115,22,.22);
+    }
+
+    .rs-hero{
+      padding:150px 0 90px;
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(249,115,22,.16), transparent 32%),
+        radial-gradient(circle at 88% 20%, rgba(23,50,77,.14), transparent 34%),
+        var(--rs-bg);
+    }
+
+    .rs-hero-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:56px;
+      align-items:center;
+    }
+
+    .rs-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:9px 13px;
+      border-radius:999px;
+      background:white;
+      border:1px solid var(--rs-line);
+      color:var(--rs-orange);
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      margin-bottom:22px;
+    }
+
+    .rs-kicker::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--rs-orange);
+      box-shadow:0 0 0 6px rgba(249,115,22,.12);
+    }
+
+    .rs-hero h1{
+      margin:0 0 24px;
+      font-size:clamp(48px,7vw,88px);
+      line-height:.92;
+      letter-spacing:-3.4px;
+      font-weight:900;
+      color:var(--rs-ink);
+    }
+
+    .rs-hero h1 em{
+      font-family:"Instrument Serif", Georgia, serif;
+      font-weight:400;
+      letter-spacing:-1.5px;
+      color:var(--rs-orange);
+      font-style:italic;
+    }
+
+    .rs-hero-text{
+      color:#536174;
+      font-size:19px;
+      line-height:1.75;
+      margin:0 0 32px;
+      max-width:660px;
+    }
+
+    .rs-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:13px;
+      margin-bottom:34px;
+    }
+
+    .rs-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      border:0;
+      font-family:"Archivo", Arial, sans-serif;
+      font-size:15px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .rs-btn-primary{
+      background:var(--rs-orange);
+      color:white !important;
+      box-shadow:0 18px 42px rgba(249,115,22,.22);
+    }
+
+    .rs-btn-primary:hover{
+      transform:translateY(-3px);
+      background:#ea580c;
+    }
+
+    .rs-btn-secondary{
+      background:white;
+      color:var(--rs-ink) !important;
+      border:1px solid var(--rs-line);
+    }
+
+    .rs-btn-secondary:hover{
+      transform:translateY(-3px);
+      background:var(--rs-blue);
+      color:white !important;
+    }
+
+    .rs-proof{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .rs-proof span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:white;
+      border:1px solid var(--rs-line);
+      border-radius:999px;
+      padding:10px 13px;
+      color:#415066;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .rs-proof strong{
+      color:var(--rs-blue);
+    }
+
+    .rs-comparison-stage{
+      background:var(--rs-blue);
+      border-radius:42px;
+      padding:22px;
+      box-shadow:0 34px 100px rgba(17,24,39,.22);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .rs-comparison-stage::before{
+      content:"";
+      position:absolute;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      right:-160px;
+      top:-160px;
+      background:radial-gradient(circle, rgba(249,115,22,.34), transparent 67%);
+    }
+
+    .rs-comparison-labels{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .rs-label{
+      border-radius:999px;
+      padding:10px 13px;
+      font-size:12px;
+      font-weight:900;
+      text-align:center;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+    }
+
+    .rs-label.before{
+      background:rgba(255,255,255,.1);
+      color:#cbd5e1;
+      border:1px solid rgba(255,255,255,.14);
+    }
+
+    .rs-label.after{
+      background:var(--rs-orange);
+      color:white;
+    }
+
+    .rs-browser-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .rs-old-site,
+    .rs-new-site{
+      min-height:500px;
+      border-radius:28px;
+      overflow:hidden;
+      background:white;
+      box-shadow:0 22px 70px rgba(0,0,0,.18);
+    }
+
+    .rs-browser-bar{
+      height:32px;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:0 12px;
+      background:#e5e7eb;
+    }
+
+    .rs-browser-bar span{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:#94a3b8;
+    }
+
+    .old-content{
+      background:#e8e4d8;
+      min-height:468px;
+      padding:18px;
+      font-family:"Times New Roman", serif;
+      color:#1f2937;
+    }
+
+    .old-header{
+      background:#6b7280;
+      color:white;
+      padding:12px;
+      text-align:center;
+      border:3px ridge #9ca3af;
+      margin-bottom:14px;
+    }
+
+    .old-header h3{
+      margin:0;
+      font-size:24px;
+      letter-spacing:1px;
+    }
+
+    .old-menu{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      justify-content:center;
+      margin-bottom:14px;
+    }
+
+    .old-menu span{
+      background:#d1d5db;
+      color:#111827;
+      padding:5px 8px;
+      border:1px solid #9ca3af;
+      font-size:12px;
+      text-decoration:underline;
+    }
+
+    .old-box{
+      background:#f3f4f6;
+      border:2px solid #9ca3af;
+      padding:12px;
+      margin-bottom:12px;
+    }
+
+    .old-box h4{
+      font-size:18px;
+      color:#111827;
+      margin:0 0 8px;
+    }
+
+    .old-box p{
+      font-size:13px;
+      line-height:1.35;
+      color:#374151;
+      margin:0;
+    }
+
+    .old-button{
+      display:inline-block;
+      margin-top:12px;
+      padding:6px 10px;
+      background:#9ca3af;
+      color:#111827;
+      border:2px outset #d1d5db;
+      font-size:13px;
+      font-weight:bold;
+    }
+
+    .old-sidebar{
+      background:#d1d5db;
+      border:2px dashed #6b7280;
+      padding:10px;
+      font-size:12px;
+      color:#374151;
+    }
+
+    .new-content{
+      min-height:468px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(249,115,22,.12), transparent 32%),
+        #ffffff;
+      padding:18px;
+      color:var(--rs-ink);
+      font-family:"Archivo", Arial, sans-serif;
+    }
+
+    .new-nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:22px;
+    }
+
+    .new-brand{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      font-size:14px;
+    }
+
+    .new-mark{
+      width:28px;
+      height:28px;
+      border-radius:10px;
+      background:var(--rs-blue);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-size:12px;
+    }
+
+    .new-pill{
+      background:#fff7ed;
+      color:var(--rs-orange);
+      padding:6px 9px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:900;
+    }
+
+    .new-hero-mini{
+      background:var(--rs-blue);
+      color:white;
+      border-radius:24px;
+      padding:24px;
+      margin-bottom:14px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .new-hero-mini::after{
+      content:"";
+      position:absolute;
+      width:150px;
+      height:150px;
+      right:-50px;
+      top:-50px;
+      background:radial-gradient(circle, rgba(249,115,22,.5), transparent 68%);
+      border-radius:50%;
+    }
+
+    .new-hero-mini h3{
+      position:relative;
+      z-index:2;
+      margin:0 0 10px;
+      font-size:32px;
+      line-height:.98;
+      letter-spacing:-1.5px;
+    }
+
+    .new-hero-mini p{
+      position:relative;
+      z-index:2;
+      color:#dbe4ea;
+      font-size:13px;
+      line-height:1.55;
+      margin:0 0 14px;
+    }
+
+    .new-button{
+      position:relative;
+      z-index:2;
+      display:inline-flex;
+      padding:9px 12px;
+      border-radius:999px;
+      background:var(--rs-orange);
+      color:white;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .new-cards{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .new-card{
+      border:1px solid var(--rs-line);
+      border-radius:18px;
+      padding:12px;
+      background:#fffaf2;
+    }
+
+    .new-card strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:5px;
+    }
+
+    .new-card span{
+      display:block;
+      color:var(--rs-muted);
+      font-size:11px;
+      line-height:1.4;
+    }
+
+    .new-form-preview{
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      padding:12px;
+    }
+
+    .new-input{
+      height:28px;
+      border-radius:9px;
+      background:white;
+      border:1px solid #e5e7eb;
+      margin-bottom:8px;
+    }
+
+    .new-submit{
+      height:30px;
+      border-radius:999px;
+      background:var(--rs-blue);
+    }
+
+    .rs-section{
+      padding:96px 0;
+    }
+
+    .rs-section.white{
+      background:#ffffff;
+    }
+
+    .rs-section.dark{
+      background:var(--rs-blue-2);
+      color:white;
+    }
+
+    .rs-title{
+      max-width:850px;
+      margin:0 auto 56px;
+      text-align:center;
+    }
+
+    .rs-title h2{
+      margin:0 0 16px;
+      color:inherit;
+      font-size:clamp(38px,5vw,64px);
+      line-height:.98;
+      letter-spacing:-2.5px;
+      font-weight:900;
+    }
+
+    .rs-title h2 em{
+      font-family:"Instrument Serif", Georgia, serif;
+      font-weight:400;
+      color:var(--rs-orange);
+      letter-spacing:-1px;
+    }
+
+    .rs-title p{
+      margin:0 auto;
+      max-width:760px;
+      color:var(--rs-muted);
+      font-size:18px;
+      line-height:1.75;
+    }
+
+    .rs-section.dark .rs-title p{
+      color:#cbd5e1;
+    }
+
+    .rs-problem-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .rs-problem{
+      background:white;
+      border:1px solid var(--rs-line);
+      border-radius:28px;
+      padding:28px;
+      box-shadow:0 18px 50px rgba(17,24,39,.07);
+    }
+
+    .rs-problem-icon{
+      width:52px;
+      height:52px;
+      border-radius:18px;
+      background:#fff7ed;
+      color:var(--rs-orange);
+      display:grid;
+      place-items:center;
+      font-size:24px;
+      margin-bottom:18px;
+    }
+
+    .rs-problem h3{
+      margin:0 0 10px;
+      color:var(--rs-ink);
+      font-size:22px;
+      letter-spacing:-.5px;
+    }
+
+    .rs-problem p{
+      margin:0;
+      color:var(--rs-muted);
+      line-height:1.65;
+    }
+
+    .rs-transformation{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:44px;
+      align-items:center;
+    }
+
+    .rs-transformation-card{
+      background:var(--rs-cream);
+      border:1px solid var(--rs-line);
+      border-radius:38px;
+      padding:38px;
+      box-shadow:var(--rs-shadow);
+    }
+
+    .rs-transformation-card h2{
+      margin:0 0 18px;
+      font-size:clamp(38px,5vw,58px);
+      line-height:.98;
+      letter-spacing:-2px;
+      font-weight:900;
+    }
+
+    .rs-transformation-card p{
+      margin:0 0 26px;
+      color:var(--rs-muted);
+      line-height:1.75;
+      font-size:17px;
+    }
+
+    .rs-check-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .rs-check{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      background:white;
+      border:1px solid var(--rs-line);
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .rs-check span{
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      background:var(--rs-green);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+
+    .rs-check strong{
+      display:block;
+      margin-bottom:3px;
+    }
+
+    .rs-check p{
+      margin:0;
+      color:var(--rs-muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .rs-score-panel{
+      background:var(--rs-blue);
+      color:white;
+      border-radius:38px;
+      padding:34px;
+      box-shadow:0 28px 80px rgba(17,24,39,.22);
+    }
+
+    .rs-score-panel h3{
+      margin:0 0 24px;
+      font-size:34px;
+      letter-spacing:-1.4px;
+    }
+
+    .rs-score-row{
+      margin-bottom:22px;
+    }
+
+    .rs-score-row:last-child{
+      margin-bottom:0;
+    }
+
+    .rs-score-label{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      font-size:14px;
+      font-weight:900;
+      margin-bottom:8px;
+      color:#e5e7eb;
+    }
+
+    .rs-score-bar{
+      height:12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      overflow:hidden;
+    }
+
+    .rs-score-bar div{
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--rs-orange),#fdba74);
+    }
+
+    .rs-before-after-wide{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+
+    .rs-wide-card{
+      background:white;
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid var(--rs-line);
+      box-shadow:var(--rs-shadow);
+    }
+
+    .rs-wide-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:20px;
+      border-bottom:1px solid var(--rs-line);
+    }
+
+    .rs-wide-head strong{
+      font-size:24px;
+      letter-spacing:-.7px;
+    }
+
+    .rs-wide-head span{
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+    }
+
+    .rs-wide-card.before span{
+      background:#f1f5f9;
+      color:#64748b;
+    }
+
+    .rs-wide-card.after span{
+      background:#fff7ed;
+      color:var(--rs-orange);
+    }
+
+    .rs-wide-body{
+      padding:24px;
+    }
+
+    .rs-wide-body ul{
+      list-style:none;
+      display:grid;
+      gap:13px;
+      margin:0;
+      padding:0;
+    }
+
+    .rs-wide-body li{
+      color:#475569;
+      line-height:1.55;
+      font-weight:700;
+    }
+
+    .rs-wide-card.before li::before{
+      content:"✕";
+      color:#ef4444;
+      font-weight:900;
+      margin-right:10px;
+    }
+
+    .rs-wide-card.after li::before{
+      content:"✓";
+      color:#16a34a;
+      font-weight:900;
+      margin-right:10px;
+    }
+
+    .rs-form-section{
+      background:
+        radial-gradient(circle at 15% 20%, rgba(249,115,22,.18), transparent 34%),
+        var(--rs-blue-2);
+      color:white;
+    }
+
+    .rs-form-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:34px;
+      align-items:stretch;
+    }
+
+    .rs-form-info{
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:38px;
+      padding:38px;
+    }
+
+    .rs-form-info h2{
+      margin:0 0 18px;
+      font-size:clamp(38px,5vw,60px);
+      line-height:.98;
+      letter-spacing:-2px;
+    }
+
+    .rs-form-info p{
+      color:#cbd5e1;
+      line-height:1.75;
+      font-size:17px;
+      margin:0 0 28px;
+    }
+
+    .rs-form-points{
+      display:grid;
+      gap:14px;
+    }
+
+    .rs-form-points span{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#e5e7eb;
+      font-weight:800;
+    }
+
+    .rs-form-points span::before{
+      content:"✓";
+      width:25px;
+      height:25px;
+      border-radius:50%;
+      background:var(--rs-orange);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+
+    .rs-modern-form{
+      background:white;
+      color:var(--rs-ink);
+      border-radius:38px;
+      padding:30px;
+      box-shadow:0 28px 80px rgba(0,0,0,.24);
+    }
+
+    .rs-modern-form h3{
+      margin:0 0 8px;
+      font-size:30px;
+      letter-spacing:-1px;
+    }
+
+    .rs-modern-form > p{
+      margin:0 0 22px;
+      color:var(--rs-muted);
+      line-height:1.6;
+    }
+
+    .rs-form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .rs-modern-form input,
+    .rs-modern-form select,
+    .rs-modern-form textarea{
+      width:100%;
+      border:1px solid var(--rs-line);
+      border-radius:16px;
+      padding:15px;
+      font-family:"Archivo", Arial, sans-serif;
+      font-size:14px;
+      color:var(--rs-ink);
+      background:#fbfaf8;
+      margin:0 0 12px;
+      font-weight:700;
+    }
+
+    .rs-modern-form textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+
+    .rs-modern-form input:focus,
+    .rs-modern-form select:focus,
+    .rs-modern-form textarea:focus{
+      outline:none;
+      border-color:var(--rs-orange);
+      box-shadow:0 0 0 4px rgba(249,115,22,.12);
+      background:white;
+    }
+
+    .rs-form-submit{
+      width:100%;
+      min-height:56px;
+      border-radius:18px;
+      border:0;
+      background:var(--rs-orange);
+      color:white;
+      font-family:"Archivo", Arial, sans-serif;
+      font-weight:900;
+      cursor:pointer;
+      font-size:15px;
+    }
+
+    .rs-final{
+      padding:110px 0;
+      text-align:center;
+      background:var(--rs-bg);
+    }
+
+    .rs-final h2{
+      margin:0 auto 18px;
+      max-width:900px;
+      font-size:clamp(42px,6vw,74px);
+      line-height:.96;
+      letter-spacing:-3px;
+      font-weight:900;
+    }
+
+    .rs-final h2 em{
+      font-family:"Instrument Serif", Georgia, serif;
+      font-weight:400;
+      color:var(--rs-orange);
+      letter-spacing:-1px;
+    }
+
+    .rs-final p{
+      margin:0 auto 30px;
+      max-width:760px;
+      color:var(--rs-muted);
+      font-size:18px;
+      line-height:1.75;
+    }
+
+    .rs-footer{
+      background:#020617;
+      color:#94a3b8;
+      text-align:center;
+      padding:30px 0;
+      font-size:14px;
+    }
+
+    .rs-footer a{
+      color:#fdba74;
+      font-weight:900;
+    }
+
+    .rs-floating{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:95;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 18px;
+      border-radius:999px;
+      background:var(--rs-orange);
+      color:white !important;
+      font-weight:900;
+      box-shadow:0 18px 45px rgba(17,24,39,.28);
+    }
+
+    @media(max-width:1050px){
+      .rs-nav{
+        position:static;
+        transform:none;
+        margin:16px auto 0;
+        flex-direction:column;
+        align-items:flex-start;
+        border-radius:26px;
+      }
+
+      .rs-menu{
+        width:100%;
+        justify-content:flex-start;
+        overflow-x:auto;
+      }
+
+      .rs-nav-cta{
+        width:100%;
+      }
+
+      .rs-hero{
+        padding-top:52px;
+      }
+
+      .rs-hero-grid,
+      .rs-browser-grid,
+      .rs-problem-grid,
+      .rs-transformation,
+      .rs-before-after-wide,
+      .rs-form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .rs-old-site,
+      .rs-new-site{
+        min-height:auto;
+      }
+
+      .rs-form-row{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:720px){
+      .rs-hero h1{
+        font-size:48px;
+        letter-spacing:-2px;
+      }
+
+      .rs-hero-text{
+        font-size:17px;
+      }
+
+      .rs-comparison-stage{
+        padding:14px;
+        border-radius:30px;
+      }
+
+      .rs-comparison-labels{
+        grid-template-columns:1fr;
+      }
+
+      .rs-section{
+        padding:72px 0;
+      }
+
+      .rs-title h2,
+      .rs-final h2{
+        letter-spacing:-1.8px;
+      }
+
+      .rs-floating{
+        right:14px;
+        bottom:14px;
+        padding:12px 15px;
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+
+<body class="restyle-demo">
+
+<nav class="rs-nav">
+  <a href="#" class="rs-logo">
+    <span class="rs-logo-mark">N</span>
+    Nova <span>ReStyle</span>
+  </a>
+
+  <div class="rs-menu">
+    <a href="#antes-despues">Antes / Después</a>
+    <a href="#mejoras">Mejoras</a>
+    <a href="#resultado">Resultado</a>
+    <a href="#revision">Revisión</a>
+    <a href="../../portfolio.html">Portfolio</a>
+  </div>
+
+  <a href="#revision" class="rs-nav-cta">Pedir revisión</a>
+</nav>
+
+<header class="rs-hero">
+  <div class="rs-container">
+
+    <div class="rs-hero-grid">
+
+      <div>
+        <span class="rs-kicker">Demo reestyling web · Antes y después</span>
+
+        <h1>Tu web antigua puede tener una <em>segunda vida</em>.</h1>
+
+        <p class="rs-hero-text">
+          Modernizamos webs desactualizadas para que se vean actuales, ordenadas, más claras y mejor preparadas para captar contactos.
+        </p>
+
+        <div class="rs-actions">
+          <a href="#antes-despues" class="rs-btn rs-btn-primary">Ver antes y después</a>
+          <a href="#revision" class="rs-btn rs-btn-secondary">Quiero modernizar mi web</a>
+        </div>
+
+        <div class="rs-proof">
+          <span><strong>+ imagen</strong> profesional</span>
+          <span><strong>+ claridad</strong> comercial</span>
+          <span><strong>+ móvil</strong> optimizado</span>
+        </div>
+      </div>
+
+      <div class="rs-comparison-stage">
+        <div class="rs-comparison-labels">
+          <div class="rs-label before">Antes</div>
+          <div class="rs-label after">Después</div>
+        </div>
+
+        <div class="rs-browser-grid">
+
+          <div class="rs-old-site">
+            <div class="rs-browser-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="old-content">
+              <div class="old-header">
+                <h3>ASESORÍA DELTA</h3>
+                <small>Desde 1998 a su servicio</small>
+              </div>
+
+              <div class="old-menu">
+                <span>Inicio</span>
+                <span>Empresa</span>
+                <span>Servicios</span>
+                <span>Contacto</span>
+              </div>
+
+              <div class="old-box">
+                <h4>Bienvenidos a nuestra página web</h4>
+                <p>
+                  Somos una asesoría fiscal, contable y laboral. Contacte con nosotros para más información sobre nuestros servicios profesionales.
+                </p>
+                <span class="old-button">Enviar email</span>
+              </div>
+
+              <div class="old-box">
+                <h4>Servicios</h4>
+                <p>Fiscal · Laboral · Contable · Autónomos · Empresas · Declaraciones · Trámites.</p>
+              </div>
+
+              <div class="old-sidebar">
+                Últimas noticias: Nueva campaña de renta. Horario de atención de lunes a viernes.
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-new-site">
+            <div class="rs-browser-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="new-content">
+              <div class="new-nav">
+                <div class="new-brand">
+                  <span class="new-mark">D</span>
+                  Delta Asesores
+                </div>
+                <span class="new-pill">Consulta inicial</span>
+              </div>
+
+              <div class="new-hero-mini">
+                <h3>Asesoría clara para negocios que quieren crecer.</h3>
+                <p>
+                  Fiscal, laboral y contable con comunicación sencilla, procesos claros y atención cercana.
+                </p>
+                <span class="new-button">Solicitar cita</span>
+              </div>
+
+              <div class="new-cards">
+                <div class="new-card">
+                  <strong>Empresas</strong>
+                  <span>Gestión fiscal y contable mensual.</span>
+                </div>
+
+                <div class="new-card">
+                  <strong>Autónomos</strong>
+                  <span>Alta, impuestos y seguimiento.</span>
+                </div>
+              </div>
+
+              <div class="new-form-preview">
+                <div class="new-input"></div>
+                <div class="new-input"></div>
+                <div class="new-submit"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <section id="antes-despues" class="rs-section white">
+    <div class="rs-container">
+
+      <div class="rs-title">
+        <span class="rs-kicker">Comparativa visual</span>
+        <h2>El cambio se entiende <em>en segundos</em></h2>
+        <p>
+          Un reestyling no es solo poner colores nuevos. Es ordenar el mensaje, actualizar la imagen y facilitar que el visitante contacte.
+        </p>
+      </div>
+
+      <div class="rs-before-after-wide">
+
+        <article class="rs-wide-card before">
+          <div class="rs-wide-head">
+            <strong>Antes</strong>
+            <span>Web antigua</span>
+          </div>
+
+          <div class="rs-wide-body">
+            <ul>
+              <li>Diseño con aspecto desactualizado.</li>
+              <li>Texto poco jerarquizado y difícil de leer.</li>
+              <li>Botones poco visibles y sin intención comercial.</li>
+              <li>Imagen débil para captar nuevos clientes.</li>
+              <li>Experiencia móvil poco cuidada.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="rs-wide-card after">
+          <div class="rs-wide-head">
+            <strong>Después</strong>
+            <span>Web renovada</span>
+          </div>
+
+          <div class="rs-wide-body">
+            <ul>
+              <li>Diseño actual, limpio y profesional.</li>
+              <li>Mensaje claro desde el primer vistazo.</li>
+              <li>Llamadas a la acción visibles y directas.</li>
+              <li>Más confianza para empresas y autónomos.</li>
+              <li>Estructura preparada para móvil y contacto rápido.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="mejoras" class="rs-section">
+    <div class="rs-container">
+
+      <div class="rs-title">
+        <span class="rs-kicker">Qué se mejora</span>
+        <h2>Modernizar una web es mejorar su <em>percepción</em></h2>
+        <p>
+          Muchas webs no necesitan empezar desde cero. Necesitan una actualización visual, mejor estructura y una forma más clara de llevar al usuario hacia el contacto.
+        </p>
+      </div>
+
+      <div class="rs-problem-grid">
+
+        <article class="rs-problem">
+          <div class="rs-problem-icon">🎨</div>
+          <h3>Diseño visual</h3>
+          <p>
+            Actualizamos colores, espacios, tarjetas, botones y composición para que la web parezca actual.
+          </p>
+        </article>
+
+        <article class="rs-problem">
+          <div class="rs-problem-icon">✍️</div>
+          <h3>Textos y jerarquía</h3>
+          <p>
+            Reordenamos titulares, subtítulos y bloques para que el usuario entienda rápido qué ofreces.
+          </p>
+        </article>
+
+        <article class="rs-problem">
+          <div class="rs-problem-icon">📱</div>
+          <h3>Versión móvil</h3>
+          <p>
+            Ajustamos el diseño para que se vea bien en móvil, donde muchos clientes visitan primero.
+          </p>
+        </article>
+
+        <article class="rs-problem">
+          <div class="rs-problem-icon">🎯</div>
+          <h3>Conversión</h3>
+          <p>
+            Añadimos llamadas a la acción claras: pedir cita, contactar, solicitar presupuesto o escribir por WhatsApp.
+          </p>
+        </article>
+
+        <article class="rs-problem">
+          <div class="rs-problem-icon">🧭</div>
+          <h3>Navegación</h3>
+          <p>
+            Simplificamos menús y secciones para que la web sea más fácil de recorrer.
+          </p>
+        </article>
+
+        <article class="rs-problem">
+          <div class="rs-problem-icon">🤝</div>
+          <h3>Confianza</h3>
+          <p>
+            Incorporamos señales de profesionalidad: servicios claros, proceso, opiniones y contacto visible.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="resultado" class="rs-section white">
+    <div class="rs-container">
+
+      <div class="rs-transformation">
+
+        <div class="rs-transformation-card">
+          <h2>No siempre necesitas una web nueva desde cero.</h2>
+          <p>
+            Si ya tienes una web, podemos analizar qué merece la pena conservar y qué conviene actualizar para que vuelva a transmitir confianza.
+          </p>
+
+          <div class="rs-check-list">
+
+            <div class="rs-check">
+              <span>✓</span>
+              <div>
+                <strong>Conservamos lo que funciona</strong>
+                <p>Contenido útil, estructura base, dominio o enfoque actual si tiene sentido.</p>
+              </div>
+            </div>
+
+            <div class="rs-check">
+              <span>✓</span>
+              <div>
+                <strong>Actualizamos lo que resta valor</strong>
+                <p>Diseño antiguo, secciones confusas, botones débiles o mala experiencia móvil.</p>
+              </div>
+            </div>
+
+            <div class="rs-check">
+              <span>✓</span>
+              <div>
+                <strong>Preparamos la web para captar</strong>
+                <p>Contacto visible, llamadas a la acción, formulario y estructura comercial.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="rs-score-panel">
+          <h3>Resultado percibido</h3>
+
+          <div class="rs-score-row">
+            <div class="rs-score-label">
+              <span>Imagen profesional</span>
+              <span>92%</span>
+            </div>
+            <div class="rs-score-bar"><div style="width:92%;"></div></div>
+          </div>
+
+          <div class="rs-score-row">
+            <div class="rs-score-label">
+              <span>Claridad del mensaje</span>
+              <span>88%</span>
+            </div>
+            <div class="rs-score-bar"><div style="width:88%;"></div></div>
+          </div>
+
+          <div class="rs-score-row">
+            <div class="rs-score-label">
+              <span>Facilidad de contacto</span>
+              <span>95%</span>
+            </div>
+            <div class="rs-score-bar"><div style="width:95%;"></div></div>
+          </div>
+
+          <div class="rs-score-row">
+            <div class="rs-score-label">
+              <span>Experiencia móvil</span>
+              <span>90%</span>
+            </div>
+            <div class="rs-score-bar"><div style="width:90%;"></div></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="revision" class="rs-section rs-form-section">
+    <div class="rs-container">
+
+      <div class="rs-form-grid">
+
+        <div class="rs-form-info">
+          <span class="rs-kicker">Revisión inicial</span>
+
+          <h2>¿Tu web necesita un reestyling?</h2>
+
+          <p>
+            Puedes solicitar una revisión rápida. Analizamos el aspecto visual, la claridad del mensaje, el móvil y las llamadas a la acción.
+          </p>
+
+          <div class="rs-form-points">
+            <span>Revisión visual de tu web actual</span>
+            <span>Propuesta de mejora sin compromiso</span>
+            <span>Opciones de actualización parcial o completa</span>
+            <span>Ideal para webs antiguas pero aprovechables</span>
+          </div>
+        </div>
+
+        <form class="rs-modern-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+          <h3>Pedir revisión</h3>
+          <p>
+            Cuéntanos qué tienes ahora y qué te gustaría mejorar.
+          </p>
+
+          <div class="rs-form-row">
+            <input type="text" name="Nombre" placeholder="Tu nombre" required>
+            <input type="email" name="Email" placeholder="Tu email" required>
+          </div>
+
+          <div class="rs-form-row">
+            <input type="text" name="Web actual" placeholder="URL de tu web actual">
+            <input type="text" name="WhatsApp" placeholder="WhatsApp">
+          </div>
+
+          <select name="Situación actual">
+            <option value="">¿Qué problema notas?</option>
+            <option>Mi web se ve antigua</option>
+            <option>No se ve bien en móvil</option>
+            <option>No recibo contactos</option>
+            <option>Quiero mejorar imagen profesional</option>
+            <option>No lo tengo claro</option>
+          </select>
+
+          <textarea name="Mensaje" placeholder="Cuéntanos brevemente qué te gustaría cambiar o qué no te convence de tu web actual."></textarea>
+
+          <button class="rs-form-submit" type="submit">Enviar solicitud de revisión</button>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="rs-final">
+    <div class="rs-container">
+      <h2>A veces no necesitas empezar de cero. Necesitas una web que vuelva a estar <em>a la altura</em>.</h2>
+      <p>
+        Este tipo de demo sirve para enseñar a tus clientes cómo puede cambiar la percepción de su negocio con una actualización bien planteada.
+      </p>
+
+      <div class="rs-actions" style="justify-content:center;margin-bottom:0;">
+        <a href="../../contacto.html" class="rs-btn rs-btn-primary">Quiero un reestyling</a>
+        <a href="../../portfolio.html" class="rs-btn rs-btn-secondary">Volver al portfolio</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rs-footer">
+  <div class="rs-container">
+    Demo ficticia de reestyling web · Diseño creado por <a href="../../index.html">Handoo Studio</a> · contacto@handoo.me
+  </div>
+</footer>
+
+<a href="#revision" class="rs-floating">Pedir revisión</a>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>
