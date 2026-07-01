@@ -2163,3 +2163,55 @@ textarea{
   color:#334155 !important;
   border:1px solid #cbd5e1 !important;
 }
+/* ===== HARD FIX FIRST ADDON CARD CONTRAST ===== */
+
+.pricing-addons .pricing-addons-grid > article:first-child,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child{
+  background:#ffffff !important;
+  border:2px solid #86efac !important;
+  color:#0f172a !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child *,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child *{
+  color:inherit !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child h4,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child h4{
+  color:#0f172a !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child p,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child p{
+  color:#475569 !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child li,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child li{
+  color:#334155 !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child li::before,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child li::before{
+  color:#16a34a !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child strong,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child strong{
+  color:#f97316 !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child small,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child small{
+  color:#334155 !important;
+  background:#f8fafc !important;
+  border:1px solid #cbd5e1 !important;
+}
+
+.pricing-addons .pricing-addons-grid > article:first-child .addon-badge,
+.pricing-addons .pricing-addons-grid > .pricing-addon-card:first-child .addon-badge{
+  background:#dcfce7 !important;
+  color:#166534 !important;
+  border:1px solid #86efac !important;
+}
