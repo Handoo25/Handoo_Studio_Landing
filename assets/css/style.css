@@ -1872,3 +1872,45 @@ textarea{
     padding:22px;
   }
 }
+/* ===== FIX HOME EDITOR BENEFITS LAYOUT ===== */
+
+.home-editor-benefits article{
+  display:grid;
+  grid-template-columns:54px minmax(0, 1fr);
+  grid-template-areas:
+    "num title"
+    "num text";
+  align-items:start;
+}
+
+.home-editor-benefits strong{
+  grid-area:num;
+}
+
+.home-editor-benefits h3{
+  grid-area:title;
+}
+
+.home-editor-benefits p{
+  grid-area:text;
+  max-width:100%;
+}
+
+/* Ajuste visual para que el bloque no quede tan apelmazado */
+.home-editor-grid{
+  align-items:center;
+}
+
+.home-editor-preview{
+  align-self:center;
+}
+
+@media(max-width:700px){
+  .home-editor-benefits article{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "num"
+      "title"
+      "text";
+  }
+}
