@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Portfolio | Handoo Studio</title>
-  <meta name="description" content="Portfolio y demos de Handoo Studio: ejemplos de webs para hamburgueserías, clínicas dentales, inmobiliarias, despachos, gimnasios, academias y negocios locales." />
+  <meta name="description" content="Portfolio visual de Handoo Studio: demos de webs sectoriales, tienda online, panel autoeditable, automatización IA y reestyling web." />
 
   <link rel="stylesheet" href="assets/css/style.css">
 
@@ -15,13 +15,49 @@
       padding:90px 0;
     }
 
+    .portfolio-intro{
+      max-width:820px;
+      margin:0 auto 34px;
+      text-align:center;
+    }
+
+    .portfolio-intro .section-kicker{
+      display:inline-flex;
+      width:fit-content;
+      margin-bottom:14px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#fff7ed;
+      color:#ea580c;
+      border:1px solid #fed7aa;
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .portfolio-intro h2{
+      margin:0 0 14px;
+      color:#0f172a;
+      font-size:clamp(38px,5vw,62px);
+      line-height:1;
+      letter-spacing:-2px;
+    }
+
+    .portfolio-intro p{
+      max-width:680px;
+      margin:0 auto;
+      color:#475569;
+      font-size:17px;
+      line-height:1.7;
+      font-weight:500;
+    }
+
     .demo-tabs{
       display:flex;
       flex-wrap:wrap;
       justify-content:center;
       gap:12px;
-      max-width:960px;
-      margin:0 auto 56px;
+      max-width:1040px;
+      margin:0 auto 50px;
     }
 
     .demo-tab{
@@ -43,18 +79,36 @@
       color:#ea580c;
     }
 
+    .demo-tab.service{
+      background:#eef2ff;
+      border-color:#c7d2fe;
+      color:#3730a3;
+    }
+
+    .demo-tab.tool{
+      background:#ecfeff;
+      border-color:#bae6fd;
+      color:#0369a1;
+    }
+
+    .demo-tab.ai{
+      background:#f0f9ff;
+      border-color:#bae6fd;
+      color:#0369a1;
+    }
+
     .demo-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:32px;
+      gap:28px;
     }
 
     .demo-preview-card{
       background:white;
       border:1px solid #e5e7eb;
-      border-radius:32px;
+      border-radius:30px;
       overflow:hidden;
-      box-shadow:0 24px 70px rgba(15,23,42,.08);
+      box-shadow:0 22px 60px rgba(15,23,42,.075);
       transition:.22s ease;
       display:flex;
       flex-direction:column;
@@ -62,13 +116,25 @@
 
     .demo-preview-card:hover{
       transform:translateY(-6px);
-      box-shadow:0 34px 90px rgba(15,23,42,.14);
+      box-shadow:0 34px 90px rgba(15,23,42,.13);
     }
 
     .demo-browser{
       background:#0f172a;
       padding:14px;
       border-bottom:1px solid #e5e7eb;
+    }
+
+    .demo-preview-card.tool-demo .demo-browser{
+      background:linear-gradient(135deg,#07111f,#0f2742);
+    }
+
+    .demo-preview-card.ai-demo-card .demo-browser{
+      background:linear-gradient(135deg,#07111f,#12385b);
+    }
+
+    .demo-preview-card.service-demo .demo-browser{
+      background:linear-gradient(135deg,#17324d,#0f2438);
     }
 
     .demo-browser-top{
@@ -97,7 +163,7 @@
     }
 
     .demo-preview{
-      height:310px;
+      height:290px;
       background:#111827;
       border-radius:22px;
       overflow:hidden;
@@ -111,30 +177,44 @@
       width:1200px;
       height:820px;
       border:0;
-      transform:translateX(-50%) scale(.43);
+      transform:translateX(-50%) scale(.40);
       transform-origin:top center;
       pointer-events:none;
       background:white;
     }
 
     .demo-content{
-      padding:30px;
+      padding:28px;
       flex:1;
       display:flex;
       flex-direction:column;
     }
 
+    .demo-category{
+      display:inline-flex;
+      width:fit-content;
+      margin-bottom:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#f1f5f9;
+      color:#334155;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.55px;
+    }
+
     .demo-content h3{
-      font-size:30px;
+      font-size:28px;
       color:#0f172a;
       letter-spacing:-.8px;
-      margin-bottom:12px;
+      margin:0 0 10px;
     }
 
     .demo-content p{
       color:#475569;
-      line-height:1.7;
-      margin-bottom:22px;
+      line-height:1.65;
+      margin:0 0 18px;
       font-weight:500;
     }
 
@@ -142,7 +222,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-bottom:24px;
+      margin-bottom:22px;
     }
 
     .demo-feature{
@@ -152,6 +232,18 @@
       padding:7px 11px;
       font-size:12px;
       font-weight:800;
+    }
+
+    .tool-demo .demo-feature,
+    .ai-demo-card .demo-feature{
+      background:#f0f9ff;
+      color:#0369a1;
+      border-color:#bae6fd;
+    }
+
+    .service-demo .demo-feature{
+      background:#eef2ff;
+      color:#3730a3;
     }
 
     .demo-actions{
@@ -196,39 +288,6 @@
       color:white;
     }
 
-    .coming-section{
-      background:#f8fafc;
-      padding:90px 0;
-    }
-
-    .coming-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:16px;
-    }
-
-    .coming-item{
-      background:white;
-      border:1px solid #e5e7eb;
-      border-radius:22px;
-      padding:24px;
-      box-shadow:0 16px 45px rgba(15,23,42,.05);
-    }
-
-    .coming-item strong{
-      display:block;
-      font-size:20px;
-      margin-bottom:8px;
-      color:#0f172a;
-    }
-
-    .coming-item span{
-      color:#475569;
-      font-size:14px;
-      line-height:1.5;
-      font-weight:500;
-    }
-
     .portfolio-note{
       background:#0f172a;
       color:white;
@@ -253,13 +312,12 @@
     }
 
     @media(max-width:980px){
-      .demo-grid,
-      .coming-grid{
+      .demo-grid{
         grid-template-columns:1fr;
       }
 
       .demo-preview{
-        height:260px;
+        height:255px;
       }
 
       .demo-preview iframe{
@@ -267,52 +325,27 @@
       }
 
       .demo-content{
-        padding:26px;
+        padding:24px;
       }
     }
-    .demo-tab.service{
-  background:#eef2ff;
-  border-color:#c7d2fe;
-  color:#3730a3;
-}
 
-.demo-preview-card.service-demo .demo-browser{
-  background:linear-gradient(135deg,#17324d,#0f2438);
-}
-    /* Panel autoeditable demo */
+    @media(max-width:640px){
+      .portfolio-demos{
+        padding:70px 0;
+      }
 
-.demo-tab.tool{
-  background:#ecfeff;
-  border-color:#bae6fd;
-  color:#0369a1;
-}
+      .demo-preview{
+        height:230px;
+      }
 
-.demo-preview-card.tool-demo .demo-browser{
-  background:linear-gradient(135deg,#07111f,#0f2742);
-}
+      .demo-preview iframe{
+        transform:translateX(-50%) scale(.30);
+      }
 
-.demo-preview-card.tool-demo .demo-feature{
-  background:#ecfeff;
-  color:#0369a1;
-  border-color:#bae6fd;
-}
-    /* Automatización IA demo */
-
-.demo-tab.ai{
-  background:#f0f9ff;
-  border-color:#bae6fd;
-  color:#0369a1;
-}
-
-.demo-preview-card.ai-demo-card .demo-browser{
-  background:linear-gradient(135deg,#07111f,#12385b);
-}
-
-.demo-preview-card.ai-demo-card .demo-feature{
-  background:#f0f9ff;
-  color:#0369a1;
-  border-color:#bae6fd;
-}
+      .demo-actions a{
+        width:100%;
+      }
+    }
   </style>
 </head>
 
@@ -334,12 +367,12 @@
     </nav>
 
     <div class="page-hero-content">
-      <div class="badge">Demos sectoriales y casos visuales</div>
+      <div class="badge">Portfolio visual</div>
 
-      <h1>Ejemplos de webs con estilos realmente diferentes.</h1>
+      <h1>Ejemplos de webs, funcionalidades y casos visuales.</h1>
 
       <p>
-        Cada demo tiene una identidad propia: colores, tipografía, fotografías, estructura y tono adaptados al tipo de negocio.
+        Explora demos reales de estilos, sectores y herramientas que podemos adaptar a tu negocio.
       </p>
     </div>
 
@@ -351,24 +384,23 @@
   <section class="portfolio-demos">
     <div class="container">
 
-      <div class="section-title">
-        <h2>Ejemplos publicados</h2>
+      <div class="portfolio-intro">
+        <span class="section-kicker">Demos publicadas</span>
+        <h2>Mira ejemplos. Elige el estilo. Pide algo parecido.</h2>
         <p>
-          <p>
-  Ejemplos visuales de webs completas, sectores concretos y funcionalidades especiales como reestyling web o panel autoeditable para clientes.
-</p>
+          Portfolio pensado para ver rápido el resultado visual: webs sectoriales, panel autoeditable, automatización IA y reestyling.
         </p>
       </div>
 
       <div class="demo-tabs">
-        <a href="demos/restaurante/index.html" class="demo-tab available">🍔 Smash House</a>
-<a href="demos/clinica/index.html" class="demo-tab available">🦷 Aura Dental Clinic</a>
-<a href="demos/inmobiliaria/index.html" class="demo-tab available">🏠 Nortea Homes</a>
-<a href="demos/tienda/index.html" class="demo-tab available">🛍️ Luma Shop</a>
-<a href="demos/legal/index.html" class="demo-tab available">⚖️ Lexora Legal</a>
-<a href="demos/editor/index.html" class="demo-tab available tool">🧩 Panel autoeditable</a>
-<a href="demos/ia/index.html" class="demo-tab available ai">🤖 Automatización IA</a>
-<a href="demos/restyling/index.html" class="demo-tab available service">♻️ Caso Reestyling</a>
+        <a href="demos/restaurante/index.html" class="demo-tab available">🍔 Restaurante</a>
+        <a href="demos/clinica/index.html" class="demo-tab available">🦷 Clínica</a>
+        <a href="demos/inmobiliaria/index.html" class="demo-tab available">🏠 Inmobiliaria</a>
+        <a href="demos/tienda/index.html" class="demo-tab available">🛍️ Tienda online</a>
+        <a href="demos/legal/index.html" class="demo-tab available">⚖️ Legal-tech</a>
+        <a href="demos/editor/index.html" class="demo-tab tool">🧩 Panel editable</a>
+        <a href="demos/ia/index.html" class="demo-tab ai">🤖 IA leads</a>
+        <a href="demos/restyling/index.html" class="demo-tab service">♻️ Reestyling</a>
       </div>
 
       <div class="demo-grid">
@@ -376,11 +408,7 @@
         <article class="demo-preview-card">
           <div class="demo-browser">
             <div class="demo-browser-top">
-              <div class="demo-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+              <div class="demo-dots"><span></span><span></span><span></span></div>
               <div class="demo-browser-label">Vista previa real</div>
             </div>
 
@@ -390,17 +418,15 @@
           </div>
 
           <div class="demo-content">
+            <span class="demo-category">Restaurante</span>
             <h3>Smash House</h3>
-            <p>
-              Demo premium para hamburguesería moderna con carta visual, pedido online, mini carrito, combos, galería foodie y reservas.
-            </p>
+            <p>Demo urbana para hamburguesería con carta visual, combos, pedido online y reservas.</p>
 
             <div class="demo-features">
-              <span class="demo-feature">Carta visual</span>
-              <span class="demo-feature">Pedido online</span>
-              <span class="demo-feature">Mini carrito</span>
-              <span class="demo-feature">Combos</span>
+              <span class="demo-feature">Carta</span>
+              <span class="demo-feature">Pedidos</span>
               <span class="demo-feature">Reservas</span>
+              <span class="demo-feature">Combos</span>
             </div>
 
             <div class="demo-actions">
@@ -413,11 +439,7 @@
         <article class="demo-preview-card">
           <div class="demo-browser">
             <div class="demo-browser-top">
-              <div class="demo-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+              <div class="demo-dots"><span></span><span></span><span></span></div>
               <div class="demo-browser-label">Vista previa real</div>
             </div>
 
@@ -427,16 +449,14 @@
           </div>
 
           <div class="demo-content">
+            <span class="demo-category">Clínica</span>
             <h3>Aura Dental Clinic</h3>
-            <p>
-              Demo elegante para clínica dental con estética limpia, tonos suaves, tratamientos, equipo, opiniones, galería y solicitud de cita.
-            </p>
+            <p>Demo limpia y elegante para clínica dental con tratamientos, equipo, opiniones y cita.</p>
 
             <div class="demo-features">
               <span class="demo-feature">Tratamientos</span>
               <span class="demo-feature">Equipo</span>
               <span class="demo-feature">Opiniones</span>
-              <span class="demo-feature">Galería</span>
               <span class="demo-feature">Citas</span>
             </div>
 
@@ -450,11 +470,7 @@
         <article class="demo-preview-card">
           <div class="demo-browser">
             <div class="demo-browser-top">
-              <div class="demo-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+              <div class="demo-dots"><span></span><span></span><span></span></div>
               <div class="demo-browser-label">Vista previa real</div>
             </div>
 
@@ -464,17 +480,15 @@
           </div>
 
           <div class="demo-content">
+            <span class="demo-category">Inmobiliaria</span>
             <h3>Nortea Homes</h3>
-            <p>
-              Demo premium para inmobiliaria con propiedades destacadas, buscador, valoración gratuita, captación de propietarios, zonas y formularios.
-            </p>
+            <p>Demo premium para propiedades destacadas, captación de propietarios y solicitudes de visita.</p>
 
             <div class="demo-features">
               <span class="demo-feature">Propiedades</span>
-              <span class="demo-feature">Buscador</span>
-              <span class="demo-feature">Valoración</span>
               <span class="demo-feature">Captación</span>
-              <span class="demo-feature">Leads</span>
+              <span class="demo-feature">Visitas</span>
+              <span class="demo-feature">Premium</span>
             </div>
 
             <div class="demo-actions">
@@ -484,14 +498,10 @@
           </div>
         </article>
 
-                        <article class="demo-preview-card">
+        <article class="demo-preview-card">
           <div class="demo-browser">
             <div class="demo-browser-top">
-              <div class="demo-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+              <div class="demo-dots"><span></span><span></span><span></span></div>
               <div class="demo-browser-label">Vista previa real</div>
             </div>
 
@@ -501,15 +511,13 @@
           </div>
 
           <div class="demo-content">
+            <span class="demo-category">Tienda online</span>
             <h3>Luma Shop</h3>
-            <p>
-              Demo de tienda online moderna con carrusel de ofertas, banner animado, productos, categorías, carrito demo, pack destacado, reseñas y contacto.
-            </p>
+            <p>Demo ecommerce con carrusel de ofertas, productos, categorías, carrito demo y newsletter.</p>
 
             <div class="demo-features">
-              <span class="demo-feature">Tienda online</span>
-              <span class="demo-feature">Carrusel</span>
-              <span class="demo-feature">Carrito demo</span>
+              <span class="demo-feature">Ecommerce</span>
+              <span class="demo-feature">Carrito</span>
               <span class="demo-feature">Ofertas</span>
               <span class="demo-feature">Newsletter</span>
             </div>
@@ -521,14 +529,10 @@
           </div>
         </article>
 
-                <article class="demo-preview-card">
+        <article class="demo-preview-card">
           <div class="demo-browser">
             <div class="demo-browser-top">
-              <div class="demo-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+              <div class="demo-dots"><span></span><span></span><span></span></div>
               <div class="demo-browser-label">Vista previa real</div>
             </div>
 
@@ -538,17 +542,15 @@
           </div>
 
           <div class="demo-content">
+            <span class="demo-category">Servicios profesionales</span>
             <h3>Lexora Legal</h3>
-            <p>
-              Demo de despacho legal o asesoría profesional con imagen sobria, áreas de práctica, equipo, proceso, resultados, FAQs y formulario de consulta.
-            </p>
+            <p>Demo legal-tech para despacho moderno con áreas, equipo, casos de éxito y consulta inicial.</p>
 
             <div class="demo-features">
-              <span class="demo-feature">Despacho legal</span>
-              <span class="demo-feature">Servicios profesionales</span>
-              <span class="demo-feature">Consulta inicial</span>
+              <span class="demo-feature">Legal-tech</span>
               <span class="demo-feature">Equipo</span>
-              <span class="demo-feature">FAQs</span>
+              <span class="demo-feature">Casos</span>
+              <span class="demo-feature">Consulta</span>
             </div>
 
             <div class="demo-actions">
@@ -559,116 +561,94 @@
         </article>
 
         <article class="demo-preview-card tool-demo">
-  <div class="demo-browser">
-    <div class="demo-browser-top">
-      <div class="demo-dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="demo-browser-label">Vista previa real</div>
-    </div>
-
-    <div class="demo-preview">
-      <iframe src="demos/editor/index.html" title="Panel autoeditable demo"></iframe>
-    </div>
-  </div>
-
-  <div class="demo-content">
-    <h3>Handoo Edit Panel</h3>
-
-    <p>
-      Demo de panel autoeditable seguro para que el cliente pueda cambiar textos, fotos, productos, precios, ofertas y datos básicos sin tocar código ni romper el diseño.
-    </p>
-
-    <div class="demo-features">
-      <span class="demo-feature">Panel cliente</span>
-      <span class="demo-feature">Productos editables</span>
-      <span class="demo-feature">Vista previa</span>
-      <span class="demo-feature">Diseño protegido</span>
-      <span class="demo-feature">Sin código</span>
-    </div>
-
-    <div class="demo-actions">
-      <a href="demos/editor/index.html" class="demo-main-link">Ver demo</a>
-      <a href="contacto.html" class="demo-secondary-link">Quiero una web editable</a>
-    </div>
-  </div>
-</article>
-
-        <article class="demo-preview-card ai-demo-card">
-  <div class="demo-browser">
-    <div class="demo-browser-top">
-      <div class="demo-dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="demo-browser-label">Vista previa real</div>
-    </div>
-
-    <div class="demo-preview">
-      <iframe src="demos/ia/index.html" title="Demo automatización IA"></iframe>
-    </div>
-  </div>
-
-  <div class="demo-content">
-    <h3>Handoo IA · Automatización de leads</h3>
-
-    <p>
-      Demo de automatización IA para responder consultas, clasificar contactos, generar resumen del lead y avisar al negocio para seguimiento.
-    </p>
-
-    <div class="demo-features">
-      <span class="demo-feature">Respuesta IA</span>
-      <span class="demo-feature">Leads clasificados</span>
-      <span class="demo-feature">Seguimiento</span>
-      <span class="demo-feature">Avisos</span>
-      <span class="demo-feature">Ahorro de tiempo</span>
-    </div>
-
-    <div class="demo-actions">
-      <a href="demos/ia/index.html" class="demo-main-link">Ver demo</a>
-      <a href="contacto.html" class="demo-secondary-link">Quiero automatizar</a>
-    </div>
-  </div>
-</article>
-        
-                <article class="demo-preview-card service-demo">
           <div class="demo-browser">
             <div class="demo-browser-top">
-              <div class="demo-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+              <div class="demo-dots"><span></span><span></span><span></span></div>
               <div class="demo-browser-label">Vista previa real</div>
             </div>
 
             <div class="demo-preview">
-              <iframe src="demos/restyling/index.html" title="Delta ReStyle demo"></iframe>
+              <iframe src="demos/editor/index.html" title="Panel autoeditable demo"></iframe>
             </div>
           </div>
 
           <div class="demo-content">
-            <h3>Delta ReStyle · Antes / Después</h3>
-            <p>
-              <p>
-  Caso visual de servicio para mostrar cómo una web antigua puede transformarse en una web moderna, clara, responsive y orientada a captar contactos.
-</p>
-            </p>
+            <span class="demo-category">Funcionalidad</span>
+            <h3>Handoo Edit Panel</h3>
+            <p>Panel seguro para cambiar textos, fotos, horarios, productos y ofertas sin tocar código.</p>
+
+            <div class="demo-features">
+              <span class="demo-feature">Panel cliente</span>
+              <span class="demo-feature">Sin código</span>
+              <span class="demo-feature">Vista previa</span>
+              <span class="demo-feature">Protegido</span>
+            </div>
+
+            <div class="demo-actions">
+              <a href="demos/editor/index.html" class="demo-main-link">Ver demo</a>
+              <a href="contacto.html" class="demo-secondary-link">Quiero web editable</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="demo-preview-card ai-demo-card">
+          <div class="demo-browser">
+            <div class="demo-browser-top">
+              <div class="demo-dots"><span></span><span></span><span></span></div>
+              <div class="demo-browser-label">Vista previa real</div>
+            </div>
+
+            <div class="demo-preview">
+              <iframe src="demos/ia/index.html" title="Demo automatización IA"></iframe>
+            </div>
+          </div>
+
+          <div class="demo-content">
+            <span class="demo-category">Funcionalidad</span>
+            <h3>Handoo IA · Leads</h3>
+            <p>Automatización para responder consultas, clasificar leads y preparar el seguimiento.</p>
+
+            <div class="demo-features">
+              <span class="demo-feature">Respuesta IA</span>
+              <span class="demo-feature">Leads</span>
+              <span class="demo-feature">Avisos</span>
+              <span class="demo-feature">Ahorro</span>
+            </div>
+
+            <div class="demo-actions">
+              <a href="demos/ia/index.html" class="demo-main-link">Ver demo</a>
+              <a href="contacto.html" class="demo-secondary-link">Quiero automatizar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="demo-preview-card service-demo">
+          <div class="demo-browser">
+            <div class="demo-browser-top">
+              <div class="demo-dots"><span></span><span></span><span></span></div>
+              <div class="demo-browser-label">Vista previa real</div>
+            </div>
+
+            <div class="demo-preview">
+              <iframe src="demos/restyling/index.html" title="Reestyling demo"></iframe>
+            </div>
+          </div>
+
+          <div class="demo-content">
+            <span class="demo-category">Caso visual</span>
+            <h3>Nova ReStyle · Antes / Después</h3>
+            <p>Caso visual de reestyling para transformar una web antigua en una web moderna y clara.</p>
 
             <div class="demo-features">
               <span class="demo-feature">Antes / Después</span>
               <span class="demo-feature">Reestyling</span>
-              <span class="demo-feature">Web antigua</span>
-              <span class="demo-feature">Mejora visual</span>
               <span class="demo-feature">Responsive</span>
+              <span class="demo-feature">CTA</span>
             </div>
 
             <div class="demo-actions">
               <a href="demos/restyling/index.html" class="demo-main-link">Ver demo</a>
-              <a href="contacto.html" class="demo-secondary-link">Quiero algo así</a>
+              <a href="contacto.html" class="demo-secondary-link">Quiero reestyling</a>
             </div>
           </div>
         </article>
@@ -678,95 +658,9 @@
     </div>
   </section>
 
-  <section class="coming-section">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Próximas demos sectoriales</h2>
-        <p>
-          La biblioteca irá creciendo con plantillas para diferentes negocios locales y profesionales.
-        </p>
-      </div>
-
-      <div class="coming-grid">
-
-        <div class="coming-item">
-          <strong>⚖️ Despacho legal</strong>
-          <span>Especialidades, autoridad profesional, consulta inicial y confianza.</span>
-        </div>
-
-        <div class="coming-item">
-          <strong>🏋️ Gimnasio Urban Fit</strong>
-          <span>Planes, clases, horarios, entrenadores y captación de nuevos socios.</span>
-        </div>
-
-        <div class="coming-item">
-          <strong>🎓 Academia Aula Norte</strong>
-          <span>Cursos, matrículas, niveles, horarios y solicitud de información.</span>
-        </div>
-
-        <div class="coming-item">
-          <strong>🛍️ Comercio local</strong>
-          <span>Catálogo, promociones, productos destacados, WhatsApp y contacto rápido.</span>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section section-soft">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Qué buscamos en cada demo</h2>
-        <p>
-          Una demo no debe parecer una plantilla genérica. Tiene que parecer una web real, con una marca distinta y una intención comercial clara.
-        </p>
-      </div>
-
-      <div class="grid-4">
-
-        <div class="card">
-          <div class="card-icon">🎯</div>
-          <h3>Objetivo claro</h3>
-          <p>
-            Cada web se diseña para una acción: reservar, pedir presupuesto, comprar, llamar o solicitar cita.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">📸</div>
-          <h3>Fotos reales</h3>
-          <p>
-            Las imágenes cambian completamente la percepción de calidad y confianza.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🎨</div>
-          <h3>Estilo propio</h3>
-          <p>
-            Cada sector necesita colores, tipografía y tono visual diferentes.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">💬</div>
-          <h3>Contacto fácil</h3>
-          <p>
-            Formularios, WhatsApp, botones visibles y llamadas a la acción sin fricción.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
   <section class="portfolio-note">
     <div class="container">
-      <h2>¿Quieres una demo adaptada a tu negocio?</h2>
+      <h2>¿Quieres una web adaptada a tu negocio?</h2>
       <p>
         Podemos crear una web con tu sector, tus colores, tus textos, tus fotos y las llamadas a la acción que realmente necesita tu cliente.
       </p>
@@ -779,7 +673,7 @@
 
 <footer class="footer">
   <div class="container">
-    © 2026 Handoo Studio · Portfolio y demos sectoriales · contacto@handoo.me
+    © 2026 Handoo Studio · Portfolio visual · contacto@handoo.me
   </div>
 </footer>
 
