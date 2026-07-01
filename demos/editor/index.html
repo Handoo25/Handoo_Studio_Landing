@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Handoo Edit Panel | Demo Panel Autoeditable</title>
+  <meta name="description" content="Demo de panel autoeditable seguro para cambiar textos, fotos, productos, precios, ofertas y datos básicos sin tocar código." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    :root{
+      --edit-bg:#07111f;
+      --edit-panel:#0d1b2d;
+      --edit-panel-2:#10243a;
+      --edit-card:#ffffff;
+      --edit-text:#0f172a;
+      --edit-muted:#64748b;
+      --edit-line:#dbe4ef;
+      --edit-orange:#f97316;
+      --edit-blue:#38bdf8;
+      --edit-green:#22c55e;
+      --edit-red:#ef4444;
+      --edit-radius:26px;
+      --edit-shadow:0 30px 90px rgba(2,8,23,.18);
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body.editor-demo{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:#f4f7fb;
+      color:var(--edit-text);
+    }
+
+    .edit-demo-nav{
+      position:fixed;
+      top:18px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:50;
+      width:min(1180px,calc(100% - 32px));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:12px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(15,23,42,.08);
+      backdrop-filter:blur(18px);
+      box-shadow:0 18px 50px rgba(15,23,42,.08);
+    }
+
+    .edit-logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:#0f172a;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+
+    .edit-logo-mark{
+      width:34px;
+      height:34px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:#0f172a;
+      color:#fff;
+      font-size:15px;
+      box-shadow:0 10px 24px rgba(15,23,42,.18);
+    }
+
+    .edit-demo-nav-links{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .edit-demo-nav-links a{
+      text-decoration:none;
+      color:#475569;
+      font-size:13px;
+      font-weight:850;
+      padding:10px 12px;
+      border-radius:999px;
+    }
+
+    .edit-demo-nav-links a:hover{
+      color:#0f172a;
+      background:#f1f5f9;
+    }
+
+    .edit-demo-nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      background:var(--edit-orange);
+      color:#fff !important;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:950;
+      box-shadow:0 14px 32px rgba(249,115,22,.24);
+    }
+
+    .edit-hero{
+      min-height:100vh;
+      padding:132px 20px 70px;
+      background:
+        radial-gradient(circle at top left,rgba(56,189,248,.18),transparent 34%),
+        radial-gradient(circle at top right,rgba(249,115,22,.16),transparent 34%),
+        linear-gradient(135deg,#07111f,#0c1728 52%,#111827);
+      color:white;
+      overflow:hidden;
+    }
+
+    .edit-container{
+      width:min(1180px,100%);
+      margin:0 auto;
+    }
+
+    .edit-hero-grid{
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .edit-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      width:fit-content;
+      margin-bottom:18px;
+      padding:8px 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color:#bae6fd;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .edit-kicker::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--edit-green);
+      box-shadow:0 0 0 6px rgba(34,197,94,.12);
+    }
+
+    .edit-hero h1{
+      margin:0 0 20px;
+      max-width:720px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(46px,6vw,82px);
+      line-height:.9;
+      letter-spacing:-4px;
+    }
+
+    .edit-hero h1 span{
+      color:#fdba74;
+    }
+
+    .edit-hero-text{
+      max-width:650px;
+      margin:0 0 28px;
+      color:#cbd5e1;
+      font-size:18px;
+      line-height:1.75;
+    }
+
+    .edit-hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:26px;
+    }
+
+    .edit-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 20px;
+      border-radius:15px;
+      border:1px solid transparent;
+      text-decoration:none;
+      font-weight:950;
+      cursor:pointer;
+      transition:.18s ease;
+      font-family:inherit;
+    }
+
+    .edit-btn-primary{
+      background:var(--edit-orange);
+      color:white;
+      box-shadow:0 20px 46px rgba(249,115,22,.28);
+    }
+
+    .edit-btn-primary:hover{
+      transform:translateY(-2px);
+      background:#fb923c;
+    }
+
+    .edit-btn-secondary{
+      background:rgba(255,255,255,.08);
+      color:white;
+      border-color:rgba(255,255,255,.13);
+    }
+
+    .edit-btn-secondary:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+    }
+
+    .edit-proof{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      max-width:640px;
+    }
+
+    .edit-proof-card{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .edit-proof-card strong{
+      display:block;
+      color:white;
+      font-size:24px;
+      letter-spacing:-1px;
+      margin-bottom:4px;
+    }
+
+    .edit-proof-card span{
+      color:#cbd5e1;
+      font-size:12px;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .edit-product-preview{
+      position:relative;
+      padding:14px;
+      border-radius:34px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 40px 120px rgba(0,0,0,.26);
+    }
+
+    .edit-browser-top{
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 14px;
+      background:#e2e8f0;
+      border-radius:22px 22px 0 0;
+    }
+
+    .edit-dots{
+      display:flex;
+      gap:7px;
+    }
+
+    .edit-dots span{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#94a3b8;
+    }
+
+    .edit-browser-label{
+      color:#475569;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .edit-shop-window{
+      background:#fff;
+      border-radius:0 0 24px 24px;
+      padding:22px;
+      color:#0f172a;
+    }
+
+    .edit-shop-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:20px;
+    }
+
+    .edit-shop-brand{
+      font-weight:950;
+      letter-spacing:-.8px;
+      font-size:20px;
+    }
+
+    .edit-shop-badge{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#ecfdf5;
+      color:#15803d;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .edit-shop-hero-card{
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:20px;
+      align-items:center;
+      padding:22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,#f8fafc,#fff7ed);
+      border:1px solid #e2e8f0;
+      margin-bottom:16px;
+    }
+
+    .edit-shop-hero-card h2{
+      margin:0 0 8px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:32px;
+      line-height:1;
+      letter-spacing:-1.6px;
+      color:#0f172a;
+    }
+
+    .edit-shop-hero-card p{
+      margin:0 0 14px;
+      color:#64748b;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .edit-shop-hero-card img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      border-radius:20px;
+      box-shadow:0 18px 50px rgba(15,23,42,.14);
+    }
+
+    .edit-product-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .edit-live-product{
+      padding:12px;
+      border-radius:22px;
+      border:1px solid #e2e8f0;
+      background:white;
+      box-shadow:0 14px 36px rgba(15,23,42,.07);
+    }
+
+    .edit-live-product-img{
+      position:relative;
+      height:180px;
+      border-radius:18px;
+      overflow:hidden;
+      background:#f1f5f9;
+      margin-bottom:12px;
+    }
+
+    .edit-live-product-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:.25s ease;
+    }
+
+    .edit-live-product:hover img{
+      transform:scale(1.04);
+    }
+
+    .edit-live-label{
+      position:absolute;
+      top:10px;
+      left:10px;
+      display:inline-flex;
+      padding:7px 9px;
+      border-radius:999px;
+      background:#0f172a;
+      color:white;
+      font-size:10px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .edit-product-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .edit-live-product h3{
+      margin:0 0 4px;
+      color:#0f172a;
+      font-size:17px;
+      letter-spacing:-.4px;
+    }
+
+    .edit-live-product p{
+      margin:0;
+      color:#64748b;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .edit-price{
+      color:#f97316;
+      font-weight:950;
+      white-space:nowrap;
+    }
+
+    .edit-panel-section{
+      padding:92px 20px;
+      background:#f4f7fb;
+    }
+
+    .edit-section-heading{
+      width:min(850px,100%);
+      margin:0 auto 42px;
+      text-align:center;
+    }
+
+    .edit-section-heading span{
+      display:inline-flex;
+      margin-bottom:14px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff7ed;
+      color:#f97316;
+      border:1px solid #fed7aa;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .edit-section-heading h2{
+      margin:0 0 14px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(38px,5vw,68px);
+      line-height:.94;
+      letter-spacing:-3px;
+      color:#0f172a;
+    }
+
+    .edit-section-heading p{
+      margin:0 auto;
+      max-width:720px;
+      color:#64748b;
+      font-size:17px;
+      line-height:1.75;
+    }
+
+    .edit-app-shell{
+      width:min(1180px,100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:18px;
+      padding:18px;
+      border-radius:34px;
+      background:#0b1627;
+      box-shadow:0 34px 100px rgba(15,23,42,.18);
+      border:1px solid rgba(15,23,42,.08);
+    }
+
+    .edit-sidebar{
+      padding:18px;
+      border-radius:24px;
+      background:#081120;
+      color:white;
+      display:flex;
+      flex-direction:column;
+      min-height:720px;
+    }
+
+    .edit-sidebar-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:24px;
+    }
+
+    .edit-sidebar-logo{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:15px;
+      background:linear-gradient(135deg,#f97316,#fb923c);
+      color:white;
+      font-weight:950;
+    }
+
+    .edit-sidebar-top strong{
+      display:block;
+      font-size:15px;
+    }
+
+    .edit-sidebar-top span{
+      display:block;
+      margin-top:2px;
+      color:#94a3b8;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .edit-menu{
+      display:grid;
+      gap:8px;
+    }
+
+    .edit-menu button{
+      width:100%;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height:44px;
+      padding:0 12px;
+      border:0;
+      border-radius:13px;
+      background:transparent;
+      color:#cbd5e1;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:850;
+      cursor:pointer;
+      text-align:left;
+    }
+
+    .edit-menu button.active,
+    .edit-menu button:hover{
+      background:rgba(255,255,255,.08);
+      color:white;
+    }
+
+    .edit-sidebar-note{
+      margin-top:auto;
+      padding:16px;
+      border-radius:18px;
+      background:rgba(56,189,248,.10);
+      border:1px solid rgba(56,189,248,.18);
+    }
+
+    .edit-sidebar-note strong{
+      display:block;
+      color:#bae6fd;
+      font-size:13px;
+      margin-bottom:6px;
+    }
+
+    .edit-sidebar-note p{
+      margin:0;
+      color:#94a3b8;
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    .edit-workspace{
+      border-radius:26px;
+      background:#eef3f8;
+      overflow:hidden;
+    }
+
+    .edit-workspace-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 20px;
+      background:white;
+      border-bottom:1px solid #dbe4ef;
+    }
+
+    .edit-workspace-title strong{
+      display:block;
+      color:#0f172a;
+      font-size:18px;
+      letter-spacing:-.5px;
+    }
+
+    .edit-workspace-title span{
+      display:block;
+      margin-top:3px;
+      color:#64748b;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .edit-workspace-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .edit-small-btn{
+      min-height:38px;
+      padding:0 13px;
+      border-radius:12px;
+      border:1px solid #dbe4ef;
+      background:white;
+      color:#334155;
+      font-family:inherit;
+      font-size:12px;
+      font-weight:950;
+      cursor:pointer;
+    }
+
+    .edit-small-btn.publish{
+      background:#16a34a;
+      color:white;
+      border-color:#16a34a;
+    }
+
+    .edit-editor-grid{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:18px;
+      padding:18px;
+    }
+
+    .edit-form-panel,
+    .edit-preview-panel{
+      background:white;
+      border:1px solid #dbe4ef;
+      border-radius:24px;
+      padding:18px;
+    }
+
+    .edit-panel-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .edit-panel-title h3{
+      margin:0;
+      color:#0f172a;
+      font-size:17px;
+      letter-spacing:-.5px;
+    }
+
+    .edit-status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#ecfdf5;
+      color:#15803d;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .edit-status-pill::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#22c55e;
+    }
+
+    .edit-field{
+      margin-bottom:14px;
+    }
+
+    .edit-field label{
+      display:block;
+      margin-bottom:7px;
+      color:#334155;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.55px;
+    }
+
+    .edit-field input,
+    .edit-field textarea,
+    .edit-field select{
+      width:100%;
+      border:1px solid #dbe4ef;
+      border-radius:14px;
+      background:#f8fafc;
+      color:#0f172a;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:700;
+      outline:none;
+      padding:13px 14px;
+      transition:.16s ease;
+    }
+
+    .edit-field textarea{
+      min-height:92px;
+      resize:vertical;
+      line-height:1.55;
+    }
+
+    .edit-field input:focus,
+    .edit-field textarea:focus,
+    .edit-field select:focus{
+      border-color:#38bdf8;
+      background:white;
+      box-shadow:0 0 0 4px rgba(56,189,248,.12);
+    }
+
+    .edit-two-cols{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .edit-upload-box{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px dashed #cbd5e1;
+      background:#f8fafc;
+    }
+
+    .edit-upload-thumb{
+      width:64px;
+      height:64px;
+      border-radius:14px;
+      overflow:hidden;
+      background:#e2e8f0;
+      flex:0 0 auto;
+    }
+
+    .edit-upload-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .edit-upload-box strong{
+      display:block;
+      color:#0f172a;
+      font-size:13px;
+      margin-bottom:4px;
+    }
+
+    .edit-upload-box span{
+      display:block;
+      color:#64748b;
+      font-size:12px;
+      line-height:1.4;
+    }
+
+    .edit-toggle-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:6px;
+    }
+
+    .edit-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#f8fafc;
+      border:1px solid #dbe4ef;
+      color:#334155;
+      font-size:12px;
+      font-weight:900;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .edit-toggle input{
+      accent-color:#f97316;
+    }
+
+    .edit-preview-card{
+      border-radius:22px;
+      background:linear-gradient(135deg,#f8fafc,#fff7ed);
+      border:1px solid #e2e8f0;
+      overflow:hidden;
+    }
+
+    .edit-preview-header{
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom:1px solid #e2e8f0;
+    }
+
+    .edit-preview-header strong{
+      color:#0f172a;
+      font-size:17px;
+      letter-spacing:-.4px;
+    }
+
+    .edit-preview-header span{
+      display:inline-flex;
+      padding:7px 9px;
+      border-radius:999px;
+      background:#fff;
+      color:#64748b;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .edit-preview-body{
+      padding:18px;
+    }
+
+    .edit-preview-product{
+      display:grid;
+      grid-template-columns:.9fr 1fr;
+      gap:18px;
+      align-items:center;
+      padding:14px;
+      border-radius:22px;
+      background:white;
+      border:1px solid #e2e8f0;
+      box-shadow:0 16px 40px rgba(15,23,42,.07);
+    }
+
+    .edit-preview-product-img{
+      height:260px;
+      border-radius:18px;
+      overflow:hidden;
+      position:relative;
+      background:#e2e8f0;
+    }
+
+    .edit-preview-product-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .edit-preview-tag{
+      position:absolute;
+      left:12px;
+      top:12px;
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#0f172a;
+      color:white;
+      font-size:11px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .edit-preview-info h4{
+      margin:0 0 8px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:32px;
+      line-height:1;
+      letter-spacing:-1.5px;
+      color:#0f172a;
+    }
+
+    .edit-preview-info p{
+      margin:0 0 18px;
+      color:#64748b;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .edit-preview-price-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:16px;
+    }
+
+    .edit-preview-price{
+      color:#f97316;
+      font-size:26px;
+      font-weight:950;
+      letter-spacing:-1px;
+    }
+
+    .edit-preview-stock{
+      display:inline-flex;
+      padding:8px 10px;
+      border-radius:999px;
+      background:#ecfdf5;
+      color:#15803d;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .edit-preview-buy{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:46px;
+      border:0;
+      border-radius:14px;
+      background:#0f172a;
+      color:white;
+      font-family:inherit;
+      font-size:13px;
+      font-weight:950;
+    }
+
+    .edit-change-log{
+      display:grid;
+      gap:9px;
+      margin-top:16px;
+    }
+
+    .edit-change-log div{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:#f8fafc;
+      color:#475569;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .edit-change-log div::before{
+      content:"✓";
+      width:20px;
+      height:20px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:#dcfce7;
+      color:#15803d;
+      font-size:12px;
+      font-weight:950;
+    }
+
+    .edit-features{
+      padding:92px 20px;
+      background:white;
+    }
+
+    .edit-feature-grid{
+      width:min(1180px,100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .edit-feature-card{
+      padding:24px;
+      border-radius:24px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+    }
+
+    .edit-feature-icon{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:15px;
+      background:#fff7ed;
+      color:#f97316;
+      font-weight:950;
+      margin-bottom:18px;
+    }
+
+    .edit-feature-card h3{
+      margin:0 0 10px;
+      color:#0f172a;
+      font-size:18px;
+      letter-spacing:-.5px;
+    }
+
+    .edit-feature-card p{
+      margin:0;
+      color:#64748b;
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .edit-comparison{
+      padding:92px 20px;
+      background:#07111f;
+      color:white;
+    }
+
+    .edit-comparison-grid{
+      width:min(980px,100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .edit-compare-card{
+      padding:28px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+    }
+
+    .edit-compare-card.safe{
+      background:
+        radial-gradient(circle at top right,rgba(34,197,94,.18),transparent 36%),
+        rgba(255,255,255,.06);
+      border-color:rgba(34,197,94,.22);
+    }
+
+    .edit-compare-card h3{
+      margin:0 0 18px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:30px;
+      letter-spacing:-1.2px;
+    }
+
+    .edit-compare-card ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .edit-compare-card li{
+      display:flex;
+      gap:10px;
+      color:#cbd5e1;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .edit-compare-card li strong{
+      color:white;
+    }
+
+    .edit-cta{
+      padding:90px 20px;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(249,115,22,.18),transparent 34%),
+        linear-gradient(135deg,#f8fafc,#fff7ed);
+      text-align:center;
+    }
+
+    .edit-cta-inner{
+      width:min(880px,100%);
+      margin:0 auto;
+    }
+
+    .edit-cta h2{
+      margin:0 0 18px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(40px,5vw,72px);
+      line-height:.95;
+      letter-spacing:-3px;
+      color:#0f172a;
+    }
+
+    .edit-cta p{
+      margin:0 auto 28px;
+      max-width:680px;
+      color:#64748b;
+      font-size:17px;
+      line-height:1.75;
+    }
+
+    .edit-toast{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:80;
+      display:none;
+      max-width:330px;
+      padding:15px 16px;
+      border-radius:18px;
+      background:#0f172a;
+      color:white;
+      box-shadow:0 20px 60px rgba(15,23,42,.24);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .edit-toast.show{
+      display:block;
+      animation:editToast .22s ease both;
+    }
+
+    @keyframes editToast{
+      from{ opacity:0; transform:translateY(10px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    @media(max-width:1080px){
+      .edit-hero-grid,
+      .edit-editor-grid,
+      .edit-shop-hero-card,
+      .edit-preview-product,
+      .edit-comparison-grid{
+        grid-template-columns:1fr;
+      }
+
+      .edit-app-shell{
+        grid-template-columns:1fr;
+      }
+
+      .edit-sidebar{
+        min-height:auto;
+      }
+
+      .edit-menu{
+        grid-template-columns:repeat(4,1fr);
+      }
+
+      .edit-feature-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:760px){
+      .edit-demo-nav{
+        position:static;
+        transform:none;
+        width:calc(100% - 24px);
+        margin:12px auto 0;
+        border-radius:22px;
+        flex-wrap:wrap;
+      }
+
+      .edit-demo-nav-links{
+        display:none;
+      }
+
+      .edit-hero{
+        padding-top:46px;
+      }
+
+      .edit-hero h1{
+        letter-spacing:-2.6px;
+      }
+
+      .edit-proof,
+      .edit-product-grid,
+      .edit-two-cols,
+      .edit-feature-grid,
+      .edit-menu{
+        grid-template-columns:1fr;
+      }
+
+      .edit-workspace-top,
+      .edit-workspace-actions{
+        align-items:stretch;
+        flex-direction:column;
+      }
+
+      .edit-small-btn{
+        width:100%;
+      }
+
+      .edit-preview-product-img,
+      .edit-live-product-img{
+        height:220px;
+      }
+    }
+  </style>
+</head>
+
+<body class="editor-demo">
+
+  <nav class="edit-demo-nav">
+    <a href="../../index.html" class="edit-logo">
+      <span class="edit-logo-mark">h</span>
+      <span>handoo edit</span>
+    </a>
+
+    <div class="edit-demo-nav-links">
+      <a href="#demo">Demo</a>
+      <a href="#ventajas">Ventajas</a>
+      <a href="#comparativa">Comparativa</a>
+    </div>
+
+    <a href="../../contacto.html" class="edit-demo-nav-cta">Quiero una web editable</a>
+  </nav>
+
+  <header class="edit-hero">
+    <div class="edit-container">
+      <div class="edit-hero-grid">
+
+        <div>
+          <span class="edit-kicker">Panel autoeditable seguro</span>
+
+          <h1>
+            Cambia tu web sin tocar código y sin <span>romper el diseño.</span>
+          </h1>
+
+          <p class="edit-hero-text">
+            Demo de un panel pensado para negocios reales: editar textos, fotos, productos, precios, ofertas, horarios y datos de contacto desde una interfaz sencilla.
+          </p>
+
+          <div class="edit-hero-actions">
+            <a href="#demo" class="edit-btn edit-btn-primary">Ver panel demo</a>
+            <a href="../../contacto.html" class="edit-btn edit-btn-secondary">Pedir presupuesto</a>
+          </div>
+
+          <div class="edit-proof">
+            <div class="edit-proof-card">
+              <strong>0</strong>
+              <span>Código que toca el cliente</span>
+            </div>
+
+            <div class="edit-proof-card">
+              <strong>100%</strong>
+              <span>Diseño protegido</span>
+            </div>
+
+            <div class="edit-proof-card">
+              <strong>1 clic</strong>
+              <span>Para publicar cambios</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-product-preview">
+          <div class="edit-browser-top">
+            <div class="edit-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="edit-browser-label">Vista previa de tienda editable</div>
+          </div>
+
+          <div class="edit-shop-window">
+            <div class="edit-shop-header">
+              <div class="edit-shop-brand">Luma Shop</div>
+              <span class="edit-shop-badge">Actualizado desde el panel</span>
+            </div>
+
+            <div class="edit-shop-hero-card">
+              <div>
+                <h2>Productos nuevos en segundos.</h2>
+                <p>
+                  El cliente añade una foto, cambia el precio, activa una oferta y publica sin depender de nadie.
+                </p>
+                <button class="edit-preview-buy">Ver catálogo</button>
+              </div>
+
+              <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80" alt="Productos de tienda">
+            </div>
+
+            <div class="edit-product-grid">
+              <article class="edit-live-product">
+                <div class="edit-live-product-img">
+                  <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80" alt="Producto">
+                  <span class="edit-live-label">Oferta</span>
+                </div>
+
+                <div class="edit-product-row">
+                  <div>
+                    <h3>Vela Amber</h3>
+                    <p>Producto visible y editable desde el panel.</p>
+                  </div>
+                  <strong class="edit-price">18,50€</strong>
+                </div>
+              </article>
+
+              <article class="edit-live-product">
+                <div class="edit-live-product-img">
+                  <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80" alt="Producto">
+                  <span class="edit-live-label">Nuevo</span>
+                </div>
+
+                <div class="edit-product-row">
+                  <div>
+                    <h3>Glow Ritual</h3>
+                    <p>Foto, precio y etiqueta controlados.</p>
+                  </div>
+                  <strong class="edit-price">29,90€</strong>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="demo" class="edit-panel-section">
+      <div class="edit-section-heading">
+        <span>Demo interactiva</span>
+        <h2>Un panel sencillo para el día a día.</h2>
+        <p>
+          No es un constructor complicado. Es una zona privada donde el cliente solo cambia campos seguros: producto, precio, foto, oferta, visibilidad y publicación.
+        </p>
+      </div>
+
+      <div class="edit-app-shell">
+
+        <aside class="edit-sidebar">
+          <div class="edit-sidebar-top">
+            <div class="edit-sidebar-logo">h</div>
+            <div>
+              <strong>Panel cliente</strong>
+              <span>Luma Shop · editable</span>
+            </div>
+          </div>
+
+          <div class="edit-menu">
+            <button class="active">🏠 Inicio</button>
+            <button>🛍️ Productos</button>
+            <button>🏷️ Ofertas</button>
+            <button>🖼️ Galería</button>
+            <button>☎️ Contacto</button>
+            <button>⚙️ Ajustes</button>
+          </div>
+
+          <div class="edit-sidebar-note">
+            <strong>Diseño protegido</strong>
+            <p>
+              El cliente puede editar contenido, pero no mover columnas, romper el móvil ni tocar estilos globales.
+            </p>
+          </div>
+        </aside>
+
+        <section class="edit-workspace">
+
+          <div class="edit-workspace-top">
+            <div class="edit-workspace-title">
+              <strong>Editar producto destacado</strong>
+              <span>Los cambios se ven en la vista previa antes de publicar.</span>
+            </div>
+
+            <div class="edit-workspace-actions">
+              <button class="edit-small-btn" data-toast="Borrador guardado. Todavía no se ha publicado en la web.">Guardar borrador</button>
+              <button class="edit-small-btn" data-toast="Vista previa generada. Puedes revisar antes de publicar.">Vista previa</button>
+              <button class="edit-small-btn publish" data-toast="Cambios publicados correctamente en la web.">Publicar cambios</button>
+            </div>
+          </div>
+
+          <div class="edit-editor-grid">
+
+            <div class="edit-form-panel">
+              <div class="edit-panel-title">
+                <h3>Campos editables</h3>
+                <span class="edit-status-pill">Seguro</span>
+              </div>
+
+              <div class="edit-field">
+                <label for="productName">Nombre del producto</label>
+                <input id="productName" type="text" value="Vela Amber" />
+              </div>
+
+              <div class="edit-two-cols">
+                <div class="edit-field">
+                  <label for="productPrice">Precio</label>
+                  <input id="productPrice" type="text" value="18,50€" />
+                </div>
+
+                <div class="edit-field">
+                  <label for="productTag">Etiqueta</label>
+                  <select id="productTag">
+                    <option>Oferta</option>
+                    <option>Nuevo</option>
+                    <option>Últimas unidades</option>
+                    <option>2x1</option>
+                    <option>Destacado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="edit-field">
+                <label for="productDescription">Descripción corta</label>
+                <textarea id="productDescription">Vela aromática con notas cálidas. Ideal para regalar o crear ambiente en casa.</textarea>
+              </div>
+
+              <div class="edit-field">
+                <label for="productStock">Estado</label>
+                <select id="productStock">
+                  <option>Disponible</option>
+                  <option>Agotado</option>
+                  <option>Reservado</option>
+                  <option>Próximamente</option>
+                </select>
+              </div>
+
+              <div class="edit-field">
+                <label>Imagen del producto</label>
+
+                <div class="edit-upload-box">
+                  <div class="edit-upload-thumb">
+                    <img id="formThumb" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80" alt="Miniatura producto">
+                  </div>
+
+                  <div>
+                    <strong>Imagen principal</strong>
+                    <span>En una versión real aquí habría botón para subir o cambiar foto.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="edit-field">
+                <label>Opciones rápidas</label>
+
+                <div class="edit-toggle-row">
+                  <label class="edit-toggle">
+                    <input type="checkbox" checked>
+                    Visible
+                  </label>
+
+                  <label class="edit-toggle">
+                    <input type="checkbox" checked>
+                    Destacado
+                  </label>
+
+                  <label class="edit-toggle">
+                    <input type="checkbox">
+                    En portada
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="edit-preview-panel">
+              <div class="edit-panel-title">
+                <h3>Vista previa protegida</h3>
+                <span class="edit-status-pill">En directo</span>
+              </div>
+
+              <div class="edit-preview-card">
+                <div class="edit-preview-header">
+                  <strong>Así se verá en la tienda</strong>
+                  <span>No toca diseño</span>
+                </div>
+
+                <div class="edit-preview-body">
+                  <article class="edit-preview-product">
+                    <div class="edit-preview-product-img">
+                      <img id="previewImage" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80" alt="Producto en vista previa">
+                      <span id="previewTag" class="edit-preview-tag">Oferta</span>
+                    </div>
+
+                    <div class="edit-preview-info">
+                      <h4 id="previewName">Vela Amber</h4>
+                      <p id="previewDescription">Vela aromática con notas cálidas. Ideal para regalar o crear ambiente en casa.</p>
+
+                      <div class="edit-preview-price-row">
+                        <strong id="previewPrice" class="edit-preview-price">18,50€</strong>
+                        <span id="previewStock" class="edit-preview-stock">Disponible</span>
+                      </div>
+
+                      <button class="edit-preview-buy">Añadir al carrito</button>
+                    </div>
+                  </article>
+
+                  <div class="edit-change-log">
+                    <div>El cliente edita campos simples, no bloques ni columnas.</div>
+                    <div>El diseño responsive queda bloqueado y protegido.</div>
+                    <div>Publicar cambios puede ser con revisión previa si se quiere.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+    </section>
+
+    <section id="ventajas" class="edit-features">
+      <div class="edit-section-heading">
+        <span>Qué puede cambiar el cliente</span>
+        <h2>Editable para lo importante. Cerrado para lo peligroso.</h2>
+        <p>
+          La clave no es que el cliente pueda tocarlo todo. La clave es que pueda cambiar lo que necesita sin cargarse la web.
+        </p>
+      </div>
+
+      <div class="edit-feature-grid">
+        <article class="edit-feature-card">
+          <div class="edit-feature-icon">01</div>
+          <h3>Textos y fotos</h3>
+          <p>Cambiar titulares, subtítulos, imágenes principales, galerías, testimonios y preguntas frecuentes.</p>
+        </article>
+
+        <article class="edit-feature-card">
+          <div class="edit-feature-icon">02</div>
+          <h3>Productos y precios</h3>
+          <p>Añadir productos, cambiar precios, marcar oferta, ocultar agotados o destacar novedades.</p>
+        </article>
+
+        <article class="edit-feature-card">
+          <div class="edit-feature-icon">03</div>
+          <h3>Horarios y contacto</h3>
+          <p>Actualizar teléfono, WhatsApp, email, dirección, redes sociales y horarios especiales.</p>
+        </article>
+
+        <article class="edit-feature-card">
+          <div class="edit-feature-icon">04</div>
+          <h3>Ofertas rápidas</h3>
+          <p>Activar banners, promociones, mensajes de temporada o avisos importantes sin tocar código.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="comparativa" class="edit-comparison">
+      <div class="edit-section-heading">
+        <span>La diferencia</span>
+        <h2 style="color:white;">No es un constructor. Es un panel seguro.</h2>
+        <p style="color:#cbd5e1;">
+          Frente a paneles complicados donde puedes romper la web, este enfoque limita la edición a campos preparados.
+        </p>
+      </div>
+
+      <div class="edit-comparison-grid">
+        <article class="edit-compare-card">
+          <h3>Constructor complicado</h3>
+          <ul>
+            <li>⚠️ <span>El cliente puede mover columnas, márgenes y secciones.</span></li>
+            <li>⚠️ <span>Puede romper la versión móvil sin darse cuenta.</span></li>
+            <li>⚠️ <span>Demasiadas opciones para cambios simples.</span></li>
+            <li>⚠️ <span>Acaba necesitando ayuda para cualquier ajuste.</span></li>
+          </ul>
+        </article>
+
+        <article class="edit-compare-card safe">
+          <h3>Panel Handoo Edit</h3>
+          <ul>
+            <li>✅ <span><strong>Solo campos seguros:</strong> textos, fotos, precios, ofertas y contacto.</span></li>
+            <li>✅ <span><strong>Diseño protegido:</strong> no puede romper la estructura.</span></li>
+            <li>✅ <span><strong>Vista previa:</strong> revisa antes de publicar.</span></li>
+            <li>✅ <span><strong>Sin cuota obligatoria:</strong> mantenimiento opcional, no impuesto.</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="edit-cta">
+      <div class="edit-cta-inner">
+        <h2>Tu web, pero editable para el día a día.</h2>
+        <p>
+          Ideal para negocios que quieren cambiar productos, precios, fotos, horarios u ofertas sin depender de nadie y sin entrar en paneles complicados.
+        </p>
+
+        <div class="edit-hero-actions" style="justify-content:center;margin-bottom:0;">
+          <a href="../../contacto.html" class="edit-btn edit-btn-primary">Quiero una web editable</a>
+          <a href="../../portfolio.html" class="edit-btn" style="background:white;color:#0f172a;border:1px solid #e2e8f0;">Ver más demos</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="editToast" class="edit-toast"></div>
+
+  <script>
+    const productName = document.getElementById("productName");
+    const productPrice = document.getElementById("productPrice");
+    const productTag = document.getElementById("productTag");
+    const productDescription = document.getElementById("productDescription");
+    const productStock = document.getElementById("productStock");
+
+    const previewName = document.getElementById("previewName");
+    const previewPrice = document.getElementById("previewPrice");
+    const previewTag = document.getElementById("previewTag");
+    const previewDescription = document.getElementById("previewDescription");
+    const previewStock = document.getElementById("previewStock");
+
+    function syncPreview(){
+      previewName.textContent = productName.value || "Nombre del producto";
+      previewPrice.textContent = productPrice.value || "0,00€";
+      previewTag.textContent = productTag.value;
+      previewDescription.textContent = productDescription.value || "Descripción del producto.";
+      previewStock.textContent = productStock.value;
+
+      if(productStock.value === "Agotado"){
+        previewStock.style.background = "#fee2e2";
+        previewStock.style.color = "#b91c1c";
+      }else if(productStock.value === "Próximamente"){
+        previewStock.style.background = "#e0f2fe";
+        previewStock.style.color = "#0369a1";
+      }else{
+        previewStock.style.background = "#ecfdf5";
+        previewStock.style.color = "#15803d";
+      }
+    }
+
+    [productName, productPrice, productTag, productDescription, productStock].forEach((field) => {
+      field.addEventListener("input", syncPreview);
+      field.addEventListener("change", syncPreview);
+    });
+
+    const toast = document.getElementById("editToast");
+    let toastTimer;
+
+    document.querySelectorAll("[data-toast]").forEach((button) => {
+      button.addEventListener("click", () => {
+        toast.textContent = button.getAttribute("data-toast");
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2600);
+      });
+    });
+  </script>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>
