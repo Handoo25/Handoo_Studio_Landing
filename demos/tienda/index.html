@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Luma Shop | Demo Tienda Online</title>
-  <meta name="description" content="Demo de tienda online moderna creada por Handoo Studio. Ecommerce visual con productos, categorías, carrito demo, ofertas animadas y atención al cliente." />
+  <meta name="description" content="Demo de tienda online moderna creada por Handoo Studio. Ecommerce visual con productos, categorías, carrito demo, carrusel de ofertas, banner animado y atención al cliente." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -278,99 +278,113 @@
       box-shadow:none;
     }
 
-    .shop-hero-visual{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
-    }
+    /* HERO CAROUSEL */
 
-    .shop-hero-main-photo{
+    .shop-hero-carousel{
       position:relative;
+      display:block;
       min-height:565px;
-      border-radius:28px;
+      border-radius:30px;
       overflow:hidden;
-      background:#f2eee6;
       border:1px solid #e7e2d8;
+      background:#f2eee6;
     }
 
-    .shop-hero-main-photo img,
-    .shop-hero-side-photo img{
+    .shop-carousel-slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      visibility:hidden;
+      transform:scale(1.02);
+      transition:opacity .55s ease, transform .55s ease, visibility .55s ease;
+    }
+
+    .shop-carousel-slide.is-active{
+      opacity:1;
+      visibility:visible;
+      transform:scale(1);
+      z-index:2;
+    }
+
+    .shop-carousel-slide img{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
     }
 
-    .shop-hero-main-photo::after{
+    .shop-carousel-slide::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.24));
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.50),rgba(0,0,0,.10) 55%,rgba(0,0,0,.20)),
+        linear-gradient(180deg,transparent 42%,rgba(0,0,0,.28));
       pointer-events:none;
     }
 
-    .shop-hero-promo-card{
+    .shop-carousel-card{
       position:absolute;
-      left:22px;
-      right:22px;
-      bottom:22px;
-      z-index:2;
+      left:28px;
+      bottom:28px;
+      z-index:3;
+      width:min(390px,calc(100% - 56px));
       background:rgba(255,255,255,.94);
-      backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,.9);
-      border-radius:22px;
-      padding:18px;
+      border:1px solid rgba(255,255,255,.88);
+      backdrop-filter:blur(12px);
+      border-radius:24px;
+      padding:22px;
     }
 
-    .shop-hero-promo-card span{
+    .shop-carousel-card span{
       display:inline-flex;
       width:fit-content;
-      margin-bottom:10px;
-      padding:7px 10px;
+      margin-bottom:12px;
+      padding:8px 10px;
       border-radius:8px;
       background:#111111;
-      color:white;
+      color:#ffffff;
       font-size:11px;
       font-weight:900;
-      letter-spacing:.7px;
       text-transform:uppercase;
+      letter-spacing:.65px;
     }
 
-    .shop-hero-promo-card h3{
-      margin:0 0 6px;
+    .shop-carousel-card h3{
+      margin:0 0 8px;
       color:#111111;
-      font-size:26px;
-      letter-spacing:-.8px;
+      font-size:30px;
+      letter-spacing:-1px;
+      line-height:1;
     }
 
-    .shop-hero-promo-card p{
-      margin:0 0 12px;
+    .shop-carousel-card p{
+      margin:0 0 16px;
       color:#565656;
       font-size:14px;
-      line-height:1.5;
+      line-height:1.55;
     }
 
-    .shop-hero-promo-bottom{
+    .shop-carousel-bottom{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:14px;
     }
 
-    .shop-hero-price{
+    .shop-carousel-bottom strong{
       color:var(--shop-accent-dark);
-      font-size:30px;
+      font-size:31px;
       font-weight:1000;
     }
 
-    .shop-hero-add{
-      border:0;
+    .shop-carousel-bottom button{
       min-height:42px;
-      padding:0 14px;
+      border:0;
       border-radius:10px;
+      padding:0 15px;
       background:#111111;
-      color:white;
+      color:#ffffff;
       font-family:Inter, Arial, sans-serif;
       font-size:12px;
       font-weight:900;
@@ -379,39 +393,39 @@
       cursor:pointer;
     }
 
-    .shop-hero-add:hover{
+    .shop-carousel-bottom button:hover{
       background:var(--shop-accent-dark);
     }
 
-    .shop-hero-side-photos{
-      display:grid;
-      grid-template-rows:1fr 1fr;
-      gap:18px;
-    }
-
-    .shop-hero-side-photo{
-      position:relative;
-      min-height:270px;
-      border-radius:24px;
-      overflow:hidden;
-      background:#f2eee6;
-      border:1px solid #e7e2d8;
-    }
-
-    .shop-hero-side-photo span{
+    .shop-carousel-controls{
       position:absolute;
-      left:14px;
-      bottom:14px;
-      z-index:2;
-      padding:8px 10px;
-      border-radius:8px;
-      background:#ffffff;
-      color:#111111;
-      font-size:11px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.45px;
+      right:24px;
+      bottom:24px;
+      z-index:4;
+      display:flex;
+      gap:8px;
+      padding:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.82);
+      backdrop-filter:blur(10px);
     }
+
+    .shop-carousel-dot{
+      width:10px;
+      height:10px;
+      border:0;
+      border-radius:999px;
+      background:#c7c7c7;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .shop-carousel-dot.is-active{
+      width:28px;
+      background:#111111;
+    }
+
+    /* MOVING OFFERS BANNER */
 
     .shop-promo-marquee{
       position:relative;
@@ -1191,7 +1205,6 @@
       }
 
       .shop-hero-grid,
-      .shop-hero-visual,
       .category-grid,
       .product-grid,
       .offer-banner,
@@ -1202,13 +1215,8 @@
         grid-template-columns:1fr;
       }
 
-      .shop-hero-main-photo{
-        min-height:430px;
-      }
-
-      .shop-hero-side-photos{
-        grid-template-columns:1fr 1fr;
-        grid-template-rows:auto;
+      .shop-hero-carousel{
+        min-height:470px;
       }
 
       .newsletter-form{
@@ -1226,16 +1234,32 @@
         font-size:17px;
       }
 
-      .shop-hero-side-photos{
-        grid-template-columns:1fr;
+      .shop-hero-carousel{
+        min-height:430px;
+        border-radius:24px;
       }
 
-      .shop-hero-main-photo{
-        min-height:360px;
+      .shop-carousel-card{
+        left:16px;
+        right:16px;
+        bottom:56px;
+        width:auto;
+        border-radius:20px;
+        padding:18px;
       }
 
-      .shop-hero-side-photo{
-        min-height:220px;
+      .shop-carousel-card h3{
+        font-size:25px;
+      }
+
+      .shop-carousel-bottom strong{
+        font-size:25px;
+      }
+
+      .shop-carousel-controls{
+        left:16px;
+        right:auto;
+        bottom:16px;
       }
 
       .shop-section{
@@ -1331,33 +1355,57 @@
         </div>
       </div>
 
-      <div class="shop-hero-visual">
+      <div class="shop-hero-carousel" aria-label="Carrusel de promociones destacadas">
 
-        <div class="shop-hero-main-photo">
-          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&q=80" alt="Producto principal de Luma Shop">
+        <div class="shop-carousel-slide is-active">
+          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&q=80" alt="Pack Glow Ritual">
 
-          <div class="shop-hero-promo-card">
+          <div class="shop-carousel-card">
             <span>Pack estrella</span>
             <h3>Glow Ritual</h3>
             <p>Bruma facial, crema nutritiva y vela aromática para una rutina completa.</p>
 
-            <div class="shop-hero-promo-bottom">
-              <strong class="shop-hero-price">39,90€</strong>
-              <button class="shop-hero-add" type="button" data-name="Pack Glow Ritual" data-price="39.90">Añadir</button>
+            <div class="shop-carousel-bottom">
+              <strong>39,90€</strong>
+              <button type="button" data-name="Pack Glow Ritual" data-price="39.90">Añadir</button>
             </div>
           </div>
         </div>
 
-        <div class="shop-hero-side-photos">
-          <div class="shop-hero-side-photo">
-            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=80" alt="Serum Glow">
-            <span>Serum Glow</span>
-          </div>
+        <div class="shop-carousel-slide">
+          <img src="https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?auto=format&fit=crop&w=1200&q=80" alt="Velas Amber">
 
-          <div class="shop-hero-side-photo">
-            <img src="https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?auto=format&fit=crop&w=900&q=80" alt="Vela Amber">
-            <span>2x1 velas</span>
+          <div class="shop-carousel-card">
+            <span>Oferta activa</span>
+            <h3>2x1 en velas Amber</h3>
+            <p>Aroma cálido con notas de madera, vainilla y ámbar. Ideal para regalo.</p>
+
+            <div class="shop-carousel-bottom">
+              <strong>18,50€</strong>
+              <button type="button" data-name="Vela Amber 2x1" data-price="18.50">Añadir</button>
+            </div>
           </div>
+        </div>
+
+        <div class="shop-carousel-slide">
+          <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80" alt="Daily Care Set">
+
+          <div class="shop-carousel-card">
+            <span>Cupón LUMA15</span>
+            <h3>15% dto. primera compra</h3>
+            <p>Pack diario con crema, limpiador y bruma hidratante para nuevos clientes.</p>
+
+            <div class="shop-carousel-bottom">
+              <strong>42,00€</strong>
+              <button type="button" data-name="Daily Care Set" data-price="42.00">Añadir</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="shop-carousel-controls">
+          <button type="button" class="shop-carousel-dot is-active" aria-label="Ver promoción 1"></button>
+          <button type="button" class="shop-carousel-dot" aria-label="Ver promoción 2"></button>
+          <button type="button" class="shop-carousel-dot" aria-label="Ver promoción 3"></button>
         </div>
 
       </div>
@@ -1734,6 +1782,33 @@
 </div>
 
 <button class="cart-collapsed" id="openCart">Carrito · <span id="cartCount">0</span></button>
+
+<script>
+  const shopSlides = document.querySelectorAll(".shop-carousel-slide");
+  const shopDots = document.querySelectorAll(".shop-carousel-dot");
+  let shopSlideIndex = 0;
+
+  function showShopSlide(index){
+    shopSlides.forEach((slide) => slide.classList.remove("is-active"));
+    shopDots.forEach((dot) => dot.classList.remove("is-active"));
+
+    shopSlides[index].classList.add("is-active");
+    shopDots[index].classList.add("is-active");
+
+    shopSlideIndex = index;
+  }
+
+  shopDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      showShopSlide(index);
+    });
+  });
+
+  setInterval(() => {
+    const nextIndex = (shopSlideIndex + 1) % shopSlides.length;
+    showShopSlide(nextIndex);
+  }, 4200);
+</script>
 
 <script>
   const cart = [];
