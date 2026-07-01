@@ -1424,3 +1424,29 @@ textarea{
     max-width:720px;
   }
 }
+/* Dynamic pricing card hover */
+
+.price-card{
+  border:1px solid var(--hs-border);
+  outline:2px solid transparent;
+  outline-offset:0;
+  transition:.22s ease;
+}
+
+.price-card.featured{
+  border:1px solid var(--hs-border);
+  outline:2px solid transparent;
+}
+
+.price-card:hover,
+.price-card:focus-within{
+  border-color:#fed7aa;
+  outline:2px solid var(--hs-primary);
+  transform:translateY(-6px);
+  box-shadow:0 28px 80px rgba(15,23,42,.14);
+}
+
+.price-card:hover .price,
+.price-card:focus-within .price{
+  color:var(--hs-primary);
+}
