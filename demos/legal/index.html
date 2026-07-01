@@ -4,28 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Lexora Legal | Demo Despacho Legal</title>
-  <meta name="description" content="Demo de despacho legal profesional creada por Handoo Studio. Web sobria, elegante y orientada a captar consultas jurídicas." />
+  <title>Lexora Legal | Demo Despacho Legal Moderno</title>
+  <meta name="description" content="Demo de despacho legal moderno creada por Handoo Studio. Web legal-tech con bento grid, casos de éxito, equipo, proceso y consulta inicial." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../../assets/css/style.css">
 
   <style>
     :root{
-      --lx-ink:#101417;
-      --lx-muted:#6b7280;
-      --lx-bg:#f5f1ea;
-      --lx-card:#ffffff;
-      --lx-dark:#0d1b2a;
-      --lx-blue:#14213d;
-      --lx-gold:#b68b4c;
-      --lx-gold-soft:#efe2c9;
-      --lx-line:#ded6c8;
-      --lx-soft:#faf7f1;
-      --lx-shadow:0 28px 80px rgba(13,27,42,.13);
+      --lx-bg:#070a12;
+      --lx-panel:#0d1320;
+      --lx-card:#111827;
+      --lx-card-2:#151d2c;
+      --lx-line:rgba(255,255,255,.10);
+      --lx-text:#f8fafc;
+      --lx-muted:#a6adbb;
+      --lx-soft:#d8e2f0;
+      --lx-gold:#d6a84f;
+      --lx-blue:#69a7ff;
+      --lx-green:#47d18c;
+      --lx-red:#ff6b6b;
+      --lx-radius:28px;
+      --lx-shadow:0 30px 100px rgba(0,0,0,.32);
     }
 
     *{
@@ -36,27 +39,30 @@
       scroll-behavior:smooth;
     }
 
-    body.lexora-demo{
+    body.lexora-v2{
       margin:0;
-      background:var(--lx-bg);
-      color:var(--lx-ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(105,167,255,.18), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(214,168,79,.16), transparent 28%),
+        var(--lx-bg);
+      color:var(--lx-text);
       font-family:Inter, Arial, sans-serif;
       overflow-x:hidden;
     }
 
-    .lexora-demo a{
+    .lexora-v2 a{
       color:inherit;
       text-decoration:none;
     }
 
-    .lx-container{
+    .lx2-container{
       width:min(1180px,92%);
       margin:0 auto;
     }
 
-    .lx-nav{
+    .lx2-nav{
       position:fixed;
-      top:20px;
+      top:18px;
       left:50%;
       transform:translateX(-50%);
       width:min(1180px,92%);
@@ -64,54 +70,54 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:18px;
+      gap:16px;
       padding:12px;
-      background:rgba(245,241,234,.88);
-      border:1px solid rgba(222,214,200,.9);
-      border-radius:18px;
-      backdrop-filter:blur(18px);
+      border:1px solid var(--lx-line);
+      border-radius:20px;
+      background:rgba(7,10,18,.78);
+      backdrop-filter:blur(20px);
+      box-shadow:0 20px 70px rgba(0,0,0,.28);
     }
 
-    .lx-brand{
+    .lx2-logo{
       display:flex;
       align-items:center;
       gap:12px;
       font-weight:900;
       letter-spacing:-.4px;
-      color:var(--lx-dark);
       white-space:nowrap;
     }
 
-    .lx-brand-mark{
+    .lx2-logo-mark{
       width:42px;
       height:42px;
       display:grid;
       place-items:center;
-      background:var(--lx-dark);
-      color:var(--lx-gold-soft);
-      border-radius:12px;
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:22px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--lx-blue),var(--lx-gold));
+      color:#07101d;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-weight:900;
     }
 
-    .lx-brand span{
+    .lx2-logo span{
       color:var(--lx-gold);
     }
 
-    .lx-menu{
+    .lx2-menu{
       display:flex;
       align-items:center;
       gap:6px;
-      background:white;
-      border:1px solid var(--lx-line);
-      border-radius:14px;
       padding:6px;
+      border-radius:14px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--lx-line);
     }
 
-    .lx-menu a{
+    .lx2-menu a{
       padding:9px 12px;
       border-radius:10px;
-      color:#4b5563;
+      color:#cbd5e1;
       font-size:12px;
       font-weight:900;
       text-transform:uppercase;
@@ -119,20 +125,20 @@
       white-space:nowrap;
     }
 
-    .lx-menu a:hover{
-      background:var(--lx-soft);
-      color:var(--lx-dark);
+    .lx2-menu a:hover{
+      background:rgba(255,255,255,.10);
+      color:white;
     }
 
-    .lx-nav-cta{
+    .lx2-nav-cta{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       min-height:42px;
       padding:0 16px;
       border-radius:12px;
-      background:var(--lx-dark);
-      color:white !important;
+      background:white;
+      color:#07101d !important;
       font-size:12px;
       font-weight:900;
       text-transform:uppercase;
@@ -140,632 +146,796 @@
       white-space:nowrap;
     }
 
-    .lx-hero{
-      padding:150px 0 90px;
+    .lx2-hero{
       min-height:100vh;
-      background:
-        linear-gradient(90deg,rgba(182,139,76,.07) 1px,transparent 1px),
-        linear-gradient(rgba(182,139,76,.07) 1px,transparent 1px),
-        var(--lx-bg);
-      background-size:46px 46px;
+      padding:150px 0 90px;
     }
 
-    .lx-hero-grid{
+    .lx2-hero-grid{
       display:grid;
-      grid-template-columns:.95fr 1.05fr;
-      gap:58px;
+      grid-template-columns:.92fr 1.08fr;
+      gap:44px;
       align-items:center;
     }
 
-    .lx-kicker{
+    .lx2-kicker{
       display:inline-flex;
       align-items:center;
       gap:9px;
       width:fit-content;
-      padding:9px 13px;
-      border-radius:12px;
-      background:white;
-      border:1px solid var(--lx-line);
-      color:var(--lx-gold);
+      margin-bottom:22px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:rgba(214,168,79,.12);
+      border:1px solid rgba(214,168,79,.28);
+      color:#f5d58b;
       font-size:12px;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.8px;
-      margin-bottom:24px;
+      letter-spacing:.75px;
     }
 
-    .lx-kicker::before{
+    .lx2-kicker::before{
       content:"";
       width:8px;
       height:8px;
       border-radius:50%;
-      background:var(--lx-gold);
+      background:var(--lx-green);
+      box-shadow:0 0 0 6px rgba(71,209,140,.12);
     }
 
-    .lx-hero h1{
+    .lx2-hero h1{
       margin:0 0 24px;
-      color:var(--lx-dark);
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:clamp(58px,7vw,96px);
+      max-width:790px;
+      color:white;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-size:clamp(50px,7vw,92px);
       line-height:.9;
-      letter-spacing:-2.5px;
-      font-weight:400;
-      max-width:760px;
+      letter-spacing:-4px;
+      font-weight:800;
     }
 
-    .lx-hero h1 em{
+    .lx2-hero h1 span{
       color:var(--lx-gold);
-      font-style:italic;
     }
 
-    .lx-hero-text{
+    .lx2-hero-text{
       margin:0 0 32px;
-      max-width:650px;
-      color:#4b5563;
-      font-size:19px;
+      max-width:660px;
+      color:#cbd5e1;
+      font-size:18px;
       line-height:1.75;
     }
 
-    .lx-actions{
+    .lx2-actions{
       display:flex;
       flex-wrap:wrap;
       gap:13px;
-      margin-bottom:34px;
+      margin-bottom:32px;
     }
 
-    .lx-btn{
+    .lx2-btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       min-height:52px;
-      padding:0 22px;
+      padding:0 20px;
+      border-radius:13px;
       border:0;
-      border-radius:12px;
       font-family:Inter, Arial, sans-serif;
-      font-size:13px;
+      font-size:12px;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.45px;
+      letter-spacing:.5px;
       cursor:pointer;
       transition:.2s ease;
     }
 
-    .lx-btn-primary{
-      background:var(--lx-dark);
+    .lx2-btn-primary{
+      background:linear-gradient(135deg,var(--lx-blue),#9cc8ff);
+      color:#06101f !important;
+    }
+
+    .lx2-btn-primary:hover{
+      transform:translateY(-3px);
+      filter:brightness(1.05);
+    }
+
+    .lx2-btn-secondary{
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--lx-line);
       color:white !important;
     }
 
-    .lx-btn-primary:hover{
+    .lx2-btn-secondary:hover{
       transform:translateY(-3px);
-      background:#020617;
+      background:rgba(255,255,255,.14);
     }
 
-    .lx-btn-secondary{
-      background:white;
-      color:var(--lx-dark) !important;
-      border:1px solid var(--lx-line);
-    }
-
-    .lx-btn-secondary:hover{
-      transform:translateY(-3px);
-      background:var(--lx-gold-soft);
-    }
-
-    .lx-proof{
+    .lx2-metrics{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:12px;
-      max-width:650px;
+      max-width:690px;
     }
 
-    .lx-proof-item{
-      background:white;
+    .lx2-metric{
+      padding:18px;
       border:1px solid var(--lx-line);
-      border-radius:16px;
-      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.06);
     }
 
-    .lx-proof-item strong{
+    .lx2-metric strong{
       display:block;
-      color:var(--lx-dark);
-      font-size:24px;
-      margin-bottom:4px;
+      color:white;
+      font-size:27px;
+      letter-spacing:-1px;
+      margin-bottom:5px;
     }
 
-    .lx-proof-item span{
+    .lx2-metric span{
       color:var(--lx-muted);
       font-size:13px;
       font-weight:700;
     }
 
-    .lx-hero-visual{
-      position:relative;
-      min-height:610px;
+    .lx2-bento{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      grid-template-rows:220px 220px 180px;
+      gap:14px;
     }
 
-    .lx-photo-panel{
-      position:absolute;
-      inset:0 0 80px 54px;
-      border-radius:34px;
+    .lx2-bento-card{
+      border:1px solid var(--lx-line);
+      border-radius:26px;
+      background:rgba(255,255,255,.07);
+      box-shadow:var(--lx-shadow);
       overflow:hidden;
+      position:relative;
+    }
+
+    .lx2-case-dashboard{
+      grid-row:span 2;
+      padding:24px;
       background:
-        linear-gradient(180deg,transparent 34%,rgba(13,27,42,.78)),
-        url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1500&q=80");
+        linear-gradient(180deg,rgba(105,167,255,.12),rgba(255,255,255,.06)),
+        var(--lx-card);
+    }
+
+    .lx2-dashboard-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:22px;
+    }
+
+    .lx2-dashboard-top strong{
+      color:white;
+      font-size:20px;
+      letter-spacing:-.5px;
+    }
+
+    .lx2-status{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(71,209,140,.12);
+      color:#9af4c7;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .lx2-status::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--lx-green);
+    }
+
+    .lx2-case-title{
+      padding:22px;
+      border-radius:22px;
+      background:#08101d;
+      border:1px solid rgba(255,255,255,.08);
+      margin-bottom:16px;
+    }
+
+    .lx2-case-title span{
+      color:var(--lx-gold);
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .lx2-case-title h3{
+      margin:10px 0 10px;
+      color:white;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-size:34px;
+      line-height:1;
+      letter-spacing:-1.5px;
+    }
+
+    .lx2-case-title p{
+      margin:0;
+      color:#cbd5e1;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .lx2-progress-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .lx2-progress-row{
+      display:grid;
+      gap:8px;
+    }
+
+    .lx2-progress-label{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color:#dbeafe;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .lx2-progress-bar{
+      height:9px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,.10);
+    }
+
+    .lx2-progress-bar div{
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--lx-blue),var(--lx-green));
+    }
+
+    .lx2-photo{
+      background:
+        linear-gradient(180deg,transparent,rgba(0,0,0,.38)),
+        url("https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80");
       background-size:cover;
       background-position:center;
-      border:1px solid rgba(255,255,255,.6);
-      box-shadow:var(--lx-shadow);
     }
 
-    .lx-photo-label{
+    .lx2-photo-label{
       position:absolute;
-      top:24px;
-      left:24px;
-      z-index:3;
-      padding:9px 12px;
-      border-radius:10px;
+      left:18px;
+      bottom:18px;
+      right:18px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(7,10,18,.72);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .lx2-photo-label strong{
+      display:block;
+      color:white;
+      margin-bottom:4px;
+    }
+
+    .lx2-photo-label span{
+      color:#cbd5e1;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .lx2-alert-card{
+      padding:22px;
+      background:linear-gradient(135deg,rgba(214,168,79,.18),rgba(255,255,255,.06));
+    }
+
+    .lx2-alert-card span{
+      display:inline-flex;
+      margin-bottom:14px;
+      color:#f5d58b;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .lx2-alert-card h3{
+      margin:0 0 12px;
+      color:white;
+      font-size:26px;
+      line-height:1;
+      letter-spacing:-1px;
+    }
+
+    .lx2-alert-card p{
+      margin:0;
+      color:#cbd5e1;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .lx2-wide-card{
+      grid-column:span 2;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      background:#0a111e;
+    }
+
+    .lx2-wide-item{
+      padding:22px;
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+
+    .lx2-wide-item:last-child{
+      border-right:0;
+    }
+
+    .lx2-wide-item strong{
+      display:block;
+      color:white;
+      font-size:28px;
+      letter-spacing:-1px;
+      margin-bottom:6px;
+    }
+
+    .lx2-wide-item span{
+      color:var(--lx-muted);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .lx2-section{
+      padding:96px 0;
+    }
+
+    .lx2-section.light{
+      background:#f4f7fb;
+      color:#07101d;
+    }
+
+    .lx2-section.dark{
+      background:#070a12;
+      color:white;
+    }
+
+    .lx2-title{
+      max-width:860px;
+      margin:0 auto 56px;
+      text-align:center;
+    }
+
+    .lx2-title h2{
+      margin:0 0 18px;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-size:clamp(42px,5vw,72px);
+      line-height:.95;
+      letter-spacing:-3px;
+      color:inherit;
+    }
+
+    .lx2-title h2 span{
+      color:var(--lx-gold);
+    }
+
+    .lx2-title p{
+      max-width:760px;
+      margin:0 auto;
+      color:var(--lx-muted);
+      font-size:18px;
+      line-height:1.75;
+    }
+
+    .lx2-section.light .lx2-title p{
+      color:#526071;
+    }
+
+    .lx2-practice-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .lx2-practice{
+      min-height:285px;
+      padding:26px;
+      border:1px solid #dbe3ee;
+      border-radius:24px;
       background:white;
-      color:var(--lx-dark);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.22s ease;
+    }
+
+    .lx2-practice:hover{
+      transform:translateY(-6px);
+      border-color:#aacdfc;
+      box-shadow:0 24px 70px rgba(7,16,29,.09);
+    }
+
+    .lx2-practice-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:22px;
+    }
+
+    .lx2-practice-number{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:#07101d;
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+    }
+
+    .lx2-practice-chip{
+      padding:7px 10px;
+      border-radius:999px;
+      background:#eef5ff;
+      color:#1d5ea8;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .lx2-practice h3{
+      margin:0 0 12px;
+      color:#07101d;
+      font-size:25px;
+      letter-spacing:-.8px;
+    }
+
+    .lx2-practice p{
+      margin:0;
+      color:#5b6573;
+      line-height:1.65;
+    }
+
+    .lx2-practice-footer{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:22px;
+    }
+
+    .lx2-practice-footer span{
+      padding:7px 9px;
+      border-radius:999px;
+      background:#f4f7fb;
+      color:#455266;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .lx2-cases-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .lx2-case-main{
+      padding:34px;
+      border:1px solid var(--lx-line);
+      border-radius:30px;
+      background:
+        linear-gradient(135deg,rgba(105,167,255,.14),rgba(214,168,79,.08)),
+        var(--lx-card);
+    }
+
+    .lx2-case-main span{
+      display:inline-flex;
+      margin-bottom:18px;
+      color:#f5d58b;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+    }
+
+    .lx2-case-main h2{
+      margin:0 0 18px;
+      max-width:720px;
+      color:white;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-size:clamp(40px,5vw,66px);
+      line-height:.95;
+      letter-spacing:-2.5px;
+    }
+
+    .lx2-case-main p{
+      margin:0 0 28px;
+      color:#cbd5e1;
+      font-size:17px;
+      line-height:1.75;
+    }
+
+    .lx2-case-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .lx2-case-tags strong{
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--lx-line);
+      color:#e5e7eb;
+      font-size:13px;
+    }
+
+    .lx2-success-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .lx2-success-card{
+      padding:22px;
+      border:1px solid var(--lx-line);
+      border-radius:22px;
+      background:rgba(255,255,255,.07);
+    }
+
+    .lx2-success-card h3{
+      margin:0 0 10px;
+      color:white;
+      font-size:23px;
+      letter-spacing:-.7px;
+    }
+
+    .lx2-success-card p{
+      margin:0 0 14px;
+      color:#cbd5e1;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .lx2-success-result{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    .lx2-success-result span{
+      color:#9af4c7;
       font-size:12px;
       font-weight:900;
       text-transform:uppercase;
       letter-spacing:.5px;
     }
 
-    .lx-case-card{
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:min(430px,86%);
-      background:white;
-      border:1px solid var(--lx-line);
-      border-radius:26px;
-      padding:24px;
-      box-shadow:0 24px 70px rgba(13,27,42,.16);
-    }
-
-    .lx-case-card span{
-      display:inline-flex;
-      margin-bottom:12px;
-      padding:7px 10px;
-      border-radius:8px;
-      background:var(--lx-gold-soft);
-      color:#815f2d;
-      font-size:11px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.6px;
-    }
-
-    .lx-case-card h3{
-      margin:0 0 10px;
-      color:var(--lx-dark);
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:32px;
-      line-height:1;
-      font-weight:400;
-    }
-
-    .lx-case-card p{
-      margin:0 0 18px;
-      color:var(--lx-muted);
-      line-height:1.6;
-      font-size:14px;
-    }
-
-    .lx-case-status{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      border-top:1px solid var(--lx-line);
-      padding-top:16px;
-    }
-
-    .lx-case-status strong{
-      color:#15803d;
-      font-size:14px;
-    }
-
-    .lx-case-status small{
+    .lx2-success-result small{
       color:var(--lx-muted);
       font-weight:800;
     }
 
-    .lx-floating-note{
-      position:absolute;
-      right:0;
-      top:70px;
-      width:min(280px,42%);
-      background:var(--lx-dark);
-      color:white;
-      border-radius:22px;
-      padding:22px;
-      box-shadow:0 24px 70px rgba(13,27,42,.22);
-    }
-
-    .lx-floating-note strong{
-      display:block;
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:28px;
-      font-weight:400;
-      margin-bottom:8px;
-    }
-
-    .lx-floating-note p{
-      margin:0;
-      color:#d1d5db;
-      line-height:1.55;
-      font-size:14px;
-    }
-
-    .lx-section{
-      padding:96px 0;
-    }
-
-    .lx-section.white{
-      background:white;
-    }
-
-    .lx-section.dark{
-      background:var(--lx-dark);
-      color:white;
-    }
-
-    .lx-title{
-      max-width:850px;
-      margin:0 auto 56px;
-      text-align:center;
-    }
-
-    .lx-title h2{
-      margin:0 0 18px;
-      font-family:"DM Serif Display", Georgia, serif;
-      color:inherit;
-      font-size:clamp(46px,5vw,76px);
-      line-height:.96;
-      letter-spacing:-1.8px;
-      font-weight:400;
-    }
-
-    .lx-title h2 em{
-      color:var(--lx-gold);
-      font-style:italic;
-    }
-
-    .lx-title p{
-      margin:0 auto;
-      max-width:760px;
-      color:var(--lx-muted);
-      font-size:18px;
-      line-height:1.75;
-    }
-
-    .lx-section.dark .lx-title p{
-      color:#cbd5e1;
-    }
-
-    .lx-practice-grid{
+    .lx2-team-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:22px;
-    }
-
-    .lx-practice-card{
-      background:white;
-      border:1px solid var(--lx-line);
-      border-radius:26px;
-      padding:28px;
-      transition:.22s ease;
-    }
-
-    .lx-practice-card:hover{
-      transform:translateY(-6px);
-      border-color:#d0b17a;
-      box-shadow:0 22px 70px rgba(13,27,42,.1);
-    }
-
-    .lx-practice-number{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:44px;
-      height:44px;
-      border-radius:12px;
-      background:var(--lx-dark);
-      color:var(--lx-gold-soft);
-      font-weight:900;
-      margin-bottom:22px;
-    }
-
-    .lx-practice-card h3{
-      margin:0 0 12px;
-      color:var(--lx-dark);
-      font-size:24px;
-      letter-spacing:-.7px;
-    }
-
-    .lx-practice-card p{
-      margin:0 0 18px;
-      color:var(--lx-muted);
-      line-height:1.65;
-    }
-
-    .lx-practice-card ul{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:9px;
-    }
-
-    .lx-practice-card li{
-      color:#374151;
-      font-size:14px;
-      font-weight:700;
-    }
-
-    .lx-practice-card li::before{
-      content:"•";
-      color:var(--lx-gold);
-      margin-right:8px;
-      font-weight:900;
-    }
-
-    .lx-process{
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:42px;
-      align-items:start;
-    }
-
-    .lx-process-intro{
-      position:sticky;
-      top:120px;
-      background:var(--lx-soft);
-      border:1px solid var(--lx-line);
-      border-radius:30px;
-      padding:34px;
-    }
-
-    .lx-process-intro h2{
-      margin:0 0 16px;
-      font-family:"DM Serif Display", Georgia, serif;
-      color:var(--lx-dark);
-      font-size:clamp(42px,5vw,66px);
-      line-height:.96;
-      font-weight:400;
-    }
-
-    .lx-process-intro p{
-      margin:0 0 24px;
-      color:var(--lx-muted);
-      line-height:1.75;
-      font-size:17px;
-    }
-
-    .lx-mini-list{
-      display:grid;
-      gap:12px;
-    }
-
-    .lx-mini-list span{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:#374151;
-      font-weight:800;
-    }
-
-    .lx-mini-list span::before{
-      content:"✓";
-      width:24px;
-      height:24px;
-      border-radius:50%;
-      background:var(--lx-gold);
-      color:white;
-      display:grid;
-      place-items:center;
-      font-weight:900;
-      flex:0 0 auto;
-    }
-
-    .lx-steps{
-      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
       gap:18px;
     }
 
-    .lx-step{
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:18px;
-      background:white;
-      border:1px solid var(--lx-line);
+    .lx2-team-card{
+      border:1px solid #dbe3ee;
       border-radius:24px;
-      padding:24px;
-    }
-
-    .lx-step-number{
-      width:48px;
-      height:48px;
-      border-radius:14px;
-      background:var(--lx-dark);
-      color:var(--lx-gold-soft);
-      display:grid;
-      place-items:center;
-      font-weight:900;
-    }
-
-    .lx-step h3{
-      margin:0 0 8px;
-      color:var(--lx-dark);
-      font-size:23px;
-      letter-spacing:-.6px;
-    }
-
-    .lx-step p{
-      margin:0;
-      color:var(--lx-muted);
-      line-height:1.65;
-    }
-
-    .lx-team-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:22px;
-    }
-
-    .lx-team-card{
-      background:#111f30;
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:28px;
+      background:white;
       overflow:hidden;
     }
 
-    .lx-team-photo{
-      height:290px;
+    .lx2-team-photo{
+      height:320px;
       background-size:cover;
       background-position:center;
-      filter:saturate(.9);
+      position:relative;
     }
 
-    .lx-team-body{
+    .lx2-team-photo::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,transparent 44%,rgba(0,0,0,.48));
+    }
+
+    .lx2-team-body{
       padding:24px;
     }
 
-    .lx-team-body span{
-      color:var(--lx-gold-soft);
+    .lx2-team-body span{
+      color:#1d5ea8;
       font-size:12px;
       font-weight:900;
       text-transform:uppercase;
       letter-spacing:.7px;
     }
 
-    .lx-team-body h3{
+    .lx2-team-body h3{
       margin:10px 0 8px;
-      color:white;
-      font-size:24px;
-      letter-spacing:-.6px;
+      color:#07101d;
+      font-size:25px;
+      letter-spacing:-.8px;
     }
 
-    .lx-team-body p{
-      margin:0;
-      color:#cbd5e1;
+    .lx2-team-body p{
+      margin:0 0 18px;
+      color:#5b6573;
       line-height:1.6;
       font-size:14px;
     }
 
-    .lx-case-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:28px;
-      align-items:stretch;
-    }
-
-    .lx-case-feature{
-      background:var(--lx-dark);
-      color:white;
-      border-radius:32px;
-      padding:38px;
-      min-height:420px;
+    .lx2-team-tags{
       display:flex;
-      flex-direction:column;
-      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:8px;
     }
 
-    .lx-case-feature span{
-      color:var(--lx-gold-soft);
+    .lx2-team-tags strong{
+      padding:7px 9px;
+      border-radius:999px;
+      background:#f4f7fb;
+      color:#455266;
       font-size:12px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.8px;
     }
 
-    .lx-case-feature h2{
-      margin:18px 0;
-      max-width:650px;
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:clamp(42px,5vw,66px);
-      line-height:.96;
-      font-weight:400;
-    }
-
-    .lx-case-feature p{
-      margin:0;
-      color:#d1d5db;
-      line-height:1.75;
-      font-size:17px;
-    }
-
-    .lx-case-stats{
+    .lx2-process-layout{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:.9fr 1.1fr;
+      gap:32px;
+      align-items:start;
+    }
+
+    .lx2-process-sticky{
+      position:sticky;
+      top:120px;
+      padding:30px;
+      border:1px solid var(--lx-line);
+      border-radius:28px;
+      background:rgba(255,255,255,.07);
+    }
+
+    .lx2-process-sticky h2{
+      margin:0 0 16px;
+      color:white;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-size:clamp(38px,5vw,58px);
+      line-height:.95;
+      letter-spacing:-2px;
+    }
+
+    .lx2-process-sticky p{
+      margin:0 0 22px;
+      color:#cbd5e1;
+      line-height:1.75;
+    }
+
+    .lx2-process-mini{
+      display:grid;
+      gap:10px;
+    }
+
+    .lx2-process-mini span{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#e5e7eb;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .lx2-process-mini span::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--lx-green);
+      flex:0 0 auto;
+    }
+
+    .lx2-timeline{
+      display:grid;
       gap:16px;
     }
 
-    .lx-stat{
-      background:white;
+    .lx2-step{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:16px;
+      padding:22px;
       border:1px solid var(--lx-line);
-      border-radius:26px;
-      padding:28px;
+      border-radius:22px;
+      background:rgba(255,255,255,.07);
     }
 
-    .lx-stat strong{
-      display:block;
-      color:var(--lx-dark);
-      font-size:42px;
-      letter-spacing:-2px;
-      margin-bottom:8px;
+    .lx2-step-number{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--lx-blue),var(--lx-green));
+      color:#06101f;
+      font-weight:1000;
     }
 
-    .lx-stat span{
-      color:var(--lx-muted);
-      line-height:1.55;
-      font-weight:700;
+    .lx2-step h3{
+      margin:0 0 8px;
+      color:white;
+      font-size:23px;
+      letter-spacing:-.7px;
     }
 
-    .lx-consult-section{
+    .lx2-step p{
+      margin:0;
+      color:#cbd5e1;
+      line-height:1.65;
+    }
+
+    .lx2-form-section{
       background:
-        radial-gradient(circle at 15% 20%, rgba(182,139,76,.22), transparent 34%),
-        var(--lx-dark);
+        radial-gradient(circle at 12% 10%, rgba(105,167,255,.22), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(214,168,79,.18), transparent 30%),
+        #050813;
       color:white;
     }
 
-    .lx-consult-grid{
+    .lx2-form-grid{
       display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:34px;
+      grid-template-columns:.92fr 1.08fr;
+      gap:30px;
       align-items:stretch;
     }
 
-    .lx-consult-copy{
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
+    .lx2-form-copy{
+      padding:36px;
+      border:1px solid var(--lx-line);
       border-radius:30px;
-      padding:38px;
+      background:rgba(255,255,255,.07);
     }
 
-    .lx-consult-copy h2{
+    .lx2-form-copy h2{
       margin:0 0 18px;
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:clamp(42px,5vw,70px);
-      line-height:.96;
-      font-weight:400;
+      color:white;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-size:clamp(42px,5vw,68px);
+      line-height:.94;
+      letter-spacing:-2.8px;
     }
 
-    .lx-consult-copy p{
-      margin:0 0 28px;
-      color:#d1d5db;
+    .lx2-form-copy p{
+      margin:0 0 26px;
+      color:#cbd5e1;
       font-size:17px;
       line-height:1.75;
     }
 
-    .lx-consult-points{
+    .lx2-form-bullets{
       display:grid;
-      gap:13px;
+      gap:12px;
     }
 
-    .lx-consult-points span{
+    .lx2-form-bullets span{
       display:flex;
       align-items:center;
       gap:10px;
@@ -773,177 +943,178 @@
       font-weight:800;
     }
 
-    .lx-consult-points span::before{
-      content:"";
-      width:8px;
-      height:8px;
+    .lx2-form-bullets span::before{
+      content:"✓";
+      width:24px;
+      height:24px;
       border-radius:50%;
-      background:var(--lx-gold);
+      background:var(--lx-green);
+      color:#06101f;
+      display:grid;
+      place-items:center;
+      font-weight:1000;
       flex:0 0 auto;
     }
 
-    .lx-form{
-      background:white;
-      color:var(--lx-ink);
-      border-radius:30px;
+    .lx2-form{
       padding:30px;
+      border-radius:30px;
+      background:white;
+      color:#07101d;
     }
 
-    .lx-form h3{
+    .lx2-form h3{
       margin:0 0 8px;
-      color:var(--lx-dark);
-      font-size:32px;
+      font-size:31px;
       letter-spacing:-1px;
     }
 
-    .lx-form > p{
+    .lx2-form > p{
       margin:0 0 22px;
-      color:var(--lx-muted);
+      color:#526071;
       line-height:1.6;
     }
 
-    .lx-form-row{
+    .lx2-form-row{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:12px;
     }
 
-    .lx-form input,
-    .lx-form select,
-    .lx-form textarea{
+    .lx2-form input,
+    .lx2-form select,
+    .lx2-form textarea{
       width:100%;
-      border:1px solid var(--lx-line);
-      background:#faf7f1;
-      border-radius:12px;
+      border:1px solid #dbe3ee;
+      background:#f6f8fb;
+      border-radius:13px;
       padding:15px;
       margin:0 0 12px;
       font-family:Inter, Arial, sans-serif;
+      color:#07101d;
       font-weight:700;
-      color:var(--lx-ink);
     }
 
-    .lx-form textarea{
+    .lx2-form textarea{
       min-height:130px;
       resize:vertical;
     }
 
-    .lx-form input:focus,
-    .lx-form select:focus,
-    .lx-form textarea:focus{
+    .lx2-form input:focus,
+    .lx2-form select:focus,
+    .lx2-form textarea:focus{
       outline:none;
-      border-color:var(--lx-gold);
-      box-shadow:0 0 0 4px rgba(182,139,76,.14);
+      border-color:#69a7ff;
+      box-shadow:0 0 0 4px rgba(105,167,255,.14);
       background:white;
     }
 
-    .lx-form button{
+    .lx2-form button{
       width:100%;
       min-height:54px;
       border:0;
-      border-radius:12px;
-      background:var(--lx-dark);
+      border-radius:13px;
+      background:#07101d;
       color:white;
       font-family:Inter, Arial, sans-serif;
       font-size:13px;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.45px;
+      letter-spacing:.5px;
       cursor:pointer;
     }
 
-    .lx-form button:hover{
-      background:#020617;
+    .lx2-form button:hover{
+      background:#10233e;
     }
 
-    .lx-faq-grid{
+    .lx2-faq-grid{
       max-width:900px;
       margin:0 auto;
       display:grid;
       gap:14px;
     }
 
-    .lx-faq-item{
-      background:white;
-      border:1px solid var(--lx-line);
+    .lx2-faq-item{
+      border:1px solid #dbe3ee;
       border-radius:20px;
+      background:white;
       overflow:hidden;
     }
 
-    .lx-faq-question{
+    .lx2-faq-question{
       width:100%;
       border:0;
       background:white;
-      color:var(--lx-dark);
+      color:#07101d;
       padding:22px;
       display:flex;
-      align-items:center;
       justify-content:space-between;
       gap:18px;
-      cursor:pointer;
+      align-items:center;
+      text-align:left;
       font-family:Inter, Arial, sans-serif;
       font-size:17px;
       font-weight:900;
-      text-align:left;
+      cursor:pointer;
     }
 
-    .lx-faq-question span{
+    .lx2-faq-question span{
       width:30px;
       height:30px;
       border-radius:10px;
-      background:var(--lx-gold-soft);
-      color:#815f2d;
       display:grid;
       place-items:center;
+      background:#eef5ff;
+      color:#1d5ea8;
       flex:0 0 auto;
     }
 
-    .lx-faq-answer{
+    .lx2-faq-answer{
       display:none;
       padding:0 22px 22px;
-      color:var(--lx-muted);
+      color:#526071;
       line-height:1.7;
     }
 
-    .lx-faq-item.is-open .lx-faq-answer{
+    .lx2-faq-item.is-open .lx2-faq-answer{
       display:block;
     }
 
-    .lx-faq-item.is-open .lx-faq-question span{
-      background:var(--lx-dark);
+    .lx2-faq-item.is-open .lx2-faq-question span{
+      background:#07101d;
       color:white;
     }
 
-    .lx-final{
+    .lx2-final{
       padding:110px 0;
+      background:#070a12;
       text-align:center;
-      background:var(--lx-bg);
+      color:white;
     }
 
-    .lx-final h2{
+    .lx2-final h2{
       margin:0 auto 18px;
-      max-width:900px;
-      color:var(--lx-dark);
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:clamp(48px,6vw,82px);
+      max-width:920px;
+      font-family:"Space Grotesk", Inter, sans-serif;
+      font-size:clamp(44px,6vw,78px);
       line-height:.94;
-      letter-spacing:-2px;
-      font-weight:400;
+      letter-spacing:-3px;
     }
 
-    .lx-final h2 em{
+    .lx2-final h2 span{
       color:var(--lx-gold);
-      font-style:italic;
     }
 
-    .lx-final p{
+    .lx2-final p{
       margin:0 auto 30px;
       max-width:760px;
-      color:var(--lx-muted);
+      color:#cbd5e1;
       font-size:18px;
       line-height:1.75;
     }
 
-    .lx-footer{
+    .lx2-footer{
       background:#020617;
       color:#94a3b8;
       padding:30px 0;
@@ -951,33 +1122,33 @@
       font-size:14px;
     }
 
-    .lx-footer a{
-      color:#d8bd86;
+    .lx2-footer a{
+      color:#f5d58b;
       font-weight:900;
     }
 
-    .lx-floating{
+    .lx2-floating{
       position:fixed;
       right:20px;
       bottom:20px;
       z-index:95;
+      min-height:48px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:48px;
       padding:0 18px;
       border-radius:14px;
-      background:var(--lx-dark);
-      color:white !important;
-      font-size:13px;
-      font-weight:900;
+      background:linear-gradient(135deg,var(--lx-blue),#9cc8ff);
+      color:#06101f !important;
+      font-size:12px;
+      font-weight:1000;
       text-transform:uppercase;
-      letter-spacing:.45px;
-      box-shadow:0 18px 50px rgba(13,27,42,.24);
+      letter-spacing:.5px;
+      box-shadow:0 20px 60px rgba(0,0,0,.28);
     }
 
     @media(max-width:1080px){
-      .lx-nav{
+      .lx2-nav{
         position:static;
         transform:none;
         margin:16px auto 0;
@@ -985,88 +1156,80 @@
         align-items:flex-start;
       }
 
-      .lx-menu{
+      .lx2-menu{
         width:100%;
         overflow-x:auto;
         justify-content:flex-start;
       }
 
-      .lx-nav-cta{
+      .lx2-nav-cta{
         width:100%;
       }
 
-      .lx-hero{
+      .lx2-hero{
         padding-top:58px;
       }
 
-      .lx-hero-grid,
-      .lx-practice-grid,
-      .lx-process,
-      .lx-team-grid,
-      .lx-case-grid,
-      .lx-consult-grid{
+      .lx2-hero-grid,
+      .lx2-bento,
+      .lx2-practice-grid,
+      .lx2-cases-grid,
+      .lx2-team-grid,
+      .lx2-process-layout,
+      .lx2-form-grid{
         grid-template-columns:1fr;
       }
 
-      .lx-process-intro{
+      .lx2-bento{
+        grid-template-rows:auto;
+      }
+
+      .lx2-case-dashboard,
+      .lx2-wide-card{
+        grid-row:auto;
+        grid-column:auto;
+      }
+
+      .lx2-wide-card{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .lx2-process-sticky{
         position:relative;
         top:auto;
-      }
-
-      .lx-hero-visual{
-        min-height:580px;
-      }
-
-      .lx-photo-panel{
-        inset:0;
-      }
-
-      .lx-floating-note{
-        top:22px;
-        right:22px;
       }
     }
 
     @media(max-width:720px){
-      .lx-hero h1{
-        font-size:54px;
+      .lx2-hero h1{
+        font-size:48px;
+        letter-spacing:-2.2px;
       }
 
-      .lx-proof{
+      .lx2-metrics,
+      .lx2-wide-card,
+      .lx2-form-row{
         grid-template-columns:1fr;
       }
 
-      .lx-section{
+      .lx2-wide-item{
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.08);
+      }
+
+      .lx2-wide-item:last-child{
+        border-bottom:0;
+      }
+
+      .lx2-section{
         padding:72px 0;
       }
 
-      .lx-hero-visual{
-        min-height:560px;
-      }
-
-      .lx-case-card{
-        left:16px;
-        right:16px;
-        width:auto;
-      }
-
-      .lx-floating-note{
-        display:none;
-      }
-
-      .lx-case-stats{
-        grid-template-columns:1fr;
-      }
-
-      .lx-form-row{
-        grid-template-columns:1fr;
-      }
-
-      .lx-actions .lx-btn{
+      .lx2-actions .lx2-btn{
         width:100%;
       }
 
-      .lx-floating{
+      .lx2-floating{
         right:14px;
         bottom:14px;
       }
@@ -1074,87 +1237,143 @@
   </style>
 </head>
 
-<body class="lexora-demo">
+<body class="lexora-v2">
 
-<nav class="lx-nav">
-  <a href="#" class="lx-brand">
-    <span class="lx-brand-mark">L</span>
+<nav class="lx2-nav">
+  <a href="#" class="lx2-logo">
+    <span class="lx2-logo-mark">L</span>
     Lexora <span>Legal</span>
   </a>
 
-  <div class="lx-menu">
+  <div class="lx2-menu">
     <a href="#areas">Áreas</a>
-    <a href="#proceso">Proceso</a>
+    <a href="#casos">Casos</a>
     <a href="#equipo">Equipo</a>
-    <a href="#casos">Resultados</a>
+    <a href="#proceso">Proceso</a>
     <a href="#consulta">Consulta</a>
     <a href="../../portfolio.html">Portfolio</a>
   </div>
 
-  <a href="#consulta" class="lx-nav-cta">Consulta inicial</a>
+  <a href="#consulta" class="lx2-nav-cta">Consulta inicial</a>
 </nav>
 
-<header class="lx-hero">
-  <div class="lx-container">
+<header class="lx2-hero">
+  <div class="lx2-container">
 
-    <div class="lx-hero-grid">
+    <div class="lx2-hero-grid">
 
       <div>
-        <span class="lx-kicker">Demo despacho legal · Confianza profesional</span>
+        <span class="lx2-kicker">Demo legal-tech · Despacho moderno</span>
 
-        <h1>Defensa jurídica clara para decisiones <em>importantes</em>.</h1>
+        <h1>Una firma legal que parece del <span>futuro</span>, no del pasado.</h1>
 
-        <p class="lx-hero-text">
-          Demo de web para despacho legal, asesoría profesional o consultoría jurídica. Sobria, elegante y preparada para captar consultas de calidad.
+        <p class="lx2-hero-text">
+          Demo de web para despacho legal, asesoría profesional o consultoría jurídica con estética legal-tech: bento grid, casos de éxito, equipo, proceso claro y formulario de consulta.
         </p>
 
-        <div class="lx-actions">
-          <a href="#consulta" class="lx-btn lx-btn-primary">Solicitar consulta</a>
-          <a href="#areas" class="lx-btn lx-btn-secondary">Ver especialidades</a>
+        <div class="lx2-actions">
+          <a href="#consulta" class="lx2-btn lx2-btn-primary">Solicitar consulta</a>
+          <a href="#casos" class="lx2-btn lx2-btn-secondary">Ver casos de éxito</a>
         </div>
 
-        <div class="lx-proof">
-          <div class="lx-proof-item">
+        <div class="lx2-metrics">
+          <div class="lx2-metric">
             <strong>24h</strong>
             <span>respuesta inicial</span>
           </div>
 
-          <div class="lx-proof-item">
+          <div class="lx2-metric">
             <strong>6</strong>
             <span>áreas jurídicas</span>
           </div>
 
-          <div class="lx-proof-item">
-            <strong>+12</strong>
-            <span>años de experiencia</span>
+          <div class="lx2-metric">
+            <strong>+120</strong>
+            <span>consultas cualificadas</span>
           </div>
         </div>
       </div>
 
-      <div class="lx-hero-visual">
-        <div class="lx-photo-panel">
-          <span class="lx-photo-label">Asesoramiento estratégico</span>
-        </div>
+      <div class="lx2-bento">
 
-        <div class="lx-floating-note">
-          <strong>Confianza antes del contacto.</strong>
-          <p>
-            Una web legal debe transmitir solvencia, especialización y claridad desde el primer vistazo.
-          </p>
-        </div>
+        <div class="lx2-bento-card lx2-case-dashboard">
+          <div class="lx2-dashboard-top">
+            <strong>Panel de caso</strong>
+            <span class="lx2-status">Activo</span>
+          </div>
 
-        <div class="lx-case-card">
-          <span>Caso destacado</span>
-          <h3>Acuerdo mercantil favorable</h3>
-          <p>
-            Presentación clara de experiencia, enfoque jurídico y proceso de trabajo para generar confianza sin saturar al visitante.
-          </p>
+          <div class="lx2-case-title">
+            <span>Caso mercantil</span>
+            <h3>Negociación societaria estratégica</h3>
+            <p>
+              Dashboard visual para presentar avance, riesgo, documentación y próximos pasos de forma clara.
+            </p>
+          </div>
 
-          <div class="lx-case-status">
-            <strong>Consulta captada</strong>
-            <small>Web orientada a conversión</small>
+          <div class="lx2-progress-list">
+            <div class="lx2-progress-row">
+              <div class="lx2-progress-label">
+                <span>Documentación revisada</span>
+                <strong>82%</strong>
+              </div>
+              <div class="lx2-progress-bar"><div style="width:82%;"></div></div>
+            </div>
+
+            <div class="lx2-progress-row">
+              <div class="lx2-progress-label">
+                <span>Riesgo procesal estimado</span>
+                <strong>36%</strong>
+              </div>
+              <div class="lx2-progress-bar"><div style="width:36%;background:linear-gradient(90deg,var(--lx-gold),var(--lx-red));"></div></div>
+            </div>
+
+            <div class="lx2-progress-row">
+              <div class="lx2-progress-label">
+                <span>Fase de negociación</span>
+                <strong>64%</strong>
+              </div>
+              <div class="lx2-progress-bar"><div style="width:64%;"></div></div>
+            </div>
           </div>
         </div>
+
+        <div class="lx2-bento-card lx2-photo">
+          <div class="lx2-photo-label">
+            <strong>Equipo visible</strong>
+            <span>La confianza aumenta cuando el cliente ve personas, experiencia y especialización.</span>
+          </div>
+        </div>
+
+        <div class="lx2-bento-card lx2-alert-card">
+          <span>Legal intelligence</span>
+          <h3>Consultas mejor filtradas.</h3>
+          <p>
+            Formularios guiados para separar mercantil, laboral, familia, inmobiliario o compliance.
+          </p>
+        </div>
+
+        <div class="lx2-bento-card lx2-wide-card">
+          <div class="lx2-wide-item">
+            <strong>92%</strong>
+            <span>claridad percibida</span>
+          </div>
+
+          <div class="lx2-wide-item">
+            <strong>4.8</strong>
+            <span>valoración media</span>
+          </div>
+
+          <div class="lx2-wide-item">
+            <strong>18</strong>
+            <span>casos activos</span>
+          </div>
+
+          <div class="lx2-wide-item">
+            <strong>6</strong>
+            <span>áreas de práctica</span>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -1164,83 +1383,112 @@
 
 <main>
 
-  <section id="areas" class="lx-section white">
-    <div class="lx-container">
+  <section id="areas" class="lx2-section light">
+    <div class="lx2-container">
 
-      <div class="lx-title">
-        <span class="lx-kicker">Áreas de práctica</span>
-        <h2>Especialidades explicadas con <em>claridad</em></h2>
+      <div class="lx2-title">
+        <h2>Áreas legales presentadas como <span>productos claros</span></h2>
         <p>
-          En sectores profesionales, no basta con verse bien. El usuario necesita entender rápido en qué puedes ayudarle y cómo solicitar una primera valoración.
+          Un despacho moderno debe explicar sus servicios sin saturar con texto jurídico. Cada área se presenta con problema, solución y llamada a consulta.
         </p>
       </div>
 
-      <div class="lx-practice-grid">
+      <div class="lx2-practice-grid">
 
-        <article class="lx-practice-card">
-          <div class="lx-practice-number">01</div>
-          <h3>Derecho mercantil</h3>
-          <p>Contratos, sociedades, reclamaciones entre empresas y asesoramiento preventivo.</p>
-          <ul>
-            <li>Contratos comerciales</li>
-            <li>Sociedades y pactos</li>
-            <li>Reclamaciones mercantiles</li>
-          </ul>
+        <article class="lx2-practice">
+          <div>
+            <div class="lx2-practice-top">
+              <span class="lx2-practice-number">01</span>
+              <span class="lx2-practice-chip">Empresa</span>
+            </div>
+            <h3>Mercantil y sociedades</h3>
+            <p>Contratos, pactos de socios, conflictos empresariales, operaciones y reclamaciones.</p>
+          </div>
+          <div class="lx2-practice-footer">
+            <span>Contratos</span>
+            <span>Socios</span>
+            <span>Reclamaciones</span>
+          </div>
         </article>
 
-        <article class="lx-practice-card">
-          <div class="lx-practice-number">02</div>
-          <h3>Laboral y empresa</h3>
-          <p>Soporte jurídico para conflictos laborales, despidos, sanciones y prevención.</p>
-          <ul>
-            <li>Despidos y conciliaciones</li>
-            <li>Contratos laborales</li>
-            <li>Conflictos internos</li>
-          </ul>
+        <article class="lx2-practice">
+          <div>
+            <div class="lx2-practice-top">
+              <span class="lx2-practice-number">02</span>
+              <span class="lx2-practice-chip">Laboral</span>
+            </div>
+            <h3>Laboral estratégico</h3>
+            <p>Despidos, sanciones, conciliaciones, prevención de conflictos y asesoramiento a empresa.</p>
+          </div>
+          <div class="lx2-practice-footer">
+            <span>Despidos</span>
+            <span>Contratos</span>
+            <span>Conciliación</span>
+          </div>
         </article>
 
-        <article class="lx-practice-card">
-          <div class="lx-practice-number">03</div>
-          <h3>Familia y patrimonio</h3>
-          <p>Procedimientos familiares, acuerdos, custodia, pensiones y planificación patrimonial.</p>
-          <ul>
-            <li>Separaciones y acuerdos</li>
-            <li>Custodia y pensiones</li>
-            <li>Herencias y sucesiones</li>
-          </ul>
+        <article class="lx2-practice">
+          <div>
+            <div class="lx2-practice-top">
+              <span class="lx2-practice-number">03</span>
+              <span class="lx2-practice-chip">Familia</span>
+            </div>
+            <h3>Familia y patrimonio</h3>
+            <p>Custodia, acuerdos, pensiones, separaciones, herencias y planificación patrimonial.</p>
+          </div>
+          <div class="lx2-practice-footer">
+            <span>Custodia</span>
+            <span>Herencias</span>
+            <span>Acuerdos</span>
+          </div>
         </article>
 
-        <article class="lx-practice-card">
-          <div class="lx-practice-number">04</div>
-          <h3>Inmobiliario</h3>
-          <p>Compraventas, arrendamientos, comunidades, reclamaciones y conflictos de propiedad.</p>
-          <ul>
-            <li>Contratos de alquiler</li>
-            <li>Compraventa de inmuebles</li>
-            <li>Conflictos de propiedad</li>
-          </ul>
+        <article class="lx2-practice">
+          <div>
+            <div class="lx2-practice-top">
+              <span class="lx2-practice-number">04</span>
+              <span class="lx2-practice-chip">Real estate</span>
+            </div>
+            <h3>Inmobiliario</h3>
+            <p>Compraventas, alquileres, conflictos de propiedad, comunidades y documentación.</p>
+          </div>
+          <div class="lx2-practice-footer">
+            <span>Alquiler</span>
+            <span>Compra</span>
+            <span>Propiedad</span>
+          </div>
         </article>
 
-        <article class="lx-practice-card">
-          <div class="lx-practice-number">05</div>
-          <h3>Fiscal preventivo</h3>
-          <p>Apoyo jurídico para operaciones, planificación, inspecciones y toma de decisiones.</p>
-          <ul>
-            <li>Planificación fiscal</li>
-            <li>Inspecciones</li>
-            <li>Operaciones societarias</li>
-          </ul>
+        <article class="lx2-practice">
+          <div>
+            <div class="lx2-practice-top">
+              <span class="lx2-practice-number">05</span>
+              <span class="lx2-practice-chip">Fiscal</span>
+            </div>
+            <h3>Fiscal preventivo</h3>
+            <p>Planificación, inspecciones, operaciones societarias y estrategia fiscal empresarial.</p>
+          </div>
+          <div class="lx2-practice-footer">
+            <span>Inspecciones</span>
+            <span>Fiscalidad</span>
+            <span>Prevención</span>
+          </div>
         </article>
 
-        <article class="lx-practice-card">
-          <div class="lx-practice-number">06</div>
-          <h3>Compliance</h3>
-          <p>Protocolos internos, prevención de riesgos, protección empresarial y documentación.</p>
-          <ul>
-            <li>Mapas de riesgo</li>
-            <li>Protocolos internos</li>
-            <li>Canales de denuncia</li>
-          </ul>
+        <article class="lx2-practice">
+          <div>
+            <div class="lx2-practice-top">
+              <span class="lx2-practice-number">06</span>
+              <span class="lx2-practice-chip">Compliance</span>
+            </div>
+            <h3>Compliance y riesgos</h3>
+            <p>Protocolos internos, mapas de riesgo, canal de denuncias y documentación corporativa.</p>
+          </div>
+          <div class="lx2-practice-footer">
+            <span>Riesgos</span>
+            <span>Protocolos</span>
+            <span>Canal interno</span>
+          </div>
         </article>
 
       </div>
@@ -1248,66 +1496,59 @@
     </div>
   </section>
 
-  <section id="proceso" class="lx-section">
-    <div class="lx-container">
+  <section id="casos" class="lx2-section dark">
+    <div class="lx2-container">
 
-      <div class="lx-process">
+      <div class="lx2-title">
+        <h2>Casos de éxito con enfoque <span>visual</span></h2>
+        <p>
+          En una web legal no conviene prometer resultados absolutos, pero sí mostrar experiencia, tipos de casos, metodología y valor aportado.
+        </p>
+      </div>
 
-        <div class="lx-process-intro">
-          <span class="lx-kicker">Proceso</span>
+      <div class="lx2-cases-grid">
 
-          <h2>Un proceso legal explicado sin rodeos.</h2>
-
+        <div class="lx2-case-main">
+          <span>Featured case</span>
+          <h2>Acuerdo mercantil cerrado antes de juicio.</h2>
           <p>
-            Una web profesional también debe ordenar el proceso: qué ocurre cuando el cliente contacta, qué información debe aportar y cuál será el siguiente paso.
+            Ejemplo visual de caso de éxito: conflicto societario, análisis documental, estrategia negociadora y cierre favorable mediante acuerdo.
           </p>
 
-          <div class="lx-mini-list">
-            <span>Reduce dudas antes de contactar</span>
-            <span>Filtra consultas mejor cualificadas</span>
-            <span>Transmite método y seguridad</span>
+          <div class="lx2-case-tags">
+            <strong>Mercantil</strong>
+            <strong>Negociación</strong>
+            <strong>Acuerdo</strong>
+            <strong>Empresa familiar</strong>
           </div>
         </div>
 
-        <div class="lx-steps">
+        <div class="lx2-success-list">
 
-          <article class="lx-step">
-            <div class="lx-step-number">1</div>
-            <div>
-              <h3>Recepción de consulta</h3>
-              <p>
-                El usuario completa un formulario guiado con área legal, urgencia, datos de contacto y resumen del caso.
-              </p>
+          <article class="lx2-success-card">
+            <h3>Conflicto laboral resuelto</h3>
+            <p>Revisión de documentación, estrategia de conciliación y cierre sin escalada judicial.</p>
+            <div class="lx2-success-result">
+              <span>Resuelto</span>
+              <small>Laboral</small>
             </div>
           </article>
 
-          <article class="lx-step">
-            <div class="lx-step-number">2</div>
-            <div>
-              <h3>Primera valoración</h3>
-              <p>
-                El despacho revisa el asunto, identifica documentación necesaria y propone el enfoque inicial.
-              </p>
+          <article class="lx2-success-card">
+            <h3>Herencia con varios titulares</h3>
+            <p>Ordenación patrimonial, acuerdo entre partes y planificación documental.</p>
+            <div class="lx2-success-result">
+              <span>Acuerdo</span>
+              <small>Familia</small>
             </div>
           </article>
 
-          <article class="lx-step">
-            <div class="lx-step-number">3</div>
-            <div>
-              <h3>Reunión estratégica</h3>
-              <p>
-                Se agenda una consulta para explicar opciones, riesgos, plazos y próximos pasos.
-              </p>
-            </div>
-          </article>
-
-          <article class="lx-step">
-            <div class="lx-step-number">4</div>
-            <div>
-              <h3>Plan de actuación</h3>
-              <p>
-                El cliente recibe una propuesta clara con alcance, honorarios, fases y documentación requerida.
-              </p>
+          <article class="lx2-success-card">
+            <h3>Compraventa inmobiliaria</h3>
+            <p>Revisión de cargas, contrato privado, condiciones y firma con seguridad jurídica.</p>
+            <div class="lx2-success-result">
+              <span>Validado</span>
+              <small>Inmobiliario</small>
             </div>
           </article>
 
@@ -1318,43 +1559,57 @@
     </div>
   </section>
 
-  <section id="equipo" class="lx-section dark">
-    <div class="lx-container">
+  <section id="equipo" class="lx2-section light">
+    <div class="lx2-container">
 
-      <div class="lx-title">
-        <span class="lx-kicker">Equipo</span>
-        <h2>Rostros, especialización y <em>credibilidad</em></h2>
+      <div class="lx2-title">
+        <h2>Equipo visible, especializado y <span>creíble</span></h2>
         <p>
-          Para despachos y asesorías, mostrar equipo ayuda a humanizar la firma y reforzar la confianza.
+          Una firma profesional debe mostrar personas. Fotos, especialidades y etiquetas de experiencia ayudan a que el cliente confíe antes de contactar.
         </p>
       </div>
 
-      <div class="lx-team-grid">
+      <div class="lx2-team-grid">
 
-        <article class="lx-team-card">
-          <div class="lx-team-photo" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="lx-team-body">
+        <article class="lx2-team-card">
+          <div class="lx2-team-photo" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="lx2-team-body">
             <span>Socio director</span>
             <h3>Álvaro Herrera</h3>
-            <p>Especialista en derecho mercantil, contratación y conflictos empresariales.</p>
+            <p>Mercantil, contratación, conflictos societarios y estrategia jurídica de empresa.</p>
+            <div class="lx2-team-tags">
+              <strong>Mercantil</strong>
+              <strong>Empresa</strong>
+              <strong>Contratos</strong>
+            </div>
           </div>
         </article>
 
-        <article class="lx-team-card">
-          <div class="lx-team-photo" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="lx-team-body">
+        <article class="lx2-team-card">
+          <div class="lx2-team-photo" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="lx2-team-body">
             <span>Área laboral</span>
             <h3>Clara Montes</h3>
-            <p>Asesoramiento laboral, negociación, procedimientos y prevención de riesgos jurídicos.</p>
+            <p>Despidos, negociaciones, conciliaciones y prevención de conflictos internos.</p>
+            <div class="lx2-team-tags">
+              <strong>Laboral</strong>
+              <strong>RRHH</strong>
+              <strong>Conciliación</strong>
+            </div>
           </div>
         </article>
 
-        <article class="lx-team-card">
-          <div class="lx-team-photo" style="background-image:url('https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="lx-team-body">
-            <span>Fiscal y compliance</span>
+        <article class="lx2-team-card">
+          <div class="lx2-team-photo" style="background-image:url('https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="lx2-team-body">
+            <span>Fiscal & compliance</span>
             <h3>Marcos Vidal</h3>
-            <p>Planificación, cumplimiento normativo y estrategia jurídica para empresas.</p>
+            <p>Planificación fiscal, cumplimiento normativo, riesgos y documentación corporativa.</p>
+            <div class="lx2-team-tags">
+              <strong>Fiscal</strong>
+              <strong>Compliance</strong>
+              <strong>Riesgos</strong>
+            </div>
           </div>
         </article>
 
@@ -1363,86 +1618,100 @@
     </div>
   </section>
 
-  <section id="casos" class="lx-section white">
-    <div class="lx-container">
+  <section id="proceso" class="lx2-section dark">
+    <div class="lx2-container">
 
-      <div class="lx-case-grid">
+      <div class="lx2-process-layout">
 
-        <div class="lx-case-feature">
-          <div>
-            <span>Resultados y confianza</span>
-            <h2>Una web legal debe transmitir criterio antes de la primera llamada.</h2>
-            <p>
-              Los bloques de resultados, metodología y especialización permiten explicar el valor del despacho sin prometer resultados imposibles ni saturar de texto jurídico.
-            </p>
-          </div>
-
-          <div class="lx-actions" style="margin-bottom:0;">
-            <a href="#consulta" class="lx-btn lx-btn-secondary">Solicitar valoración</a>
-          </div>
-        </div>
-
-        <div class="lx-case-stats">
-          <div class="lx-stat">
-            <strong>+120</strong>
-            <span>consultas iniciales gestionadas en la demo visual.</span>
-          </div>
-
-          <div class="lx-stat">
-            <strong>6</strong>
-            <span>áreas de práctica presentadas de forma clara.</span>
-          </div>
-
-          <div class="lx-stat">
-            <strong>24h</strong>
-            <span>mensaje de respuesta inicial para generar seguridad.</span>
-          </div>
-
-          <div class="lx-stat">
-            <strong>100%</strong>
-            <span>diseño responsive y orientado a contacto.</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section id="consulta" class="lx-section lx-consult-section">
-    <div class="lx-container">
-
-      <div class="lx-consult-grid">
-
-        <div class="lx-consult-copy">
-          <span class="lx-kicker">Consulta inicial</span>
-
-          <h2>Cuéntanos tu situación y recibe una primera orientación.</h2>
-
+        <div class="lx2-process-sticky">
+          <h2>Un proceso serio, pero fácil de entender.</h2>
           <p>
-            Este formulario es un ejemplo de captación para servicios profesionales. Permite filtrar el tipo de consulta y preparar mejor la primera respuesta.
+            En servicios legales, explicar el proceso reduce dudas, filtra mejor las consultas y transmite método profesional.
           </p>
 
-          <div class="lx-consult-points">
-            <span>Área legal de interés</span>
-            <span>Urgencia del asunto</span>
-            <span>Datos de contacto</span>
-            <span>Resumen inicial del caso</span>
+          <div class="lx2-process-mini">
+            <span>Consulta inicial guiada</span>
+            <span>Valoración de documentación</span>
+            <span>Estrategia y siguientes pasos</span>
+            <span>Seguimiento del caso</span>
           </div>
         </div>
 
-        <form class="lx-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
+        <div class="lx2-timeline">
+
+          <article class="lx2-step">
+            <div class="lx2-step-number">01</div>
+            <div>
+              <h3>Entrada de consulta</h3>
+              <p>El cliente selecciona área, urgencia y describe su situación en un formulario claro.</p>
+            </div>
+          </article>
+
+          <article class="lx2-step">
+            <div class="lx2-step-number">02</div>
+            <div>
+              <h3>Revisión inicial</h3>
+              <p>El despacho identifica documentación necesaria, riesgo inicial y posible enfoque.</p>
+            </div>
+          </article>
+
+          <article class="lx2-step">
+            <div class="lx2-step-number">03</div>
+            <div>
+              <h3>Consulta estratégica</h3>
+              <p>Se explican opciones, plazos, costes aproximados y escenarios posibles.</p>
+            </div>
+          </article>
+
+          <article class="lx2-step">
+            <div class="lx2-step-number">04</div>
+            <div>
+              <h3>Plan de acción</h3>
+              <p>El cliente recibe una propuesta clara con fases, documentación y próximos pasos.</p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="consulta" class="lx2-section lx2-form-section">
+    <div class="lx2-container">
+
+      <div class="lx2-form-grid">
+
+        <div class="lx2-form-copy">
+          <span class="lx2-kicker">Consulta inicial</span>
+
+          <h2>Convierte visitas en consultas mejor preparadas.</h2>
+
+          <p>
+            Esta sección muestra cómo captar contactos profesionales sin parecer un formulario genérico: área jurídica, urgencia, datos y resumen inicial.
+          </p>
+
+          <div class="lx2-form-bullets">
+            <span>Filtro por área legal</span>
+            <span>Urgencia del asunto</span>
+            <span>Resumen del caso</span>
+            <span>Contacto directo con la firma</span>
+          </div>
+        </div>
+
+        <form class="lx2-form" action="mailto:contacto@handoo.me" method="post" enctype="text/plain">
           <h3>Solicitar consulta</h3>
           <p>
-            Completa los datos y el despacho contactará para valorar el siguiente paso.
+            Completa los datos y el despacho podrá valorar el siguiente paso.
           </p>
 
-          <div class="lx-form-row">
+          <div class="lx2-form-row">
             <input type="text" name="Nombre" placeholder="Nombre completo" required>
             <input type="email" name="Email" placeholder="Email" required>
           </div>
 
-          <div class="lx-form-row">
+          <div class="lx2-form-row">
             <input type="text" name="Telefono" placeholder="Teléfono">
             <select name="Area legal" required>
               <option value="">Área legal</option>
@@ -1473,45 +1742,44 @@
     </div>
   </section>
 
-  <section class="lx-section white">
-    <div class="lx-container">
+  <section class="lx2-section light">
+    <div class="lx2-container">
 
-      <div class="lx-title">
-        <span class="lx-kicker">Preguntas frecuentes</span>
-        <h2>Dudas habituales antes de <em>contactar</em></h2>
+      <div class="lx2-title">
+        <h2>Preguntas frecuentes antes de <span>contactar</span></h2>
         <p>
-          Las FAQs ayudan a reducir fricción y ordenar expectativas antes de la primera consulta.
+          Las FAQs reducen fricción y ayudan a que el cliente llegue a la primera consulta con expectativas claras.
         </p>
       </div>
 
-      <div class="lx-faq-grid">
+      <div class="lx2-faq-grid">
 
-        <article class="lx-faq-item is-open">
-          <button class="lx-faq-question" type="button">
-            ¿La primera consulta puede hacerse online?
+        <article class="lx2-faq-item is-open">
+          <button class="lx2-faq-question" type="button">
+            ¿La primera consulta puede ser online?
             <span>+</span>
           </button>
-          <div class="lx-faq-answer">
-            Sí. En una web real se puede ofrecer consulta online, telefónica o presencial, según disponibilidad del despacho.
+          <div class="lx2-faq-answer">
+            Sí. En una web real se puede ofrecer consulta por videollamada, teléfono o presencial, según disponibilidad del despacho.
           </div>
         </article>
 
-        <article class="lx-faq-item">
-          <button class="lx-faq-question" type="button">
-            ¿Puedo adjuntar documentación?
+        <article class="lx2-faq-item">
+          <button class="lx2-faq-question" type="button">
+            ¿Se podrían adjuntar documentos?
             <span>+</span>
           </button>
-          <div class="lx-faq-answer">
-            En una versión avanzada se puede añadir subida de documentos, clasificación automática y aviso interno al despacho.
+          <div class="lx2-faq-answer">
+            Sí. En una versión avanzada se puede añadir subida de documentos, clasificación automática y aviso interno al equipo.
           </div>
         </article>
 
-        <article class="lx-faq-item">
-          <button class="lx-faq-question" type="button">
-            ¿Sirve para asesorías y consultorías?
+        <article class="lx2-faq-item">
+          <button class="lx2-faq-question" type="button">
+            ¿Sirve también para asesorías?
             <span>+</span>
           </button>
-          <div class="lx-faq-answer">
+          <div class="lx2-faq-answer">
             Sí. La estructura sirve para despachos legales, asesorías fiscales, consultoras profesionales y firmas B2B.
           </div>
         </article>
@@ -1521,38 +1789,41 @@
     </div>
   </section>
 
-  <section class="lx-final">
-    <div class="lx-container">
-      <h2>Una web profesional debe vender confianza antes de vender <em>servicios</em>.</h2>
+  <section class="lx2-final">
+    <div class="lx2-container">
+      <h2>Una web legal moderna debe vender <span>confianza, método y criterio</span>.</h2>
       <p>
-        Esta demo muestra cómo presentar especialidades, equipo, metodología, resultados, FAQs y formulario de consulta en una web seria y orientada a captación.
+        Esta demo enseña que Handoo Studio puede crear una web sobria, avanzada y diferente para servicios profesionales de alto valor.
       </p>
 
-      <div class="lx-actions" style="justify-content:center;margin-bottom:0;">
-        <a href="../../contacto.html" class="lx-btn lx-btn-primary">Quiero una web así</a>
-        <a href="../../portfolio.html" class="lx-btn lx-btn-secondary">Volver al portfolio</a>
+      <div class="lx2-actions" style="justify-content:center;margin-bottom:0;">
+        <a href="../../contacto.html" class="lx2-btn lx2-btn-primary">Quiero una web así</a>
+        <a href="../../portfolio.html" class="lx2-btn lx2-btn-secondary">Volver al portfolio</a>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="lx-footer">
-  <div class="lx-container">
-    Demo ficticia de despacho legal · Diseño creado por <a href="../../index.html">Handoo Studio</a> · contacto@handoo.me
+<footer class="lx2-footer">
+  <div class="lx2-container">
+    Demo ficticia de despacho legal moderno · Diseño creado por <a href="../../index.html">Handoo Studio</a> · contacto@handoo.me
   </div>
 </footer>
 
-<a href="#consulta" class="lx-floating">Consulta inicial</a>
+<a href="#consulta" class="lx2-floating">Consulta inicial</a>
 
 <script>
-  document.querySelectorAll(".lx-faq-question").forEach((button) => {
+  document.querySelectorAll(".lx2-faq-question").forEach((button) => {
     button.addEventListener("click", () => {
-      const item = button.closest(".lx-faq-item");
+      const item = button.closest(".lx2-faq-item");
       item.classList.toggle("is-open");
     });
   });
-</script>
+">Consulta inicial</a>
+
+<script>
+  document.querySelectorAll(".lx2</script>
 
 <script src="../../assets/js/main.js"></script>
 </body>
