@@ -3,662 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Panel editable | Handoo Studio</title>
   <meta name="description" content="Panel privado de edición de Handoo Studio." />
-
   <link rel="stylesheet" href="../assets/css/style.css">
-
   <style>
-    body{
-      margin:0;
-      background:#07111f;
-      color:#0f172a;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    }
-
-    .panel-shell{
-      min-height:100vh;
-      padding:24px;
-      display:grid;
-      grid-template-columns:390px 1fr;
-      gap:20px;
-    }
-
-    .panel-sidebar{
-      background:#0b1627;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:28px;
-      padding:22px;
-      color:white;
-      position:sticky;
-      top:24px;
-      height:calc(100vh - 48px);
-      overflow:auto;
-    }
-
-    .panel-brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:20px;
-    }
-
-    .panel-brand-mark{
-      width:42px;
-      height:42px;
-      border-radius:15px;
-      background:#f97316;
-      display:grid;
-      place-items:center;
-      color:white;
-      font-weight:950;
-    }
-
-    .panel-brand strong{
-      display:block;
-      font-size:18px;
-      letter-spacing:-.6px;
-    }
-
-    .panel-brand span{
-      display:block;
-      margin-top:2px;
-      color:#94a3b8;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .panel-note{
-      margin-bottom:16px;
-      padding:14px;
-      border-radius:18px;
-      background:rgba(56,189,248,.10);
-      border:1px solid rgba(56,189,248,.18);
-      color:#cbd5e1;
-      font-size:13px;
-      line-height:1.55;
-      font-weight:700;
-    }
-
-    .panel-actions{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-bottom:18px;
-    }
-
-    .panel-btn{
-      width:100%;
-      min-height:44px;
-      border:0;
-      border-radius:14px;
-      padding:0 14px;
-      font-family:inherit;
-      font-size:14px;
-      font-weight:950;
-      cursor:pointer;
-    }
-
-    .panel-btn.primary{
-      background:#f97316;
-      color:white;
-    }
-
-    .panel-btn.secondary{
-      background:rgba(255,255,255,.08);
-      color:white;
-      border:1px solid rgba(255,255,255,.12);
-    }
-
-    .panel-btn.danger{
-      background:#fff7ed;
-      color:#c2410c;
-    }
-
-    .panel-tabs{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-      margin-bottom:18px;
-    }
-
-    .panel-tab{
-      min-height:42px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:13px;
-      background:rgba(255,255,255,.05);
-      color:#cbd5e1;
-      font-family:inherit;
-      font-size:13px;
-      font-weight:900;
-      cursor:pointer;
-      text-align:left;
-      padding:0 11px;
-    }
-
-    .panel-tab.is-active,
-    .panel-tab:hover{
-      background:#f97316;
-      border-color:#f97316;
-      color:white;
-    }
-
-    .panel-section{
-      display:none;
-      padding-top:16px;
-      border-top:1px solid rgba(255,255,255,.10);
-    }
-
-    .panel-section.is-active{
-      display:block;
-    }
-
-    .panel-section h2{
-      margin:0 0 14px;
-      color:white;
-      font-size:17px;
-      letter-spacing:-.5px;
-    }
-
-    .panel-section-intro{
-      margin:0 0 14px;
-      color:#94a3b8;
-      font-size:12px;
-      line-height:1.5;
-      font-weight:700;
-    }
-
-    .panel-field{
-      margin-bottom:13px;
-    }
-
-    .panel-field label{
-      display:block;
-      margin-bottom:7px;
-      color:#cbd5e1;
-      font-size:11px;
-      font-weight:950;
-      text-transform:uppercase;
-      letter-spacing:.6px;
-    }
-
-    .panel-field input,
-    .panel-field textarea{
-      width:100%;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:13px;
-      background:#111d31;
-      color:white;
-      padding:12px 13px;
-      font-family:inherit;
-      font-size:13px;
-      font-weight:750;
-      outline:none;
-    }
-
-    .panel-field textarea{
-      min-height:84px;
-      resize:vertical;
-      line-height:1.5;
-    }
-
-    .panel-check{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:12px;
-      border-radius:14px;
-      background:#111d31;
-      border:1px solid rgba(255,255,255,.12);
-      color:#e2e8f0;
-      font-size:13px;
-      font-weight:850;
-      margin-bottom:13px;
-    }
-
-    .panel-check input{
-      accent-color:#f97316;
-    }
-
-    .panel-subtitle{
-      margin:20px 0 12px;
-      padding-top:16px;
-      border-top:1px solid rgba(255,255,255,.10);
-      color:#fdba74;
-      font-size:13px;
-      font-weight:950;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-    }
-
-    .image-field{
-      padding:14px;
-      border-radius:18px;
-      background:#111d31;
-      border:1px solid rgba(255,255,255,.12);
-      margin-bottom:14px;
-    }
-
-    .image-field label{
-      display:block;
-      color:#cbd5e1;
-      font-size:12px;
-      font-weight:950;
-      text-transform:uppercase;
-      letter-spacing:.6px;
-      margin-bottom:10px;
-    }
-
-    .image-preview{
-      height:135px;
-      border-radius:15px;
-      border:1px dashed rgba(255,255,255,.22);
-      background:
-        linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
-      background-size:cover;
-      background-position:center;
-      margin-bottom:10px;
-      display:grid;
-      place-items:center;
-      color:#94a3b8;
-      font-size:12px;
-      font-weight:850;
-      text-align:center;
-      padding:12px;
-    }
-
-    .image-preview::before{
-      content:"Sin imagen";
-    }
-
-    .image-preview.has-image::before{
-      content:"";
-    }
-
-    .image-actions{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:8px;
-      align-items:center;
-    }
-
-    .image-actions input{
-      color:#cbd5e1;
-      font-size:12px;
-      max-width:100%;
-    }
-
-    .image-remove{
-      border:0;
-      min-height:36px;
-      border-radius:11px;
-      padding:0 10px;
-      background:#fff7ed;
-      color:#c2410c;
-      font-family:inherit;
-      font-size:12px;
-      font-weight:950;
-      cursor:pointer;
-    }
-
-    .panel-main{
-      background:#eef3f8;
-      border-radius:30px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    .panel-topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:18px 22px;
-      background:white;
-      border-bottom:1px solid #dbe4ef;
-    }
-
-    .panel-topbar h1{
-      margin:0;
-      color:#0f172a;
-      font-size:22px;
-      letter-spacing:-.8px;
-    }
-
-    .panel-topbar p{
-      margin:4px 0 0;
-      color:#64748b;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .panel-status{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      padding:8px 11px;
-      border-radius:999px;
-      background:#ecfdf5;
-      color:#15803d;
-      font-size:12px;
-      font-weight:950;
-    }
-
-    .panel-status::before{
-      content:"";
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:#22c55e;
-    }
-
-    .panel-preview-wrap{
-      padding:20px;
-      height:calc(100vh - 114px);
-    }
-
-    .panel-preview{
-      width:100%;
-      height:100%;
-      border:0;
-      border-radius:24px;
-      background:white;
-      box-shadow:0 22px 60px rgba(15,23,42,.12);
-    }
-
-    .panel-toast{
-      position:fixed;
-      right:24px;
-      bottom:24px;
-      z-index:50;
-      display:none;
-      max-width:380px;
-      padding:15px 16px;
-      border-radius:18px;
-      background:#0f172a;
-      color:white;
-      box-shadow:0 20px 60px rgba(15,23,42,.24);
-      font-size:13px;
-      font-weight:850;
-    }
-
-    .panel-toast.is-visible{
-      display:block;
-    }
-
-    @media(max-width:1050px){
-      .panel-shell{
-        grid-template-columns:1fr;
-      }
-
-      .panel-sidebar{
-        position:relative;
-        top:auto;
-        height:auto;
-      }
-
-      .panel-preview-wrap{
-        height:760px;
-      }
-    }
-
-    @media(max-width:640px){
-      .panel-shell{
-        padding:12px;
-      }
-
-      .panel-tabs{
-        grid-template-columns:1fr;
-      }
-
-      .panel-topbar{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-    }
+    body{margin:0;background:#07111f;color:#0f172a;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.panel-shell{min-height:100vh;padding:24px;display:grid;grid-template-columns:410px 1fr;gap:20px}.panel-sidebar{background:#0b1627;border:1px solid rgba(255,255,255,.10);border-radius:28px;padding:22px;color:white;position:sticky;top:24px;height:calc(100vh - 48px);overflow:auto}.panel-brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}.panel-brand-mark{width:42px;height:42px;border-radius:15px;background:#f97316;display:grid;place-items:center;color:white;font-weight:950}.panel-brand strong{display:block;font-size:18px;letter-spacing:-.6px}.panel-brand span{display:block;margin-top:2px;color:#94a3b8;font-size:13px;font-weight:700}.panel-note{margin-bottom:16px;padding:14px;border-radius:18px;background:rgba(56,189,248,.10);border:1px solid rgba(56,189,248,.18);color:#cbd5e1;font-size:13px;line-height:1.55;font-weight:700}.panel-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:18px}.panel-btn{width:100%;min-height:44px;border:0;border-radius:14px;padding:0 14px;font-family:inherit;font-size:14px;font-weight:950;cursor:pointer}.panel-btn.primary{background:#f97316;color:white}.panel-btn.secondary{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.12)}.panel-btn.danger{background:#fff7ed;color:#c2410c}.panel-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}.panel-tab{min-height:42px;border:1px solid rgba(255,255,255,.10);border-radius:13px;background:rgba(255,255,255,.05);color:#cbd5e1;font-family:inherit;font-size:13px;font-weight:900;cursor:pointer;text-align:left;padding:0 11px}.panel-tab.is-active,.panel-tab:hover{background:#f97316;border-color:#f97316;color:white}.panel-section{display:none;padding-top:16px;border-top:1px solid rgba(255,255,255,.10)}.panel-section.is-active{display:block}.panel-section h2{margin:0 0 14px;color:white;font-size:17px;letter-spacing:-.5px}.panel-section-intro{margin:0 0 14px;color:#94a3b8;font-size:12px;line-height:1.5;font-weight:700}.panel-subtitle{margin:20px 0 12px;padding-top:16px;border-top:1px solid rgba(255,255,255,.10);color:#fdba74;font-size:13px;font-weight:950;text-transform:uppercase;letter-spacing:.7px}.panel-field{margin-bottom:13px}.panel-field label{display:block;margin-bottom:7px;color:#cbd5e1;font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.6px}.panel-field input,.panel-field textarea{width:100%;border:1px solid rgba(255,255,255,.12);border-radius:13px;background:#111d31;color:white;padding:12px 13px;font-family:inherit;font-size:13px;font-weight:750;outline:none}.panel-field textarea{min-height:84px;resize:vertical;line-height:1.5}.panel-check{display:flex;align-items:center;gap:10px;padding:12px;border-radius:14px;background:#111d31;border:1px solid rgba(255,255,255,.12);color:#e2e8f0;font-size:13px;font-weight:850;margin-bottom:13px}.panel-check input{accent-color:#f97316}.image-field{padding:14px;border-radius:18px;background:#111d31;border:1px solid rgba(255,255,255,.12);margin-bottom:14px}.image-field label{display:block;color:#cbd5e1;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}.image-preview{height:135px;border-radius:15px;border:1px dashed rgba(255,255,255,.22);background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));background-size:cover;background-position:center;margin-bottom:10px;display:grid;place-items:center;color:#94a3b8;font-size:12px;font-weight:850;text-align:center;padding:12px}.image-preview::before{content:"Sin imagen"}.image-preview.has-image::before{content:""}.image-actions{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.image-actions input{color:#cbd5e1;font-size:12px;max-width:100%}.image-remove{border:0;min-height:36px;border-radius:11px;padding:0 10px;background:#fff7ed;color:#c2410c;font-family:inherit;font-size:12px;font-weight:950;cursor:pointer}.panel-main{background:#eef3f8;border-radius:30px;overflow:hidden;border:1px solid rgba(255,255,255,.10)}.panel-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;background:white;border-bottom:1px solid #dbe4ef}.panel-topbar h1{margin:0;color:#0f172a;font-size:22px;letter-spacing:-.8px}.panel-topbar p{margin:4px 0 0;color:#64748b;font-size:13px;font-weight:700}.panel-status{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;background:#ecfdf5;color:#15803d;font-size:12px;font-weight:950}.panel-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#22c55e}.panel-preview-wrap{padding:20px;height:calc(100vh - 114px)}.panel-preview{width:100%;height:100%;border:0;border-radius:24px;background:white;box-shadow:0 22px 60px rgba(15,23,42,.12)}.panel-toast{position:fixed;right:24px;bottom:24px;z-index:50;display:none;max-width:380px;padding:15px 16px;border-radius:18px;background:#0f172a;color:white;box-shadow:0 20px 60px rgba(15,23,42,.24);font-size:13px;font-weight:850}.panel-toast.is-visible{display:block}@media(max-width:1050px){.panel-shell{grid-template-columns:1fr}.panel-sidebar{position:relative;top:auto;height:auto}.panel-preview-wrap{height:760px}}@media(max-width:640px){.panel-shell{padding:12px}.panel-tabs{grid-template-columns:1fr}.panel-topbar{flex-direction:column;align-items:flex-start}}
   </style>
 </head>
-
 <body>
-
   <div class="panel-shell">
-
     <aside class="panel-sidebar">
-      <div class="panel-brand">
-        <div class="panel-brand-mark">h</div>
-        <div>
-          <strong>Handoo Studio</strong>
-          <span>Panel editable por páginas</span>
-        </div>
-      </div>
-
-      <div class="panel-note">
-        Las imágenes están dentro de la página a la que pertenecen. Esta fase guarda textos e imágenes en tu navegador para demo.
-      </div>
-
-      <div class="panel-actions">
-        <button class="panel-btn secondary" type="button" data-panel-save>Guardar borrador</button>
-        <button class="panel-btn primary" type="button" data-panel-publish>Publicar cambios</button>
-        <button class="panel-btn danger" type="button" data-panel-reset>Restaurar demo</button>
-      </div>
-
-      <div class="panel-tabs">
-        <button class="panel-tab is-active" type="button" data-panel-tab="inicio">Inicio</button>
-        <button class="panel-tab" type="button" data-panel-tab="servicios">Servicios</button>
-        <button class="panel-tab" type="button" data-panel-tab="precios">Precios</button>
-        <button class="panel-tab" type="button" data-panel-tab="portfolio">Portfolio</button>
-        <button class="panel-tab" type="button" data-panel-tab="promos">Promos</button>
-        <button class="panel-tab" type="button" data-panel-tab="contacto">Contacto</button>
-      </div>
-
+      <div class="panel-brand"><div class="panel-brand-mark">h</div><div><strong>Handoo Studio</strong><span>Catálogo único editable</span></div></div>
+      <div class="panel-note">Un servicio se edita una sola vez y se actualiza en todas las páginas. Las imágenes de servicios y demos también son únicas y reutilizables.</div>
+      <div class="panel-actions"><button class="panel-btn secondary" type="button" data-panel-save>Guardar borrador</button><button class="panel-btn primary" type="button" data-panel-publish>Publicar cambios</button><button class="panel-btn danger" type="button" data-panel-reset>Restaurar demo</button></div>
+      <div class="panel-tabs"><button class="panel-tab is-active" type="button" data-panel-tab="inicio">Inicio</button><button class="panel-tab" type="button" data-panel-tab="catalogo">Catálogo</button><button class="panel-tab" type="button" data-panel-tab="portfolio">Portfolio</button><button class="panel-tab" type="button" data-panel-tab="promos">Promos</button><button class="panel-tab" type="button" data-panel-tab="contacto">Contacto</button></div>
       <form data-panel-form>
-
         <section class="panel-section is-active" data-panel-section="inicio">
-          <h2>Inicio</h2>
-          <p class="panel-section-intro">Edita el hero principal de la home y su imagen asociada.</p>
-
-          <div class="panel-field">
-            <label>Etiqueta superior</label>
-            <input type="text" data-field="home.hero.badge">
-          </div>
-
-          <div class="panel-field">
-            <label>Título principal</label>
-            <textarea data-field="home.hero.title"></textarea>
-          </div>
-
-          <div class="panel-field">
-            <label>Texto principal</label>
-            <textarea data-field="home.hero.text"></textarea>
-          </div>
-
-          <div class="panel-field">
-            <label>Sublinea</label>
-            <textarea data-field="home.hero.subline"></textarea>
-          </div>
-
-          <div class="panel-field">
-            <label>Botón principal</label>
-            <input type="text" data-field="home.hero.primary">
-          </div>
-
-          <div class="panel-field">
-            <label>Botón secundario</label>
-            <input type="text" data-field="home.hero.secondary">
-          </div>
-
-          <h3 class="panel-subtitle">Imagen de inicio</h3>
-
-          <div class="image-field">
-            <label>Imagen hero / bloque visual home</label>
-            <div class="image-preview" data-image-preview="image.home.hero"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.home.hero">
-              <button type="button" class="image-remove" data-image-remove="image.home.hero">Quitar</button>
-            </div>
-          </div>
+          <h2>Inicio</h2><p class="panel-section-intro">Hero principal de la home.</p>
+          <div class="panel-field"><label>Etiqueta superior</label><input type="text" data-field="home.hero.badge"></div>
+          <div class="panel-field"><label>Título principal</label><textarea data-field="home.hero.title"></textarea></div>
+          <div class="panel-field"><label>Texto principal</label><textarea data-field="home.hero.text"></textarea></div>
+          <div class="panel-field"><label>Sublinea</label><textarea data-field="home.hero.subline"></textarea></div>
+          <div class="panel-field"><label>Botón principal</label><input type="text" data-field="home.hero.primary"></div>
+          <div class="panel-field"><label>Botón secundario</label><input type="text" data-field="home.hero.secondary"></div>
+          <h3 class="panel-subtitle">Imagen de inicio</h3><div class="image-field"><label>Imagen hero / fondo inicio</label><div class="image-preview" data-image-preview="page.home.cover"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="page.home.cover"><button type="button" class="image-remove" data-image-remove="page.home.cover">Quitar</button></div></div>
         </section>
-
-        <section class="panel-section" data-panel-section="servicios">
-          <h2>Servicios</h2>
-          <p class="panel-section-intro">Edita precios rápidos y la imagen asociada a la página de servicios.</p>
-
-          <div class="panel-field">
-            <label>Landing</label>
-            <input type="text" data-field="price.landing">
-          </div>
-
-          <div class="panel-field">
-            <label>Web corporativa</label>
-            <input type="text" data-field="price.corporate">
-          </div>
-
-          <div class="panel-field">
-            <label>Tienda online</label>
-            <input type="text" data-field="price.shop">
-          </div>
-
-          <div class="panel-field">
-            <label>Restyling</label>
-            <input type="text" data-field="price.restyling">
-          </div>
-
-          <h3 class="panel-subtitle">Imagen de servicios</h3>
-
-          <div class="image-field">
-            <label>Imagen / fondo servicios</label>
-            <div class="image-preview" data-image-preview="image.services.main"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.services.main">
-              <button type="button" class="image-remove" data-image-remove="image.services.main">Quitar</button>
-            </div>
-          </div>
+        <section class="panel-section" data-panel-section="catalogo">
+          <h2>Catálogo comercial</h2><p class="panel-section-intro">Servicios globales. Lo que cambies aquí se actualiza en index, servicios y precios.</p>
+          <h3 class="panel-subtitle">Landing Page</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.landing.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.landing.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.landing.price"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.landing.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.landing.image"><button type="button" class="image-remove" data-image-remove="service.landing.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Web Corporativa</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.corporate.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.corporate.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.corporate.price"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.corporate.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.corporate.image"><button type="button" class="image-remove" data-image-remove="service.corporate.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Tienda Online / Catálogo</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.shop.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.shop.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.shop.price"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.shop.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.shop.image"><button type="button" class="image-remove" data-image-remove="service.shop.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Restyling Web</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.restyling.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.restyling.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.restyling.price"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.restyling.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.restyling.image"><button type="button" class="image-remove" data-image-remove="service.restyling.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Panel Autoeditable</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.panel.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.panel.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.panel.price"></div>
+          <div class="panel-field"><label>Precio habitual</label><input type="text" data-field="service.panel.usualPrice"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.panel.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.panel.image"><button type="button" class="image-remove" data-image-remove="service.panel.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Catálogo editable</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.catalog.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.catalog.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.catalog.price"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.catalog.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.catalog.image"><button type="button" class="image-remove" data-image-remove="service.catalog.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Automatización IA</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.ai.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.ai.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.ai.price"></div>
+          <div class="panel-field"><label>Precio IA avanzada</label><input type="text" data-field="service.ai.advancedPrice"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.ai.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.ai.image"><button type="button" class="image-remove" data-image-remove="service.ai.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Mantenimiento Web</h3>
+          <div class="panel-field"><label>Nombre</label><input type="text" data-field="service.maintenance.name"></div>
+          <div class="panel-field"><label>Descripción corta</label><textarea data-field="service.maintenance.short"></textarea></div>
+          <div class="panel-field"><label>Precio</label><input type="text" data-field="service.maintenance.price"></div>
+          <div class="image-field"><label>Imagen del servicio</label><div class="image-preview" data-image-preview="service.maintenance.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="service.maintenance.image"><button type="button" class="image-remove" data-image-remove="service.maintenance.image">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Imagen página servicios</h3><div class="image-field"><label>Fondo / cabecera servicios</label><div class="image-preview" data-image-preview="page.services.cover"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="page.services.cover"><button type="button" class="image-remove" data-image-remove="page.services.cover">Quitar</button></div></div>
+          <h3 class="panel-subtitle">Imagen página precios</h3><div class="image-field"><label>Fondo / cabecera precios</label><div class="image-preview" data-image-preview="page.pricing.cover"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="page.pricing.cover"><button type="button" class="image-remove" data-image-remove="page.pricing.cover">Quitar</button></div></div>
         </section>
-
-        <section class="panel-section" data-panel-section="precios">
-          <h2>Precios</h2>
-          <p class="panel-section-intro">Gestiona precios principales, extras, IA y la imagen de precios.</p>
-
-          <div class="panel-field">
-            <label>Panel editable promo</label>
-            <input type="text" data-field="price.panel">
-          </div>
-
-          <div class="panel-field">
-            <label>Panel editable precio habitual</label>
-            <input type="text" data-field="price.panel.usual">
-          </div>
-
-          <div class="panel-field">
-            <label>Catálogo editable</label>
-            <input type="text" data-field="price.catalog">
-          </div>
-
-          <div class="panel-field">
-            <label>IA básica</label>
-            <input type="text" data-field="price.aiBasic">
-          </div>
-
-          <div class="panel-field">
-            <label>IA avanzada</label>
-            <input type="text" data-field="price.aiAdvanced">
-          </div>
-
-          <div class="panel-field">
-            <label>Mantenimiento</label>
-            <input type="text" data-field="price.maintenance">
-          </div>
-
-          <h3 class="panel-subtitle">Imagen de precios</h3>
-
-          <div class="image-field">
-            <label>Imagen / fondo precios</label>
-            <div class="image-preview" data-image-preview="image.pricing.cover"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.pricing.cover">
-              <button type="button" class="image-remove" data-image-remove="image.pricing.cover">Quitar</button>
-            </div>
-          </div>
-        </section>
-
         <section class="panel-section" data-panel-section="portfolio">
-          <h2>Portfolio</h2>
-          <p class="panel-section-intro">Imagen asociada a la página de portfolio visual.</p>
-
-          <div class="image-field">
-            <label>Imagen / fondo portfolio</label>
-            <div class="image-preview" data-image-preview="image.portfolio.cover"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.portfolio.cover">
-              <button type="button" class="image-remove" data-image-remove="image.portfolio.cover">Quitar</button>
-            </div>
-          </div>
+          <h2>Portfolio</h2><p class="panel-section-intro">Imágenes de previews de demos. Si no subes imagen, se mantiene el iframe de la demo.</p>
+          <div class="image-field"><label>Fondo / cabecera portfolio</label><div class="image-preview" data-image-preview="page.portfolio.cover"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="page.portfolio.cover"><button type="button" class="image-remove" data-image-remove="page.portfolio.cover">Quitar</button></div></div>
+          <div class="image-field"><label>Preview Restaurante</label><div class="image-preview" data-image-preview="portfolio.demo.restaurant.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.restaurant.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.restaurant.image">Quitar</button></div></div>
+          <div class="image-field"><label>Preview Clínica</label><div class="image-preview" data-image-preview="portfolio.demo.clinic.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.clinic.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.clinic.image">Quitar</button></div></div>
+          <div class="image-field"><label>Preview Inmobiliaria</label><div class="image-preview" data-image-preview="portfolio.demo.realestate.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.realestate.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.realestate.image">Quitar</button></div></div>
+          <div class="image-field"><label>Preview Tienda online</label><div class="image-preview" data-image-preview="portfolio.demo.shop.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.shop.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.shop.image">Quitar</button></div></div>
+          <div class="image-field"><label>Preview Legal</label><div class="image-preview" data-image-preview="portfolio.demo.legal.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.legal.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.legal.image">Quitar</button></div></div>
+          <div class="image-field"><label>Preview Panel editable</label><div class="image-preview" data-image-preview="portfolio.demo.editor.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.editor.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.editor.image">Quitar</button></div></div>
+          <div class="image-field"><label>Preview IA Leads</label><div class="image-preview" data-image-preview="portfolio.demo.ai.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.ai.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.ai.image">Quitar</button></div></div>
+          <div class="image-field"><label>Preview Reestyling</label><div class="image-preview" data-image-preview="portfolio.demo.restyling.image"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="portfolio.demo.restyling.image"><button type="button" class="image-remove" data-image-remove="portfolio.demo.restyling.image">Quitar</button></div></div>
         </section>
-
         <section class="panel-section" data-panel-section="promos">
-          <h2>Promos</h2>
-          <p class="panel-section-intro">Activa o desactiva campañas temporales. Se previsualiza en precios.</p>
-
-          <label class="panel-check">
-            <input type="checkbox" data-field="promo.panel.active">
-            Mostrar banner de promo
-          </label>
-
-          <div class="panel-field">
-            <label>Texto promo panel</label>
-            <textarea data-field="promo.panel.text"></textarea>
-          </div>
+          <h2>Promos</h2><p class="panel-section-intro">Campañas temporales.</p>
+          <label class="panel-check"><input type="checkbox" data-field="promo.panel.active"> Mostrar promo del panel</label>
+          <div class="panel-field"><label>Texto promo panel</label><textarea data-field="promo.panel.text"></textarea></div>
         </section>
-
         <section class="panel-section" data-panel-section="contacto">
-          <h2>Contacto</h2>
-          <p class="panel-section-intro">Edita datos comunes de contacto y su imagen asociada.</p>
-
-          <div class="panel-field">
-            <label>Email</label>
-            <input type="text" data-field="contact.email">
-          </div>
-
-          <div class="panel-field">
-            <label>CTA final</label>
-            <textarea data-field="contact.cta"></textarea>
-          </div>
-
-          <h3 class="panel-subtitle">Imagen de contacto</h3>
-
-          <div class="image-field">
-            <label>Imagen / fondo contacto</label>
-            <div class="image-preview" data-image-preview="image.contact.cover"></div>
-            <div class="image-actions">
-              <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="image.contact.cover">
-              <button type="button" class="image-remove" data-image-remove="image.contact.cover">Quitar</button>
-            </div>
-          </div>
+          <h2>Contacto</h2><p class="panel-section-intro">Datos comunes de contacto.</p>
+          <div class="panel-field"><label>Email</label><input type="text" data-field="contact.email"></div>
+          <div class="panel-field"><label>CTA final</label><textarea data-field="contact.cta"></textarea></div>
+          <h3 class="panel-subtitle">Imagen de contacto</h3><div class="image-field"><label>Fondo / cabecera contacto</label><div class="image-preview" data-image-preview="page.contact.cover"></div><div class="image-actions"><input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" data-image-field="page.contact.cover"><button type="button" class="image-remove" data-image-remove="page.contact.cover">Quitar</button></div></div>
         </section>
-
       </form>
     </aside>
-
-    <main class="panel-main">
-      <div class="panel-topbar">
-        <div>
-          <h1>Vista previa de Handoo Studio</h1>
-          <p>Edita campos seguros, sube imágenes en su página correspondiente y comprueba cómo queda.</p>
-        </div>
-
-        <span class="panel-status">Vista previa activa</span>
-      </div>
-
-      <div class="panel-preview-wrap">
-        <iframe class="panel-preview" src="../index.html" data-panel-preview title="Vista previa Handoo Studio"></iframe>
-      </div>
-    </main>
-
+    <main class="panel-main"><div class="panel-topbar"><div><h1>Vista previa de Handoo Studio</h1><p>Catálogo e imágenes centralizadas, con vista previa sin perder el scroll.</p></div><span class="panel-status">Vista previa activa</span></div><div class="panel-preview-wrap"><iframe class="panel-preview" src="../index.html" data-panel-preview title="Vista previa Handoo Studio"></iframe></div></main>
   </div>
-
   <div class="panel-toast" data-panel-toast></div>
-
   <script src="../assets/js/content-loader.js"></script>
   <script src="../assets/js/panel-admin.js"></script>
 </body>
