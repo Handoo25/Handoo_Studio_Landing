@@ -1,1 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Panel editable | Handoo Studio</title>
+  <meta name="description" content="Panel privado de edición de Handoo Studio." />
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    body{
+      margin:0;
+      background:#07111f;
+      color:#0f172a;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    .panel-shell{
+      min-height:100vh;
+      padding:24px;
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:20px;
+    }
+
+    .panel-sidebar{
+      background:#0b1627;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:28px;
+      padding:22px;
+      color:white;
+      position:sticky;
+      top:24px;
+      height:calc(100vh - 48px);
+      overflow:auto;
+    }
+
+    .panel-brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .panel-brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:15px;
+      background:#f97316;
+      display:grid;
+      place-items:center;
+      color:white;
+      font-weight:950;
+    }
+
+    .panel-brand strong{
+      display:block;
+      font-size:18px;
+      letter-spacing:-.6px;
+    }
+
+    .panel-brand span{
+      display:block;
+      margin-top:2px;
+      color:#94a3b8;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .panel-note{
+      margin-bottom:18px;
+      padding:15px;
+      border-radius:18px;
+      background:rgba(56,189,248,.10);
+      border:1px solid rgba(56,189,248,.18);
+      color:#cbd5e1;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:700;
+    }
+
+    .panel-actions{
+      display:grid;
+      gap:10px;
+      margin-bottom:24px;
+    }
+
+    .panel-btn{
+      width:100%;
+      min-height:44px;
+      border:0;
+      border-radius:14px;
+      padding:0 14px;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:950;
+      cursor:pointer;
+    }
+
+    .panel-btn.primary{
+      background:#f97316;
+      color:white;
+    }
+
+    .panel-btn.secondary{
+      background:rgba(255,255,255,.08);
+      color:white;
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .panel-btn.danger{
+      background:#fff7ed;
+      color:#c2410c;
+    }
+
+    .panel-form{
+      display:grid;
+      gap:22px;
+    }
+
+    .panel-group{
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    .panel-group h2{
+      margin:0 0 14px;
+      color:white;
+      font-size:16px;
+      letter-spacing:-.4px;
+    }
+
+    .panel-field{
+      margin-bottom:13px;
+    }
+
+    .panel-field label{
+      display:block;
+      margin-bottom:7px;
+      color:#cbd5e1;
+      font-size:11px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+    }
+
+    .panel-field input,
+    .panel-field textarea{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:13px;
+      background:#111d31;
+      color:white;
+      padding:12px 13px;
+      font-family:inherit;
+      font-size:13px;
+      font-weight:750;
+      outline:none;
+    }
+
+    .panel-field textarea{
+      min-height:84px;
+      resize:vertical;
+      line-height:1.5;
+    }
+
+    .panel-check{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px;
+      border-radius:14px;
+      background:#111d31;
+      border:1px solid rgba(255,255,255,.12);
+      color:#e2e8f0;
+      font-size:13px;
+      font-weight:850;
+    }
+
+    .panel-check input{
+      accent-color:#f97316;
+    }
+
+    .panel-main{
+      background:#eef3f8;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .panel-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 22px;
+      background:white;
+      border-bottom:1px solid #dbe4ef;
+    }
+
+    .panel-topbar h1{
+      margin:0;
+      color:#0f172a;
+      font-size:22px;
+      letter-spacing:-.8px;
+    }
+
+    .panel-topbar p{
+      margin:4px 0 0;
+      color:#64748b;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .panel-status{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 11px;
+      border-radius:999px;
+      background:#ecfdf5;
+      color:#15803d;
+      font-size:12px;
+      font-weight:950;
+    }
+
+    .panel-status::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#22c55e;
+    }
+
+    .panel-preview-wrap{
+      padding:20px;
+      height:calc(100vh - 114px);
+    }
+
+    .panel-preview{
+      width:100%;
+      height:100%;
+      border:0;
+      border-radius:24px;
+      background:white;
+      box-shadow:0 22px 60px rgba(15,23,42,.12);
+    }
+
+    .panel-toast{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      z-index:50;
+      display:none;
+      max-width:360px;
+      padding:15px 16px;
+      border-radius:18px;
+      background:#0f172a;
+      color:white;
+      box-shadow:0 20px 60px rgba(15,23,42,.24);
+      font-size:13px;
+      font-weight:850;
+    }
+
+    .panel-toast.is-visible{
+      display:block;
+    }
+
+    @media(max-width:1050px){
+      .panel-shell{
+        grid-template-columns:1fr;
+      }
+
+      .panel-sidebar{
+        position:relative;
+        top:auto;
+        height:auto;
+      }
+
+      .panel-preview-wrap{
+        height:760px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="panel-shell">
+
+    <aside class="panel-sidebar">
+      <div class="panel-brand">
+        <div class="panel-brand-mark">h</div>
+        <div>
+          <strong>Handoo Studio</strong>
+          <span>Panel editable base</span>
+        </div>
+      </div>
+
+      <div class="panel-note">
+        Esta fase guarda los cambios en tu navegador. Sirve para probar el panel antes de conectarlo a base de datos real.
+      </div>
+
+      <div class="panel-actions">
+        <button class="panel-btn secondary" type="button" data-panel-save>Guardar borrador</button>
+        <button class="panel-btn primary" type="button" data-panel-publish>Publicar cambios</button>
+        <button class="panel-btn danger" type="button" data-panel-reset>Restaurar demo</button>
+      </div>
+
+      <form class="panel-form" data-panel-form>
+
+        <section class="panel-group">
+          <h2>Inicio</h2>
+
+          <div class="panel-field">
+            <label>Etiqueta superior</label>
+            <input type="text" data-field="home.hero.badge">
+          </div>
+
+          <div class="panel-field">
+            <label>Título principal</label>
+            <textarea data-field="home.hero.title"></textarea>
+          </div>
+
+          <div class="panel-field">
+            <label>Texto principal</label>
+            <textarea data-field="home.hero.text"></textarea>
+          </div>
+
+          <div class="panel-field">
+            <label>Sublinea</label>
+            <textarea data-field="home.hero.subline"></textarea>
+          </div>
+
+          <div class="panel-field">
+            <label>Botón principal</label>
+            <input type="text" data-field="home.hero.primary">
+          </div>
+
+          <div class="panel-field">
+            <label>Botón secundario</label>
+            <input type="text" data-field="home.hero.secondary">
+          </div>
+        </section>
+
+        <section class="panel-group">
+          <h2>Precios principales</h2>
+
+          <div class="panel-field">
+            <label>Landing</label>
+            <input type="text" data-field="price.landing">
+          </div>
+
+          <div class="panel-field">
+            <label>Web corporativa</label>
+            <input type="text" data-field="price.corporate">
+          </div>
+
+          <div class="panel-field">
+            <label>Tienda online</label>
+            <input type="text" data-field="price.shop">
+          </div>
+
+          <div class="panel-field">
+            <label>Restyling</label>
+            <input type="text" data-field="price.restyling">
+          </div>
+        </section>
+
+        <section class="panel-group">
+          <h2>Extras</h2>
+
+          <div class="panel-field">
+            <label>Panel editable promo</label>
+            <input type="text" data-field="price.panel">
+          </div>
+
+          <div class="panel-field">
+            <label>Panel editable precio habitual</label>
+            <input type="text" data-field="price.panel.usual">
+          </div>
+
+          <div class="panel-field">
+            <label>Catálogo editable</label>
+            <input type="text" data-field="price.catalog">
+          </div>
+
+          <div class="panel-field">
+            <label>IA básica</label>
+            <input type="text" data-field="price.aiBasic">
+          </div>
+
+          <div class="panel-field">
+            <label>IA avanzada</label>
+            <input type="text" data-field="price.aiAdvanced">
+          </div>
+
+          <div class="panel-field">
+            <label>Mantenimiento</label>
+            <input type="text" data-field="price.maintenance">
+          </div>
+        </section>
+
+        <section class="panel-group">
+          <h2>Promoción</h2>
+
+          <label class="panel-check">
+            <input type="checkbox" data-field="promo.panel.active">
+            Mostrar banner de promo
+          </label>
+
+          <div class="panel-field" style="margin-top:13px;">
+            <label>Texto promo panel</label>
+            <textarea data-field="promo.panel.text"></textarea>
+          </div>
+        </section>
+
+        <section class="panel-group">
+          <h2>Contacto</h2>
+
+          <div class="panel-field">
+            <label>Email</label>
+            <input type="text" data-field="contact.email">
+          </div>
+
+          <div class="panel-field">
+            <label>CTA final</label>
+            <textarea data-field="contact.cta"></textarea>
+          </div>
+        </section>
+
+      </form>
+    </aside>
+
+    <main class="panel-main">
+      <div class="panel-topbar">
+        <div>
+          <h1>Vista previa de Handoo Studio</h1>
+          <p>Edita campos seguros y comprueba cómo queda la web.</p>
+        </div>
+
+        <span class="panel-status">Vista previa activa</span>
+      </div>
+
+      <div class="panel-preview-wrap">
+        <iframe class="panel-preview" src="../index.html" data-panel-preview title="Vista previa Handoo Studio"></iframe>
+      </div>
+    </main>
+
+  </div>
+
+  <div class="panel-toast" data-panel-toast></div>
+
+  <script src="../assets/js/content-loader.js"></script>
+  <script src="../assets/js/panel-admin.js"></script>
+</body>
+</html>
