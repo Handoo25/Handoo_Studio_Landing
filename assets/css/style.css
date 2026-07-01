@@ -1585,3 +1585,33 @@ textarea{
     transform:translateX(-50%) scale(.29);
   }
 }
+/* Home demos grid with multiple published demos */
+
+@media(min-width:1181px){
+  .home-demos-preview .demo-preview-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    max-width:1180px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .home-demos-preview .live-preview{
+    height:250px;
+  }
+
+  .home-demos-preview .live-preview iframe{
+    transform:scale(.29);
+  }
+}
+
+@media(max-width:1180px){
+  .home-demos-preview .demo-preview-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media(max-width:760px){
+  .home-demos-preview .demo-preview-grid{
+    grid-template-columns:1fr;
+  }
+}
