@@ -1412,3 +1412,15 @@ textarea{
     white-space:normal;
   }
 }
+/* Refine editorial accent */
+
+.studio-hero-title em{
+  color:#fb923c;
+  text-shadow:0 10px 28px rgba(249,115,22,.18);
+}
+
+@media(min-width:901px){
+  .studio-hero-title{
+    max-width:720px;
+  }
+}
