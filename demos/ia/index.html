@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Handoo IA | Demo Automatización de Leads</title>
+  <meta name="description" content="Demo de automatización IA para responder consultas, clasificar leads y avisar al negocio sin perder oportunidades." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    :root{
+      --ai-bg:#07111f;
+      --ai-dark:#0b1627;
+      --ai-card:#ffffff;
+      --ai-soft:#f4f7fb;
+      --ai-text:#0f172a;
+      --ai-muted:#64748b;
+      --ai-line:#dbe4ef;
+      --ai-orange:#f97316;
+      --ai-blue:#38bdf8;
+      --ai-green:#22c55e;
+      --ai-red:#ef4444;
+      --ai-yellow:#facc15;
+      --ai-radius:28px;
+      --ai-shadow:0 30px 90px rgba(2,8,23,.18);
+    }
+
+    *{box-sizing:border-box}
+
+    body.ai-demo{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--ai-soft);
+      color:var(--ai-text);
+    }
+
+    .ai-nav{
+      position:fixed;
+      top:18px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:50;
+      width:min(1180px,calc(100% - 32px));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:12px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.90);
+      border:1px solid rgba(15,23,42,.08);
+      backdrop-filter:blur(18px);
+      box-shadow:0 18px 50px rgba(15,23,42,.08);
+    }
+
+    .ai-logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:#0f172a;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+
+    .ai-logo-mark{
+      width:34px;
+      height:34px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:#0f172a;
+      color:white;
+      font-size:15px;
+      box-shadow:0 10px 24px rgba(15,23,42,.18);
+    }
+
+    .ai-nav-links{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .ai-nav-links a{
+      text-decoration:none;
+      color:#475569;
+      font-size:13px;
+      font-weight:850;
+      padding:10px 12px;
+      border-radius:999px;
+    }
+
+    .ai-nav-links a:hover{
+      color:#0f172a;
+      background:#f1f5f9;
+    }
+
+    .ai-nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      background:var(--ai-orange);
+      color:white !important;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:950;
+      box-shadow:0 14px 32px rgba(249,115,22,.24);
+    }
+
+    .ai-hero{
+      min-height:100vh;
+      padding:132px 20px 72px;
+      background:
+        radial-gradient(circle at top left,rgba(56,189,248,.18),transparent 34%),
+        radial-gradient(circle at top right,rgba(249,115,22,.18),transparent 34%),
+        linear-gradient(135deg,#07111f,#0c1728 52%,#111827);
+      color:white;
+      overflow:hidden;
+    }
+
+    .ai-container{
+      width:min(1180px,100%);
+      margin:0 auto;
+    }
+
+    .ai-hero-grid{
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .ai-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      width:fit-content;
+      margin-bottom:18px;
+      padding:8px 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color:#bae6fd;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .ai-kicker::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--ai-green);
+      box-shadow:0 0 0 6px rgba(34,197,94,.12);
+    }
+
+    .ai-hero h1{
+      margin:0 0 20px;
+      max-width:720px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(46px,6vw,82px);
+      line-height:.9;
+      letter-spacing:-4px;
+    }
+
+    .ai-hero h1 span{
+      color:#fdba74;
+    }
+
+    .ai-hero-text{
+      max-width:650px;
+      margin:0 0 28px;
+      color:#cbd5e1;
+      font-size:18px;
+      line-height:1.75;
+    }
+
+    .ai-hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:26px;
+    }
+
+    .ai-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 20px;
+      border-radius:15px;
+      border:1px solid transparent;
+      text-decoration:none;
+      font-weight:950;
+      cursor:pointer;
+      transition:.18s ease;
+      font-family:inherit;
+    }
+
+    .ai-btn-primary{
+      background:var(--ai-orange);
+      color:white;
+      box-shadow:0 20px 46px rgba(249,115,22,.28);
+    }
+
+    .ai-btn-primary:hover{
+      transform:translateY(-2px);
+      background:#fb923c;
+    }
+
+    .ai-btn-secondary{
+      background:rgba(255,255,255,.08);
+      color:white;
+      border-color:rgba(255,255,255,.13);
+    }
+
+    .ai-btn-secondary:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+    }
+
+    .ai-proof{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      max-width:640px;
+    }
+
+    .ai-proof-card{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .ai-proof-card strong{
+      display:block;
+      color:white;
+      font-size:24px;
+      letter-spacing:-1px;
+      margin-bottom:4px;
+    }
+
+    .ai-proof-card span{
+      color:#cbd5e1;
+      font-size:12px;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .ai-hero-panel{
+      position:relative;
+      padding:14px;
+      border-radius:34px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 40px 120px rgba(0,0,0,.26);
+    }
+
+    .ai-browser-top{
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 14px;
+      background:#e2e8f0;
+      border-radius:22px 22px 0 0;
+    }
+
+    .ai-dots{
+      display:flex;
+      gap:7px;
+    }
+
+    .ai-dots span{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#94a3b8;
+    }
+
+    .ai-browser-label{
+      color:#475569;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .ai-window{
+      background:#fff;
+      border-radius:0 0 24px 24px;
+      padding:20px;
+      color:#0f172a;
+    }
+
+    .ai-window-grid{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:16px;
+    }
+
+    .ai-mini-chat,
+    .ai-mini-dashboard{
+      border-radius:22px;
+      border:1px solid #e2e8f0;
+      background:#f8fafc;
+      overflow:hidden;
+    }
+
+    .ai-mini-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 16px;
+      border-bottom:1px solid #e2e8f0;
+      background:white;
+    }
+
+    .ai-mini-head strong{
+      color:#0f172a;
+      font-size:14px;
+      letter-spacing:-.3px;
+    }
+
+    .ai-mini-head span{
+      display:inline-flex;
+      padding:6px 8px;
+      border-radius:999px;
+      background:#ecfdf5;
+      color:#15803d;
+      font-size:10px;
+      font-weight:950;
+    }
+
+    .ai-chat-body{
+      padding:15px;
+      display:grid;
+      gap:11px;
+    }
+
+    .ai-message{
+      max-width:92%;
+      padding:12px 13px;
+      border-radius:16px;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .ai-message.user{
+      margin-left:auto;
+      background:#0f172a;
+      color:white;
+      border-bottom-right-radius:5px;
+    }
+
+    .ai-message.bot{
+      background:white;
+      color:#334155;
+      border:1px solid #e2e8f0;
+      border-bottom-left-radius:5px;
+    }
+
+    .ai-dashboard-body{
+      padding:15px;
+      display:grid;
+      gap:12px;
+    }
+
+    .ai-lead-card{
+      padding:14px;
+      border-radius:18px;
+      background:white;
+      border:1px solid #e2e8f0;
+      box-shadow:0 12px 28px rgba(15,23,42,.06);
+    }
+
+    .ai-lead-card h3{
+      margin:0 0 8px;
+      color:#0f172a;
+      font-size:17px;
+      letter-spacing:-.4px;
+    }
+
+    .ai-lead-card p{
+      margin:0 0 12px;
+      color:#64748b;
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    .ai-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+    }
+
+    .ai-tags span{
+      display:inline-flex;
+      padding:7px 9px;
+      border-radius:999px;
+      background:#eef2ff;
+      color:#3730a3;
+      font-size:10px;
+      font-weight:950;
+    }
+
+    .ai-flow-mini{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+    }
+
+    .ai-flow-mini div{
+      padding:12px 10px;
+      border-radius:16px;
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      font-size:11px;
+      font-weight:950;
+      line-height:1.25;
+    }
+
+    .ai-demo-section{
+      padding:92px 20px;
+      background:#f4f7fb;
+    }
+
+    .ai-section-heading{
+      width:min(860px,100%);
+      margin:0 auto 42px;
+      text-align:center;
+    }
+
+    .ai-section-heading span{
+      display:inline-flex;
+      margin-bottom:14px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff7ed;
+      color:#f97316;
+      border:1px solid #fed7aa;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .ai-section-heading h2{
+      margin:0 0 14px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(38px,5vw,68px);
+      line-height:.94;
+      letter-spacing:-3px;
+      color:#0f172a;
+    }
+
+    .ai-section-heading p{
+      margin:0 auto;
+      max-width:740px;
+      color:#64748b;
+      font-size:17px;
+      line-height:1.75;
+    }
+
+    .ai-app-shell{
+      width:min(1180px,100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:18px;
+      padding:18px;
+      border-radius:34px;
+      background:#0b1627;
+      box-shadow:0 34px 100px rgba(15,23,42,.18);
+      border:1px solid rgba(15,23,42,.08);
+    }
+
+    .ai-input-panel{
+      padding:18px;
+      border-radius:24px;
+      background:#081120;
+      color:white;
+    }
+
+    .ai-input-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .ai-input-icon{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:15px;
+      background:linear-gradient(135deg,#f97316,#fb923c);
+      color:white;
+      font-weight:950;
+    }
+
+    .ai-input-title strong{
+      display:block;
+      font-size:16px;
+    }
+
+    .ai-input-title span{
+      display:block;
+      margin-top:3px;
+      color:#94a3b8;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .ai-field{
+      margin-bottom:14px;
+    }
+
+    .ai-field label{
+      display:block;
+      margin-bottom:7px;
+      color:#cbd5e1;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.55px;
+    }
+
+    .ai-field select,
+    .ai-field textarea{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:#0f1b2d;
+      color:white;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:700;
+      outline:none;
+      padding:13px 14px;
+      transition:.16s ease;
+    }
+
+    .ai-field textarea{
+      min-height:170px;
+      resize:vertical;
+      line-height:1.55;
+    }
+
+    .ai-field select:focus,
+    .ai-field textarea:focus{
+      border-color:#38bdf8;
+      box-shadow:0 0 0 4px rgba(56,189,248,.12);
+    }
+
+    .ai-example-buttons{
+      display:grid;
+      gap:9px;
+      margin:12px 0 16px;
+    }
+
+    .ai-example-buttons button{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.07);
+      color:#cbd5e1;
+      padding:11px 12px;
+      border-radius:14px;
+      text-align:left;
+      font-family:inherit;
+      font-size:12px;
+      font-weight:850;
+      line-height:1.4;
+      cursor:pointer;
+    }
+
+    .ai-example-buttons button:hover{
+      background:rgba(255,255,255,.11);
+      color:white;
+    }
+
+    .ai-run-btn{
+      width:100%;
+      min-height:50px;
+      border:0;
+      border-radius:16px;
+      background:var(--ai-orange);
+      color:white;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:950;
+      cursor:pointer;
+      box-shadow:0 20px 46px rgba(249,115,22,.24);
+    }
+
+    .ai-run-btn:hover{
+      background:#fb923c;
+    }
+
+    .ai-output-panel{
+      border-radius:26px;
+      background:#eef3f8;
+      overflow:hidden;
+    }
+
+    .ai-output-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 20px;
+      background:white;
+      border-bottom:1px solid #dbe4ef;
+    }
+
+    .ai-output-title strong{
+      display:block;
+      color:#0f172a;
+      font-size:18px;
+      letter-spacing:-.5px;
+    }
+
+    .ai-output-title span{
+      display:block;
+      margin-top:3px;
+      color:#64748b;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .ai-output-status{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 11px;
+      border-radius:999px;
+      background:#ecfdf5;
+      color:#15803d;
+      font-size:12px;
+      font-weight:950;
+    }
+
+    .ai-output-status::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#22c55e;
+    }
+
+    .ai-output-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      padding:18px;
+    }
+
+    .ai-result-card{
+      background:white;
+      border:1px solid #dbe4ef;
+      border-radius:24px;
+      padding:18px;
+    }
+
+    .ai-result-card.wide{
+      grid-column:1 / -1;
+    }
+
+    .ai-result-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .ai-result-head h3{
+      margin:0;
+      color:#0f172a;
+      font-size:17px;
+      letter-spacing:-.5px;
+    }
+
+    .ai-result-head span{
+      display:inline-flex;
+      padding:7px 9px;
+      border-radius:999px;
+      background:#f1f5f9;
+      color:#475569;
+      font-size:11px;
+      font-weight:950;
+    }
+
+    .ai-answer-box{
+      padding:16px;
+      border-radius:18px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      color:#334155;
+      font-size:14px;
+      line-height:1.7;
+      font-weight:650;
+    }
+
+    .ai-classification{
+      display:grid;
+      gap:10px;
+    }
+
+    .ai-class-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+    }
+
+    .ai-class-row span{
+      color:#64748b;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .ai-class-row strong{
+      color:#0f172a;
+      font-size:13px;
+      text-align:right;
+    }
+
+    .ai-priority{
+      color:#b45309 !important;
+      background:#fffbeb;
+      padding:6px 9px;
+      border-radius:999px;
+    }
+
+    .ai-lead-summary{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+
+    .ai-summary-item{
+      padding:14px;
+      border-radius:18px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+    }
+
+    .ai-summary-item span{
+      display:block;
+      color:#64748b;
+      font-size:11px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+      margin-bottom:7px;
+    }
+
+    .ai-summary-item strong{
+      display:block;
+      color:#0f172a;
+      font-size:15px;
+      line-height:1.25;
+    }
+
+    .ai-actions-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+    }
+
+    .ai-actions-list li{
+      position:relative;
+      padding:12px 14px 12px 38px;
+      border-radius:16px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      color:#334155;
+      font-size:13px;
+      font-weight:750;
+      line-height:1.45;
+    }
+
+    .ai-actions-list li::before{
+      content:"✓";
+      position:absolute;
+      left:13px;
+      top:12px;
+      width:18px;
+      height:18px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:#dcfce7;
+      color:#15803d;
+      font-size:12px;
+      font-weight:950;
+    }
+
+    .ai-flow-section{
+      padding:92px 20px;
+      background:white;
+    }
+
+    .ai-flow-grid{
+      width:min(1180px,100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+    }
+
+    .ai-flow-card{
+      position:relative;
+      padding:24px;
+      border-radius:24px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+    }
+
+    .ai-flow-card::after{
+      content:"→";
+      position:absolute;
+      right:-14px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#94a3b8;
+      font-weight:950;
+      font-size:22px;
+      z-index:2;
+    }
+
+    .ai-flow-card:last-child::after{
+      display:none;
+    }
+
+    .ai-flow-card strong{
+      display:grid;
+      place-items:center;
+      width:42px;
+      height:42px;
+      border-radius:15px;
+      background:#fff7ed;
+      color:#f97316;
+      font-size:13px;
+      margin-bottom:16px;
+    }
+
+    .ai-flow-card h3{
+      margin:0 0 10px;
+      color:#0f172a;
+      font-size:17px;
+      letter-spacing:-.4px;
+    }
+
+    .ai-flow-card p{
+      margin:0;
+      color:#64748b;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .ai-compare-section{
+      padding:92px 20px;
+      background:#07111f;
+      color:white;
+    }
+
+    .ai-compare-grid{
+      width:min(980px,100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .ai-compare-card{
+      padding:28px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+    }
+
+    .ai-compare-card.good{
+      background:
+        radial-gradient(circle at top right,rgba(34,197,94,.18),transparent 36%),
+        rgba(255,255,255,.06);
+      border-color:rgba(34,197,94,.22);
+    }
+
+    .ai-compare-card h3{
+      margin:0 0 18px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:30px;
+      letter-spacing:-1.2px;
+    }
+
+    .ai-compare-card ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .ai-compare-card li{
+      display:flex;
+      gap:10px;
+      color:#cbd5e1;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .ai-cta{
+      padding:90px 20px;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(249,115,22,.18),transparent 34%),
+        linear-gradient(135deg,#f8fafc,#fff7ed);
+      text-align:center;
+    }
+
+    .ai-cta-inner{
+      width:min(880px,100%);
+      margin:0 auto;
+    }
+
+    .ai-cta h2{
+      margin:0 0 18px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(40px,5vw,72px);
+      line-height:.95;
+      letter-spacing:-3px;
+      color:#0f172a;
+    }
+
+    .ai-cta p{
+      margin:0 auto 28px;
+      max-width:680px;
+      color:#64748b;
+      font-size:17px;
+      line-height:1.75;
+    }
+
+    @media(max-width:1080px){
+      .ai-hero-grid,
+      .ai-window-grid,
+      .ai-app-shell,
+      .ai-output-grid,
+      .ai-compare-grid{
+        grid-template-columns:1fr;
+      }
+
+      .ai-flow-grid{
+        grid-template-columns:1fr;
+      }
+
+      .ai-flow-card::after{
+        display:none;
+      }
+
+      .ai-lead-summary{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:760px){
+      .ai-nav{
+        position:static;
+        transform:none;
+        width:calc(100% - 24px);
+        margin:12px auto 0;
+        border-radius:22px;
+        flex-wrap:wrap;
+      }
+
+      .ai-nav-links{
+        display:none;
+      }
+
+      .ai-hero{
+        padding-top:46px;
+      }
+
+      .ai-hero h1{
+        letter-spacing:-2.6px;
+      }
+
+      .ai-proof,
+      .ai-flow-mini,
+      .ai-lead-summary{
+        grid-template-columns:1fr;
+      }
+
+      .ai-output-top{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body class="ai-demo">
+
+  <nav class="ai-nav">
+    <a href="../../index.html" class="ai-logo">
+      <span class="ai-logo-mark">h</span>
+      <span>handoo ia</span>
+    </a>
+
+    <div class="ai-nav-links">
+      <a href="#demo">Demo</a>
+      <a href="#flujo">Flujo</a>
+      <a href="#beneficios">Beneficios</a>
+    </div>
+
+    <a href="../../contacto.html" class="ai-nav-cta">Quiero automatizar</a>
+  </nav>
+
+  <header class="ai-hero">
+    <div class="ai-container">
+      <div class="ai-hero-grid">
+
+        <div>
+          <span class="ai-kicker">Automatización IA para captar clientes</span>
+
+          <h1>
+            Responde consultas, clasifica leads y no pierdas <span>oportunidades.</span>
+          </h1>
+
+          <p class="ai-hero-text">
+            Demo de una automatización IA pensada para webs de negocio: recibe una consulta, genera una respuesta profesional, clasifica el contacto y avisa al equipo para seguimiento.
+          </p>
+
+          <div class="ai-hero-actions">
+            <a href="#demo" class="ai-btn ai-btn-primary">Probar demo IA</a>
+            <a href="../../contacto.html" class="ai-btn ai-btn-secondary">Pedir automatización</a>
+          </div>
+
+          <div class="ai-proof">
+            <div class="ai-proof-card">
+              <strong>24/7</strong>
+              <span>Primera respuesta automática</span>
+            </div>
+
+            <div class="ai-proof-card">
+              <strong>Lead</strong>
+              <span>Clasificado por interés y urgencia</span>
+            </div>
+
+            <div class="ai-proof-card">
+              <strong>Aviso</strong>
+              <span>Resumen listo para seguimiento</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-hero-panel">
+          <div class="ai-browser-top">
+            <div class="ai-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="ai-browser-label">Vista previa automatización IA</div>
+          </div>
+
+          <div class="ai-window">
+            <div class="ai-window-grid">
+
+              <div class="ai-mini-chat">
+                <div class="ai-mini-head">
+                  <strong>Consulta web</strong>
+                  <span>Entrante</span>
+                </div>
+
+                <div class="ai-chat-body">
+                  <div class="ai-message user">
+                    Hola, quiero una web para una clínica dental y saber cuánto tardaría.
+                  </div>
+
+                  <div class="ai-message bot">
+                    Perfecto. Podemos orientarte según número de secciones, servicios y si necesitas cita online. ¿Quieres que te contacten hoy?
+                  </div>
+
+                  <div class="ai-message user">
+                    Sí, mejor por WhatsApp esta tarde.
+                  </div>
+                </div>
+              </div>
+
+              <div class="ai-mini-dashboard">
+                <div class="ai-mini-head">
+                  <strong>Lead organizado</strong>
+                  <span>IA procesado</span>
+                </div>
+
+                <div class="ai-dashboard-body">
+                  <div class="ai-lead-card">
+                    <h3>Clínica dental · Web corporativa</h3>
+                    <p>
+                      Interés en web profesional con posible reserva/cita online. Contactar esta tarde por WhatsApp.
+                    </p>
+
+                    <div class="ai-tags">
+                      <span>Sector clínica</span>
+                      <span>Prioridad media</span>
+                      <span>Presupuesto web</span>
+                    </div>
+                  </div>
+
+                  <div class="ai-flow-mini">
+                    <div>Recibe</div>
+                    <div>Responde</div>
+                    <div>Clasifica</div>
+                    <div>Avisa</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="demo" class="ai-demo-section">
+      <div class="ai-section-heading">
+        <span>Demo interactiva</span>
+        <h2>Prueba cómo la IA convierte una consulta en un lead útil.</h2>
+        <p>
+          Elige un sector o escribe una consulta. La demo simula cómo se genera una respuesta, se clasifica el contacto y se prepara el seguimiento.
+        </p>
+      </div>
+
+      <div class="ai-app-shell">
+
+        <aside class="ai-input-panel">
+          <div class="ai-input-title">
+            <div class="ai-input-icon">IA</div>
+            <div>
+              <strong>Entrada del cliente</strong>
+              <span>Consulta recibida desde la web</span>
+            </div>
+          </div>
+
+          <div class="ai-field">
+            <label for="aiSector">Sector</label>
+            <select id="aiSector">
+              <option value="clinica">Clínica</option>
+              <option value="restaurante">Restaurante</option>
+              <option value="inmobiliaria">Inmobiliaria</option>
+              <option value="tienda">Tienda online</option>
+              <option value="legal">Despacho / asesoría</option>
+              <option value="web">Handoo Studio</option>
+            </select>
+          </div>
+
+          <div class="ai-field">
+            <label for="aiQuery">Consulta del visitante</label>
+            <textarea id="aiQuery">Hola, quiero una web para una clínica dental. Necesito saber precio aproximado y si podría estar lista este mes.</textarea>
+          </div>
+
+          <div class="ai-example-buttons">
+            <button type="button" data-sector="restaurante" data-query="Hola, ¿tenéis mesa para 6 personas este sábado por la noche? También quería saber si tenéis opciones sin gluten.">
+              Restaurante: reserva y alérgenos
+            </button>
+
+            <button type="button" data-sector="inmobiliaria" data-query="Busco piso de 3 habitaciones en Santander, con garaje y presupuesto máximo de 230.000€. ¿Tenéis algo?">
+              Inmobiliaria: búsqueda de piso
+            </button>
+
+            <button type="button" data-sector="tienda" data-query="Hola, quería saber si tenéis stock del pack Glow Ritual y cuánto tarda el envío.">
+              Tienda: stock y envío
+            </button>
+
+            <button type="button" data-sector="legal" data-query="Necesito asesoramiento por un despido. Quiero saber si puedo reclamar y cuánto costaría una primera consulta.">
+              Legal: consulta urgente
+            </button>
+          </div>
+
+          <button class="ai-run-btn" type="button" id="aiRun">
+            Procesar con IA
+          </button>
+        </aside>
+
+        <section class="ai-output-panel">
+          <div class="ai-output-top">
+            <div class="ai-output-title">
+              <strong>Resultado generado</strong>
+              <span>Respuesta, clasificación y seguimiento recomendado.</span>
+            </div>
+
+            <span class="ai-output-status">Procesado</span>
+          </div>
+
+          <div class="ai-output-grid">
+
+            <article class="ai-result-card">
+              <div class="ai-result-head">
+                <h3>Respuesta automática</h3>
+                <span>Para el visitante</span>
+              </div>
+
+              <div id="aiAnswer" class="ai-answer-box"></div>
+            </article>
+
+            <article class="ai-result-card">
+              <div class="ai-result-head">
+                <h3>Clasificación del lead</h3>
+                <span>Para el negocio</span>
+              </div>
+
+              <div class="ai-classification">
+                <div class="ai-class-row">
+                  <span>Sector</span>
+                  <strong id="aiOutSector">Clínica</strong>
+                </div>
+
+                <div class="ai-class-row">
+                  <span>Intención</span>
+                  <strong id="aiOutIntent">Solicitar presupuesto</strong>
+                </div>
+
+                <div class="ai-class-row">
+                  <span>Prioridad</span>
+                  <strong id="aiOutPriority" class="ai-priority">Media</strong>
+                </div>
+
+                <div class="ai-class-row">
+                  <span>Acción</span>
+                  <strong id="aiOutAction">Contactar hoy</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="ai-result-card wide">
+              <div class="ai-result-head">
+                <h3>Ficha rápida del contacto</h3>
+                <span>Resumen CRM</span>
+              </div>
+
+              <div class="ai-lead-summary">
+                <div class="ai-summary-item">
+                  <span>Tipo</span>
+                  <strong id="aiSummaryType">Web corporativa</strong>
+                </div>
+
+                <div class="ai-summary-item">
+                  <span>Necesidad</span>
+                  <strong id="aiSummaryNeed">Precio y plazo</strong>
+                </div>
+
+                <div class="ai-summary-item">
+                  <span>Estado</span>
+                  <strong id="aiSummaryStatus">Nuevo lead</strong>
+                </div>
+
+                <div class="ai-summary-item">
+                  <span>Canal</span>
+                  <strong id="aiSummaryChannel">Formulario web</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="ai-result-card wide">
+              <div class="ai-result-head">
+                <h3>Seguimiento recomendado</h3>
+                <span>Próximos pasos</span>
+              </div>
+
+              <ul id="aiActions" class="ai-actions-list"></ul>
+            </article>
+
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <section id="flujo" class="ai-flow-section">
+      <div class="ai-section-heading">
+        <span>Cómo funciona</span>
+        <h2>De consulta perdida a oportunidad organizada.</h2>
+        <p>
+          La automatización no sustituye al negocio. Filtra, responde, resume y deja el contacto preparado para que una persona pueda cerrar mejor.
+        </p>
+      </div>
+
+      <div class="ai-flow-grid">
+        <article class="ai-flow-card">
+          <strong>01</strong>
+          <h3>Recibe la consulta</h3>
+          <p>Formulario web, email, chat o solicitud conectada al flujo.</p>
+        </article>
+
+        <article class="ai-flow-card">
+          <strong>02</strong>
+          <h3>Entiende el mensaje</h3>
+          <p>Detecta sector, intención, urgencia, servicio y datos importantes.</p>
+        </article>
+
+        <article class="ai-flow-card">
+          <strong>03</strong>
+          <h3>Responde rápido</h3>
+          <p>Genera una primera respuesta profesional y adaptada al negocio.</p>
+        </article>
+
+        <article class="ai-flow-card">
+          <strong>04</strong>
+          <h3>Clasifica el lead</h3>
+          <p>Ordena el contacto por tipo, prioridad, interés y acción recomendada.</p>
+        </article>
+
+        <article class="ai-flow-card">
+          <strong>05</strong>
+          <h3>Avisa al equipo</h3>
+          <p>Envía resumen para seguimiento por email, panel o derivación a WhatsApp.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="beneficios" class="ai-compare-section">
+      <div class="ai-section-heading">
+        <span>Qué evita</span>
+        <h2 style="color:white;">No pierdas clientes por responder tarde.</h2>
+        <p style="color:#cbd5e1;">
+          Muchas oportunidades se enfrían porque nadie responde a tiempo o porque los mensajes quedan desordenados.
+        </p>
+      </div>
+
+      <div class="ai-compare-grid">
+        <article class="ai-compare-card">
+          <h3>Sin automatización</h3>
+          <ul>
+            <li>⚠️ <span>Consultas repartidas entre email, WhatsApp y formularios.</span></li>
+            <li>⚠️ <span>Respuestas lentas cuando el negocio está ocupado.</span></li>
+            <li>⚠️ <span>Contactos sin clasificar ni prioridad clara.</span></li>
+            <li>⚠️ <span>Tiempo perdido contestando siempre lo mismo.</span></li>
+          </ul>
+        </article>
+
+        <article class="ai-compare-card good">
+          <h3>Con Handoo IA</h3>
+          <ul>
+            <li>✅ <span>Primera respuesta automática y profesional.</span></li>
+            <li>✅ <span>Lead resumido y clasificado para seguimiento.</span></li>
+            <li>✅ <span>Aviso al negocio con acción recomendada.</span></li>
+            <li>✅ <span>Mejor imagen y menos oportunidades perdidas.</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="ai-cta">
+      <div class="ai-cta-inner">
+        <h2>Automatiza la primera respuesta de tu web.</h2>
+        <p>
+          Ideal para negocios que reciben consultas, reservas, solicitudes de presupuesto, citas o preguntas frecuentes y quieren responder más rápido.
+        </p>
+
+        <div class="ai-hero-actions" style="justify-content:center;margin-bottom:0;">
+          <a href="../../contacto.html" class="ai-btn ai-btn-primary">Quiero automatizar mi web</a>
+          <a href="../../portfolio.html" class="ai-btn" style="background:white;color:#0f172a;border:1px solid #e2e8f0;">Ver más demos</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const sectorSelect = document.getElementById("aiSector");
+    const queryInput = document.getElementById("aiQuery");
+    const runButton = document.getElementById("aiRun");
+
+    const outAnswer = document.getElementById("aiAnswer");
+    const outSector = document.getElementById("aiOutSector");
+    const outIntent = document.getElementById("aiOutIntent");
+    const outPriority = document.getElementById("aiOutPriority");
+    const outAction = document.getElementById("aiOutAction");
+    const outType = document.getElementById("aiSummaryType");
+    const outNeed = document.getElementById("aiSummaryNeed");
+    const outStatus = document.getElementById("aiSummaryStatus");
+    const outChannel = document.getElementById("aiSummaryChannel");
+    const outActions = document.getElementById("aiActions");
+
+    const data = {
+      clinica:{
+        sector:"Clínica",
+        answer:"Gracias por escribirnos. Podemos orientarte con una web profesional para clínica con servicios, equipo, ubicación, testimonios y solicitud de cita. Para ajustar precio y plazo, lo ideal es confirmar número de tratamientos, fotos disponibles y si necesitas formulario de cita. Podemos contactarte hoy para concretarlo.",
+        intent:"Solicitar presupuesto",
+        priority:"Media",
+        action:"Contactar hoy",
+        type:"Web corporativa",
+        need:"Precio y plazo",
+        status:"Nuevo lead",
+        channel:"Formulario web",
+        actions:[
+          "Responder con rango orientativo de web corporativa.",
+          "Pedir teléfono, ciudad y número de tratamientos principales.",
+          "Ofrecer demo de clínica como referencia visual.",
+          "Agendar llamada breve para cerrar alcance."
+        ]
+      },
+      restaurante:{
+        sector:"Restaurante",
+        answer:"Gracias por tu consulta. Para una mesa de 6 este sábado, podemos revisar disponibilidad y confirmar horario. También podemos indicarte opciones sin gluten si nos dices si hay alguna alergia concreta. Déjanos un teléfono y hora preferida para confirmar la reserva.",
+        intent:"Reserva / información",
+        priority:"Alta",
+        action:"Confirmar disponibilidad",
+        type:"Reserva restaurante",
+        need:"Mesa y alérgenos",
+        status:"Pendiente confirmar",
+        channel:"Consulta web",
+        actions:[
+          "Solicitar hora exacta y teléfono de contacto.",
+          "Confirmar disponibilidad para 6 personas.",
+          "Enviar información sobre opciones sin gluten.",
+          "Marcar como prioridad alta por fecha cercana."
+        ]
+      },
+      inmobiliaria:{
+        sector:"Inmobiliaria",
+        answer:"Gracias por la información. Buscas un piso de 3 habitaciones en Santander, con garaje y presupuesto máximo de 230.000€. Podemos revisar inmuebles que encajen y avisarte de nuevas entradas. ¿Prefieres zona concreta y tienes disponibilidad para visitar esta semana?",
+        intent:"Búsqueda de inmueble",
+        priority:"Alta",
+        action:"Enviar opciones compatibles",
+        type:"Comprador potencial",
+        need:"Piso 3 habitaciones",
+        status:"Lead cualificado",
+        channel:"Formulario web",
+        actions:[
+          "Guardar presupuesto máximo y requisitos.",
+          "Preguntar zonas preferidas y financiación.",
+          "Enviar propiedades compatibles.",
+          "Crear alerta para nuevos inmuebles similares."
+        ]
+      },
+      tienda:{
+        sector:"Tienda online",
+        answer:"Gracias por escribirnos. Podemos revisar disponibilidad del Pack Glow Ritual y confirmarte plazo de envío. Si está en stock, normalmente se prepara para envío en 24/48h. Déjanos tu email o WhatsApp y te enviamos confirmación y enlace directo de compra.",
+        intent:"Stock / compra",
+        priority:"Media",
+        action:"Confirmar stock",
+        type:"Consulta producto",
+        need:"Stock y envío",
+        status:"Interesado",
+        channel:"Chat web",
+        actions:[
+          "Comprobar stock del producto solicitado.",
+          "Responder con plazo de envío y condiciones.",
+          "Enviar enlace directo de compra.",
+          "Ofrecer producto alternativo si no hay stock."
+        ]
+      },
+      legal:{
+        sector:"Despacho / asesoría",
+        answer:"Gracias por contactar. En casos de despido es importante revisar fechas, carta recibida, tipo de contrato y cantidades pendientes. Podemos preparar una primera valoración si nos facilitas esos datos. Si el plazo es reciente, recomendamos tratarlo con prioridad.",
+        intent:"Consulta legal urgente",
+        priority:"Alta",
+        action:"Solicitar documentación",
+        type:"Caso laboral",
+        need:"Despido / reclamación",
+        status:"Urgente",
+        channel:"Formulario web",
+        actions:[
+          "Pedir fecha del despido y documentación recibida.",
+          "Solicitar contrato, nóminas y carta de despido.",
+          "Marcar como urgente por posible plazo legal.",
+          "Proponer primera consulta."
+        ]
+      },
+      web:{
+        sector:"Handoo Studio",
+        answer:"Gracias por tu interés. Podemos orientarte según el tipo de web: landing, web corporativa, tienda online, reestyling o panel autoeditable. Para darte precio y plazo realista, necesitamos saber objetivo de la web, número de secciones y si tienes textos/fotos preparados.",
+        intent:"Presupuesto web",
+        priority:"Media",
+        action:"Pedir alcance",
+        type:"Proyecto web",
+        need:"Precio y alcance",
+        status:"Nuevo lead",
+        channel:"Formulario web",
+        actions:[
+          "Preguntar tipo de web y objetivo principal.",
+          "Confirmar si necesita panel autoeditable.",
+          "Enviar ejemplos de portfolio relacionados.",
+          "Preparar presupuesto orientativo."
+        ]
+      }
+    };
+
+    function renderResult(){
+      const value = sectorSelect.value;
+      const item = data[value] || data.web;
+
+      outAnswer.textContent = item.answer;
+      outSector.textContent = item.sector;
+      outIntent.textContent = item.intent;
+      outPriority.textContent = item.priority;
+      outAction.textContent = item.action;
+      outType.textContent = item.type;
+      outNeed.textContent = item.need;
+      outStatus.textContent = item.status;
+      outChannel.textContent = item.channel;
+
+      outActions.innerHTML = "";
+      item.actions.forEach((action) => {
+        const li = document.createElement("li");
+        li.textContent = action;
+        outActions.appendChild(li);
+      });
+    }
+
+    document.querySelectorAll("[data-query]").forEach((button) => {
+      button.addEventListener("click", () => {
+        sectorSelect.value = button.getAttribute("data-sector");
+        queryInput.value = button.getAttribute("data-query");
+        renderResult();
+      });
+    });
+
+    runButton.addEventListener("click", renderResult);
+    sectorSelect.addEventListener("change", renderResult);
+
+    renderResult();
+  </script>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>
