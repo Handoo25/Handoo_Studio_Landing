@@ -913,6 +913,445 @@
         bottom:14px;
       }
     }
+    /* =========================
+   LUMA SHOP V2 OVERRIDE
+   Estilo más plano, limpio y ecommerce
+   ========================= */
+
+:root{
+  --shop-ink:#111111;
+  --shop-muted:#6b7280;
+  --shop-bg:#fbfaf7;
+  --shop-card:#ffffff;
+  --shop-line:#e7e2d8;
+  --shop-accent:#6f8f72;
+  --shop-accent-dark:#4f6f52;
+  --shop-dark:#111111;
+  --shop-yellow:#f4d35e;
+  --shop-shadow:none;
+}
+
+body.shop-demo{
+  background:#fbfaf7;
+  color:#111111;
+}
+
+.shop-nav{
+  top:18px;
+  padding:12px 14px;
+  border-radius:22px;
+  background:rgba(251,250,247,.92);
+  border:1px solid #e7e2d8;
+  box-shadow:none;
+}
+
+.shop-logo{
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  font-size:14px;
+}
+
+.shop-logo-mark{
+  border-radius:12px;
+  background:#111111;
+  color:#ffffff;
+}
+
+.shop-logo span{
+  color:var(--shop-accent);
+}
+
+.shop-menu{
+  background:#ffffff;
+  border:1px solid #e7e2d8;
+  border-radius:16px;
+}
+
+.shop-menu a{
+  border-radius:12px;
+  color:#525252;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+.shop-menu a:hover{
+  background:#f3f1ea;
+  color:#111111;
+}
+
+.shop-cart-button{
+  background:#111111;
+  color:#ffffff;
+  border-radius:16px;
+  box-shadow:none;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  font-size:12px;
+}
+
+.shop-hero{
+  min-height:auto;
+  padding:150px 0 88px;
+  background:
+    linear-gradient(90deg,rgba(111,143,114,.08) 1px,transparent 1px),
+    linear-gradient(rgba(111,143,114,.08) 1px,transparent 1px),
+    #fbfaf7;
+  background-size:42px 42px;
+}
+
+.shop-hero-grid{
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+}
+
+.shop-kicker{
+  background:#ffffff;
+  border:1px solid #e7e2d8;
+  color:var(--shop-accent-dark);
+  border-radius:12px;
+  box-shadow:none;
+}
+
+.shop-kicker::before{
+  background:var(--shop-accent);
+  box-shadow:none;
+}
+
+.shop-hero h1{
+  font-family:Inter, Arial, sans-serif;
+  font-weight:900;
+  text-transform:none;
+  font-size:clamp(52px,6vw,86px);
+  line-height:.94;
+  letter-spacing:-4px;
+}
+
+.shop-hero h1 em{
+  font-family:Fraunces, Georgia, serif;
+  font-weight:600;
+  color:var(--shop-accent);
+  letter-spacing:-1.5px;
+}
+
+.shop-hero-text{
+  color:#525252;
+  font-size:18px;
+  max-width:600px;
+}
+
+.shop-btn{
+  border-radius:14px;
+  box-shadow:none;
+}
+
+.shop-btn-primary{
+  background:#111111;
+  color:#ffffff !important;
+  box-shadow:none;
+}
+
+.shop-btn-primary:hover{
+  background:var(--shop-accent-dark);
+}
+
+.shop-btn-secondary{
+  background:#ffffff;
+  border:1px solid #d8d2c6;
+  color:#111111 !important;
+}
+
+.shop-btn-secondary:hover{
+  background:#f3f1ea;
+  color:#111111 !important;
+}
+
+.shop-trust-row span{
+  background:#ffffff;
+  border:1px solid #e7e2d8;
+  color:#525252;
+  border-radius:12px;
+  box-shadow:none;
+}
+
+.shop-visual{
+  min-height:560px;
+}
+
+.shop-hero-card{
+  inset:0 0 92px 0;
+  border-radius:26px;
+  background:
+    linear-gradient(135deg,rgba(111,143,114,.18),rgba(244,211,94,.22)),
+    #ffffff;
+  border:1px solid #e7e2d8;
+  box-shadow:none;
+}
+
+.shop-hero-card::before{
+  content:"";
+  position:absolute;
+  inset:32px;
+  border-radius:22px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.9)),
+    url("https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1200&q=80");
+  background-size:cover;
+  background-position:center;
+  border:1px solid rgba(255,255,255,.75);
+}
+
+.shop-hero-card::after{
+  content:"LUMA DAILY CARE";
+  position:absolute;
+  left:32px;
+  bottom:32px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#111111;
+  color:#ffffff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.7px;
+}
+
+.shop-hero-badge{
+  top:28px;
+  left:28px;
+  border-radius:12px;
+  background:#ffffff;
+  border:1px solid #e7e2d8;
+  color:#111111;
+}
+
+.shop-product-floating{
+  left:42px;
+  bottom:0;
+  border-radius:24px;
+  border:1px solid #e7e2d8;
+  box-shadow:none;
+}
+
+.shop-product-floating h3{
+  font-size:24px;
+}
+
+.shop-price,
+.product-price{
+  color:var(--shop-accent-dark);
+}
+
+.shop-add-mini,
+.product-add{
+  background:#111111;
+  border-radius:12px;
+  box-shadow:none;
+}
+
+.shop-add-mini:hover,
+.product-add:hover{
+  background:var(--shop-accent-dark);
+}
+
+.shop-section{
+  padding:90px 0;
+}
+
+.shop-section.white{
+  background:#ffffff;
+}
+
+.shop-section.dark{
+  background:#111111;
+}
+
+.shop-title h2{
+  font-family:Inter, Arial, sans-serif;
+  font-weight:900;
+  letter-spacing:-3px;
+}
+
+.shop-title p{
+  color:#666666;
+}
+
+.category-grid{
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.category-card{
+  min-height:260px;
+  border-radius:22px;
+  box-shadow:none;
+  border:1px solid #e7e2d8;
+}
+
+.category-card:hover{
+  transform:translateY(-4px);
+}
+
+.category-card::after{
+  background:linear-gradient(180deg,transparent 20%,rgba(0,0,0,.58));
+}
+
+.category-content h3{
+  font-size:22px;
+}
+
+.product-grid{
+  gap:16px;
+}
+
+.product-card{
+  border-radius:22px;
+  border:1px solid #e7e2d8;
+  box-shadow:none;
+}
+
+.product-card:hover{
+  transform:translateY(-4px);
+  box-shadow:none;
+  border-color:#c9d7c8;
+}
+
+.product-img{
+  height:250px;
+}
+
+.product-tag{
+  border-radius:10px;
+  background:#ffffff;
+  color:var(--shop-accent-dark);
+  border:1px solid #e7e2d8;
+}
+
+.product-body{
+  padding:20px;
+}
+
+.product-body h3{
+  font-size:20px;
+}
+
+.offer-banner{
+  border-radius:28px;
+  box-shadow:none;
+  border:1px solid #e7e2d8;
+  background:#fbfaf7;
+}
+
+.offer-image{
+  border-radius:22px;
+}
+
+.offer-content h2{
+  font-family:Inter, Arial, sans-serif;
+  font-weight:900;
+  letter-spacing:-3px;
+}
+
+.offer-points span::before{
+  background:var(--shop-accent);
+}
+
+.benefit-card{
+  border-radius:22px;
+  background:#181818;
+  border:1px solid #292929;
+}
+
+.review-card{
+  border-radius:22px;
+  box-shadow:none;
+  border:1px solid #e7e2d8;
+}
+
+.stars{
+  color:var(--shop-accent-dark);
+}
+
+.newsletter{
+  border-radius:28px;
+  background:#111111;
+  box-shadow:none;
+}
+
+.newsletter h2{
+  font-family:Inter, Arial, sans-serif;
+  font-weight:900;
+  letter-spacing:-3px;
+}
+
+.newsletter p{
+  color:#d1d5db;
+}
+
+.newsletter-form input{
+  border-radius:14px;
+}
+
+.newsletter-form button{
+  border-radius:14px;
+  background:var(--shop-accent);
+}
+
+.cart-panel{
+  border-radius:24px;
+  box-shadow:0 18px 70px rgba(17,17,17,.16);
+}
+
+.cart-head{
+  background:#111111;
+}
+
+.cart-actions a{
+  background:var(--shop-accent);
+}
+
+.cart-collapsed{
+  background:#111111;
+  border-radius:16px;
+}
+
+@media(max-width:1050px){
+  .shop-nav{
+    border-radius:22px;
+  }
+
+  .shop-hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .shop-visual{
+    min-height:520px;
+  }
+
+  .shop-product-floating{
+    left:18px;
+    right:18px;
+  }
+}
+
+@media(max-width:720px){
+  .shop-hero{
+    padding-top:54px;
+  }
+
+  .shop-hero h1{
+    font-size:48px;
+    letter-spacing:-2.4px;
+  }
+
+  .shop-hero-card::before{
+    inset:20px;
+  }
+
+  .shop-hero-card::after{
+    left:20px;
+    bottom:20px;
+  }
+}
   </style>
 </head>
 
